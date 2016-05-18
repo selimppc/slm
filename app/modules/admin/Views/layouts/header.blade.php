@@ -19,38 +19,60 @@
         </form>
         <div class="navbar-right">
             <ul class="nav navbar-nav no-borders">
+                @if(Auth::user()->role_id == 1)
 				<li class="dropdown">
+
+                <?php
+                    $notify_data =Session::get('notify_data');
+                    //print_r($notify_data);
+                ?>
                     <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">4</span>
+                        <span class="label label-success">{{ @$notify_data['notify_count'] }}</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have 4 new messages
+                            You have {{ @$notify_data['notify_count'] }} Report Page Notifications
+
+                                {{--//print_r(count($shajjad));
+                            //echo $shajjad['0']['name'];--}}
+
+
                         </div>
                         <li>
-                            <a>
-                                It is a long established.
+                            <a style="color:#505050">
+                                Air Safety Report<span style="color:#993322"> &nbsp;({{ @$notify_data['safety'] }})</span>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                There are many variations.
+                            <a style="color:#505050">
+                                Cabin Crew Report<span style="color:#993322"> &nbsp;({{ @$notify_data['cabin'] }})</span>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                Lorem Ipsum is simply dummy.
+                            <a style="color:#505050">
+                                Confidential Safety Report<span style="color:#993322"> &nbsp;({{ @$notify_data['confident'] }})</span>
                             </a>
                         </li>
                         <li>
-                            <a>
-                                Contrary to popular belief.
+                            <a style="color:#505050">
+                                Dangerous Goods Occurrence Report<span style="color:#993322"> &nbsp;({{ @$notify_data['operation'] }})</span>
                             </a>
                         </li>
-                        <li class="summary"><a href="#">See All Messages</a></li>
+                        <li>
+                            <a style="color:#505050">
+                                Ground Handling Report<span style="color:#993322"> &nbsp;({{ @$notify_data['ground'] }})</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color:#505050">
+                                Maintenance Occurrence Report<span style="color:#993322"> &nbsp;({{ @$notify_data['maintenance'] }})</span>
+                            </a>
+                        </li>
+                        {{--<li class="summary"><a href="#">See All Messages</a></li>--}}
                     </ul>
                 </li>
+                @endif
                 <li class="dropdown">
                     {{--<a href="{{Route('get-user-login')}}">
                         <i class="pe-7s-upload pe-rotate-90"></i>

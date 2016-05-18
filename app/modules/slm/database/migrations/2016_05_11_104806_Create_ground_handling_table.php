@@ -54,6 +54,7 @@ class CreateGroundHandlingTable extends Migration
             $table->string('area',64)->nullable();
             $table->mediumText('enviromental_condition')->nullable();
             $table->longText('details_of_damage')->nullable();
+            $table->integer('notified_no')->default(0);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

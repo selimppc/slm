@@ -204,6 +204,7 @@ return [
 //        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Xmlapi'    => App\Helpers\Xmlapi::class,
         'EmailSend'    => App\Helpers\EmailSend::class,
+        'Notification'    => App\Helpers\Notification::class,
 
     ],
 

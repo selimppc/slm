@@ -3,7 +3,7 @@
 namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\LogFileHelper;
-use App\Safety;
+use App\Modules\Slm\Models\Safety;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

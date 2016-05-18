@@ -25,6 +25,7 @@ class CreateConfidentSafetyTable extends Migration
             $table->string('weather',64)->nullable();
             $table->string('flight_phase',64)->nullable();
             $table->text('account_of_event', 512)->nullable();
+            $table->integer('notified_no')->default(0);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
