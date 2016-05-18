@@ -119,7 +119,14 @@ class GroundHandlingController extends Controller
 
         //print_r($table['full_name']);exit;
 
-        $filename = "GroundHandling.csv";
+        $downloadfolder = 'csv_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $filename = $downloadfolder."GroundHandling.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(
             'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','LOCATION OF OCCURRENCE','RAMP CONDITION','DATE','TIME','UTC/Local','OPERATIONAL PHASE','OPERATOR','FLIGHT NUMBER','AIRCRAFT TYPE','REGISTRATION','FROM','TO','DELAY (min)','DIVERSION','THIRD PARTY INVOLVED (Contractor)','DESCRIPTION OF OCCURRENCE ( add forms if necessary)','ORIGIN OF THE GOODS','IATA UN/ID','CLASS / DIVISION','SUBSIDIARY RISK','PACKING GROUP','CLASS 7 CATEGORY','TYPE OF PACKING ','PACKING SPEC. MARKING ','NUMBER OF PACKAGES','QUANTITY-OF TRANSPORT INDEX','AIRWAY-BILL REFERENCE','COURIER POUCH /BAG TAG/ TKT REF','SHIPPING AGENT','SHIPPING NAME','DAMAGE TO','DAMAGE BY','AREA (STAND)','ENVIROMENTAL CONDITIONS (weather, surface, lighting)','DETAILS OF DAMAGE (add forms if necessary)'));

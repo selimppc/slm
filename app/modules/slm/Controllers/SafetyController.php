@@ -151,7 +151,14 @@ class SafetyController extends Controller
 
         //print_r($table['full_name']);exit;
 
-        $filename = "AirSafety.csv";
+        $downloadfolder = 'csv_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $filename = $downloadfolder."AirSafety.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(
             'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','CAPTAIN','PF/PNF','CO-PILOT','PF/PNF','OTHER','DATE','TIME','UTC/LOCAL','AIRCRAFT TYPE','REGISTRATION','FLIGHT NUMBER','FROM','TO','POSITION','ALTITUDE','SPEED/MACH','ACTUAL WEIGHT','REMAINING FUEL','ATL REF','DELAY (min)','DIVERSION','NR CREW','NR. PAX','FLIGHT PHASE','DESCRIPTION OF OCCURRENCE','IMC/VMC','VCM (km)','WIND DIRECTION (deg)','WIND SPEED','VISIBILITY','CEILING','CLOUDS','TEMPERATURE','QNH','WEATHER CONDITION','RUNWAY','RUNWAY CONDITION','RVR (M)','AUTO PILOT','AUTO THRUST','GEAR','FLAP','SLAT','SPOILERS','TYPE OF ALERT','TYPE OF RA','RA FOLLOWED','LEVEL OF RISK','EVASIVE ACTIONS','REPORTED TO ATC','ATC INSTUCTIONS','USED FREQUENCY','HEADING','HEADING OF THE OTHER AC','VER. SEPARATION','HOR. SEPARATION','TYPE OF BIRD','NR of BIRDS','SIZE','AREAS AFFECTED','ADVISED EARLIER','LIGHTING CONDITIONS','CODITION OF THE SKY','Course of the AC','GLIDSLOPE POSITION','POS. ON EXTENDED CENTR. LINE','CHANGE IN PITCH (deg)','CHANGE IN ROLL (deg)','CHANGE IN YAW (deg)','CHANGE IN ALT','SPEED BUFFET?','STICKSHAKER?','SUSPECTED WAKE TURBULANCE','SIGN. VERTICAL ACCELARATION','DETAILS OF AC WAKE TURBULANCE?','ADVISE TO OTHER AIRCRAFT','PERSON INVOLVED (name)','FUNCTION/POSITION','TYPE OF INFLUENCE','COMMENTS'));

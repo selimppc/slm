@@ -118,7 +118,14 @@ class ConfidentialSafetyController extends Controller
 
         //print_r($table['full_name']);exit;
 
-        $filename = "ConfidentSafety.csv";
+        $downloadfolder = 'csv_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $filename = $downloadfolder."ConfidentSafety.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(
             'Name','Address','Email', 'Telephone', 'Function','Department','Aircraft Involved','Type of Operation','Weather','Flight Phase','Account of event'));

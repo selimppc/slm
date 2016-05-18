@@ -114,7 +114,14 @@ class MaintenanceOccurrenceController extends Controller
 
         //print_r($table['full_name']);exit;
 
-        $filename = "MaintenanceOccurrence.csv";
+        $downloadfolder = 'csv_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $filename = $downloadfolder."MaintenanceOccurrence.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(
             'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','DATE OF OCCURRENCE','TIME OF OCCURRENCE','SHIFT','LOCATION OF OCCURRENCE','SUB LOCATION','MANDATORY','AIRCRAFT TYPE','REGISTRATION','OPERATOR','ETOPS','TECHNICAL LOG REF','TAG/DEMAND NO','COMPONENT','PART NUMBER','SERIAL NUMBER','QUARANTINED','ATA CODE','ATA SUB CODE','TITLE OF OCCURRENCE','DESCRIPTION OF OCCURRENCE'));

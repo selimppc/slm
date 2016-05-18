@@ -149,7 +149,14 @@ class OperationalSafetyController extends Controller
 
         //print_r($table['full_name']);exit;
 
-        $filename = "OperationalSafety.csv";
+        $downloadfolder = 'csv_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $filename = $downloadfolder."OperationalSafety.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array(
             'Mark type of Occurrence','Operator', 'Date of Occurrence', 'Local time of Occurrence','Flight date','Flight no','Departure airport','Destination airport','Aircraft type','Aircraft registration','Location of occurrence','Origin of the goods','Description of the occurrence including details of injury, damage, etc','Proper shipping name (including the technical name)','UN/ID no (when known)','Class/division (when known)','Subsidiary risk(s)','Packing group','Category, (class 7 only)','Type of packaging','Packaging specification marking','No. of packages','Quantity (or transport index. If applicable','Reference no. of Airway bill','Reference no. of courier pouch, baggage tag, or passenger ticket','Name and address of shipper, agent, passenger, etc','Other relevant information (including suspected cause, any action taken)','Name and title of person making report','Telephone no','Company dept. code, E-mail or Info Mail code','Reporter ref','Address','Date / Signature','Description of the occurrence (continuation)'));
