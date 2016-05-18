@@ -27,6 +27,10 @@
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop btn-search-height','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type full name in specific field then click search button for required information')) !!}
                     </div>
+
+                    <div class="col-sm-3 filter-btn">
+                        <a href="{{ route('operation-csv') }}" class="btn btn-info btn-xs" data-placement="top"><strong>Download CSV</strong></a>
+                    </div>
                 </div>
                 <p> &nbsp;</p>
                 <p> &nbsp;</p>
@@ -55,9 +59,9 @@
                                     <td>{{$values->flight_date}}</td>
                                     <td>{{$values->flight_no}}</td>
                                     <td>
-                                        <a href="{{ route('view-operational-safety', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('edit-operational-safety', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" data-content="update"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('delete-operational-safety', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" data-content="delete"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ route('view-operational-safety', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" ><strong>View</strong></a>
+                                        <a href="{{ route('edit-operational-safety', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" ><strong>Update</strong></a>
+                                        <a href="{{ route('delete-operational-safety', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" ><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

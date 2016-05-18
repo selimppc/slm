@@ -111,6 +111,36 @@ class ConfidentialSafetyController extends Controller
         return view('slm::confidential_safety.view',$data);
     }
 
+    public function csv(){
+
+        //$table = Safety::where('id',$id)->first();
+        $table = ConfidentSafety::all();
+
+        //print_r($table['full_name']);exit;
+
+        $filename = "ConfidentSafety.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            'Name','Address','Email', 'Telephone', 'Function','Department','Aircraft Involved','Type of Operation','Weather','Flight Phase','Account of event'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        foreach($table as $row) {
+
+            fputcsv($handle, array($row['name'], $row['address'],$row['email'], $row['telephone'], $row['function'], $row['department'], $row['aircraft_involved'],$row['type_of_operation'], $row['weather'],$row['flight_phase'],$row['account_of_event']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'ConfidentSafety.csv', $headers);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

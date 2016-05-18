@@ -144,6 +144,35 @@ class SafetyController extends Controller
         return view('slm::air_safety.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
+    public function csv(){
+
+        //$table = Safety::where('id',$id)->first();
+        $table = Safety::all();
+
+        //print_r($table['full_name']);exit;
+
+        $filename = "AirSafety.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','CAPTAIN','PF/PNF','CO-PILOT','PF/PNF','OTHER','DATE','TIME','UTC/LOCAL','AIRCRAFT TYPE','REGISTRATION','FLIGHT NUMBER','FROM','TO','POSITION','ALTITUDE','SPEED/MACH','ACTUAL WEIGHT','REMAINING FUEL','ATL REF','DELAY (min)','DIVERSION','NR CREW','NR. PAX','FLIGHT PHASE','DESCRIPTION OF OCCURRENCE','IMC/VMC','VCM (km)','WIND DIRECTION (deg)','WIND SPEED','VISIBILITY','CEILING','CLOUDS','TEMPERATURE','QNH','WEATHER CONDITION','RUNWAY','RUNWAY CONDITION','RVR (M)','AUTO PILOT','AUTO THRUST','GEAR','FLAP','SLAT','SPOILERS','TYPE OF ALERT','TYPE OF RA','RA FOLLOWED','LEVEL OF RISK','EVASIVE ACTIONS','REPORTED TO ATC','ATC INSTUCTIONS','USED FREQUENCY','HEADING','HEADING OF THE OTHER AC','VER. SEPARATION','HOR. SEPARATION','TYPE OF BIRD','NR of BIRDS','SIZE','AREAS AFFECTED','ADVISED EARLIER','LIGHTING CONDITIONS','CODITION OF THE SKY','Course of the AC','GLIDSLOPE POSITION','POS. ON EXTENDED CENTR. LINE','CHANGE IN PITCH (deg)','CHANGE IN ROLL (deg)','CHANGE IN YAW (deg)','CHANGE IN ALT','SPEED BUFFET?','STICKSHAKER?','SUSPECTED WAKE TURBULANCE','SIGN. VERTICAL ACCELARATION','DETAILS OF AC WAKE TURBULANCE?','ADVISE TO OTHER AIRCRAFT','PERSON INVOLVED (name)','FUNCTION/POSITION','TYPE OF INFLUENCE','COMMENTS'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        foreach($table as $row) {
+
+            fputcsv($handle, array($row['full_name'], $row['email'], $row['telephone'], $row['extension'], $row['fax'], $row['captain'],$row['pf_pnf'], $row['co_pilot'],$row['pf_pnf2'], $row['others'], $row['date'], $row['time'],$row['utc_local'],$row['air_craft_time'], $row['registration'], $row['flight_no'], $row['from'], $row['to'], $row['position'], $row['altitude'], $row['speed'], $row['actual_weight'], $row['remaining_fuel'], $row['atl_ref'], $row['delay'], $row['diversion'], $row['nr_crew'], $row['nr_pax'], $row['flight_phase'],$row['description_of_occurence'],$row['imc_vmc'],$row['vmc_km'],$row['wind_direction'],$row['wind_speed'],$row['visibility'],$row['ceiling'],$row['clouds'],$row['temperature'],$row['qnh'],$row['weather_condition'],$row['runway'],$row['runway_condition'],$row['rvr'],$row['auto_pilot'],$row['auto_thrust'],$row['gear'],$row['flap'],$row['slat'],$row['spoilers'],$row['type_of_alert'],$row['type_of_ra'],$row['ra_followed'],$row['level_of_risk'],$row['evasive_actions'],$row['reported_to_atc'],$row['atc_instruction'],$row['used_frequency'],$row['heading'],$row['heading_other_ac'],$row['ver_seperation'],$row['hor_seperation'],$row['type_of_bird'],$row['nr_of_birds'],$row['size'],$row['areas_affected'],$row['advice_earlier'],$row['lighting_conditions'],$row['conditions_of_the_sky'],$row['course_ac'],$row['glidslope_position'],$row['pos_extended_center'],$row['change_in_pitch'],$row['change_in_roll'],$row['change_in_yaw'],$row['change_in_alt'],$row['speed_buffet'],$row['stickshaker'],$row['suspected_wake_turbulance'],$row['sign_verticle_accelaration'],$row['details_ac_wake_turbulance'],$row['advice_other_aircraft'],$row['persion_involved'],$row['function_position'],$row['type_of_influence'],$row['comments']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'AirSafety.csv', $headers);
+    }
+
 
     public function edit($id)
     {

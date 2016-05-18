@@ -141,6 +141,36 @@ class OperationalSafetyController extends Controller
         return view('slm::operational_safety.view',$data);
     }
 
+
+    public function csv(){
+
+        //$table = Safety::where('id',$id)->first();
+        $table = OperationalSafety::all();
+
+        //print_r($table['full_name']);exit;
+
+        $filename = "OperationalSafety.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            'Mark type of Occurrence','Operator', 'Date of Occurrence', 'Local time of Occurrence','Flight date','Flight no','Departure airport','Destination airport','Aircraft type','Aircraft registration','Location of occurrence','Origin of the goods','Description of the occurrence including details of injury, damage, etc','Proper shipping name (including the technical name)','UN/ID no (when known)','Class/division (when known)','Subsidiary risk(s)','Packing group','Category, (class 7 only)','Type of packaging','Packaging specification marking','No. of packages','Quantity (or transport index. If applicable','Reference no. of Airway bill','Reference no. of courier pouch, baggage tag, or passenger ticket','Name and address of shipper, agent, passenger, etc','Other relevant information (including suspected cause, any action taken)','Name and title of person making report','Telephone no','Company dept. code, E-mail or Info Mail code','Reporter ref','Address','Date / Signature','Description of the occurrence (continuation)'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        foreach($table as $row) {
+            fputcsv($handle, array($row['type_of_occurrence'], $row['operator'], $row['date_of_occurrence'], $row['local_time_of_occurrence'],$row['flight_date'], $row['flight_no'],$row['departure_airport'], $row['destination_airport'],$row['aircraft_type'], $row['aircraft_registration'], $row['location_of_occurrence'], $row['origin_of_the_goods'],$row['description_of_the_occurrence'],$row['proper_shipping_name'], $row['un_or_id_no'], $row['class_or_division'], $row['subsidiary_risks'], $row['packing_group'], $row['category'], $row['type_of_packaging'], $row['packaging_specification_marking'], $row['no_of_packages'], $row['quantity'], $row['reference_no_of_airway_bill'], $row['reference_no_of_courier'], $row['name_and_address_of_shipper_agent_passenger'], $row['other_relevant_information'],$row['name_and_title_of_person_making_report'], $row['telephone_no'],$row['company_contact'],$row['reporter_ref'],$row['address'],$row['date_of_signature'],$row['description_of_the_occurrence']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'OperationalSafety.csv', $headers);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

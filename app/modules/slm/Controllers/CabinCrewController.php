@@ -112,6 +112,34 @@ class CabinCrewController extends Controller
         return view('slm::cabin_crew.view',$data);
     }
 
+    public function csv(){
+
+        //$table = Safety::where('id',$id)->first();
+        $table = CabinCrew::all();
+
+        //print_r($table['full_name']);exit;
+
+        $filename = "CabinCrew.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','CAPTAIN','PF/PNF','CO-PILOT','PF/PNF','OTHER','PURSER','DATE','TIME','UTC/LOCAL','AIRCRAFT TYPE','REGISTRATION','FLIGHT NUMBER','FROM','TO','FLT DIVERTED TO','ASSIGNED DOOR','POS. DURING EVEN','NR. PAX','NR CREW','PREVIOUS FLIGHTS','NR OF LANDINGS OF THE DAY','FLIGHT PHASE','DESCRIPTION OF OCCURRENCE'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        foreach($table as $row) {
+            fputcsv($handle, array($row['full_name'], $row['email'], $row['telephone'], $row['extension'], $row['fax'], $row['captain'],$row['pf_pnf'], $row['co_pilot'],$row['pf_pnf2'], $row['others'],$row['purser'],$row['date'], $row['time'],$row['utc_local'],$row['air_craft_type'],$row['registration'],$row['flight_no'], $row['from'], $row['to'],$row['flt_diverted_to'],$row['assigned_door'],$row['position_during_event'],$row['nr_of_pax'],$row['nr_of_crew'],$row['previous_flights'],$row['nr_of_landings_of_the_day'],$row['flight_phase'],$row['description_of_occurrence']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'CabinCrew.csv', $headers);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

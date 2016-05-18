@@ -112,6 +112,36 @@ class GroundHandlingController extends Controller
         return view('slm::ground_handling.view',$data);
     }
 
+    public function csv(){
+
+        //$table = Safety::where('id',$id)->first();
+        $table = GroundHandling::all();
+
+        //print_r($table['full_name']);exit;
+
+        $filename = "GroundHandling.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','LOCATION OF OCCURRENCE','RAMP CONDITION','DATE','TIME','UTC/Local','OPERATIONAL PHASE','OPERATOR','FLIGHT NUMBER','AIRCRAFT TYPE','REGISTRATION','FROM','TO','DELAY (min)','DIVERSION','THIRD PARTY INVOLVED (Contractor)','DESCRIPTION OF OCCURRENCE ( add forms if necessary)','ORIGIN OF THE GOODS','IATA UN/ID','CLASS / DIVISION','SUBSIDIARY RISK','PACKING GROUP','CLASS 7 CATEGORY','TYPE OF PACKING ','PACKING SPEC. MARKING ','NUMBER OF PACKAGES','QUANTITY-OF TRANSPORT INDEX','AIRWAY-BILL REFERENCE','COURIER POUCH /BAG TAG/ TKT REF','SHIPPING AGENT','SHIPPING NAME','DAMAGE TO','DAMAGE BY','AREA (STAND)','ENVIROMENTAL CONDITIONS (weather, surface, lighting)','DETAILS OF DAMAGE (add forms if necessary)'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        foreach($table as $row) {
+
+            fputcsv($handle, array($row['full_name'], $row['email'], $row['telephone'], $row['extension'], $row['fax'],$row['location_of_occurrence'],$row['ramp_condition'], $row['date'],$row['time'], $row['utc_local'],$row['operational_phase'], $row['operator'],$row['flight_number'],$row['aircraft_type'], $row['registration'], $row['from'], $row['to'],$row['delay'], $row['diversion'],$row['third_party_involved'],  $row['description_of_occurrence'],$row['origin_of_the_goods'], $row['iata_un_or_id'], $row['class_or_division'], $row['subsidiary_risk'],$row['packing_group'],  $row['class_7_category'], $row['type_of_packing'], $row['packing_spec_marking'],$row['number_of_packages'],$row['quantity_of_transport_index'],$row['airway_bill_reference'],$row['courier_pouch_reference'],$row['shipping_agent'],$row['shipping_name'],$row['damage_to'],$row['damage_by'],$row['area'],$row['enviromental_condition'],$row['details_of_damage']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'GroundHandling.csv', $headers);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

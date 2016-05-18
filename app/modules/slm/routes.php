@@ -35,6 +35,12 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'SafetyController@store_safety'
     ]);
 
+    Route::any('view-csv', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'view-csv',
+        'uses' => 'SafetyController@csv'
+    ]);
+
     Route::any('view-safety/{id}', [
         //'middleware' => 'acl_access:view-role/{slug}',
         'as' => 'view-safety',
@@ -175,6 +181,13 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'store-cabin-crew',
         'uses'=>'CabinCrewController@store',
     ]);
+
+    Route::any('cabin-csv', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'cabin-csv',
+        'uses' => 'CabinCrewController@csv'
+    ]);
+
     Route::get('view-cabin-crew/{id}',[
         'as'=>'view-cabin-crew',
         'uses'=>'CabinCrewController@show',
@@ -209,6 +222,14 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'view-confidential-safety',
         'uses'=>'ConfidentialSafetyController@show'
     ]);
+
+
+    Route::any('confident-csv', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'confident-csv',
+        'uses' => 'ConfidentialSafetyController@csv'
+    ]);
+
     Route::get('edit-confidential-safety/{id}',[
         'as'=>'edit-confidential-safety',
         'uses'=>'ConfidentialSafetyController@edit'
@@ -239,6 +260,14 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'view-operational-safety',
         'uses'=>'OperationalSafetyController@show'
     ]);
+
+    Route::any('operation-csv', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'operation-csv',
+        'uses' => 'OperationalSafetyController@csv'
+    ]);
+
+
     Route::get('edit-operational-safety/{id}',[
         'as'=>'edit-operational-safety',
         'uses'=>'OperationalSafetyController@edit'
@@ -269,6 +298,15 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'view-ground-handling',
         'uses'=>'GroundHandlingController@show'
     ]);
+
+
+    Route::any('ground-csv', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'ground-csv',
+        'uses' => 'GroundHandlingController@csv'
+    ]);
+
+
     Route::get('edit-ground-handling/{id}',[
         'as'=>'edit-ground-handling',
         'uses'=>'GroundHandlingController@edit'
@@ -299,6 +337,15 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'view-maintenance-occurrence',
         'uses'=>'MaintenanceOccurrenceController@show'
     ]);
+
+
+    Route::any('maintenance-csv', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'maintenance-csv',
+        'uses' => 'MaintenanceOccurrenceController@csv'
+    ]);
+
+
     Route::get('edit-maintenance-occurrence/{id}',[
         'as'=>'edit-maintenance-occurrence',
         'uses'=>'MaintenanceOccurrenceController@edit'

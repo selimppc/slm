@@ -125,7 +125,7 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">34. RUNWAY : {{ isset($data->runway)?ucfirst($data->runway):'' }}</th>
-                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION : {{ isset($data->ceiling)?ucfirst($data->ceiling):''}}</th>
+                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION : {{ isset($data->runway_condition)?ucfirst($data->runway_condition):''}}</th>
                     <th width="20%" style="border: 2px solid">36. RVR (M) : {{ isset($data->rvr)?ucfirst($data->rvr):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">

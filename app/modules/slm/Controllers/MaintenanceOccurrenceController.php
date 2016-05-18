@@ -107,6 +107,35 @@ class MaintenanceOccurrenceController extends Controller
         return view('slm::maintenance_occurrence.view',$data);
     }
 
+    public function csv(){
+
+        //$table = Safety::where('id',$id)->first();
+        $table = MaintenanceOccurrence::all();
+
+        //print_r($table['full_name']);exit;
+
+        $filename = "MaintenanceOccurrence.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array(
+            'NAME','EMAIL', 'TELEPHONE', 'EXTENSION','FAX','DATE OF OCCURRENCE','TIME OF OCCURRENCE','SHIFT','LOCATION OF OCCURRENCE','SUB LOCATION','MANDATORY','AIRCRAFT TYPE','REGISTRATION','OPERATOR','ETOPS','TECHNICAL LOG REF','TAG/DEMAND NO','COMPONENT','PART NUMBER','SERIAL NUMBER','QUARANTINED','ATA CODE','ATA SUB CODE','TITLE OF OCCURRENCE','DESCRIPTION OF OCCURRENCE'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        foreach($table as $row) {
+
+            fputcsv($handle, array($row['full_name'], $row['email'], $row['telephone'], $row['extension'], $row['fax'],$row['date_of_occurrence'],$row['time_of_occurrence'], $row['shift'],$row['location_of_occurrence'], $row['sub_location_of_occurrence'],$row['mandatory'], $row['aircraft_type'],$row['registration'],$row['operator'], $row['etops'], $row['technical_log_ref'], $row['tag_or_demand_no'],$row['component'], $row['part_number'],$row['serial_number'],  $row['quarantined'],$row['ata_code'], $row['ata_sub_code'],$row['title_of_occurrence'], $row['description_of_occurrence']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'MaintenanceOccurrence.csv', $headers);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
