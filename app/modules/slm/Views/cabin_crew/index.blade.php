@@ -4,14 +4,18 @@
 @stop
 
 @section('content')
-
+<style>
+    .csv-margin{
+        margin-left: 10px !important;
+    }
+</style>
         <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>all user role define from this page, example : system-user or admin</em>"></span>
-                <a class="btn btn-primary btn-xs pull-right" href="{{ route('add-cabin-crew') }}" data-placement="top" data-content="Click to add new Cabin Crew report">
+                <a class="btn btn-primary btn-xs pull-right csv-margin" href="{{ route('add-cabin-crew') }}" data-placement="top" data-content="Click to add new Cabin Crew report">
                     <strong>Add new Cabin Crew report</strong>
                 </a>
 

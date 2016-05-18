@@ -4,7 +4,11 @@
 @stop
 
 @section('content')
-
+<style>
+    .csv-margin{
+        margin-left: 10px !important;
+    }
+</style>
         <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
@@ -12,7 +16,7 @@
             <div class="panel-heading">
                 <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>all user role define from this page, example : system-user or admin</em>"></span>
 
-                <a class="btn btn-primary btn-xs pull-right" href="{{ route('safety-form') }}" data-placement="top" data-content="Click to add new Air Safety report">
+                <a class="btn btn-primary btn-xs pull-right btn-sm col-xs-2 csv-margin" href="{{ route('safety-form') }}" data-placement="top" data-content="Click to add new Air Safety report">
                     <strong>Add new Air Safety report</strong>
                 </a>
 
