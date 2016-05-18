@@ -14,6 +14,10 @@
                 <a class="btn btn-primary btn-xs pull-right" href="{{ route('add-ground-handling') }}" data-placement="top" data-content="Click to add new Ground Handling report">
                     <strong>Add new Ground Handling report</strong>
                 </a>
+
+
+                <a href="{{ route('ground-csv') }}" class="btn btn-info btn-xs pull-right" data-placement="top"><strong>Download CSV</strong></a>
+
             </div>
 
             <div class="panel-body">
@@ -28,9 +32,7 @@
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop btn-search-height','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type full name in specific field then click search button for required information')) !!}
                     </div>
 
-                    <div class="col-sm-3 filter-btn">
-                        <a href="{{ route('ground-csv') }}" class="btn btn-info btn-xs" data-placement="top"><strong>Download CSV</strong></a>
-                    </div>
+
 
                 </div>
                 <p> &nbsp;</p>

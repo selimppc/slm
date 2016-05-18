@@ -14,6 +14,9 @@
                 <a class="btn btn-primary btn-xs pull-right" href="{{ route('add-cabin-crew') }}" data-placement="top" data-content="Click to add new Cabin Crew report">
                     <strong>Add new Cabin Crew report</strong>
                 </a>
+
+                <a href="{{ route('cabin-csv') }}" class="btn btn-info btn-xs pull-right" data-placement="top"><strong>Download CSV</strong></a>
+
             </div>
 
             <div class="panel-body">
@@ -27,9 +30,7 @@
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop btn-search-height','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type full name in specific field then click search button for required information')) !!}
                     </div>
-                    <div class="col-sm-3 filter-btn">
-                        <a href="{{ route('cabin-csv') }}" class="btn btn-info btn-xs" data-placement="top"><strong>Download CSV</strong></a>
-                    </div>
+
                 </div>
                 <p> &nbsp;</p>
                 <p> &nbsp;</p>
