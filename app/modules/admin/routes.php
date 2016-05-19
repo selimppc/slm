@@ -72,7 +72,39 @@ Route::any('homer', [
     ]);
 
 
+    /*------------Notify by Admin-------------*/
 
+
+    Route::any('notify-safety', [
+        'as' => 'notify-safety',
+        'uses' => 'NotificationController@update_safety'
+    ]);
+
+
+    Route::any('notify-cabin', [
+        'as' => 'notify-cabin',
+        'uses' => 'NotificationController@update_cabin'
+    ]);
+
+    Route::any('notify-confidential', [
+        'as' => 'notify-confidential',
+        'uses' => 'NotificationController@update_confidential'
+    ]);
+
+    Route::any('notify-dangerous', [
+        'as' => 'notify-dangerous',
+        'uses' => 'NotificationController@update_dangerous'
+    ]);
+
+    Route::any('notify-ground', [
+        'as' => 'notify-ground',
+        'uses' => 'NotificationController@update_ground'
+    ]);
+
+    Route::any('notify-maintenance', [
+        'as' => 'notify-maintenance',
+        'uses' => 'NotificationController@update_maintenance'
+    ]);
 
 
 
