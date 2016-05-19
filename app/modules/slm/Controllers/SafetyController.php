@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 
+use Dompdf\Dompdf;
+
 
 class SafetyController extends Controller
 {
@@ -242,5 +244,7 @@ class SafetyController extends Controller
         }
         return redirect()->route('air-safety');
     }
+
+
 
 }

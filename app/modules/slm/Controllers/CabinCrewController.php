@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\CabinCrew;
 
+use Dompdf\Dompdf;
+
 
 
 class CabinCrewController extends Controller
@@ -107,8 +109,10 @@ class CabinCrewController extends Controller
      */
     public function show($id)
     {
+
         $data['pageTitle']='Show Cabin Crew Details';
         $data['cabin_crew']=CabinCrew::findOrFail($id);
+
         return view('slm::cabin_crew.view',$data);
     }
 
@@ -192,4 +196,136 @@ class CabinCrewController extends Controller
 
         return redirect()->back();
     }
+
+    public function create_pdf($id){
+
+        /*$html = "<table border='1'>
+            <tr>
+                <td>shajjad</td>
+                <td>hossain</td>
+            </tr>
+        </table>";*/
+
+        $cabin_crew=CabinCrew::findOrFail($id);
+
+        $image_path = public_path().'/assets/img/report.jpg';
+        $img = '<img src=" '.$image_path.' "  alt="Surinam Airways" >';
+
+        $fullname = "Shajjad";
+        $email = "email@email.com";
+        $html = '
+
+<style>
+    .tbl {
+        margin: 0px !important;
+        border: 2px solid;
+        border-bottom: 0px!important;
+        width: 100%;
+    }
+    .tbl2 {
+       margin: 0px !important;
+       border: 2px solid;
+       width: 100%;
+    }
+    .tbl2 tr th {
+        border: 2px solid;
+    }
+
+    .tbl2 tr td {
+        padding:7px; text-align: left;
+        text-align: left !important;
+        }
+
+    .report_img{
+        height: 100px!important;
+        text-align: center!important;
+        padding: 15px 10px 18px 10px!important;
+    }
+    .panel, .panel-body{
+        width: 100%;
+    }
+
+
+</style>
+
+    <div class="panel">
+        <div class="panel-body">
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>
+                </tr>
+            </table>
+
+            <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+                <tr>
+                    <th colspan="2">5. PURSER : '.$cabin_crew->purser.'</th>
+                    <th>6. DATE : '.$cabin_crew->date.'</th>
+                    <th>
+                        7. TIME : '.$cabin_crew->time.'
+                    </th>
+                    <th>8. AIRCRAFT TYPE : '.$cabin_crew->air_craft_type.'</th>
+                </tr>
+                <tr>
+                    <th>9. REGISTRATION : '.$cabin_crew->registration.'</th>
+                    <th>10. FLIGHT NR. : '.$cabin_crew->flight_no.'</th>
+                    <th">11. FROM : '.$cabin_crew->from.'</th>
+                    <th>12. TO : '.$cabin_crew->to.'</th>
+                    <th>13. FLT DIVERTED TO : '.$cabin_crew->flt_diverted_to.'</th>
+                </tr>
+                <tr>
+                    <th colspan="2">14. ASSIGNED DOOR : '.$cabin_crew->assigned_door.'</th>
+                    <th>15. POS. DURING EVENT : '.$cabin_crew->position_during_event.'</th>
+                    <th>16. NR OF PAX : '.$cabin_crew->nr_of_pax.'</th>
+                    <th>17. NR OF CREW : '.$cabin_crew->nr_of_crew.'</th>
+                </tr>
+                <tr>
+                    <th colspan="5">18. PREVIOUS FLIGHTS : '.$cabin_crew->previous_flights.'</th>
+                </tr>
+                <tr>
+                    <th colspan="5">19. NR OF LANDINGS OF THE DAY : '.$cabin_crew->nr_of_landings_of_the_day.'</th>
+                </tr>
+                <tr>
+                    <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'</th>
+                </tr>
+                <tr>
+                    <th colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.' </th>
+                </tr>
+                <tr>
+                    <th colspan="5">Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence, via fax +597 430230 or via e-mail : safety@slm.firm.sr</th>
+                </tr>
+                <tr>
+                    <th colspan="5">This form can also be submitted via the company website: www.flyslm.com
+You may report anonymously</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>';
+
+        //$html = CabinCrewController::show(1);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+// (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+// Render the HTML as PDF
+        $dompdf->render();
+
+// Output the generated PDF to Browser
+        $dompdf->stream();
+    }
+
+
 }

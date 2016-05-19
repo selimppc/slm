@@ -360,6 +360,14 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
     ]);
     /*Maintenance Occurrence Section End*/
 
+    /*-----------Print Pdf--------------*/
+
+    Route::any('cabin-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'cabin-pdf',
+        'uses' => 'CabinCrewController@create_pdf'
+    ]);
+
 
 
 });
