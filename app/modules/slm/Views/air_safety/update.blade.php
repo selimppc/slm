@@ -31,7 +31,7 @@
                     <div class="col-sm-4">
                         {!! Form::label('full_name', 'Full Name:', ['class' => 'control-label']) !!}
                         <small class="required">(Required)</small>
-                        {!! Form::text('full_name', Input::old('full_name'), ['id'=>'full_name', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('full_name', Input::old('full_name'), ['id'=>'full_name', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('telephone', 'Telephone No:', ['class' => 'control-label']) !!}
-                        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('captain', 'Captain:', ['class' => 'control-label']) !!}
-                        {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
                     </div>
                     <div class="col-sm-2">
                         <br>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
-                        {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
                     </div>
                     <div class="col-sm-2">
                         <br>
@@ -84,7 +84,7 @@
                     <div class="col-sm-4">
                         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
                         <div class="input-group date">
-                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date']) !!}
+                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date','required']) !!}
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('registration', 'Registration:', ['class' => 'control-label']) !!}
-                        {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('flight_no', 'Flight No:', ['class' => 'control-label']) !!}
@@ -118,11 +118,11 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('from', 'From:', ['class' => 'control-label']) !!}
-                        {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight']) !!}
+                        {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('to', 'To:', ['class' => 'control-label']) !!}
-                        {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight']) !!}
+                        {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('position', 'Position (geogr.co-ord):', ['class' => 'control-label']) !!}
@@ -200,7 +200,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         {!! Form::label('description_of_occurence', 'Description Of Occurence:', ['class' => 'control-label']) !!}
-                        {!! Form::textarea('description_of_occurence', @$data[0]['description_of_occurence'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter description of occurence']) !!}
+                        {!! Form::textarea('description_of_occurence', @$data[0]['description_of_occurence'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter description of occurence','required']) !!}
                     </div>
                 </div>
 

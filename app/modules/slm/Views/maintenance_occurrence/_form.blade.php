@@ -31,8 +31,12 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('date_of_occurrence', 'Date of occurrence:', ['class' => 'control-label']) !!}
-        {!! Form::input('date','date_of_occurrence', Input::old('date_of_occurrence'), ['id'=>'date_of_occurrence', 'class' => 'form-control','title'=>'enter date of occurrence']) !!}
+        <div class="input-group date">
+            {!! Form::text('date_of_occurrence', Input::old('date_of_occurrence'), ['id'=>'date_id','class' => 'bs-datepicker-component form-control','title'=>'select date of occurrence']) !!}
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
     </div>
+
     <div class="col-sm-4">
         {!! Form::label('time_of_occurrence', 'Time of occurrence:', ['class' => 'control-label']) !!}
         {!! Form::text('time_of_occurrence', Input::old('time_of_occurrence'), ['id'=>'time_of_occurrence', 'class' => 'form-control','maxlength'=>'64','title'=>'enter time of occurrence']) !!}

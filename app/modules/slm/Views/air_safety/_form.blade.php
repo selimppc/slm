@@ -31,7 +31,7 @@
                     <div class="col-sm-4">
                         {!! Form::label('full_name', 'Full Name:', ['class' => 'control-label']) !!}
                         <small class="required">(Required)</small>
-                        {!! Form::text('full_name', Input::old('full_name'), ['id'=>'full_name', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('full_name', Input::old('full_name'), ['id'=>'full_name', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}
@@ -40,43 +40,43 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('telephone', 'Telephone No:', ['class' => 'control-label']) !!}
-                        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter telephone no','required']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('extension', 'Extension:', ['class' => 'control-label']) !!}
-                        {!! Form::text('extension', Input::old('extension'), ['id'=>'extension', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('extension', Input::old('extension'), ['id'=>'extension', 'class' => 'form-control','maxlength'=>'64','title'=>'enter extension']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('fax', 'Fax:', ['class' => 'control-label']) !!}
-                        {!! Form::text('fax', Input::old('fax'), ['id'=>'fax', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('fax', Input::old('fax'), ['id'=>'fax', 'class' => 'form-control','maxlength'=>'64','title'=>'enter fax']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('others', 'Others:', ['class' => 'control-label']) !!}
-                        {!! Form::text('others', Input::old('others'), ['id'=>'others', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('others', Input::old('others'), ['id'=>'others', 'class' => 'form-control','maxlength'=>'64','title'=>'enter others']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('captain', 'Captain:', ['class' => 'control-label']) !!}
-                        {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter captain','required']) !!}
                     </div>
                     <div class="col-sm-2">
                         <br>
-                        {!! Form::radio('pf_pnf', 'pf', (@$pf_pnf == 'pf' ? 'checked': '')) !!} PF
-                        {!! Form::radio('pf_pnf', 'pnf', (@$pf_pnf == 'pnf' ? 'checked': '')) !!} PNF
+                        {!! Form::radio('pf_pnf', 'pf', true) !!} PF
+                        {!! Form::radio('pf_pnf', 'pnf', false) !!} PNF
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
-                        {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter co_pilot','required']) !!}
                     </div>
                     <div class="col-sm-2">
                         <br>
-                        {!! Form::radio('pf_pnf2', 'pf', (@$request_model == 'pf' ? 'checked': '')) !!} PF
-                        {!! Form::radio('pf_pnf2', 'pnf', (@$request_model == 'pf' ? 'checked': '')) !!} PNF
+                        {!! Form::radio('pf_pnf2', 'pf', true) !!} PF
+                        {!! Form::radio('pf_pnf2', 'pnf', false) !!} PNF
                     </div>
                 </div>
 
@@ -84,13 +84,13 @@
                     <div class="col-sm-4">
                         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
                         <div class="input-group date">
-                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date']) !!}
+                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date','required']) !!}
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('time', 'Time:', ['class' => 'control-label']) !!}
-                        {!! Form::text('time', Input::old('time'), ['id'=>'time', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('time', Input::old('time'), ['id'=>'time', 'class' => 'form-control','maxlength'=>'64','title'=>'enter time']) !!}
                     </div>
 
                     <div class="col-sm-4">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('registration', 'Registration:', ['class' => 'control-label']) !!}
-                        {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+                        {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter registration','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('flight_no', 'Flight No:', ['class' => 'control-label']) !!}
@@ -118,11 +118,11 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('from', 'From:', ['class' => 'control-label']) !!}
-                        {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight']) !!}
+                        {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('to', 'To:', ['class' => 'control-label']) !!}
-                        {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight']) !!}
+                        {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('position', 'Position (geogr.co-ord):', ['class' => 'control-label']) !!}
@@ -181,26 +181,26 @@
                     <div class="col-sm-12">
                         {!! Form::label('flight_phase', 'Flight Phase:', ['class' => 'control-label']) !!}
                         <br>
-                        {!! Form::radio('flight_phase', 'parked', (@$request_model == 'parked' ? 'checked': '')) !!} PARKED &nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'push_back', (@$request_model == 'push_back' ? 'checked': '')) !!} PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'taxi_out', (@$request_model == 'taxi_out' ? 'checked': '')) !!} TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'take_off', (@$request_model == 'take_off' ? 'checked': '')) !!} TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'initial_climb', (@$request_model == 'initial_climb' ? 'checked': '')) !!} INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'climb', (@$request_model == 'climb' ? 'checked': '')) !!} CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'parked', true) !!} PARKED &nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'push_back', false) !!} PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'taxi_out', false) !!} TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'take_off', false) !!} TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'initial_climb', false) !!} INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'climb', false) !!} CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        {!! Form::radio('flight_phase', 'cruise', (@$request_model == 'cruise' ? 'checked': '')) !!} CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'holding', (@$request_model == 'holding' ? 'checked': '')) !!} HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'descent', (@$request_model == 'descent' ? 'checked': '')) !!} DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'approach', (@$request_model == 'approach' ? 'checked': '')) !!} APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'landing', (@$request_model == 'landing' ? 'checked': '')) !!} LANDING&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'taxi_in', (@$request_model == 'taxi_in' ? 'checked': '')) !!} TAXI IN
+                        {!! Form::radio('flight_phase', 'cruise', false) !!} CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'holding', false) !!} HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'descent', false) !!} DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'approach', false) !!} APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'landing', false) !!} LANDING&nbsp;&nbsp;
+                        {!! Form::radio('flight_phase', 'taxi_in', false) !!} TAXI IN
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12">
                         {!! Form::label('description_of_occurence', 'Description Of Occurrence:', ['class' => 'control-label']) !!}
-                        {!! Form::textarea('description_of_occurence', @$data[0]['description_of_occurence'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter description of occurrence']) !!}
+                        {!! Form::textarea('description_of_occurence', @$data[0]['description_of_occurence'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter description of occurrence','required']) !!}
                     </div>
                 </div>
 
@@ -211,45 +211,45 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('imc_vmc', 'IMC/VMC:', ['class' => 'control-label']) !!}
-                        {!! Form::text('imc_vmc', Input::old('imc_vmc'), ['id'=>'imc_vmc', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('imc_vmc', Input::old('imc_vmc'), ['id'=>'imc_vmc', 'class' => 'form-control','maxlength'=>'64','title'=>'enter imc_vmc']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('vmc_km', 'VMC (km):', ['class' => 'control-label']) !!}
-                        {!! Form::text('vmc_km', Input::old('vmc_km'), ['id'=>'vmc_km', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('vmc_km', Input::old('vmc_km'), ['id'=>'vmc_km', 'class' => 'form-control','maxlength'=>'64','title'=>'enter vmc_km']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('wind_direction', 'Wind Direction (deg):', ['class' => 'control-label']) !!}
-                        {!! Form::text('wind_direction', Input::old('wind_direction'), ['id'=>'wind_direction', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('wind_direction', Input::old('wind_direction'), ['id'=>'wind_direction', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual wind_direction']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('wind_speed', 'Wind Speed:', ['class' => 'control-label']) !!}
-                        {!! Form::text('wind_speed', Input::old('wind_speed'), ['id'=>'wind_speed', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('wind_speed', Input::old('wind_speed'), ['id'=>'wind_speed', 'class' => 'form-control','maxlength'=>'64','title'=>'enter wind_speed']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('visibility', 'Visibility:', ['class' => 'control-label']) !!}
-                        {!! Form::text('visibility', Input::old('visibility'), ['id'=>'visibility', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('visibility', Input::old('visibility'), ['id'=>'visibility', 'class' => 'form-control','maxlength'=>'64','title'=>'enter visibility']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('ceiling', 'Ceiling:', ['class' => 'control-label']) !!}
-                        {!! Form::text('ceiling', Input::old('ceiling'), ['id'=>'ceiling', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('ceiling', Input::old('ceiling'), ['id'=>'ceiling', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual ceiling']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('clouds', 'Clouds:', ['class' => 'control-label']) !!}
-                        {!! Form::text('clouds', Input::old('clouds'), ['id'=>'clouds', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('clouds', Input::old('clouds'), ['id'=>'clouds', 'class' => 'form-control','maxlength'=>'64','title'=>'enter clouds']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('temperature', 'Temperature:', ['class' => 'control-label']) !!}
-                        {!! Form::text('temperature', Input::old('temperature'), ['id'=>'temperature', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('temperature', Input::old('temperature'), ['id'=>'temperature', 'class' => 'form-control','maxlength'=>'64','title'=>'enter temperature']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('qnh', 'Qnh:', ['class' => 'control-label']) !!}
-                        {!! Form::text('qnh', Input::old('qnh'), ['id'=>'qnh', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('qnh', Input::old('qnh'), ['id'=>'qnh', 'class' => 'form-control','maxlength'=>'64','title'=>'enter qnh']) !!}
                     </div>
                 </div>
 
@@ -274,7 +274,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('runway', 'Run Way:', ['class' => 'control-label']) !!}
-                        {!! Form::text('runway', Input::old('runway'), ['id'=>'runway', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('runway', Input::old('runway'), ['id'=>'runway', 'class' => 'form-control','maxlength'=>'64','title'=>'enter runway']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('runway_condition', 'Runway Condition:', ['class' => 'control-label']) !!}
@@ -286,18 +286,18 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('rvr', 'RVR (M):', ['class' => 'control-label']) !!}
-                        {!! Form::text('rvr', Input::old('rvr'), ['id'=>'rvr', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('rvr', Input::old('rvr'), ['id'=>'rvr', 'class' => 'form-control','maxlength'=>'64','title'=>'enter rvr']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('auto_pilot', 'Auto Pilot:', ['class' => 'control-label']) !!}
-                        {!! Form::text('auto_pilot', Input::old('auto_pilot'), ['id'=>'auto_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('auto_pilot', Input::old('auto_pilot'), ['id'=>'auto_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter auto_pilot']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('auto_thrust', 'Auto Thrust:', ['class' => 'control-label']) !!}
-                        {!! Form::text('auto_thrust', Input::old('auto_thrust'), ['id'=>'auto_thrust', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('auto_thrust', Input::old('auto_thrust'), ['id'=>'auto_thrust', 'class' => 'form-control','maxlength'=>'64','title'=>'enter auto_thrust']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('gear', 'Gear:', ['class' => 'control-label']) !!}
@@ -310,15 +310,15 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('flap', 'Flap:', ['class' => 'control-label']) !!}
-                        {!! Form::text('flap', Input::old('flap'), ['id'=>'flap', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('flap', Input::old('flap'), ['id'=>'flap', 'class' => 'form-control','maxlength'=>'64','title'=>'enter flap']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('slat', 'Slat:', ['class' => 'control-label']) !!}
-                        {!! Form::text('slat', Input::old('slat'), ['id'=>'slat', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('slat', Input::old('slat'), ['id'=>'slat', 'class' => 'form-control','maxlength'=>'64','title'=>'enter slat']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('spoilers', 'Spoilers:', ['class' => 'control-label']) !!}
-                        {!! Form::text('spoilers', Input::old('spoilers'), ['id'=>'spoilers', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('spoilers', Input::old('spoilers'), ['id'=>'spoilers', 'class' => 'form-control','maxlength'=>'64','title'=>'enter spoilers']) !!}
                     </div>
                 </div>
 
@@ -336,7 +336,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('type_of_ra', 'Type OF RA:', ['class' => 'control-label']) !!}
-                        {!! Form::text('type_of_ra', Input::old('type_of_ra'), ['id'=>'type_of_ra', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('type_of_ra', Input::old('type_of_ra'), ['id'=>'type_of_ra', 'class' => 'form-control','maxlength'=>'64','title'=>'enter type_of_ra']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('ra_followed', 'RA Followed?:', ['class' => 'control-label']) !!}
@@ -385,18 +385,18 @@
                     </div>
                     <div class="col-sm-3">
                         {!! Form::label('used_frequency', 'USED Frequency:', ['class' => 'control-label']) !!}
-                        {!! Form::text('used_frequency', Input::old('used_frequency'), ['id'=>'used_frequency', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('used_frequency', Input::old('used_frequency'), ['id'=>'used_frequency', 'class' => 'form-control','maxlength'=>'64','title'=>'enter used_frequency']) !!}
                     </div>
                     <div class="col-sm-3">
                         {!! Form::label('heading', 'Heading:', ['class' => 'control-label']) !!}
-                        {!! Form::text('heading', Input::old('heading'), ['id'=>'heading', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('heading', Input::old('heading'), ['id'=>'heading', 'class' => 'form-control','maxlength'=>'64','title'=>'enter heading']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12">
                         {!! Form::label('heading_other_ac', 'Heading Of The Other AC:', ['class' => 'control-label']) !!}
-                        {!! Form::text('heading_other_ac', Input::old('heading_other_ac'), ['id'=>'heading_other_ac', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('heading_other_ac', Input::old('heading_other_ac'), ['id'=>'heading_other_ac', 'class' => 'form-control','maxlength'=>'64','title'=>'enter heading_other_ac']) !!}
                     </div>
                 </div>
 
@@ -407,11 +407,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         {!! Form::label('ver_seperation', 'VER Separation:', ['class' => 'control-label']) !!}
-                        {!! Form::text('ver_seperation', Input::old('ver_seperation'), ['id'=>'ver_seperation', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('ver_seperation', Input::old('ver_seperation'), ['id'=>'ver_seperation', 'class' => 'form-control','maxlength'=>'64','title'=>'enter ver_seperation']) !!}
                     </div>
                     <div class="col-sm-6">
                         {!! Form::label('hor_seperation', 'HOR Separation:', ['class' => 'control-label']) !!}
-                        {!! Form::text('hor_seperation', Input::old('hor_seperation'), ['id'=>'hor_seperation', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('hor_seperation', Input::old('hor_seperation'), ['id'=>'hor_seperation', 'class' => 'form-control','maxlength'=>'64','title'=>'enter hor_seperation']) !!}
                     </div>
                 </div>
 
@@ -422,7 +422,7 @@
                 <div class="row">
                     <div class="col-sm-3">
                         {!! Form::label('type_of_bird', 'Type Of Bird:', ['class' => 'control-label']) !!}
-                        {!! Form::text('type_of_bird', Input::old('type_of_bird'), ['id'=>'type_of_bird', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('type_of_bird', Input::old('type_of_bird'), ['id'=>'type_of_bird', 'class' => 'form-control','maxlength'=>'64','title'=>'enter type_of_bird']) !!}
                     </div>
                     <div class="col-sm-3">
                         {!! Form::label('nr_of_birds', 'NR OF Birds:', ['class' => 'control-label']) !!}
@@ -436,7 +436,7 @@
                     </div>
                     <div class="col-sm-3">
                         {!! Form::label('areas_affected', 'Areas Affected:', ['class' => 'control-label']) !!}
-                        {!! Form::text('areas_affected', Input::old('areas_affected'), ['id'=>'areas_affected', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('areas_affected', Input::old('areas_affected'), ['id'=>'areas_affected', 'class' => 'form-control','maxlength'=>'64','title'=>'enter size']) !!}
                     </div>
                 </div>
 
@@ -449,7 +449,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('lighting_conditions', 'Lighting Conditions:', ['class' => 'control-label']) !!}
-                        {!! Form::text('lighting_conditions', Input::old('lighting_conditions'), ['id'=>'lighting_conditions', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('lighting_conditions', Input::old('lighting_conditions'), ['id'=>'lighting_conditions', 'class' => 'form-control','maxlength'=>'64','title'=>'enter lighting_conditions']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('conditions_of_the_sky', 'Condition Of The Sky:', ['class' => 'control-label']) !!}
@@ -491,37 +491,37 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('change_in_pitch', 'CHANGE IN PITCH (deg):', ['class' => 'control-label']) !!}
-                        {!! Form::text('change_in_pitch', Input::old('change_in_pitch'), ['id'=>'change_in_pitch', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('change_in_pitch', Input::old('change_in_pitch'), ['id'=>'change_in_pitch', 'class' => 'form-control','maxlength'=>'64','title'=>'enter change_in_pitch']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('speed_buffet', 'SPEED BUFFET?:', ['class' => 'control-label']) !!}
-                        {!! Form::text('speed_buffet', Input::old('speed_buffet'), ['id'=>'speed_buffet', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('speed_buffet', Input::old('speed_buffet'), ['id'=>'speed_buffet', 'class' => 'form-control','maxlength'=>'64','title'=>'enter speed_buffet']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('stickshaker', 'STICKSHAKER?:', ['class' => 'control-label']) !!}
-                        {!! Form::text('stickshaker', Input::old('stickshaker'), ['id'=>'stickshaker', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Actual Weight']) !!}
+                        {!! Form::text('stickshaker', Input::old('stickshaker'), ['id'=>'stickshaker', 'class' => 'form-control','maxlength'=>'64','title'=>'enter stickshaker']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
                         {!! Form::label('suspected_wake_turbulance', 'SUSPECTED WAKE TURBULANCE:', ['class' => 'control-label']) !!}
-                        {!! Form::text('suspected_wake_turbulance', Input::old('suspected_wake_turbulance'), ['id'=>'suspected_wake_turbulance', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('suspected_wake_turbulance', Input::old('suspected_wake_turbulance'), ['id'=>'suspected_wake_turbulance', 'class' => 'form-control','maxlength'=>'64','title'=>'enter suspected_wake_turbulance']) !!}
                     </div>
                     <div class="col-sm-6">
                         {!! Form::label('sign_verticle_accelaration', 'SIGN. VERTICAL ACCELARATION:', ['class' => 'control-label']) !!}
-                        {!! Form::text('sign_verticle_accelaration', Input::old('sign_verticle_accelaration'), ['id'=>'sign_verticle_accelaration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('sign_verticle_accelaration', Input::old('sign_verticle_accelaration'), ['id'=>'sign_verticle_accelaration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter sign_verticle_accelaration']) !!}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
                         {!! Form::label('details_ac_wake_turbulance', 'DETAILS OF AC WAKE TURBULANCE?:', ['class' => 'control-label']) !!}
-                        {!! Form::text('details_ac_wake_turbulance', Input::old('details_ac_wake_turbulance'), ['id'=>'details_ac_wake_turbulance', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Altitude']) !!}
+                        {!! Form::text('details_ac_wake_turbulance', Input::old('details_ac_wake_turbulance'), ['id'=>'details_ac_wake_turbulance', 'class' => 'form-control','maxlength'=>'64','title'=>'enter details_ac_wake_turbulance']) !!}
                     </div>
                     <div class="col-sm-6">
                         {!! Form::label('advice_other_aircraft', 'ADVISE TO OTHER AIRCRAFT:', ['class' => 'control-label']) !!}
-                        {!! Form::text('advice_other_aircraft', Input::old('advice_other_aircraft'), ['id'=>'advice_other_aircraft', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('advice_other_aircraft', Input::old('advice_other_aircraft'), ['id'=>'advice_other_aircraft', 'class' => 'form-control','maxlength'=>'64','title'=>'enter advice_other_aircraft']) !!}
                     </div>
                 </div>
 
@@ -533,7 +533,7 @@
                 <div class="row">
                     <div class="col-sm-3">
                         {!! Form::label('persion_involved', 'Person Involved:', ['class' => 'control-label']) !!}
-                        {!! Form::text('persion_involved', Input::old('persion_involved'), ['id'=>'persion_involved', 'class' => 'form-control','maxlength'=>'64','title'=>'enter Speed']) !!}
+                        {!! Form::text('persion_involved', Input::old('persion_involved'), ['id'=>'persion_involved', 'class' => 'form-control','maxlength'=>'64','title'=>'enter persion_involved']) !!}
                     </div>
                     <div class="col-sm-3">
                         {!! Form::label('function_position', 'Function/Position:', ['class' => 'control-label']) !!}
@@ -555,7 +555,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         {!! Form::label('comments', 'COMMENTS:', ['class' => 'control-label']) !!}
-                        {!! Form::textarea('comments', @$data[0]['comments'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter description of occurence']) !!}
+                        {!! Form::textarea('comments', @$data[0]['comments'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter comments']) !!}
                     </div>
 
                     {{--<div class="col-sm-4">

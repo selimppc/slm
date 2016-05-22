@@ -368,6 +368,17 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'CabinCrewController@create_pdf'
     ]);
 
+    Route::any('confidential-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'confidential-pdf',
+        'uses' => 'ConfidentialSafetyController@create_pdf'
+    ]);
+
+    Route::any('maintenance-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'maintenance-pdf',
+        'uses' => 'MaintenanceOccurrenceController@create_pdf'
+    ]);
 
 
 });
