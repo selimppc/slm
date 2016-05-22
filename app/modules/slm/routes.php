@@ -380,5 +380,11 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'MaintenanceOccurrenceController@create_pdf'
     ]);
 
+    Route::any('ground-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'ground-pdf',
+        'uses' => 'GroundHandlingController@create_pdf'
+    ]);
+
 
 });

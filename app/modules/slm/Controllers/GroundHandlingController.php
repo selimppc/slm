@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\GroundHandling;
 
+use Dompdf\Dompdf;
+
 
 class GroundHandlingController extends Controller
 {
@@ -63,6 +65,8 @@ class GroundHandlingController extends Controller
     public function store(Request $request)
     {
         $data=$request->except('_token');
+
+        $data['date']=date("Y-m-d", strtotime($data['date']));
 
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
@@ -159,6 +163,10 @@ class GroundHandlingController extends Controller
     {
         $data['pageTitle']='Edit Ground Handling Details';
         $data['ground_handling']=GroundHandling::findOrFail($id);
+
+
+        $data['ground_handling']['date']=date("M d, Y", strtotime($data['ground_handling']['date']));
+
         return view('slm::ground_handling.edit',$data);
     }
 
@@ -172,6 +180,8 @@ class GroundHandlingController extends Controller
     public function update(Request $request, $id)
     {
         $data=$request->except('_token','_method');
+
+        $data['date']=date("Y-m-d", strtotime($data['date']));
 
         GroundHandling::where('id',$id)->update($data);
         Session::flash('message', 'Ground Handling has been successfully updated');
@@ -191,5 +201,233 @@ class GroundHandlingController extends Controller
         Session::flash('message', 'Ground Handling has been successfully deleted');
 
         return redirect()->back();
+    }
+
+    public function create_pdf($id){
+
+        /*$html = "<table border='1'>
+            <tr>
+                <td>shajjad</td>
+                <td>hossain</td>
+            </tr>
+        </table>";*/
+
+        $ground_handling=GroundHandling::findOrFail($id);
+
+        $image_path = public_path().'/assets/img/report.jpg';
+        $image_path2 = public_path().'/assets/img/report_black.jpg';
+        $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
+        $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
+
+        $html = '
+
+<style>
+    .tbl {
+        margin: 0px !important;
+        border: 2px solid;
+        border-bottom: 0px!important;
+        width: 100%;
+    }
+
+    .tbl3 {
+        margin: 0px !important;
+        border: 2px solid;
+        border-top: 0px!important;
+        border-left: 0px!important;
+        border-right: 0px!important;
+        width: 100%;
+    }
+
+    .tbl2 {
+       margin: 0px !important;
+       border: 2px solid;
+       width: 100%;
+    }
+    .tbl2 tr th {
+        border: 2px solid;
+    }
+
+    .tbl2 th{
+    text-align: left;
+    }
+
+    .tbl2 tr td {
+        padding:7px; text-align: left;
+        text-align: left !important;
+        }
+
+    .report_img{
+        height: 100px!important;
+        text-align: center!important;
+        padding: 15px 10px 18px 10px!important;
+    }
+
+    .report_img2{
+        height: 10px!important;
+        text-align: left!important;
+        padding: 5px 2px 8px 2px!important;
+    }
+
+    .panel, .panel-body{
+        width: 100%;
+    }
+
+
+</style>
+
+    <div class="panel">
+        <div class="panel-body">
+            <div class="panel-body">
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+                <tr>
+                    <th width="50%" class="report_img2">
+                        '.$img2.'
+                        <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
+                    </th>
+                    <th style="border-left: 2px solid" width="50%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B              Operational Safety Report (OSR)</p>
+                    </th>
+
+                </tr>
+                <span style="font-weight: bolder; font-size:20px;">B.III OSR – GROUND HANDLING REPORT</span>
+            </table>
+            <br>
+            <br>
+            <br>
+
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">GROUND HANDLING REPORT</th>
+                </tr>
+            </table>
+
+            <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+                <tr>
+                    <th style="text-align: center; background-color: yellow" colspan="4">GENERAL INFORMATION</th>
+                </tr>
+                <tr>
+                    <th colspan="4">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$ground_handling->full_name.','.$ground_handling->email.','.$ground_handling->telephone.','.$ground_handling->extension.','.$ground_handling->fax.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="75%" style="border: 2px solid" colspan="3">2. LOCATION OF OCCURRENCE : '.$ground_handling->location_of_occurrence.'</th>
+                    <th width="25%" style="border: 2px solid">3. RAMP CONDITION : '.$ground_handling->ramp_condition.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="25%" style="border: 2px solid">4. DATE : '.date("M d, Y", strtotime($ground_handling->date)).'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">
+                        5. TIME: '.$ground_handling->time.'&nbsp;&nbsp;&nbsp; '.$ground_handling->utc_local.'
+                    </th>
+                    <th width="25%" style="border: 2px solid">6. OPERATIONAL PHASE : '.$ground_handling->operational_phase.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="25%" style="border: 2px solid">7. OPERATOR : '.$ground_handling->operator.'</th>
+                    <th width="25%" style="border: 2px solid">8. FLIGHT NUMBER : '.$ground_handling->flight_number.'</th>
+                    <th width="25%" style="border: 2px solid">9. AIRCRAFT TYPE : '.$ground_handling->aircraft_type.'</th>
+                    <th width="25%" style="border: 2px solid">10. REGISTRATION : '.$ground_handling->registration.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="25%" style="border: 2px solid">11. FROM : '.$ground_handling->from.'</th>
+                    <th width="25%" style="border: 2px solid">12. TO : '.$ground_handling->to.'</th>
+                    <th width="25%" style="border: 2px solid">13. DELAY (min) : '.$ground_handling->delay.'</th>
+                    <th width="25%" style="border: 2px solid">14. DIVERSION : '.$ground_handling->diversion.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="4">15. THIRD PARTY INVOLVED (Contractor) '.$ground_handling->third_party_involved.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; ; background-color: yellow" colspan="4">DANGEROUS GOODS</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">17. ORIGIN OF THE GOODS : '.$ground_handling->origin_of_the_goods.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">18. IATA UN/ID : '.$ground_handling->iata_un_or_id.'</th>
+                </tr>
+
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">19. CLASS / DIVISION : '.$ground_handling->class_or_division.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">20. SUBSIDIARY RISK : '.$ground_handling->subsidiary_risk.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">
+                        21. PACKING GROUP :'.$ground_handling->packing_group.'
+                    </th>
+                    <th width="50%" style="border: 2px solid" colspan="2">
+                        22.CLASS 7 CATEGORY :'.$ground_handling->class_7_category.'
+                    </th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">23. TYPE OF PACKING : '.$ground_handling->type_of_packing.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">24. PACKING SPEC. MARKING : '.$ground_handling->packing_spec_marking.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">25. NUMBER OF PACKAGES : '.$ground_handling->number_of_packages.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">26. QUANTITY-OF TRANSPORT INDEX : '.$ground_handling->quantity_of_transport_index.'</th>
+                </tr>
+
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">27.AIRWAY-BILL REFERENCE : '.$ground_handling->airway_bill_reference.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">28. COURIER POUCH /BAG TAG/ TKT REF : '.$ground_handling->courier_pouch_reference.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="50%" style="border: 2px solid" colspan="2">29. SHIPPING AGENT : '.$ground_handling->shipping_agent.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">30. SHIPPING NAME : '.$ground_handling->shipping_name.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; ; background-color: yellow" colspan="4">VEHICLE & RAMP EQUIPMENT DAMAGE</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="25%" style="border: 2px solid">31. DAMAGE TO : '.$ground_handling->damage_to.'</th>
+                    <th width="25%" style="border: 2px solid">32. DAMAGE BY : '.$ground_handling->damage_by.'</th>
+                    <th width="50%" style="border: 2px solid" colspan="2">33. AREA (STAND) : '.$ground_handling->area.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="4">34.ENVIROMENTAL CONDITIONS (weather, surface, lighting) : '.$ground_handling->enviromental_condition.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="4">35. DETAILS OF DAMAGE (add forms if necessary) : '.$ground_handling->details_of_damage.'</th>
+                </tr>
+
+
+
+
+
+                <tr>
+                    <th colspan="4">Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence, via fax +597 430230 or via e-mail : safety@slm.firm.sr</th>
+                </tr>
+                <tr>
+                    <th colspan="4">This form can also be submitted via the company website: www.flyslm.com
+You may report anonymously</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>';
+
+        //$html = CabinCrewController::show(1);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+// (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+// Render the HTML as PDF
+        $dompdf->render();
+
+// Output the generated PDF to Browser
+        $dompdf->stream();
     }
 }

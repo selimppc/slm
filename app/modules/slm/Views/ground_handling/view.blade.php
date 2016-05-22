@@ -11,6 +11,12 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Ground Handling report</b></h3>
         </div>
 
+        <div>
+            <a href="{{ route('ground-pdf', $ground_handling->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Print Pdf</strong></a>
+        </div>
+
+        <div style="height: 25px"></div>
+
         <div class="panel-body">
             <table class="table table-bordered table-responsive" width="100%">
                 <tr>
@@ -24,7 +30,7 @@
                     <th width="25%" style="border: 2px solid">3. RAMP CONDITION : {{ isset($ground_handling->ramp_condition)?ucfirst($ground_handling->ramp_condition):'' }}</th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="25%" style="border: 2px solid">4. DATE : {{ isset($ground_handling->date)?ucfirst($ground_handling->date):'' }}</th>
+                    <th width="25%" style="border: 2px solid">4. DATE : {{ isset($ground_handling->date)?date("M d, Y", strtotime($ground_handling->date)):'' }}</th>
                     <th width="50%" style="border: 2px solid" colspan="2">
                         5. TIME: {{ isset($ground_handling->time)?ucfirst($ground_handling->time):'' }}&nbsp;&nbsp;
                         {!! Form::radio('utc_local', 'utc', (@$ground_handling->utc_local == 'utc' ? 'checked': '')) !!} UTC
