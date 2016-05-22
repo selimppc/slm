@@ -55,6 +55,10 @@ class SafetyController extends Controller
         $input = $request->all();
         $model = new Safety();
 
+        $input['date']=date("Y-m-d", strtotime($input['date']));
+
+        //print_r($input['date']);exit;
+
         $model->full_name = @$input['full_name'];$model->email = @$input['email'];
         $model->telephone = @$input['telephone'];$model->extension = @$input['extension'];$model->fax = @$input['fax'];
         $model->others = @$input['others'];$model->captain = @$input['captain'];$model->pf_pnf = @$input['pf_pnf'];
@@ -143,6 +147,7 @@ class SafetyController extends Controller
     {
         $pageTitle = 'View Safety Informations';
         $data = Safety::where('id',$id)->first();
+
         return view('slm::air_safety.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
     }
 
@@ -187,6 +192,10 @@ class SafetyController extends Controller
     {
         $pageTitle = "Update Air Safety Informations";
         $data = Safety::where('id',$id)->first();
+
+        $data['date']=date("M d, Y", strtotime($data['date']));
+
+        //print_r($data['date']);exit;
         return view('slm::air_safety.update',['pageTitle'=>$pageTitle,'data' => $data]);
     }
 
@@ -194,6 +203,8 @@ class SafetyController extends Controller
     {
         $input = $request->all();
         //$input['slug'] = str_slug(strtolower($input['title']));
+
+        $input['date']=date("Y-m-d", strtotime($input['date']));
 
         $model = Safety::where('id',$id)->first();
         DB::beginTransaction();

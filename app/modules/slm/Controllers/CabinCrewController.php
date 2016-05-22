@@ -67,6 +67,7 @@ class CabinCrewController extends Controller
     {
         $data=$request->except('_token');
 
+        $data['date']=date("Y-m-d", strtotime($data['date']));
 
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
@@ -161,6 +162,11 @@ class CabinCrewController extends Controller
     {
         $data['pageTitle']='Edit Cabin Crew Details';
         $data['cabin_crew']=CabinCrew::findOrFail($id);
+
+        //print_r($data['cabin_crew']['date']);exit;
+
+        $data['cabin_crew']['date']=date("M d, Y", strtotime($data['cabin_crew']['date']));
+
         return view('slm::cabin_crew.edit',$data);
     }
 
@@ -175,7 +181,7 @@ class CabinCrewController extends Controller
     {
         $data=$request->except('_token','_method');
 
-
+        $data['date']=date("Y-m-d", strtotime($data['date']));
 
         CabinCrew::where('id',$id)->update($data);
         Session::flash('message', 'Cabin Crew has been successfully updated');
@@ -324,7 +330,8 @@ class CabinCrewController extends Controller
                 </tr>
                 <tr>
                     <th colspan="2">5. PURSER : '.$cabin_crew->purser.'</th>
-                    <th>6. DATE : '.$cabin_crew->date.'</th>
+                    <th>6. DATE : '.date("M d, Y", strtotime($cabin_crew->date)).'</th>
+
                     <th>
                         7. TIME : '.$cabin_crew->time.'
                     </th>

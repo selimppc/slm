@@ -4,7 +4,7 @@
     <div class="col-sm-4">
         {!! Form::label('full_name', 'Full Name:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
-        {!! Form::text('full_name', Input::old('full_name'), ['id'=>'full_name', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+        {!! Form::text('full_name', Input::old('full_name'), ['id'=>'full_name', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::label('email', 'Email Address:', ['class' => 'control-label']) !!}
@@ -13,7 +13,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('telephone', 'Telephone No:', ['class' => 'control-label']) !!}
-        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
 </div>
 
@@ -31,21 +31,23 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('captain', 'Captain:', ['class' => 'control-label']) !!}
-        {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+        {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-2">
         <br>
-        {!! Form::radio('pf_pnf', 'pf', (@$pf_pnf == 'pf' ? 'checked': '')) !!} PF
-        {!! Form::radio('pf_pnf', 'pnf', (@$pf_pnf == 'pnf' ? 'checked': '')) !!} PNF
+        {!! Form::radio('pf_pnf', 'pf', false) !!} PF
+        {!! Form::radio('pf_pnf', 'pnf', true) !!} PNF
+
+
     </div>
     <div class="col-sm-4">
         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
-        {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+        {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-2">
         <br>
-        {!! Form::radio('pf_pnf2', 'pf', (@$request_model == 'pf' ? 'checked': '')) !!} PF
-        {!! Form::radio('pf_pnf2', 'pnf', (@$request_model == 'pf' ? 'checked': '')) !!} PNF
+        {!! Form::radio('pf_pnf2', 'pf', false) !!} PF
+        {!! Form::radio('pf_pnf2', 'pnf', true) !!} PNF
     </div>
 </div>
 
@@ -61,7 +63,7 @@
     <div class="col-sm-4">
         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
         <div class="input-group date">
-            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date']) !!}
+            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date','required']) !!}
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>
     </div>
@@ -84,7 +86,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('registration', 'Registration:', ['class' => 'control-label']) !!}
-        {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name']) !!}
+        {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::label('flight_no', 'Flight No:', ['class' => 'control-label']) !!}
@@ -95,11 +97,11 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('from', 'From:', ['class' => 'control-label']) !!}
-        {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight']) !!}
+        {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight','required']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::label('to', 'To:', ['class' => 'control-label']) !!}
-        {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight']) !!}
+        {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight','required']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::label('flt_diverted_to', 'FLT Diverted To:', ['class' => 'control-label']) !!}
@@ -140,35 +142,28 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-4">
-        {!! Form::label('flight_phase', 'Flight Phase:', ['class' => 'control-label']) !!}
-        {!! Form::text('flight_phase', Input::old('flight_phase'), ['id'=>'flight_phase', 'class' => 'form-control','maxlength'=>'64','title'=>'enter flight phase']) !!}
-    </div>
-</div>
-
-<div class="row">
     <div class="col-sm-12">
         {!! Form::label('flight_phase', 'Flight Phase:', ['class' => 'control-label']) !!}
         <br>
-        {!! Form::radio('flight_phase', 'parked', (@$request_model == 'parked' ? 'checked': '')) !!} PARKED &nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'push_back', (@$request_model == 'push_back' ? 'checked': '')) !!} PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'taxi_out', (@$request_model == 'taxi_out' ? 'checked': '')) !!} TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'take_off', (@$request_model == 'take_off' ? 'checked': '')) !!} TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'initial_climb', (@$request_model == 'initial_climb' ? 'checked': '')) !!} INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'climb', (@$request_model == 'climb' ? 'checked': '')) !!} CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'parked', true) !!} PARKED &nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'push_back', false) !!} PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'taxi_out', false) !!} TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'take_off', false) !!} TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'initial_climb', false) !!} INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'climb', false) !!} CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
 
-        {!! Form::radio('flight_phase', 'cruise', (@$request_model == 'cruise' ? 'checked': '')) !!} CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'holding', (@$request_model == 'holding' ? 'checked': '')) !!} HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'descent', (@$request_model == 'descent' ? 'checked': '')) !!} DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'approach', (@$request_model == 'approach' ? 'checked': '')) !!} APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'landing', (@$request_model == 'landing' ? 'checked': '')) !!} LANDING&nbsp;&nbsp;
-        {!! Form::radio('flight_phase', 'taxi_in', (@$request_model == 'taxi_in' ? 'checked': '')) !!} TAXI IN
+        {!! Form::radio('flight_phase', 'cruise', false) !!} CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'holding', false) !!} HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'descent', false) !!} DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'approach', false) !!} APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'landing', false) !!} LANDING&nbsp;&nbsp;
+        {!! Form::radio('flight_phase', 'taxi_in', false) !!} TAXI IN
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
         {!! Form::label('description_of_occurrence', 'Description Of Occurrence:', ['class' => 'control-label']) !!}
-        {!! Form::textarea('description_of_occurrence', @$data[0]['description_of_occurrence'], ['size' => '6x5', 'class' => 'form-control','title'=>'enter description of occurrence']) !!}
+        {!! Form::textarea('description_of_occurrence', @$data[0]['description_of_occurrence'], ['size' => '6x5', 'class' => 'form-control','title'=>'enter description of occurrence','required']) !!}
     </div>
 </div>

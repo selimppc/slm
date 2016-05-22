@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <script src="assets/bitd/js/jquery.min.js"></script>
+    {{--<script src="assets/bitd/js/jquery.min.js"></script>--}}
     <style>
         #panel_padding {
             padding: 20px;

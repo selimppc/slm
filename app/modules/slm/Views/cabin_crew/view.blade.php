@@ -74,7 +74,7 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="40%" style="border: 2px solid" colspan="2">5. PURSER : {{ isset($cabin_crew->purser)?ucfirst($cabin_crew->purser):'' }}</th>
-                    <th width="20%" style="border: 2px solid">6. DATE : {{ isset($cabin_crew->date)?ucfirst($cabin_crew->date):''}}</th>
+                    <th width="20%" style="border: 2px solid">6. DATE : {{ isset($cabin_crew->date)?date("M d, Y", strtotime($cabin_crew->date)):''}} </th>
                     <th width="20%" style="border: 2px solid">
                         7. TIME : {{ isset($cabin_crew->time)?ucfirst($cabin_crew->time):''}}
                         {!! Form::radio('utc_local', 'utc', (@$cabin_crew->utc_local == 'utc' ? 'checked': '')) !!} UTC

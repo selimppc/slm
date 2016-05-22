@@ -99,9 +99,17 @@
         $('.datapicker2').datepicker({
             format: 'yyyy-mm-dd (D)',
         });
+
+        //YYYY-MM-DD
+
         $('.input-group.date').datepicker({
+            format: 'MM dd, yyyy',
+            //format: 'yyyy-mm-dd (D)',
         });
-        $('.input-daterange').datepicker({ });
+
+        $('.input-daterange').datepicker({
+
+        });
 
     });
 
