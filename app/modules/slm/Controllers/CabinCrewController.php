@@ -209,10 +209,10 @@ class CabinCrewController extends Controller
         $cabin_crew=CabinCrew::findOrFail($id);
 
         $image_path = public_path().'/assets/img/report.jpg';
-        $img = '<img src=" '.$image_path.' "  alt="Surinam Airways" >';
+        $image_path2 = public_path().'/assets/img/report_black.jpg';
+        $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
+        $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
-        $fullname = "Shajjad";
-        $email = "email@email.com";
         $html = '
 
 <style>
@@ -222,6 +222,16 @@ class CabinCrewController extends Controller
         border-bottom: 0px!important;
         width: 100%;
     }
+
+    .tbl3 {
+        margin: 0px !important;
+        border: 2px solid;
+        border-top: 0px!important;
+        border-left: 0px!important;
+        border-right: 0px!important;
+        width: 100%;
+    }
+
     .tbl2 {
        margin: 0px !important;
        border: 2px solid;
@@ -229,6 +239,10 @@ class CabinCrewController extends Controller
     }
     .tbl2 tr th {
         border: 2px solid;
+    }
+
+    .tbl2 th{
+    text-align: left;
     }
 
     .tbl2 tr td {
@@ -241,6 +255,13 @@ class CabinCrewController extends Controller
         text-align: center!important;
         padding: 15px 10px 18px 10px!important;
     }
+
+    .report_img2{
+        height: 10px!important;
+        text-align: left!important;
+        padding: 5px 2px 8px 2px!important;
+    }
+
     .panel, .panel-body{
         width: 100%;
     }
@@ -250,6 +271,25 @@ class CabinCrewController extends Controller
 
     <div class="panel">
         <div class="panel-body">
+            <div class="panel-body">
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+                <tr>
+                    <th width="50%" class="report_img2">
+                        '.$img2.'
+                        <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
+                    </th>
+                    <th style="border-left: 2px solid" width="50%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B Operational Safety Report (OSR)</p>
+                    </th>
+
+                </tr>
+                <span style="font-weight: bolder; font-size:20px;">B.II OSR – CABIN CREW</span>
+            </table>
+            <br>
+            <br>
+            <br>
+
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
@@ -267,6 +307,21 @@ class CabinCrewController extends Controller
             </table>
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+                <tr>
+                    <th style="text-align: center; background-color: yellow" colspan="5">GENERAL INFORMATION</th>
+                </tr>
+                <tr>
+                    <th colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$cabin_crew->full_name.','.$cabin_crew->email.','.$cabin_crew->telephone.','.$cabin_crew->extension.','.$cabin_crew->fax.'</th>
+                </tr>
+                <tr>
+                    <th width="40%" style="border: 2px solid" colspan="2">
+                        2. CAPTAIN :'.$cabin_crew->captain.'
+                    </th>
+                    <th width="40%" style="border: 2px solid" colspan="2">
+                        3. CO-PILOT : '.$cabin_crew->co_pilot.'
+                    </th>
+                    <th width="20%" style="border: 2px solid">4. OTHER : '.$cabin_crew->others.'</th>
+                </tr>
                 <tr>
                     <th colspan="2">5. PURSER : '.$cabin_crew->purser.'</th>
                     <th>6. DATE : '.$cabin_crew->date.'</th>
