@@ -272,27 +272,102 @@ class SafetyController extends Controller
         $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
-        if($cabin_crew->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
-        if($cabin_crew->pf_pnf == 'pnf'){$pnf='checked';}else{$pnf='';}
+        if($data->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
+        if($data->pf_pnf == 'pnf'){$pnf='checked';}else{$pnf='';}
 
-        if($cabin_crew->pf_pnf2 == 'pf'){$pf2='checked';}else{$pf2='';}
-        if($cabin_crew->pf_pnf2 == 'pnf'){$pnf2='checked';}else{$pnf2='';}
+        if($data->pf_pnf2 == 'pf'){$pf2='checked';}else{$pf2='';}
+        if($data->pf_pnf2 == 'pnf'){$pnf2='checked';}else{$pnf2='';}
 
-        if($cabin_crew->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
-        if($cabin_crew->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
+        if($data->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
+        if($data->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
 
-        if($cabin_crew->flight_phase== 'parked'){$fp1='checked';}else{$fp1='';}
-        if($cabin_crew->flight_phase== 'push_back'){$fp2='checked';}else{$fp2='';}
-        if($cabin_crew->flight_phase== 'taxi_out'){$fp3='checked';}else{$fp3='';}
-        if($cabin_crew->flight_phase== 'take_off'){$fp4='checked';}else{$fp4='';}
-        if($cabin_crew->flight_phase== 'initial_climb'){$fp5='checked';}else{$fp5='';}
-        if($cabin_crew->flight_phase== 'climb'){$fp6='checked';}else{$fp6='';}
-        if($cabin_crew->flight_phase== 'cruise'){$fp7='checked';}else{$fp7='';}
-        if($cabin_crew->flight_phase== 'holding'){$fp8='checked';}else{$fp8='';}
-        if($cabin_crew->flight_phase== 'descent'){$fp9='checked';}else{$fp9='';}
-        if($cabin_crew->flight_phase== 'approach'){$fp10='checked';}else{$fp10='';}
-        if($cabin_crew->flight_phase== 'landing'){$fp11='checked';}else{$fp11='';}
-        if($cabin_crew->flight_phase== 'taxi_in'){$fp12='checked';}else{$fp12='';}
+        if($data->flight_phase== 'parked'){$fp1='checked';}else{$fp1='';}
+        if($data->flight_phase== 'push_back'){$fp2='checked';}else{$fp2='';}
+        if($data->flight_phase== 'taxi_out'){$fp3='checked';}else{$fp3='';}
+        if($data->flight_phase== 'take_off'){$fp4='checked';}else{$fp4='';}
+        if($data->flight_phase== 'initial_climb'){$fp5='checked';}else{$fp5='';}
+        if($data->flight_phase== 'climb'){$fp6='checked';}else{$fp6='';}
+        if($data->flight_phase== 'cruise'){$fp7='checked';}else{$fp7='';}
+        if($data->flight_phase== 'holding'){$fp8='checked';}else{$fp8='';}
+        if($data->flight_phase== 'descent'){$fp9='checked';}else{$fp9='';}
+        if($data->flight_phase== 'approach'){$fp10='checked';}else{$fp10='';}
+        if($data->flight_phase== 'landing'){$fp11='checked';}else{$fp11='';}
+        if($data->flight_phase== 'taxi_in'){$fp12='checked';}else{$fp12='';}
+
+        if($data->weather_condition== 'soft'){$weather1='checked';}else{$weather1='';}
+        if($data->weather_condition== 'moderate'){$weather2='checked';}else{$weather2='';}
+        if($data->weather_condition== 'severe'){$weather3='checked';}else{$weather3='';}
+        if($data->weather_condition== 'turbulence'){$weather4='checked';}else{$weather4='';}
+        if($data->weather_condition== 'wind_shear'){$weather5='checked';}else{$weather5='';}
+        if($data->weather_condition== 'rain'){$weather6='checked';}else{$weather6='';}
+        if($data->weather_condition== 'hail'){$weather7='checked';}else{$weather7='';}
+        if($data->weather_condition== 'mist'){$weather8='checked';}else{$weather8='';}
+        if($data->weather_condition== 'fog'){$weather9='checked';}else{$weather9='';}
+        if($data->weather_condition== 'snow'){$weather10='checked';}else{$weather10='';}
+
+
+        if($data->runway_condition== 'dry'){$runway1='checked';}else{$runway1='';}
+        if($data->runway_condition== 'wet'){$runway2='checked';}else{$runway2='';}
+        if($data->runway_condition== 'mist'){$runway3='checked';}else{$runway3='';}
+        if($data->runway_condition== 'snow'){$runway4='checked';}else{$runway4='';}
+
+        if($data->gear== 'up'){$gear1='checked';}else{$gear1='';}
+        if($data->gear== 'down'){$gear2='checked';}else{$gear2='';}
+
+
+        if($data->type_of_alert== 'none'){$alert1='checked';}else{$alert1='';}
+        if($data->type_of_alert== 'ra'){$alert2='checked';}else{$alert2='';}
+        if($data->type_of_alert== 'ta'){$alert3='checked';}else{$alert3='';}
+
+
+        if($data->ra_followed== 'yes'){$followed1='checked';}else{$followed1='';}
+        if($data->ra_followed== 'no'){$followed2='checked';}else{$followed2='';}
+
+        if($data->level_of_risk== 'none'){$risk1='checked';}else{$risk1='';}
+        if($data->level_of_risk== 'low'){$risk2='checked';}else{$risk2='';}
+        if($data->level_of_risk== 'medium'){$risk3='checked';}else{$risk3='';}
+        if($data->level_of_risk== 'high'){$risk4='checked';}else{$risk4='';}
+
+        if($data->evasive_actions== 'yes'){$evasive1='checked';}else{$evasive1='';}
+        if($data->evasive_actions== 'no'){$evasive2='checked';}else{$evasive2='';}
+
+        if($data->reported_to_atc== 'yes'){$reported1='checked';}else{$reported1='';}
+        if($data->reported_to_atc== 'no'){$reported2='checked';}else{$reported2='';}
+
+        if($data->atc_instruction== 'none'){$instruction1='checked';}else{$instruction1='';}
+        if($data->atc_instruction== 'climb'){$instruction2='checked';}else{$instruction2='';}
+        if($data->atc_instruction== 'descent'){$instruction3='checked';}else{$instruction3='';}
+        if($data->atc_instruction== 'turn_left'){$instruction4='checked';}else{$instruction4='';}
+        if($data->atc_instruction== 'turn_right'){$instruction5='checked';}else{$instruction5='';}
+
+        if($data->advice_earlier== 'yes'){$advice1='checked';}else{$advice1='';}
+        if($data->advice_earlier== 'no'){$advice2='checked';}else{$advice2='';}
+
+        if($data->conditions_of_the_sky== 'clear'){$sky1='checked';}else{$sky1='';}
+        if($data->conditions_of_the_sky== 'clouded'){$sky2='checked';}else{$sky2='';}
+        if($data->conditions_of_the_sky== 'dark'){$sky3='checked';}else{$sky3='';}
+
+        if($data->course_ac== 'none'){$course1='checked';}else{$course1='';}
+        if($data->course_ac== 'right'){$course2='checked';}else{$course2='';}
+        if($data->course_ac== 'left'){$course3='checked';}else{$course3='';}
+
+        if($data->glidslope_position== 'hi'){$glidslope1='checked';}else{$glidslope1='';}
+        if($data->glidslope_position== 'low'){$glidslope2='checked';}else{$glidslope2='';}
+        if($data->glidslope_position== 'on'){$glidslope3='checked';}else{$glidslope3='';}
+
+        if($data->pos_extended_center== 'left'){$extended1='checked';}else{$extended1='';}
+        if($data->pos_extended_center== 'right'){$extended2='checked';}else{$extended2='';}
+        if($data->pos_extended_center== 'on'){$extended3='checked';}else{$extended3='';}
+
+        if($data->function_position== 'crew'){$function1='checked';}else{$function1='';}
+        if($data->function_position== 'ground'){$function2='checked';}else{$function2='';}
+        if($data->function_position== 'other'){$function3='checked';}else{$function3='';}
+
+
+        if($data->type_of_influence== 'crew_actions'){$influence1='checked';}else{$influence1='';}
+        if($data->type_of_influence== 'external'){$influence2='checked';}else{$influence2='';}
+        if($data->type_of_influence== 'organizational'){$influence3='checked';}else{$influence3='';}
+        if($data->type_of_influence== 'personal'){$influence4='checked';}else{$influence4='';}
 
         $html = '
 
@@ -483,19 +558,39 @@ class SafetyController extends Controller
 
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">
-                        33. WEATHER CONDITION : '.$data->weather_condition.'
+                        33. WEATHER CONDITION :
+                        <br>
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather1.' style="display:inline;" > SOFT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather2.' style="display:inline;" > MODERATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather3.' style="display:inline;" > SEVERE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather4.' style="display:inline;" > TURBULENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather5.' style="display:inline;" > WIND-SHEAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br>
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather6.' style="display:inline;" > RAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather7.' style="display:inline;" > HAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather8.' style="display:inline;" > MIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather9.' style="display:inline;" > FOG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="weather_condition" value=""  '.$weather10.' style="display:inline;" > SNOW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">34. RUNWAY : '.$data->runway.'</th>
-                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION : '.$data->runway_condition.'</th>
+                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION :
+                    <br>
+                    <input type="checkbox" name="runway_condition" value=""  '.$runway1.' style="display:inline;" > Dry&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="runway_condition" value=""  '.$runway2.' style="display:inline;" > Wet&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="runway_condition" value=""  '.$runway3.' style="display:inline;" > Mist&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="runway_condition" value=""  '.$runway4.' style="display:inline;" > Snow&nbsp;&nbsp;&nbsp;
+                    </th>
                     <th width="20%" style="border: 2px solid">36. RVR (M) : '.$data->rvr.'</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">37. AUTO PILOT : '.$data->auto_pilot.'</th>
                     <th width="32%" style="border: 2px solid">38. AUTO THRUST : '.$data->auto_thrust.'</th>
                     <th width="16%" style="border: 2px solid">
-                        39. GEAR :'.$data->gear.'
+                        39. GEAR :
+                        <input type="checkbox" name="gear" value=""  '.$gear1.' style="display:inline;" > UP&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="gear" value=""  '.$gear2.' style="display:inline;" > DOWN&nbsp;&nbsp;&nbsp;
 
                     </th>
                     <th width="16%" style="border: 2px solid">40. FLAP : '.$data->flap.'</th>
@@ -507,11 +602,16 @@ class SafetyController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
-                        43. TYPE OF ALERT : '.$data->type_of_alert.'
+                        43. TYPE OF ALERT :
+                        <input type="checkbox" name="type_of_alert" value=""  '.$alert1.' style="display:inline;" > None&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > RA&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > TA&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">44. TYPE OF RA : '.$data->type_of_ra.'</th>
                     <th width="20%" style="border: 2px solid" colspan="2">
-                        45. RA FOLLOWED? : '.$data->ra_followed.'
+                        45. RA FOLLOWED? :
+                        <input type="checkbox" name="ra_followed" value=""  '.$followed1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="ra_followed" value=""  '.$followed2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr>
@@ -519,19 +619,32 @@ class SafetyController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
-                        46. LEVEL OF RISK : '.$data->level_of_risk.'
+                        46. LEVEL OF RISK :
+                        <input type="checkbox" name="level_of_risk" value=""  '.$risk1.' style="display:inline;" > None&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="level_of_risk" value=""  '.$risk2.' style="display:inline;" > LOW&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="level_of_risk" value=""  '.$risk3.' style="display:inline;" > MEDIUM&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="level_of_risk" value=""  '.$risk4.' style="display:inline;" > HIGH&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">
-                        47. EVASIVE ACTIONS : '.$data->evasive_actions.'
+                        47. EVASIVE ACTIONS :
+                        <input type="checkbox" name="evasive_actions" value=""  '.$evasive1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="evasive_actions" value=""  '.$evasive2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="20%" style="border: 2px solid" colspan="2">
-                        48. REPORTED TO ATC? : '.$data->reported_to_atc.'
+                        48. REPORTED TO ATC? :
+                        <input type="checkbox" name="reported_to_atc" value=""  '.$reported1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="reported_to_atc" value=""  '.$reported2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
 
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
-                        49. ATC INSTUCTIONS : '.$data->atc_instruction.'
+                        49. ATC INSTUCTIONS :
+                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction1.' style="display:inline;" > None&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction2.' style="display:inline;" > CLIMB&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction3.' style="display:inline;" > DESCENT&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction4.' style="display:inline;" > TURN LEFT&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction5.' style="display:inline;" > TURN RIGHT&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">
                         50. USED FREQUENCY :
@@ -584,14 +697,19 @@ class SafetyController extends Controller
 
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
-                        59. ADVISED EARLIER? : '.$data->advice_earlier.'
+                        59. ADVISED EARLIER? :
+                        <input type="checkbox" name="advice_earlier" value=""  '.$advice1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="advice_earlier" value=""  '.$advice2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
                         60. LIGHTING CONDITIONS :
                         '.$data->lighting_conditions.'
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        61. CODITION OF THE SKY : '.$data->conditions_of_the_sky.'
+                        61. CODITION OF THE SKY :
+                        <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky1.' style="display:inline;" > CLEAR&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky2.' style="display:inline;" > CLOUDED&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky3.' style="display:inline;" > DARK&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr>
@@ -599,13 +717,22 @@ class SafetyController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
-                        62. Course of the AC : '.$data->course_ac.'
+                        62. Course of the AC :
+                        <input type="checkbox" name="course_ac" value=""  '.$course1.' style="display:inline;" > NONE&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="course_ac" value=""  '.$course2.' style="display:inline;" > RIGHT&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="course_ac" value=""  '.$course3.' style="display:inline;" > LEFT&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        63. GLIDSLOPE POSITION : '.$data->glidslope_position.'
+                        63. GLIDSLOPE POSITION :
+                        <input type="checkbox" name="glidslope_position" value=""  '.$glidslope1.' style="display:inline;" > HI&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="glidslope_position" value=""  '.$glidslope2.' style="display:inline;" > LOW&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="glidslope_position" value=""  '.$glidslope3.' style="display:inline;" > ON&nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        64. POS. ON EXTENDED CENTR. LINE. : '.$data->pos_extended_center.'
+                        64. POS. ON EXTENDED CENTR. LINE. :
+                        <input type="checkbox" name="pos_extended_center" value=""  '.$extended1.' style="display:inline;" > LEFT&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="pos_extended_center" value=""  '.$extended2.' style="display:inline;" > RIGHT&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="pos_extended_center" value=""  '.$extended3.' style="display:inline;" > ON&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -632,9 +759,9 @@ class SafetyController extends Controller
 
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="48%" style="border: 2px solid" colspan="2">
+                    <th width="48%" style="border: 2px solid" colspan="3">
                         73. DETAILS OF AC WAKE TURBULANCE? :'.$data->details_ac_wake_turbulance.'</th>
-                    <th width="52%" style="border: 2px solid" colspan="2">
+                    <th width="52%" style="border: 2px solid" colspan="3">
                         74. ADVISE TO OTHER AIRCRAFT :'.$data->advice_other_aircraft.'</th>
 
                 </tr>
@@ -642,15 +769,24 @@ class SafetyController extends Controller
                     <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">HUMAN FACTORS</th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="48%" style="border: 2px solid" colspan="2">
+                    <th width="48%" style="border: 2px solid" colspan="3">
                         75. PERSON INVOLVED (name) [ optional field] :'.$data->persion_involved.'</th>
-                    <th width="52%" style="border: 2px solid" colspan="2">
-                        76. FUNCTION/POSITION :'.$data->function_position.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="3">
+                        76. FUNCTION/POSITION :
+                        <input type="checkbox" name="function_position" value=""  '.$function1.' style="display:inline;" > Crew&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="function_position" value=""  '.$function2.' style="display:inline;" > Ground&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="function_position" value=""  '.$function3.' style="display:inline;" > Other&nbsp;&nbsp;&nbsp;
+                        </th>
 
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="6">
-                        77. TYPE OF INFLUENCE :'.$data->type_of_influence.'</th>
+                        77. TYPE OF INFLUENCE :
+                        <input type="checkbox" name="type_of_influence" value=""  '.$influence1.' style="display:inline;" > Crew actions&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="type_of_influence" value=""  '.$influence2.' style="display:inline;" > External&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="type_of_influence" value=""  '.$influence3.' style="display:inline;" > Organizational&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="type_of_influence" value=""  '.$influence4.' style="display:inline;" > Personal&nbsp;&nbsp;&nbsp;
+                        </th>
 
                 </tr>
                 <tr style="border: 2px solid">
@@ -685,8 +821,26 @@ You may report anonymously</th>
 // Render the HTML as PDF
         $dompdf->render();
 
+        $downloadfolder = public_path().'/pdf_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $output = $dompdf->output();
+        file_put_contents($downloadfolder.'AIR_SAFETY_REPORT.pdf', $output);
+
+        $file = $downloadfolder.'/AIR_SAFETY_REPORT.pdf';
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        return Response::download($file, 'AIR_SAFETY_REPORT.pdf', $headers);
+
 // Output the generated PDF to Browser
-        $dompdf->stream();
+        //$dompdf->stream();
     }
 
 
