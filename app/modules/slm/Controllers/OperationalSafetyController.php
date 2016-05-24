@@ -294,6 +294,10 @@ class OperationalSafetyController extends Controller
         $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
+        if($operational_safety->type_of_occurrence== 'accident'){$occurrence1='checked';}else{$occurrence1='';}
+        if($operational_safety->type_of_occurrence== 'incident'){$occurrence11='checked';}else{$occurrence11='';}
+        if($operational_safety->type_of_occurrence== 'other_occurrence'){$occurrence111='checked';}else{$occurrence111='';}
+
         $html = '
 
 <style>
@@ -393,7 +397,10 @@ class OperationalSafetyController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="100%" style="border: 2px solid" colspan="4">
-                        Mark type of Occurrence : '.$operational_safety->type_of_occurrence.'
+                        Mark type of Occurrence :
+                        <input type="checkbox" name="type_of_occurrence" value=""  '.$occurrence1.' style="display:inline;" > Accident
+                        <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence11.' style="display:inline;" >  Incident
+                        <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence111.' style="display:inline;" >  Other Occurrence
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -523,6 +530,24 @@ class OperationalSafetyController extends Controller
         $dompdf->render();
 
 // Output the generated PDF to Browser
-        $dompdf->stream();
+        //$dompdf->stream();
+
+        $downloadfolder = public_path().'/pdf_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $output = $dompdf->output();
+        file_put_contents($downloadfolder.'Dangerous_Goods_Occurrence_report.pdf', $output);
+
+        $file = $downloadfolder.'/Dangerous_Goods_Occurrence_report.pdf';
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        return Response::download($file, 'Dangerous_Goods_Occurrence_report.pdf', $headers);
     }
 }

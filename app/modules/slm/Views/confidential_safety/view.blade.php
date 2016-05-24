@@ -11,8 +11,8 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Confidential Safety report</b></h3>
         </div>
 
-        <div>
-            <a href="{{ route('confidential-pdf', $confidential_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Print Pdf</strong></a>
+        <div style="padding-right: 15px">
+            <a href="{{ route('confidential-pdf', $confidential_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
         </div>
 
         <div style="height: 25px"></div>

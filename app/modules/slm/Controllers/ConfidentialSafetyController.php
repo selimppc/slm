@@ -428,6 +428,24 @@ This form can also be submitted via the company website: www.flyslm.com
         $dompdf->render();
 
 // Output the generated PDF to Browser
-        $dompdf->stream();
+        //$dompdf->stream();
+
+        $downloadfolder = public_path().'/pdf_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $output = $dompdf->output();
+        file_put_contents($downloadfolder.'Confidential_Safety_report.pdf', $output);
+
+        $file = $downloadfolder.'/Confidential_Safety_report.pdf';
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        return Response::download($file, 'Confidential_Safety_report.pdf', $headers);
     }
 }

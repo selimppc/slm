@@ -28,8 +28,8 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Cabin Crew report</b></h3>
         </div>
 
-        <div>
-            <a href="{{ route('cabin-pdf', $cabin_crew->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Print Pdf</strong></a>
+        <div style="padding-right: 15px">
+            <a href="{{ route('cabin-pdf', $cabin_crew->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
         </div>
 
         <div style="height: 25px"></div>

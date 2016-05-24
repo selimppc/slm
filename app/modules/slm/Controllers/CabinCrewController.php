@@ -219,6 +219,15 @@ class CabinCrewController extends Controller
         $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
+        if($cabin_crew->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
+        if($cabin_crew->pf_pnf == 'pnf'){$pnf='checked';}else{$pnf='';}
+
+        if($cabin_crew->pf_pnf2 == 'pf'){$pf2='checked';}else{$pf2='';}
+        if($cabin_crew->pf_pnf2 == 'pnf'){$pnf2='checked';}else{$pnf2='';}
+
+        if($cabin_crew->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
+        if($cabin_crew->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
+
         $html = '
 
 <style>
@@ -322,9 +331,13 @@ class CabinCrewController extends Controller
                 <tr>
                     <th width="40%" style="border: 2px solid" colspan="2">
                         2. CAPTAIN :'.$cabin_crew->captain.'
+                        <input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" > PF
+                        <input type="checkbox" name="pf_pnf" value="" '.$pnf.' style="display:inline;" >  PNF
                     </th>
                     <th width="40%" style="border: 2px solid" colspan="2">
                         3. CO-PILOT : '.$cabin_crew->co_pilot.'
+                        <input type="checkbox" name="pf_pnf2" value=""  '.$pf2.' style="display:inline;" > PF
+                        <input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >  PNF
                     </th>
                     <th width="20%" style="border: 2px solid">4. OTHER : '.$cabin_crew->others.'</th>
                 </tr>
@@ -334,6 +347,8 @@ class CabinCrewController extends Controller
 
                     <th>
                         7. TIME : '.$cabin_crew->time.'
+                        <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
+                        <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
                     </th>
                     <th>8. AIRCRAFT TYPE : '.$cabin_crew->air_craft_type.'</th>
                 </tr>
