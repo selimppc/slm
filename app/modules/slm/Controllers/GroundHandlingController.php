@@ -219,6 +219,22 @@ class GroundHandlingController extends Controller
         $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
+        if($ground_handling->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
+        if($ground_handling->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
+
+        if($ground_handling->packing_group== 'I'){$I='checked';}else{$I='';}
+        if($ground_handling->packing_group== 'II'){$II='checked';}else{$II='';}
+        if($ground_handling->packing_group== 'III'){$III='checked';}else{$III='';}
+
+
+        if($ground_handling->class_7_category== 'I'){$cat1='checked';}else{$cat1='';}
+        if($ground_handling->class_7_category== 'II'){$cat11='checked';}else{$cat11='';}
+        if($ground_handling->class_7_category== 'III'){$cat111='checked';}else{$cat111='';}
+
+
+
+
+
         $html = '
 
 <style>
@@ -326,7 +342,10 @@ class GroundHandlingController extends Controller
                 <tr style="border: 2px solid">
                     <th width="25%" style="border: 2px solid">4. DATE : '.date("M d, Y", strtotime($ground_handling->date)).'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        5. TIME: '.$ground_handling->time.'&nbsp;&nbsp;&nbsp; '.$ground_handling->utc_local.'
+                        5. TIME: '.$ground_handling->time.'&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
+                        <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
+
                     </th>
                     <th width="25%" style="border: 2px solid">6. OPERATIONAL PHASE : '.$ground_handling->operational_phase.'</th>
                 </tr>
@@ -362,10 +381,16 @@ class GroundHandlingController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        21. PACKING GROUP :'.$ground_handling->packing_group.'
+                        21. PACKING GROUP :
+                        <input type="checkbox" name="packing_group" value=""  '.$I.' style="display:inline;" > I
+                        <input type="checkbox" name="packing_group" value="" '.$II.' style="display:inline;" >  II
+                        <input type="checkbox" name="packing_group" value="" '.$III.' style="display:inline;" >  III
                     </th>
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        22.CLASS 7 CATEGORY :'.$ground_handling->class_7_category.'
+                        22.CLASS 7 CATEGORY :
+                        <input type="checkbox" name="class_7_category" value=""  '.$cat1.' style="display:inline;" > I
+                        <input type="checkbox" name="class_7_category" value="" '.$cat11.' style="display:inline;" >  II
+                        <input type="checkbox" name="class_7_category" value="" '.$cat111.' style="display:inline;" >  III
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -421,13 +446,29 @@ You may report anonymously</th>
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
 
-// (Optional) Setup the paper size and orientation
+        // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
 
-// Render the HTML as PDF
+        // Render the HTML as PDF
         $dompdf->render();
 
-// Output the generated PDF to Browser
-        $dompdf->stream();
+        $downloadfolder = public_path().'/pdf_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $output = $dompdf->output();
+        file_put_contents($downloadfolder.'Ground_Handling_report.pdf', $output);
+
+        $file = $downloadfolder.'/Ground_Handling_report.pdf';
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        return Response::download($file, 'Ground_Handling_report.pdf', $headers);
+
     }
 }

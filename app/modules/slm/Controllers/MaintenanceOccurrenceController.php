@@ -238,11 +238,15 @@ class MaintenanceOccurrenceController extends Controller
     }
     .tbl2 tr th {
         border: 2px solid;
+        vertical-align: top !important;
     }
 
     .tbl2 th{
     text-align: left;
+
     }
+
+
 
     .tbl2 tr td {
         padding:7px; text-align: left;
@@ -343,7 +347,7 @@ class MaintenanceOccurrenceController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="7">20. TITLE OF OCCURRENCE : '.$maintenance_occurrence->title_of_occurrence.'</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid" colspan="7">21. DESCRIPTION OF OCCURRENCE : <p>'.$maintenance_occurrence->description_of_occurrence.'</p></th>
+                    <th style="border: 2px solid;line-height:200px" colspan="7">21. DESCRIPTION OF OCCURRENCE :'.$maintenance_occurrence->description_of_occurrence.'</th>
                 </tr>
 
                 <tr>
@@ -370,7 +374,24 @@ You may report anonymously</th>
 // Render the HTML as PDF
         $dompdf->render();
 
-// Output the generated PDF to Browser
-        $dompdf->stream();
+        $downloadfolder = public_path().'/pdf_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $output = $dompdf->output();
+        file_put_contents($downloadfolder.'Maintenance_Occurrence_Report.pdf', $output);
+
+        $file = $downloadfolder.'/Maintenance_Occurrence_Report.pdf';
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        return Response::download($file, 'Maintenance_Occurrence_Report.pdf', $headers);
+
+
     }
 }
