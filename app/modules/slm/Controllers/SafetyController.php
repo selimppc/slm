@@ -272,6 +272,28 @@ class SafetyController extends Controller
         $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
+        if($cabin_crew->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
+        if($cabin_crew->pf_pnf == 'pnf'){$pnf='checked';}else{$pnf='';}
+
+        if($cabin_crew->pf_pnf2 == 'pf'){$pf2='checked';}else{$pf2='';}
+        if($cabin_crew->pf_pnf2 == 'pnf'){$pnf2='checked';}else{$pnf2='';}
+
+        if($cabin_crew->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
+        if($cabin_crew->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
+
+        if($cabin_crew->flight_phase== 'parked'){$fp1='checked';}else{$fp1='';}
+        if($cabin_crew->flight_phase== 'push_back'){$fp2='checked';}else{$fp2='';}
+        if($cabin_crew->flight_phase== 'taxi_out'){$fp3='checked';}else{$fp3='';}
+        if($cabin_crew->flight_phase== 'take_off'){$fp4='checked';}else{$fp4='';}
+        if($cabin_crew->flight_phase== 'initial_climb'){$fp5='checked';}else{$fp5='';}
+        if($cabin_crew->flight_phase== 'climb'){$fp6='checked';}else{$fp6='';}
+        if($cabin_crew->flight_phase== 'cruise'){$fp7='checked';}else{$fp7='';}
+        if($cabin_crew->flight_phase== 'holding'){$fp8='checked';}else{$fp8='';}
+        if($cabin_crew->flight_phase== 'descent'){$fp9='checked';}else{$fp9='';}
+        if($cabin_crew->flight_phase== 'approach'){$fp10='checked';}else{$fp10='';}
+        if($cabin_crew->flight_phase== 'landing'){$fp11='checked';}else{$fp11='';}
+        if($cabin_crew->flight_phase== 'taxi_in'){$fp12='checked';}else{$fp12='';}
+
         $html = '
 
 <style>
@@ -374,16 +396,24 @@ class SafetyController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="32%" style="border: 2px solid" colspan="2">
-                        2. CAPTAIN : '.$data->captain.'&nbsp;&nbsp; '.$data->pf_pnf .'
+                        2. CAPTAIN : '.$data->captain.'&nbsp;&nbsp;
+                        <input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" > PF
+                        <input type="checkbox" name="pf_pnf" value="" '.$pnf.' style="display:inline;" >  PNF
                     </th>
                     <th width="32%" style="border: 2px solid" colspan="2">
-                        3. CO-PILOT : '.$data->co_pilot.' &nbsp;&nbsp; '.$data->pf_pnf2.' </th>
+                        3. CO-PILOT : '.$data->co_pilot.' &nbsp;&nbsp;
+                        <input type="checkbox" name="pf_pnf2" value=""  '.$pf2.' style="display:inline;" > PF
+                        <input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >  PNF
+
+                        </th>
                     <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : '.$data->others.'</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
                     <th width="32%" style="border: 2px solid" colspan="2">
-                        6. TIME : '.$data->time.' &nbsp;&nbsp; '.$data->utc_local.'
+                        6. TIME : '.$data->time.' &nbsp;&nbsp;
+                        <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
+                        <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
                     </th>
                     <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : '.$data->air_craft_time.'</th>
                     <th width="36%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
@@ -410,6 +440,20 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">
                         22. FLIGHT PHASE : '.$data->flight_phase.'
+                        <br>
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" > PARKED &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp2.' style="display:inline;" > PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp3.' style="display:inline;" > TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp4.' style="display:inline;" > TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp5.' style="display:inline;" > INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp6.' style="display:inline;" > CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp7.' style="display:inline;" > CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp8.' style="display:inline;" > HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp9.' style="display:inline;" > DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp10.' style="display:inline;" > APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > LANDING&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" > TAXI IN
                     </th>
                 </tr>
                 <tr>

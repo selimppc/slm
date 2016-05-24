@@ -228,6 +228,19 @@ class CabinCrewController extends Controller
         if($cabin_crew->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
         if($cabin_crew->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
 
+        if($cabin_crew->flight_phase== 'parked'){$fp1='checked';}else{$fp1='';}
+        if($cabin_crew->flight_phase== 'push_back'){$fp2='checked';}else{$fp2='';}
+        if($cabin_crew->flight_phase== 'taxi_out'){$fp3='checked';}else{$fp3='';}
+        if($cabin_crew->flight_phase== 'take_off'){$fp4='checked';}else{$fp4='';}
+        if($cabin_crew->flight_phase== 'initial_climb'){$fp5='checked';}else{$fp5='';}
+        if($cabin_crew->flight_phase== 'climb'){$fp6='checked';}else{$fp6='';}
+        if($cabin_crew->flight_phase== 'cruise'){$fp7='checked';}else{$fp7='';}
+        if($cabin_crew->flight_phase== 'holding'){$fp8='checked';}else{$fp8='';}
+        if($cabin_crew->flight_phase== 'descent'){$fp9='checked';}else{$fp9='';}
+        if($cabin_crew->flight_phase== 'approach'){$fp10='checked';}else{$fp10='';}
+        if($cabin_crew->flight_phase== 'landing'){$fp11='checked';}else{$fp11='';}
+        if($cabin_crew->flight_phase== 'taxi_in'){$fp12='checked';}else{$fp12='';}
+
         $html = '
 
 <style>
@@ -372,7 +385,22 @@ class CabinCrewController extends Controller
                     <th colspan="5">19. NR OF LANDINGS OF THE DAY : '.$cabin_crew->nr_of_landings_of_the_day.'</th>
                 </tr>
                 <tr>
-                    <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'</th>
+                    <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'
+                    <br>
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" > PARKED &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp2.' style="display:inline;" > PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp3.' style="display:inline;" > TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp4.' style="display:inline;" > TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp5.' style="display:inline;" > INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp6.' style="display:inline;" > CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp7.' style="display:inline;" > CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp8.' style="display:inline;" > HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp9.' style="display:inline;" > DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp10.' style="display:inline;" > APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > LANDING&nbsp;&nbsp;
+                    <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" > TAXI IN
+                    </th>
                 </tr>
                 <tr>
                     <th colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.' </th>
@@ -401,7 +429,25 @@ You may report anonymously</th>
         $dompdf->render();
 
 // Output the generated PDF to Browser
-        $dompdf->stream();
+        //$dompdf->stream();
+
+        $downloadfolder = public_path().'/pdf_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $output = $dompdf->output();
+        file_put_contents($downloadfolder.'CABIN_CREW_REPORT.pdf', $output);
+
+        $file = $downloadfolder.'/CABIN_CREW_REPORT.pdf';
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        return Response::download($file, 'CABIN_CREW_REPORT.pdf', $headers);
     }
 
 
