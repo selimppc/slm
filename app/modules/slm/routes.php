@@ -392,5 +392,11 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'OperationalSafetyController@create_pdf'
     ]);
 
+    Route::any('airsafety-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'airsafety-pdf',
+        'uses' => 'SafetyController@create_pdf'
+    ]);
+
 
 });

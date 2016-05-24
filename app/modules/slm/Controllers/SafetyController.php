@@ -256,6 +256,395 @@ class SafetyController extends Controller
         return redirect()->route('air-safety');
     }
 
+    public function create_pdf($id){
+
+        /*$html = "<table border='1'>
+            <tr>
+                <td>shajjad</td>
+                <td>hossain</td>
+            </tr>
+        </table>";*/
+
+        $data=Safety::findOrFail($id);
+
+        $image_path = public_path().'/assets/img/report.jpg';
+        $image_path2 = public_path().'/assets/img/report_black.jpg';
+        $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
+        $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
+
+        $html = '
+
+<style>
+    .tbl {
+        margin: 0px !important;
+        border: 2px solid;
+        border-bottom: 0px!important;
+        width: 100%;
+    }
+
+    .tbl3 {
+        margin: 0px !important;
+        border: 2px solid;
+        border-top: 0px!important;
+        border-left: 0px!important;
+        border-right: 0px!important;
+        width: 100%;
+    }
+
+    .tbl2 {
+       margin: 0px !important;
+       border: 2px solid;
+       width: 100%;
+    }
+    .tbl2 tr th {
+        border: 2px solid;
+    }
+
+    .tbl2 th{
+    text-align: left;
+    }
+
+    .tbl2 tr td {
+        padding:7px; text-align: left;
+        text-align: left !important;
+        }
+
+    .report_img{
+        height: 100px!important;
+        text-align: center!important;
+        padding: 15px 10px 18px 10px!important;
+    }
+
+    .report_img2{
+        height: 10px!important;
+        text-align: left!important;
+        padding: 5px 2px 8px 2px!important;
+    }
+
+    .panel, .panel-body{
+        width: 100%;
+    }
+
+
+</style>
+
+    <div class="panel">
+        <div class="panel-body">
+            <div class="panel-body">
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+                <tr>
+                    <th width="50%" class="report_img2">
+                        '.$img2.'
+                        <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
+                    </th>
+                    <th style="border-left: 2px solid" width="50%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B Operational Safety Report (OSR)</p>
+                    </th>
+
+                </tr>
+                <span style="font-weight: bolder; font-size:20px;">B. OPERATIONAL SAFETY REPORT</span>
+            </table>
+            <br>
+            <br>
+            <br>
+
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY REPORT</th>
+                </tr>
+            </table>
+
+            <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+                <tr>
+                    <th style="text-align: center; background-color: yellow" colspan="6">GENERAL INFORMATION</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$data->full_name.','.$data->email.','.$data->telephone.','.$data->extension.','.$data->fax.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="32%" style="border: 2px solid" colspan="2">
+                        2. CAPTAIN : '.$data->captain.'&nbsp;&nbsp; '.$data->pf_pnf .'
+                    </th>
+                    <th width="32%" style="border: 2px solid" colspan="2">
+                        3. CO-PILOT : '.$data->co_pilot.' &nbsp;&nbsp; '.$data->pf_pnf2.' </th>
+                    <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : '.$data->others.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
+                    <th width="32%" style="border: 2px solid" colspan="2">
+                        6. TIME : '.$data->time.' &nbsp;&nbsp; '.$data->utc_local.'
+                    </th>
+                    <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : '.$data->air_craft_time.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">9. FLIGHT NUMBER : '.$data->flight_no.'</th>
+                    <th width="32%" style="border: 2px solid" colspan="2">10. FROM : '.$data->from.'</th>
+                    <th width="16%" style="border: 2px solid">11. TO : '.$data->to.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">12. POSITION (geogr. Co-ord) : '.$data->position.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">13. ALTITUDE : '.$data->altitude.'</th>
+                    <th width="32%" style="border: 2px solid" colspan="2">14. SPEED/MACH : '.$data->speed.'</th>
+                    <th width="16%" style="border: 2px solid">15. ACTUAL WEIGHT : '.$data->actual_weight.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">16. REMAINING FUEL : '.$data->remaining_fuel.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">17. ATL REF. : '.$data->atl_ref.'</th>
+                    <th width="32%" style="border: 2px solid">18. DELAY (min) : '.$data->delay.'</th>
+                    <th width="16%" style="border: 2px solid">19. DIVERSION : '.$data->diversion.'</th>
+                    <th width="16%" style="border: 2px solid">20. NR CREW : '.$data->nr_crew.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">21. NR. PAX : '.$data->nr_pax.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        22. FLIGHT PHASE : '.$data->flight_phase.'
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        23. DESCRIPTION OF OCCURRENCE ( add forms if necessary) :
+                        <p>'.$data->description_of_occurence.'</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">METEOROLOGICAL INFORMATION</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">24. IMC/VMC : '.$data->imc_vmc.'</th>
+                    <th width="32%" style="border: 2px solid" colspan="2">25. VCM (km) : '.$data->vmc_km.'</th>
+                    <th width="16%" style="border: 2px solid">26. WIND DIRECTION (deg) : '.$data->wind_direction.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">
+                        27. WIND SPEED : '.$data->wind_speed.'
+                    </th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">28. VISIBILITY : '.$data->visibility.'</th>
+                    <th width="32%" style="border: 2px solid">29. CEILING : '.$data->ceiling.'</th>
+                    <th width="16%" style="border: 2px solid">30. CLOUDS : '.$data->clouds.'</th>
+                    <th width="16%" style="border: 2px solid">31. TEMPERATURE : '.$data->temperature.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">32. QNH : '.$data->qnh.'</th>
+                </tr>
+
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        33. WEATHER CONDITION : '.$data->weather_condition.'
+                    </th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">34. RUNWAY : '.$data->runway.'</th>
+                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION : '.$data->runway_condition.'</th>
+                    <th width="20%" style="border: 2px solid">36. RVR (M) : '.$data->rvr.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid">37. AUTO PILOT : '.$data->auto_pilot.'</th>
+                    <th width="32%" style="border: 2px solid">38. AUTO THRUST : '.$data->auto_thrust.'</th>
+                    <th width="16%" style="border: 2px solid">
+                        39. GEAR :'.$data->gear.'
+
+                    </th>
+                    <th width="16%" style="border: 2px solid">40. FLAP : '.$data->flap.'</th>
+                    <th width="36%" style="border: 2px solid">41. SLAT : '.$data->slat.'</th>
+                    <th width="36%" style="border: 2px solid">42. SPOILERS : '.$data->spoilers.'</th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">TCAS INFORMATION (traffic)</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid" colspan="2">
+                        43. TYPE OF ALERT : '.$data->type_of_alert.'
+                    </th>
+                    <th width="48%" style="border: 2px solid" colspan="2">44. TYPE OF RA : '.$data->type_of_ra.'</th>
+                    <th width="20%" style="border: 2px solid" colspan="2">
+                        45. RA FOLLOWED? : '.$data->ra_followed.'
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">ATC PROCEDURES</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid" colspan="2">
+                        46. LEVEL OF RISK : '.$data->level_of_risk.'
+                    </th>
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        47. EVASIVE ACTIONS : '.$data->evasive_actions.'
+                    </th>
+                    <th width="20%" style="border: 2px solid" colspan="2">
+                        48. REPORTED TO ATC? : '.$data->reported_to_atc.'
+                    </th>
+                </tr>
+
+                <tr style="border: 2px solid">
+                    <th width="16%" style="border: 2px solid" colspan="2">
+                        49. ATC INSTUCTIONS : '.$data->atc_instruction.'
+                    </th>
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        50. USED FREQUENCY :
+                        '.$data->used_frequency.'
+                    </th>
+                    <th width="20%" style="border: 2px solid" colspan="2">
+                        51. HEADING :
+                        '.$data->heading.'
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        52. HEADING OF THE OTHER AC :
+                        '.$data->heading_other_ac.'
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">AIRPROX</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="3">
+                        53. VER. SEPARATION :
+                        '.$data->ver_seperation.'
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="3">
+                        54. HOR. SEPARATION :
+                        '.$data->hor_seperation.'
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">BIRD STRIKE</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        55. TYPE OF BIRD :
+                        '.$data->type_of_bird.'
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        56. nr of BIRDS : '.$data->nr_of_birds.'
+                    </th>
+                    <th width="52%" style="border: 2px solid">
+                        57. SIZE :
+                        '.$data->size.'
+                    </th>
+                    <th width="52%" style="border: 2px solid">
+                        58. AREAS AFFECTED :
+                        '.$data->areas_affected.'
+                    </th>
+                </tr>
+
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        59. ADVISED EARLIER? : '.$data->advice_earlier.'
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        60. LIGHTING CONDITIONS :
+                        '.$data->lighting_conditions.'
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        61. CODITION OF THE SKY : '.$data->conditions_of_the_sky.'
+                    </th>
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">BIRD STRIKE</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        62. Course of the AC : '.$data->course_ac.'
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        63. GLIDSLOPE POSITION : '.$data->glidslope_position.'
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        64. POS. ON EXTENDED CENTR. LINE. : '.$data->pos_extended_center.'
+                    </th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        65. CHANGE IN PITCH (deg) :'.$data->change_in_pitch.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        66. CHANGE IN ROLL (deg) :'.$data->change_in_roll.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        67. CHANGE IN YAW (deg) :'.$data->change_in_yaw.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        68. CHANGE IN ALT. :'.$data->change_in_alt.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        69. SPEED BUFFET? :'.$data->speed_buffet.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        70. STICKSHAKER? :'.$data->stickshaker.'</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="3">
+                        71. SUSPECTED WAKE TURBULANCE :'.$data->suspected_wake_turbulance.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="3">
+                        72. SIGN. VERTICAL ACCELARATION :'.$data->sign_verticle_accelaration.'</th>
+
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        73. DETAILS OF AC WAKE TURBULANCE? :'.$data->details_ac_wake_turbulance.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        74. ADVISE TO OTHER AIRCRAFT :'.$data->advice_other_aircraft.'</th>
+
+                </tr>
+                <tr>
+                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">HUMAN FACTORS</th>
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="2">
+                        75. PERSON INVOLVED (name) [ optional field] :'.$data->persion_involved.'</th>
+                    <th width="52%" style="border: 2px solid" colspan="2">
+                        76. FUNCTION/POSITION :'.$data->function_position.'</th>
+
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="6">
+                        77. TYPE OF INFLUENCE :'.$data->type_of_influence.'</th>
+
+                </tr>
+                <tr style="border: 2px solid">
+                    <th width="48%" style="border: 2px solid" colspan="6">
+                        78. COMMENTS :'.$data->comments.'</th>
+
+                </tr>
+
+
+
+
+                <tr>
+                    <th colspan="6">Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence, via fax +597 430230 or via e-mail : safety@slm.firm.sr</th>
+                </tr>
+                <tr>
+                    <th colspan="6">This form can also be submitted via the company website: www.flyslm.com
+You may report anonymously</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>';
+
+        //$html = CabinCrewController::show(1);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+// (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+// Render the HTML as PDF
+        $dompdf->render();
+
+// Output the generated PDF to Browser
+        $dompdf->stream();
+    }
+
 
 
 }
