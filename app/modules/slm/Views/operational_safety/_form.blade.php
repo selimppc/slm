@@ -15,17 +15,25 @@
             <small class="required">(Required)</small>
             {!! Form::text('operator', Input::old('operator'), ['id'=>'operator', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter operator','required'=>'required']) !!}
         </div>
-        <div class="col-md-4">
-            {!! Form::label('date_of_occurrence', 'Date of Occurrence:', ['class' => 'control-label']) !!}
-            {!! Form::input('date','date_of_occurrence', Input::old('date_of_occurrence'), ['id'=>'date_of_occurrence', 'class' => 'form-control','title'=>'Enter date of occurrence']) !!}
+
+        <div class="col-sm-4">
+            {!! Form::label('date_of_occurrence', 'Date of occurrence:', ['class' => 'control-label']) !!}
+            <div class="input-group date">
+                {!! Form::text('date_of_occurrence', Input::old('date_of_occurrence'), ['id'=>'date_id','class' => 'bs-datepicker-component form-control','title'=>'select date of occurrence']) !!}
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
         </div>
+
         <div class="col-md-4">
             {!! Form::label('local_time_of_occurrence', 'Local time of Occurrence:', ['class' => 'control-label']) !!}
             {!! Form::text('local_time_of_occurrence', Input::old('local_time_of_occurrence'), ['id'=>'local_time_of_occurrence', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter local time of occurrence']) !!}
         </div>
-        <div class="col-md-4">
-            {!! Form::label('flight_date', 'Flight date:', ['class' => 'control-label']) !!}
-            {!! Form::input('date','flight_date', Input::old('flight_date'), ['id'=>'flight_date', 'class' => 'form-control','title'=>'Enter flight date']) !!}
+        <div class="col-sm-4">
+            {!! Form::label('flight_date', 'Flight Date:', ['class' => 'control-label']) !!}
+            <div class="input-group date">
+                {!! Form::text('flight_date', Input::old('flight_date'), ['id'=>'date_id','class' => 'bs-datepicker-component form-control','title'=>'select flight_date']) !!}
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
         </div>
         <div class="col-md-8">
             {!! Form::label('flight_no', 'Flight no:', ['class' => 'control-label']) !!}
@@ -142,9 +150,13 @@ index. If applicable):', ['class' => 'control-label']) !!}
             {!! Form::file('signature',  ['id'=>'signature', 'class' => 'form-control','title'=>'Upload your signature']) !!}
 
         </div>
-        <div class="col-md-6">
-            {!! Form::label('date_of_signature', 'date:', ['class' => 'control-label']) !!}
-            {!! Form::input('date','date_of_signature', Input::old('date_of_signature'), ['id'=>'date_of_signature', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter date of signature']) !!}
+        <div class="col-sm-6">
+            {!! Form::label('date_of_signature', 'Date of Signature:', ['class' => 'control-label']) !!}
+            <div class="input-group date">
+                {!! Form::text('date_of_signature', Input::old('date_of_signature'), ['id'=>'date_id','class' => 'bs-datepicker-component form-control','title'=>'select date of Signature']) !!}
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
         </div>
+
     </div>
 </div>

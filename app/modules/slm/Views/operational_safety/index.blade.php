@@ -60,8 +60,8 @@
                             @foreach($operational_safety as $values)
                                 <tr class="gradeX">
                                     <td>{{ucfirst($values->operator)}}</td>
-                                    <td>{{$values->date_of_occurrence}}</td>
-                                    <td>{{$values->flight_date}}</td>
+                                    <td>{{ date("M d, Y", strtotime($values->date_of_occurrence)) }}</td>
+                                    <td>{{ date("M d, Y", strtotime($values->flight_date)) }}</td>
                                     <td>{{$values->flight_no}}</td>
                                     <td>
                                         <a href="{{ route('view-operational-safety', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" ><strong>View</strong></a>

@@ -386,5 +386,11 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'GroundHandlingController@create_pdf'
     ]);
 
+    Route::any('dangerous-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'dangerous-pdf',
+        'uses' => 'OperationalSafetyController@create_pdf'
+    ]);
+
 
 });

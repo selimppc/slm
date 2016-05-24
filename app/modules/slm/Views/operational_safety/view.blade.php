@@ -11,6 +11,12 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Dangerous Goods Occurrence report</b></h3>
         </div>
 
+        <div>
+            <a href="{{ route('dangerous-pdf', $operational_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Print Pdf</strong></a>
+        </div>
+
+        <div style="height: 25px"></div>
+
         <div class="panel-body">
 
             <table class="table table-bordered table-responsive" width="100%">
