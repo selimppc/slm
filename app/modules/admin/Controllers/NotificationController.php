@@ -38,12 +38,12 @@ class NotificationController extends Controller
             DB::table('air_safety')->where('notified_no', '=', 0)->update(array('notified_no' => 1));
             /*$model->update($input);*/
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
+            #Session::flash('message', 'Successfully Updated!');
             //LogFileHelper::log_info('update-role', 'Successfully updated.', ['Role title: '.$input['title']]);
         }catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            #Session::flash('danger', $e->getMessage());
             //LogFileHelper::log_error('update-role', $e->getMessage(), ['Role title: '.$input['title']]);
         }
 
@@ -51,8 +51,8 @@ class NotificationController extends Controller
         Session::forget('notify_data');
         Session::put('notify_data', $notify_data);
 
-        /*return redirect()->route('air-safety');*/
-        return redirect()->back();
+        return redirect()->route('air-safety');
+        #return redirect()->back();
     }
 
 
@@ -62,18 +62,19 @@ class NotificationController extends Controller
         try {
             DB::table('cabin_crew')->where('notified_no', '=', 0)->update(array('notified_no' => 1));
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
+            #Session::flash('message', 'Successfully Updated!');
         }catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            #Session::flash('danger', $e->getMessage());
         }
 
         $notify_data = Notification::notify_data();
         Session::forget('notify_data');
         Session::put('notify_data', $notify_data);
 
-        return redirect()->back();
+        return redirect()->route('cabin-crew');
+        #return redirect()->back();
     }
 
     public function update_confidential(){
@@ -82,18 +83,19 @@ class NotificationController extends Controller
         try {
             DB::table('confident_safety')->where('notified_no', '=', 0)->update(array('notified_no' => 1));
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
+            #Session::flash('message', 'Successfully Updated!');
         }catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            #Session::flash('danger', $e->getMessage());
         }
 
         $notify_data = Notification::notify_data();
         Session::forget('notify_data');
         Session::put('notify_data', $notify_data);
 
-        return redirect()->back();
+        return redirect()->route('confidential-safety');
+        #return redirect()->back();
     }
 
     public function update_dangerous(){
@@ -102,18 +104,19 @@ class NotificationController extends Controller
         try {
             DB::table('operational_safety')->where('notified_no', '=', 0)->update(array('notified_no' => 1));
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
+            #Session::flash('message', 'Successfully Updated!');
         }catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            #Session::flash('danger', $e->getMessage());
         }
 
         $notify_data = Notification::notify_data();
         Session::forget('notify_data');
         Session::put('notify_data', $notify_data);
 
-        return redirect()->back();
+        return redirect()->route('operational-safety');
+        #return redirect()->back();
     }
 
     public function update_ground(){
@@ -122,18 +125,19 @@ class NotificationController extends Controller
         try {
             DB::table('ground_handling')->where('notified_no', '=', 0)->update(array('notified_no' => 1));
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
+            #Session::flash('message', 'Successfully Updated!');
         }catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            #Session::flash('danger', $e->getMessage());
         }
 
         $notify_data = Notification::notify_data();
         Session::forget('notify_data');
         Session::put('notify_data', $notify_data);
 
-        return redirect()->back();
+        return redirect()->route('ground-handling');
+        #return redirect()->back();
     }
 
     public function update_maintenance(){
@@ -142,18 +146,19 @@ class NotificationController extends Controller
         try {
             DB::table('maintenance_occurrence')->where('notified_no', '=', 0)->update(array('notified_no' => 1));
             DB::commit();
-            Session::flash('message', 'Successfully Updated!');
+            #Session::flash('message', 'Successfully Updated!');
         }catch (\Exception $e) {
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            Session::flash('danger', $e->getMessage());
+            #Session::flash('danger', $e->getMessage());
         }
 
         $notify_data = Notification::notify_data();
         Session::forget('notify_data');
         Session::put('notify_data', $notify_data);
 
-        return redirect()->back();
+        return redirect()->route('maintenance-occurrence');
+        #return redirect()->back();
     }
 
 }
