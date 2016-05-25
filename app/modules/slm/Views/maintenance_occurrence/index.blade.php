@@ -67,10 +67,10 @@
                                         @if(isset(Auth::user()->role_id))
 
                                             @if(Auth::user()->role_id == 1 && @$values->reference_no == null)
-                                                <a href="{{ route('reference-maintenance-occurrence', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-pencil" data-placement="top" data-toggle="modal" data-target="#etsbModal"></a>
+                                                <a href="{{ route('reference-maintenance-occurrence', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-pencil" data-placement="top" data-toggle="modal" title="Enter Reference NO." data-target="#etsbModal"></a>
                                             @endif
                                             @if(Auth::user()->role_id == 1 && @$values->reference_no != null && @$values->sent_receive == 0)
-                                                <a href="{{ route('maintenance-sent-receive', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-envelope" data-placement="top" data-toggle="modal" data-target="#etsbModal"></a>
+                                                <a href="{{ route('maintenance-sent-receive', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-envelope" data-placement="top" data-toggle="modal" title="Send Email" data-target="#etsbModal"></a>
                                             @endif
 
                                         @endif

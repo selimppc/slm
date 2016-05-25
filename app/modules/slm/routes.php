@@ -243,6 +243,10 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses'=>'ConfidentialSafetyController@destroy'
     ]);
     /*Confidential Safety Section End*/
+
+
+
+
     /*Operational Safety Section Start*/
     Route::get('operational-safety',[
         'as'=>'operational-safety',
@@ -280,6 +284,36 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'delete-operational-safety',
         'uses'=>'OperationalSafetyController@destroy'
     ]);
+
+
+    Route::any('reference-operational-safety/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'reference-operational-safety',
+        'uses' => 'OperationalSafetyController@reference_no'
+    ]);
+
+    Route::any('update-operational-ref/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-operational-ref',
+        'uses' => 'OperationalSafetyController@update_reference'
+    ]);
+
+    Route::any('operational-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'operational-sent-receive',
+        'uses' => 'OperationalSafetyController@sent_receive_form'
+    ]);
+
+    Route::any('update-operational-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-operational-sendreceive',
+        'uses' => 'OperationalSafetyController@update_send_receive'
+    ]);
+
+
+
+
+
     /*Operational Safety Section End*/
 
 

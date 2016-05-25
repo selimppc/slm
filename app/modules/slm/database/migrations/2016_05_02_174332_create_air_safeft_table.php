@@ -99,6 +99,8 @@ class CreateAirSafeftTable extends Migration
             $table->enum('type_of_influence',array('crew_actions','external','organizations','personal'))->nullable();
             $table->string('comments',64)->nullable();
             $table->integer('notified_no')->default(0);
+            $table->string('reference_no',256)->nullable();
+            $table->integer('sent_receive')->default(0);
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->integer('created_by', false, 11);
