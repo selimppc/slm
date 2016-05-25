@@ -281,6 +281,8 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses'=>'OperationalSafetyController@destroy'
     ]);
     /*Operational Safety Section End*/
+
+
     /*Ground Handling Section Start*/
     Route::get('ground-handling',[
         'as'=>'ground-handling',
@@ -319,7 +321,36 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'delete-ground-handling',
         'uses'=>'GroundHandlingController@destroy'
     ]);
+
+    Route::any('reference-ground-handling/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'reference-ground-handling',
+        'uses' => 'GroundHandlingController@reference_no'
+    ]);
+
+    Route::any('update-ground-ref/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-ground-ref',
+        'uses' => 'GroundHandlingController@update_reference'
+    ]);
+
+    Route::any('ground-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'ground-sent-receive',
+        'uses' => 'GroundHandlingController@sent_receive_form'
+    ]);
+
+    Route::any('update-ground-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-ground-sendreceive',
+        'uses' => 'GroundHandlingController@update_send_receive'
+    ]);
+
+
     /*Ground Handling Section End*/
+
+
+
     /*Maintenance Occurrence Section Start*/
     Route::get('maintenance-occurrence',[
         'as'=>'maintenance-occurrence',

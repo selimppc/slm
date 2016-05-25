@@ -66,6 +66,12 @@
                                     <td>{{$values->telephone}}</td>
                                     <td>{{$values->fax}}</td>
                                     <td>
+                                        @if(Auth::user()->role_id == 1 && @$values->reference_no == null)
+                                            <a href="{{ route('reference-ground-handling', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-pencil" data-placement="top" data-toggle="modal" data-target="#etsbModal"></a>
+                                        @endif
+                                        @if(Auth::user()->role_id == 1 && @$values->reference_no != null && @$values->sent_receive == 0)
+                                            <a href="{{ route('ground-sent-receive', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-envelope" data-placement="top" data-toggle="modal" data-target="#etsbModal"></a>
+                                        @endif
                                         <a href="{{ route('view-ground-handling', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" ><strong>View</strong></a>
                                         <a href="{{ route('edit-ground-handling', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" ><strong>Update</strong></a>
                                         <a href="{{ route('delete-ground-handling', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" ><i class="fa fa-trash-o"></i></a>
@@ -83,6 +89,16 @@
     </div>
 </div>
 <!-- page end-->
+
+<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+        </div>
+    </div>
+</div>
+<!-- modal -->
 
 
 
