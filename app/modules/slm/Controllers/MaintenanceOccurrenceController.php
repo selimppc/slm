@@ -8,6 +8,7 @@
 
 namespace App\Modules\Slm\Controllers;
 
+use App\Helpers\ImageResize;
 use App\Helpers\LogFileHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\MaintenanceOccurrence;
+use Validator;
 
 use Dompdf\Dompdf;
 
@@ -66,6 +68,8 @@ class MaintenanceOccurrenceController extends Controller
         $data=$request->except('_token');
 
         $data['date_of_occurrence']=date("Y-m-d", strtotime($data['date_of_occurrence']));
+
+        $data['created_at'] = date('Y-m-d H:i:s');
 
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
@@ -180,6 +184,157 @@ class MaintenanceOccurrenceController extends Controller
         Session::flash('message', 'Maintenance Occurrence has been successfully updated');
 
         return redirect()->route('maintenance-occurrence');
+    }
+
+
+    public function reference_no($id)
+    {
+        $pageTitle = "Add Reference Number";
+        return view('slm::maintenance_occurrence.reference', ['data' => $id,'pageTitle'=> $pageTitle]);
+    }
+
+
+    public function update_reference(Request $request, $id)
+    {
+        //print_r($id);exit;
+        $input = $request->all();
+        $data['reference_no']=@$input['reference_no'];
+        MaintenanceOccurrence::where('id',$id)->update($data);
+        Session::flash('message', 'Maintenance Occurrence Reference number has been successfully updated');
+
+        return redirect()->route('maintenance-occurrence');
+    }
+
+    public function sent_receive_form($id)
+    {
+        $pageTitle = "Send Receive Form";
+        return view('slm::maintenance_occurrence.send_receive', ['data' => $id,'pageTitle'=> $pageTitle]);
+    }
+
+    public function update_send_receive(Request $request, $id)
+    {
+        $input = $request->all();
+        $image=Input::file('image');
+
+        $model = MaintenanceOccurrence::where('id',$id)->get();
+
+        //print_r(@$model[0]['created_at']);exit;
+
+        //print_r(date("M d, Y", strtotime($model[0]['created_at'])));exit;
+
+        if(count($image)>0) {
+            $file_type_required = 'png,jpeg,jpg';
+            $destinationPath = 'uploads/signature/';
+
+            $uploadfolder = 'uploads/';
+
+            if ( !file_exists($uploadfolder) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($uploadfolder, 0777);
+            }
+
+            if ( !file_exists($destinationPath) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($destinationPath, 0777);
+            }
+
+            $file_name = MaintenanceOccurrenceController::image_upload($image, $file_type_required, $destinationPath);
+
+            $user = DB::table('user')->where('username', '=', 'super-admin')->first();
+
+            if ($file_name != '') {
+
+                //print_r($imdata);exit;
+
+                $data_signature['image_path'] = $file_name[0];
+                $data_signature['image_thumb'] = $file_name[1];
+                $data_signature['current_date'] = date('M d, Y');
+                $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
+                $data_signature['regards'] =  $input['regards'];
+
+                //print_r($data_signature);exit;
+
+                try{
+                    Mail::send('slm::maintenance_occurrence.mail_send_receive', array('ground_handling'=>$data_signature),
+                        function($message) use ($user)
+                        {
+//                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
+                            $message->from('devdhaka405@gmail.com', 'SLM');
+                            //$message->to($user->email);
+                            //$message->to('selimppc@gmail.com');
+                            $message->to('shajjadhossain81@gmail.com');
+//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                            $message->subject('New Maintenance Occurrence added');
+                        });
+
+                    unlink(public_path()."/".$file_name[0]);
+                    unlink(public_path()."/".$file_name[1]);
+
+                    $data2['sent_receive'] = 1;
+
+                    MaintenanceOccurrence::where('id',$id)->update($data2);
+
+                    #print_r($user);exit;
+                    Session::flash('message', 'Maintenance Occurrence has been successfully Updated');
+                }catch (\Exception $e){
+
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->previous();
+                }
+            } else {
+                Session::flash('flash_message_error', 'Some thing error in image file type! Please Try again');
+            }
+        }
+
+        return redirect()->route('maintenance-occurrence');
+    }
+
+
+    public function image_upload($image,$file_type_required,$destinationPath)
+    {
+        if ($image != '') {
+
+            $img_name = ($_FILES['image']['name']);
+            $random_number = rand(111, 999);
+
+            $thumb_name = 'thumb_400x400_'.$random_number.'_'.$img_name;
+
+            $newWidth=400;
+            $targetFile=$destinationPath.$thumb_name;
+            $originalFile=$image;
+
+            $resizedImages 	= ImageResize::resize($newWidth, $targetFile,$originalFile);
+
+            $thumb_image_destination=$destinationPath;
+            $thumb_image_name=$thumb_name;
+
+            //$rules = array('image' => 'required|mimes:png,jpeg,jpg');
+            $rules = array('image' => 'required|mimes:'.$file_type_required);
+            $validator = Validator::make(array('image' => $image), $rules);
+            if ($validator->passes()) {
+                // Files destination
+                //$destinationPath = 'uploads/slider_image/';
+                // Create folders if they don't exist
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+                $image_original_name = $image->getClientOriginalName();
+                $image_name = rand(111, 999) . $image_original_name;
+                $upload_success = $image->move($destinationPath, $image_name);
+
+                $file=array($destinationPath . $image_name, $thumb_image_destination.$thumb_image_name);
+
+                if ($upload_success) {
+                    return $file_name = $file;
+                }
+                else{
+                    return $file_name = '';
+                }
+            }
+            else{
+                return $file_name = '';
+            }
+        }
     }
 
     /**

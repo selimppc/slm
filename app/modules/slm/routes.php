@@ -389,7 +389,42 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'delete-maintenance-occurrence',
         'uses'=>'MaintenanceOccurrenceController@destroy'
     ]);
+
+
+
+    Route::any('reference-maintenance-occurrence/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'reference-maintenance-occurrence',
+        'uses' => 'MaintenanceOccurrenceController@reference_no'
+    ]);
+
+    Route::any('update-maintenance-ref/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-maintenance-ref',
+        'uses' => 'MaintenanceOccurrenceController@update_reference'
+    ]);
+
+    Route::any('maintenance-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'maintenance-sent-receive',
+        'uses' => 'MaintenanceOccurrenceController@sent_receive_form'
+    ]);
+
+    Route::any('update-maintenance-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-maintenance-sendreceive',
+        'uses' => 'MaintenanceOccurrenceController@update_send_receive'
+    ]);
+
+
+
+
+
     /*Maintenance Occurrence Section End*/
+
+
+
+
 
     /*-----------Print Pdf--------------*/
 
