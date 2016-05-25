@@ -267,9 +267,9 @@ class GroundHandlingController extends Controller
                         {
 //                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                             $message->from('devdhaka405@gmail.com', 'SLM');
-                            //$message->to($user->email);
+                            $message->to($user->email);
                             //$message->to('selimppc@gmail.com');
-                            $message->to('shajjadhossain81@gmail.com');
+                            //$message->to('shajjadhossain81@gmail.com');
 //                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                             $message->subject('New Ground Handling added');
                         });
