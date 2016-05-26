@@ -306,18 +306,24 @@ class GroundHandlingController extends Controller
         $user_id = Auth::user()->role_id;
         $signature = UserSignature::where('user_id', $user_id)->first();
 
-        $user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        $user = DB::table('ground_handling')->where('id', $id)->first();
+
         $data_signature['image_path'] = $signature->image;
         $data_signature['image_thumb'] = $signature->thumbnail;
         $data_signature['current_date'] = date('M d, Y');
         $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
         $data_signature['regards'] = $input['regards'];
 
+        //$email_to = $user->email;
+       // print_r($email_to); exit();
+
             try {
                 Mail::send('slm::ground_handling.mail_send_receive', array('ground_handling' => $data_signature),
                     function ($message) use ($user) {
                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                         $message->from('devdhaka405@gmail.com', 'SLM');
+                        //$message->to($user->email);
                         $message->to($user->email);
                         //$message->to('selimppc@gmail.com');
                         //$message->to('shajjadhossain81@gmail.com');
