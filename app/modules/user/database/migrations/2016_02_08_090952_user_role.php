@@ -171,8 +171,7 @@ class UserRole extends Migration
 
 
 
-        /*user_image*/
-
+        //user_image
         Schema::create('user_image', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 32)->nullable();
@@ -190,8 +189,26 @@ class UserRole extends Migration
             $table->foreign('user_id')->references('id')->on('user');
         });
 
-      /*user_reset_password*/
 
+        //user_signature
+        Schema::create('user_signature', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title', 32)->nullable();
+            $table->text('description')->nullable();
+            $table->string('image', 256)->nullable();
+            $table->string('thumbnail', 256)->nullable();
+            $table->enum('status',array('active','inactive','cancel'))->nullable();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('user_signature', function($table) {
+            $table->foreign('user_id')->references('id')->on('user');
+        });
+
+        //user_reset_password
         Schema::create('user_reset_password', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();

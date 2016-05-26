@@ -7,6 +7,7 @@ use App\Helpers\LogFileHelper;
 use App\RoleUser;
 use App\UserActivity;
 use App\UserImage;
+use App\Modules\User\Models\UserSignature;
 use Mockery\CountValidator\Exception;
 use Validator;
 use App\Country;
@@ -449,10 +450,11 @@ class UserController extends Controller
             $user_id = Auth::user()->id;
             $profile_data = UserProfile::where('user_id',$user_id)->first();
             $user_image = UserImage::where('user_id',$user_id)->first();
+            $user_signature = UserSignature::where('user_id',$user_id)->first();
             $user = User::where('id',$user_id)->first();
             $department_data =  [''=>'Select Department'] + Department::lists('title','id')->all();
 
-            return view('user::user_info.index',['user_id'=>$user_id,'profile_data'=>$profile_data,'user_image'=>$user_image,'user'=>$user,'department_data'=>$department_data,'pageTitle'=>$pageTitle]);
+            return view('user::user_info.index',['user_id'=>$user_id,'profile_data'=>$profile_data,'user_image'=>$user_image,'user_signature'=>$user_signature,'user'=>$user,'department_data'=>$department_data,'pageTitle'=>$pageTitle]);
         }
     }
     public function user_info($value){
@@ -568,9 +570,11 @@ class UserController extends Controller
         $user_id = Auth::user()->id;
 
         $user_image = UserImage::where('user_id',$user_id)->first();
+        $user_signature = UserSignature::where('user_id',$user_id)->first();
+        //print_r($user_signature->thumbnail);
         #$user_image_id = ($user_image->id)?$user_image->id:'';
 
-        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'user_image'=>$user_image]);
+        return view('user::user_info.profile.update', ['pageTitle'=>$pageTitle,'data' => $data,'user_id'=>$user_id,'user_image'=>$user_image,'user_signature'=>$user_signature]);
     }
 
     public function update_user_profile(Requests\UserProfileRequest $request,$id){
@@ -595,8 +599,10 @@ class UserController extends Controller
         }
 
         $image = Input::file('image');
+        $user_signature = Input::file('user_signature');
 
-        if(count($image)>0){
+        if( count($image)>0 )
+        {
             $file_type_required = 'png,jpeg,jpg';
             $destinationPath = 'uploads/user_image/';
 
@@ -613,10 +619,8 @@ class UserController extends Controller
             }
 
             $file_name = UserController::image_upload($image,$file_type_required,$destinationPath);
-            #print_r($file_name);exit;
+
             if($file_name != '') {
-//                unlink($model->image);
-//                unlink($model->thumbnail);
                 $input['image'] = $file_name[0];
                 $input['thumbnail'] = $file_name[1];
             }
@@ -624,8 +628,10 @@ class UserController extends Controller
                 Session::flash('error', 'Some thing error in image file type! Please Try again');
                 return redirect()->back();
             }
+
             DB::beginTransaction();
             try {
+                //print_r($input_signature_arr); exit();
 //                $image_model = $user_image_id ? UserImage::findOrFail($user_image_id):new UserImage();
                 $user_image_exists = UserImage::where('user_id',$user_id)->exists();
                 if($user_image_exists){
@@ -636,6 +642,7 @@ class UserController extends Controller
                 }
 
                 $image_model->fill($input)->save();
+
                 DB::commit();
                 Session::flash('message', "Successfully added");
                 #LogFileHelper::log_info('update-user-profile', 'Successfully added',  ['User profile image:'.$input['image']]);
@@ -647,6 +654,64 @@ class UserController extends Controller
                 #LogFileHelper::log_error('update-user-profile', $e->getMessage(),  ['User profile image:'.$input['image']]);
             }
         }
+        // For Signature Image Upload----------
+        if( count($user_signature)>0)
+        {
+            $file_type_required = 'png,jpeg,jpg';
+            // For signature----
+            $destinationPath_signature = 'uploads/signature/';
+
+            $uploadfolder = 'uploads/';
+
+            if ( !file_exists($uploadfolder) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($uploadfolder, 0777);
+            }
+
+            if ( !file_exists($destinationPath_signature) ) {
+                $oldmask = umask(0);  // helpful when used in linux server
+                mkdir ($destinationPath_signature, 0777);
+            }
+
+            // For Signature--
+            $file_name_signature = UserController::image_upload($user_signature,$file_type_required,$destinationPath_signature);
+
+            if($file_name_signature != '') {
+                $input_signature_arr = [
+                    'image' => $file_name_signature[0],
+                    'thumbnail' => $file_name_signature[1]
+                ];
+            }
+            else{
+
+                Session::flash('error', 'Some thing error in image file type! Please Try again');
+                return redirect()->back();
+            }
+
+            DB::beginTransaction();
+            try {
+
+                $user_signature_image_exists = UserSignature::where('user_id',$user_id)->exists();
+                if($user_signature_image_exists){
+                    $user_signature_image = UserSignature::where('user_id',$user_id)->first();
+                    $image_signature_model = UserSignature::findOrFail($user_signature_image['id']);
+                }else{
+                    $image_signature_model = new UserSignature();
+                }
+                $image_signature_model->fill($input_signature_arr)->save();
+
+                DB::commit();
+                Session::flash('message', "Successfully added");
+                #LogFileHelper::log_info('update-user-profile', 'Successfully added',  ['User profile image:'.$input['image']]);
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('error', " Profile Image Do Not added");
+                #LogFileHelper::log_error('update-user-profile', $e->getMessage(),  ['User profile image:'.$input['image']]);
+            }
+        }
+
         return redirect()->route('user-profile');
     }
 
@@ -906,7 +971,7 @@ class UserController extends Controller
     }
 
     public function image_upload($image,$file_type_required,$destinationPath){
-
+        //dd($image);
         if ($image != '') {
             $img_name = ($_FILES['image']['name']);
             $random_number = rand(111, 999);

@@ -12,6 +12,8 @@
         </div>
 
         <div style="padding-right: 15px">
+            {{--<div>{{ $signature }}</div>
+            <div>{{ $ground_handling->reference_no }}</div>--}}
             <a href="{{ route('ground-pdf', $ground_handling->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
         </div>
 
@@ -19,6 +21,9 @@
 
         <div class="panel-body">
             <table class="table table-bordered table-responsive" width="100%">
+                <tr>
+                    <th width="100%" colspan="4" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $ground_handling->reference_no }}</th>
+                </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="4">GENERAL INFORMATION</th>
                 </tr>

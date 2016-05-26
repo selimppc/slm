@@ -23,8 +23,10 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\GroundHandling;
-use Validator;
+use App\Modules\User\Models\UserSignature;
 
+
+use Validator;
 use Dompdf\Dompdf;
 
 
@@ -117,6 +119,10 @@ class GroundHandlingController extends Controller
     {
         $data['pageTitle']='Show Ground Handling Details';
         $data['ground_handling']=GroundHandling::findOrFail($id);
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id',$user_id)->first();
+        $data['signature'] = $signature->image;
+
         return view('slm::ground_handling.view',$data);
     }
 
@@ -167,6 +173,7 @@ class GroundHandlingController extends Controller
     {
         $data['pageTitle']='Edit Ground Handling Details';
         $data['ground_handling']=GroundHandling::findOrFail($id);
+        $data['ground_handling_verification'] = GroundHandling::where('id',$id)->first();
 
 
         $data['ground_handling']['date']=date("M d, Y", strtotime($data['ground_handling']['date']));
@@ -215,21 +222,24 @@ class GroundHandlingController extends Controller
     public function sent_receive_form($id)
     {
         $pageTitle = "Send Receive Form";
-        return view('slm::ground_handling.send_receive', ['data' => $id,'pageTitle'=> $pageTitle]);
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id',$user_id)->first();
+        //$signature = DB::table('user_signature')->where('user_id',$id)->get();
+
+        return view('slm::ground_handling.send_receive', ['data' => $id,'pageTitle'=> $pageTitle,'signature'=>$signature]);
     }
 
     public function update_send_receive(Request $request, $id)
     {
         $input = $request->all();
-        $image=Input::file('image');
-
-        $model = GroundHandling::where('id',$id)->get();
+        $model = GroundHandling::where('id', $id)->get();
 
         //print_r(@$model[0]['created_at']);exit;
 
         //print_r(date("M d, Y", strtotime($model[0]['created_at'])));exit;
 
-        if(count($image)>0) {
+        /*if(count($image)>0)
+        {
             $file_type_required = 'png,jpeg,jpg';
             $destinationPath = 'uploads/signature/';
 
@@ -291,9 +301,42 @@ class GroundHandlingController extends Controller
             } else {
                 Session::flash('flash_message_error', 'Some thing error in image file type! Please Try again');
             }
-        }
+        }*/
 
-        return redirect()->route('ground-handling');
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id', $user_id)->first();
+
+        $user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        $data_signature['image_path'] = $signature->image;
+        $data_signature['image_thumb'] = $signature->thumbnail;
+        $data_signature['current_date'] = date('M d, Y');
+        $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
+        $data_signature['regards'] = $input['regards'];
+
+            try {
+                Mail::send('slm::ground_handling.mail_send_receive', array('ground_handling' => $data_signature),
+                    function ($message) use ($user) {
+                       $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
+                        $message->from('devdhaka405@gmail.com', 'SLM');
+                        $message->to($user->email);
+                        //$message->to('selimppc@gmail.com');
+                        //$message->to('shajjadhossain81@gmail.com');
+//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                        $message->subject('New Ground Handling added');
+                    });
+
+                $data2['sent_receive'] = 1;
+
+                GroundHandling::where('id', $id)->update($data2);
+
+                #print_r($user);exit;
+                Session::flash('message', 'Ground Handling has been successfully stored');
+            } catch (\Exception $e) {
+
+                Session::flash('error', $e->getMessage());
+                return redirect()->previous();
+            }
+            return redirect()->route('ground-handling');
     }
 
 
@@ -368,6 +411,10 @@ class GroundHandlingController extends Controller
         </table>";*/
 
         $ground_handling=GroundHandling::findOrFail($id);
+
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id',$user_id)->first();
+        $data['signature'] = $signature->image;
 
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';
@@ -476,7 +523,7 @@ class GroundHandlingController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">GROUND HANDLING REPORT</th>
