@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\CabinCrew;
+use App\Modules\User\Models\UserSignature;
 
 use Dompdf\Dompdf;
 
@@ -80,10 +81,9 @@ class CabinCrewController extends Controller
                 Mail::send('slm::cabin_crew.mail_notification', array('model'=>$data),
                     function($message) use ($user)
                     {
-//                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                         $message->from('devdhaka405@gmail.com', 'SLM');
                         $message->to($user->email);
-                        //$message->to('shajjadhossain81@gmail.com');
+                        //$message->to('pothiceee@gmail.com');
                         //$message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                         $message->subject('New Cabin Crew added');
                     });
@@ -162,6 +162,7 @@ class CabinCrewController extends Controller
     {
         $data['pageTitle']='Edit Cabin Crew Details';
         $data['cabin_crew']=CabinCrew::findOrFail($id);
+        $data['cabin_crew_verification'] = CabinCrew::where('id',$id)->first();
 
         //print_r($data['cabin_crew']['date']);exit;
 
@@ -189,6 +190,62 @@ class CabinCrewController extends Controller
         return redirect()->route('cabin-crew');
     }
 
+    public function sent_receive_form($id)
+    {
+        $pageTitle = "Send Receive Form";
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id',$user_id)->first();
+        //$signature = DB::table('user_signature')->where('user_id',$id)->get();
+        //print_r($signature); exit();
+
+        return view('slm::cabin_crew.send_receive', ['data' => $id,'pageTitle'=> $pageTitle,'signature'=>$signature]);
+    }
+
+    public function update_send_receive(Request $request, $id)
+    {
+        $input = $request->all();
+        $model = CabinCrew::where('id', $id)->get();
+
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id', $user_id)->first();
+        //print_r($signature->image); exit();
+        //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        $user = DB::table('cabin_crew')->where('id', $id)->first();
+
+        $data_signature['image_path'] = $signature->image;
+        $data_signature['image_thumb'] = $signature->thumbnail;
+        $data_signature['current_date'] = date('M d, Y');
+        $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
+        $data_signature['regards'] = $input['regards'];
+        $data_signature['full_name'] = $user->full_name;
+        $data_signature['report'] = 'Cabin Crew Report';
+
+        try {
+            Mail::send('slm::cabin_crew.mail_send_receive', array('ground_handling' => $data_signature),
+                function ($message) use ($user) {
+                    //$message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
+                    $message->from('devdhaka405@gmail.com', 'SLM');
+                    $message->to($user->email);
+                    //$message->to($user->email);
+                    //$message->to('selimppc@gmail.com');
+                    //$message->to('shajjadhossain81@gmail.com');
+//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                    $message->subject('New Cabin Crew added');
+                });
+
+            $data2['sent_receive'] = 1;
+
+            CabinCrew::where('id', $id)->update($data2);
+
+            #print_r($user);exit;
+            Session::flash('message', 'Cabin Crew Report has been Sent Successfully');
+        } catch (\Exception $e) {
+
+            Session::flash('error', $e->getMessage());
+            return redirect()->previous();
+        }
+        return redirect()->route('cabin-crew');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -327,7 +384,7 @@ class CabinCrewController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>

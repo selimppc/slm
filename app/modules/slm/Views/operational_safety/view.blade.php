@@ -21,6 +21,9 @@
 
             <table class="table table-bordered table-responsive" width="100%">
                 <tr>
+                    <th width="100%" colspan="7" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $operational_safety->reference_no }}</th>
+                </tr>
+                <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="7">GENERAL INFORMATION</th>
                 </tr>
                 <tr style="border: 2px solid">

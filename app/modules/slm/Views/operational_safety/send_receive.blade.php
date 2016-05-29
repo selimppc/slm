@@ -17,7 +17,7 @@
 
 </div>
 
-<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t col-sm-12">
+{{--<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t col-sm-12">
 
     {!! Form::label('Signature Upload', 'Signature Upload:', []) !!}
     <small class="required">(Required)</small>
@@ -33,8 +33,8 @@
         </div>
 
 
-        {{--<input type="file" id="fileUpload" />
-        <input type="button" value="Upload" onclick="Upload()" />--}}
+        <input type="file" id="fileUpload" />
+        <input type="button" value="Upload" onclick="Upload()" />
 
 
         <span class="label label-danger">NOTE!</span>
@@ -42,7 +42,7 @@
                                              System will allow these types of image(png,jpeg,jpg Format)
                                              </span>
     </div>
-</div>
+</div>--}}
 
 <div class="modal-footer">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;

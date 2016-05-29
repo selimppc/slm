@@ -45,7 +45,7 @@
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th width="34%" style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                    <th width="34%" style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : {{ $cabin_crew->reference_no }}</th>
                 </tr>
                 <tr>
                     <th width="34%" style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\OperationalSafety;
+use App\Modules\User\Models\UserSignature;
 use Validator;
 
 use Dompdf\Dompdf;
@@ -116,11 +117,10 @@ class OperationalSafetyController extends Controller
                 Mail::send('slm::operational_safety.mail_notification', array('model'=>$data),
                     function($message) use ($user)
                     {
-//                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                         $message->from('devdhaka405@gmail.com', 'SLM');
-                        $message->to($user->email);
-                        //$message->to('shajjadhossain81@gmail.com');
-//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                        //$message->to($user->email);
+                        $message->to('pothiceee@gmail.com');
+                        //$message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                         $message->subject('New Operational Safety added');
                     });
 
@@ -198,7 +198,8 @@ class OperationalSafetyController extends Controller
     {
         $data['pageTitle']='Edit Operational Safety Details';
         $data['operational_safety']=OperationalSafety::findOrFail($id);
-
+        $data['operational_safety_verification'] = OperationalSafety::where('id',$id)->first();
+        //print_r($data['operational_safety_verification']['reference_no']);exit();
         $data['operational_safety']['date_of_occurrence']=date("M d, Y", strtotime($data['operational_safety']['date_of_occurrence']));
         $data['operational_safety']['date_of_signature']=date("M d, Y", strtotime($data['operational_safety']['date_of_signature']));
         $data['operational_safety']['flight_date']=date("M d, Y", strtotime($data['operational_safety']['flight_date']));
@@ -296,41 +297,24 @@ class OperationalSafetyController extends Controller
 
         $model = OperationalSafety::where('id',$id)->get();
 
-        //print_r(@$model[0]['created_at']);exit;
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id', $user_id)->first();
 
-        //print_r(date("M d, Y", strtotime($model[0]['created_at'])));exit;
+        //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        $user = DB::table('operational_safety')->where('id', $id)->first();
 
-        if(count($image)>0) {
-            $file_type_required = 'png,jpeg,jpg';
-            $destinationPath = 'uploads/signature/';
 
-            $uploadfolder = 'uploads/';
 
-            if ( !file_exists($uploadfolder) ) {
-                $oldmask = umask(0);  // helpful when used in linux server
-                mkdir ($uploadfolder, 0777);
-            }
-
-            if ( !file_exists($destinationPath) ) {
-                $oldmask = umask(0);  // helpful when used in linux server
-                mkdir ($destinationPath, 0777);
-            }
-
-            $file_name = OperationalSafetyController::image_upload($image, $file_type_required, $destinationPath);
-
-            $user = DB::table('user')->where('username', '=', 'super-admin')->first();
-
-            if ($file_name != '') {
-
-                //print_r($imdata);exit;
-
-                $data_signature['image_path'] = $file_name[0];
-                $data_signature['image_thumb'] = $file_name[1];
+                $data_signature['image_path'] = $signature->image;
+                $data_signature['image_thumb'] = $signature->thumbnail;
                 $data_signature['current_date'] = date('M d, Y');
                 $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
                 $data_signature['regards'] =  $input['regards'];
+                $data_signature['operator'] =  $user->operator;
+                $data_signature['report'] = 'Operational Safety Report';
 
-                //print_r($data_signature);exit;
+
+                //print_r($data_signature['operator']);exit;
 
                 try{
                     Mail::send('slm::operational_safety.mail_send_receive', array('ground_handling'=>$data_signature),
@@ -339,30 +323,25 @@ class OperationalSafetyController extends Controller
 //                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                             $message->from('devdhaka405@gmail.com', 'SLM');
                             //$message->to($user->email);
-                            //$message->to('selimppc@gmail.com');
-                            $message->to('shajjadhossain81@gmail.com');
+                            //$message->to('pothiceee@gmail.com');
+                            $message->to('pothiceee@gmail.com');
+                            //$message->to('shajjadhossain81@gmail.com');
 //                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                             $message->subject('New Operational Safety added');
                         });
 
-                    unlink(public_path()."/".$file_name[0]);
-                    unlink(public_path()."/".$file_name[1]);
 
                     $data2['sent_receive'] = 1;
-
                     OperationalSafety::where('id',$id)->update($data2);
-
                     #print_r($user);exit;
-                    Session::flash('message', 'Operational Safety has been successfully Updated');
+                    Session::flash('message', 'Operational Safety Report has been Sent successfully');
                 }catch (\Exception $e){
 
                     Session::flash('error', $e->getMessage());
-                    return redirect()->previous();
+                    //return redirect()->previous();
                 }
-            } else {
-                Session::flash('flash_message_error', 'Some thing error in image file type! Please Try again');
-            }
-        }
+
+
 
         return redirect()->route('operational-safety');
     }
@@ -540,7 +519,7 @@ class OperationalSafetyController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr: '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">Dangerous Goods Occurrence Report</th>

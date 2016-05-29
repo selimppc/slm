@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Modules\Slm\Models\MaintenanceOccurrence;
+use App\Modules\User\Models\UserSignature;
 use Validator;
 
 use Dompdf\Dompdf;
@@ -83,8 +84,8 @@ class MaintenanceOccurrenceController extends Controller
                     {
                         $message->from('devdhaka405@gmail.com', 'SLM');
                         $message->to($user->email);
-                        //$message->to('shajjadhossain81@gmail.com');
-//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                        //$message->to('pothiceee@gmail.com');
+                        //$message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                         $message->subject('New Maintenance Occurrence added');
                     });
 
@@ -161,6 +162,7 @@ class MaintenanceOccurrenceController extends Controller
     {
         $data['pageTitle']='Edit Maintenance Occurrence Details';
         $data['maintenance_occurrence']=MaintenanceOccurrence::findOrFail($id);
+        $data['maintenance_occurrence_verification'] = MaintenanceOccurrence::where('id',$id)->first();
 
         $data['maintenance_occurrence']['date_of_occurrence']=date("M d, Y", strtotime($data['maintenance_occurrence']['date_of_occurrence']));
 
@@ -214,79 +216,45 @@ class MaintenanceOccurrenceController extends Controller
     public function update_send_receive(Request $request, $id)
     {
         $input = $request->all();
-        $image=Input::file('image');
-
         $model = MaintenanceOccurrence::where('id',$id)->get();
 
-        //print_r(@$model[0]['created_at']);exit;
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id', $user_id)->first();
 
-        //print_r(date("M d, Y", strtotime($model[0]['created_at'])));exit;
+        //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        $user = DB::table('maintenance_occurrence')->where('id', $id)->first();
 
-        if(count($image)>0) {
-            $file_type_required = 'png,jpeg,jpg';
-            $destinationPath = 'uploads/signature/';
+        $data_signature['image_path'] = $signature->image;
+        $data_signature['image_thumb'] = $signature->thumbnail;
+        $data_signature['current_date'] = date('M d, Y');
+        $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
+        $data_signature['regards'] = $input['regards'];
+        $data_signature['full_name'] = $user->full_name;
+        $data_signature['report'] = 'Maintenance Occurrence Report';
 
-            $uploadfolder = 'uploads/';
+        try {
+            Mail::send('slm::maintenance_occurrence.mail_send_receive', array('ground_handling'=>$data_signature),
+                function($message) use ($user)
+                {
+                    $message->from('devdhaka405@gmail.com', 'SLM');
+                    $message->to($user->email);
+                    //$message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                    $message->subject('New Maintenance Occurrence added');
+                });
 
-            if ( !file_exists($uploadfolder) ) {
-                $oldmask = umask(0);  // helpful when used in linux server
-                mkdir ($uploadfolder, 0777);
-            }
+            $data2['sent_receive'] = 1;
 
-            if ( !file_exists($destinationPath) ) {
-                $oldmask = umask(0);  // helpful when used in linux server
-                mkdir ($destinationPath, 0777);
-            }
+            MaintenanceOccurrence::where('id',$id)->update($data2);
 
-            $file_name = MaintenanceOccurrenceController::image_upload($image, $file_type_required, $destinationPath);
+            #print_r($user);exit;
+            Session::flash('message', 'Maintenance Occurrence has been successfully stored');
+        } catch (\Exception $e) {
 
-            $user = DB::table('user')->where('username', '=', 'super-admin')->first();
-
-            if ($file_name != '') {
-
-                //print_r($imdata);exit;
-
-                $data_signature['image_path'] = $file_name[0];
-                $data_signature['image_thumb'] = $file_name[1];
-                $data_signature['current_date'] = date('M d, Y');
-                $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
-                $data_signature['regards'] =  $input['regards'];
-
-                //print_r($data_signature);exit;
-
-                try{
-                    Mail::send('slm::maintenance_occurrence.mail_send_receive', array('ground_handling'=>$data_signature),
-                        function($message) use ($user)
-                        {
-//                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
-                            $message->from('devdhaka405@gmail.com', 'SLM');
-                            //$message->to($user->email);
-                            //$message->to('selimppc@gmail.com');
-                            $message->to('shajjadhossain81@gmail.com');
-//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
-                            $message->subject('New Maintenance Occurrence added');
-                        });
-
-                    unlink(public_path()."/".$file_name[0]);
-                    unlink(public_path()."/".$file_name[1]);
-
-                    $data2['sent_receive'] = 1;
-
-                    MaintenanceOccurrence::where('id',$id)->update($data2);
-
-                    #print_r($user);exit;
-                    Session::flash('message', 'Maintenance Occurrence has been successfully Updated');
-                }catch (\Exception $e){
-
-                    Session::flash('error', $e->getMessage());
-                    return redirect()->previous();
-                }
-            } else {
-                Session::flash('flash_message_error', 'Some thing error in image file type! Please Try again');
-            }
+            Session::flash('error', $e->getMessage());
+            return redirect()->previous();
         }
-
         return redirect()->route('maintenance-occurrence');
+
     }
 
 
@@ -457,7 +425,7 @@ class MaintenanceOccurrenceController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">SAFETY DEPARTMENT REF.NR:</th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">SAFETY DEPARTMENT REF.NR : '.$maintenance_occurrence->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">MAINTENANCE OCCURRENCE REPORT</th>

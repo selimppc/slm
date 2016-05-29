@@ -20,9 +20,7 @@
         <div class="panel-body">
 
             <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-                <div style="background-color: yellow; height: 20px;">
-                    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
-                </div>
+
                 @include('slm::cabin_crew._form')
                 <div class="row" style="margin-top: 10px">
                     <div class="col-md-12">
@@ -42,6 +40,15 @@
 
     </div>
 
+    <div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
 
 
 

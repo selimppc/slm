@@ -41,6 +41,18 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'SafetyController@csv'
     ]);
 
+    Route::any('safety-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'safety-sent-receive',
+        'uses' => 'SafetyController@sent_receive_form'
+    ]);
+
+    Route::any('update-safety-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-safety-sendreceive',
+        'uses' => 'SafetyController@update_send_receive'
+    ]);
+
     Route::any('view-safety/{id}', [
         //'middleware' => 'acl_access:view-role/{slug}',
         'as' => 'view-safety',
@@ -188,6 +200,19 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'CabinCrewController@csv'
     ]);
 
+    Route::any('cabin-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'cabin-sent-receive',
+        'uses' => 'CabinCrewController@sent_receive_form'
+    ]);
+
+    Route::any('update-cabin-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-cabin-sendreceive',
+        'uses' => 'CabinCrewController@update_send_receive'
+    ]);
+
+
     Route::get('view-cabin-crew/{id}',[
         'as'=>'view-cabin-crew',
         'uses'=>'CabinCrewController@show',
@@ -205,6 +230,7 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses'=>'CabinCrewController@destroy',
     ]);
     /*Cabin Crew Section End*/
+
     /*Confidential Safety Section Start*/
     Route::get('confidential-safety',[
         'as'=>'confidential-safety',
@@ -497,6 +523,8 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as' => 'airsafety-pdf',
         'uses' => 'SafetyController@create_pdf'
     ]);
+
+
 
 
 });

@@ -1,4 +1,4 @@
-{!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-ground-sendreceive', $data], 'files'=>true]) !!}
+{!! Form::model($data, ['method' => 'PATCH', 'route'=> ['update-cabin-sendreceive', $data], 'files'=>true]) !!}
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
@@ -20,7 +20,7 @@
 
 <div class="modal-footer">
     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save journal voucher information']) !!}&nbsp;
-    <a href="{{route('ground-handling')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
+    <a href="{{route('cabin-crew')}}" class=" btn btn-default" data-placement="top" data-content="click close button for close this entry form">Close</a>
 </div>
 
 {!! Form::close() !!}

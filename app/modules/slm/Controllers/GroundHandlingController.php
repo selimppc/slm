@@ -74,7 +74,11 @@ class GroundHandlingController extends Controller
 
         $data['created_at'] = date('Y-m-d H:i:s');
 
+
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
+
+        //$admin_emil = $user->email;
+
         $token = $user->csrf_token;
         //print_r($user);exit;
 
@@ -87,8 +91,8 @@ class GroundHandlingController extends Controller
                     {
 //                        $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                         $message->from('devdhaka405@gmail.com', 'SLM');
-                        //$message->to($user->email);
-                        $message->to('shajjadhossain81@gmail.com');
+                        $message->to($user->email);
+                        //$message->to('pothiceee@gmail.com');
 //                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                         $message->subject('New Ground Handling added');
                     });
@@ -314,6 +318,10 @@ class GroundHandlingController extends Controller
         $data_signature['current_date'] = date('M d, Y');
         $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
         $data_signature['regards'] = $input['regards'];
+        $data_signature['full_name'] = $user->full_name;
+        $data_signature['report'] = 'Ground Handling Report';
+
+        //print_r($user->full_name); exit();
 
         //$email_to = $user->email;
        // print_r($email_to); exit();
@@ -321,7 +329,7 @@ class GroundHandlingController extends Controller
             try {
                 Mail::send('slm::ground_handling.mail_send_receive', array('ground_handling' => $data_signature),
                     function ($message) use ($user) {
-                       $message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
+                       //$message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
                         $message->from('devdhaka405@gmail.com', 'SLM');
                         //$message->to($user->email);
                         $message->to($user->email);

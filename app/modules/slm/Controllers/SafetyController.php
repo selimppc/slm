@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
+use App\Modules\User\Models\UserSignature;
 
 use Dompdf\Dompdf;
 
@@ -93,6 +94,7 @@ class SafetyController extends Controller
         $model->advice_other_aircraft = @$input['advice_other_aircraft'];$model->persion_involved = @$input['persion_involved'];
         $model->function_position = @$input['function_position'];$model->type_of_influence = @$input['type_of_influence'];
         $model->comments = @$input['comments'];$model->status = @$input['status'];
+        //$model->status = @$input['reference_no'];
 
         //$input['slug'] = str_slug(strtolower($input['title']));
 
@@ -110,7 +112,7 @@ class SafetyController extends Controller
                         $message->from('devdhaka405@gmail.com', 'New Air Safety Data Added');
                         //$message->from('tanintjt.1990@gmail.com', 'AFFIFACT');
                         $message->to($user->email);
-                        //$message->to('shajjadhossain81@gmail.com');
+                        //$message->to('pothiceee@gmail.com');
                         //$message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                         $message->subject('New Air Safety Data Added');
                     });
@@ -194,6 +196,11 @@ class SafetyController extends Controller
         $data = Safety::where('id',$id)->first();
 
         $data['date']=date("M d, Y", strtotime($data['date']));
+        //$data['safety_verification'] = Safety::where('id',$id)->first();
+
+        //print_r($data->reference_no); exit;
+
+        //print_r($data['safety_verification']); exit();
 
         //print_r($data['date']);exit;
         return view('slm::air_safety.update',['pageTitle'=>$pageTitle,'data' => $data]);
@@ -205,7 +212,7 @@ class SafetyController extends Controller
         //$input['slug'] = str_slug(strtolower($input['title']));
 
         $input['date']=date("Y-m-d", strtotime($input['date']));
-
+        //print_r($input); exit();
         $model = Safety::where('id',$id)->first();
         DB::beginTransaction();
         try {
@@ -220,6 +227,62 @@ class SafetyController extends Controller
             //LogFileHelper::log_error('update-role', $e->getMessage(), ['Role title: '.$input['title']]);
         }
         //}
+        return redirect()->route('air-safety');
+    }
+
+    public function sent_receive_form($id)
+    {
+        $pageTitle = "Send Receive Form";
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id',$user_id)->first();
+        //$signature = DB::table('user_signature')->where('user_id',$id)->get();
+        //print_r($signature); exit();
+
+        return view('slm::air_safety.send_receive', ['data' => $id,'pageTitle'=> $pageTitle,'signature'=>$signature]);
+    }
+    public function update_send_receive(Request $request, $id)
+    {
+        $input = $request->all();
+        $model = Safety::where('id', $id)->get();
+
+        $user_id = Auth::user()->role_id;
+        $signature = UserSignature::where('user_id', $user_id)->first();
+        //print_r($signature->image); exit();
+        //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
+        $user = DB::table('air_safety')->where('id', $id)->first();
+
+        $data_signature['image_path'] = $signature->image;
+        $data_signature['image_thumb'] = $signature->thumbnail;
+        $data_signature['current_date'] = date('M d, Y');
+        $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
+        $data_signature['regards'] = $input['regards'];
+        $data_signature['full_name'] = $user->full_name;
+        $data_signature['report'] = 'Air Safety Report';
+
+        try {
+            Mail::send('slm::air_safety.mail_send_receive', array('ground_handling' => $data_signature),
+                function ($message) use ($user) {
+                    //$message->from('bd.shawon1991@gmail.com', 'New Cabin Crew');
+                    $message->from('devdhaka405@gmail.com', 'SLM');
+                    $message->to($user->email);
+                    //$message->to($user->email);
+                    //$message->to('selimppc@gmail.com');
+                    //$message->to('shajjadhossain81@gmail.com');
+//                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
+                    $message->subject('New Air Safety added');
+                });
+
+            $data2['sent_receive'] = 1;
+
+            Safety::where('id', $id)->update($data2);
+
+            #print_r($user);exit;
+            Session::flash('message', 'Air Safety Report has been Sent Successfully');
+        } catch (\Exception $e) {
+
+            Session::flash('error', $e->getMessage());
+            return redirect()->previous();
+        }
         return redirect()->route('air-safety');
     }
 
@@ -455,7 +518,7 @@ class SafetyController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$data->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY REPORT</th>

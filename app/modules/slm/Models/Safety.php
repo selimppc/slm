@@ -32,7 +32,7 @@ class Safety extends Model
         'used_frequency','heading','heading_other_ac','ver_seperation','hor_seperation','type_of_bird','nr_of_birds','size','areas_affected','advice_earlier','lighting_conditions',
         'conditions_of_the_sky','course_ac','glidslope_position','pos_extended_center','change_in_pitch','speed_buffet','stickshaker','suspected_wake_turbulance',
         'sign_verticle_accelaration','details_ac_wake_turbulance','advice_other_aircraft','persion_involved','function_position',
-        'type_of_influence','comments','status'
+        'type_of_influence','comments','status','reference_no'
     ];
 
 

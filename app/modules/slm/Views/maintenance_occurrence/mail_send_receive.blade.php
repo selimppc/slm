@@ -27,10 +27,10 @@
 
 
 
-            Dear Mrs. H. Abrahams,<br><br>
+            Dear Mr(s). {{$ground_handling['full_name']}} <br><br>
 
             I herewith inform you that the Safety Department has received your trip
-            report / OCR / OSR, dated {{$ground_handling['created_at']}} regarding Pax Fell From
+            {{ $ground_handling['report'] }}, dated {{$ground_handling['created_at']}} regarding Pax Fell From
             Stairs.<br><br>
 
             You will be informed regarding the action(s) taken with respect to your

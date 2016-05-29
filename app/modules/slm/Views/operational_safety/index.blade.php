@@ -64,7 +64,7 @@
                                     <td>{{ date("M d, Y", strtotime($values->flight_date)) }}</td>
                                     <td>{{$values->flight_no}}</td>
                                     <td>
-                                        @if(isset(Auth::user()->role_id))
+                                        {{--@if(isset(Auth::user()->role_id))
 
                                             @if(Auth::user()->role_id == 1 && @$values->reference_no == null)
                                                 <a href="{{ route('reference-operational-safety', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-pencil" data-placement="top" data-toggle="modal" title="Enter Reference NO." data-target="#etsbModal"></a>
@@ -73,7 +73,7 @@
                                                 <a href="{{ route('operational-sent-receive', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-envelope" data-placement="top" data-toggle="modal" title="Send Email" data-target="#etsbModal"></a>
                                             @endif
 
-                                        @endif
+                                        @endif--}}
                                         <a href="{{ route('view-operational-safety', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" ><strong>View</strong></a>
                                         <a href="{{ route('edit-operational-safety', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" ><strong>Update</strong></a>
                                         <a href="{{ route('delete-operational-safety', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" ><i class="fa fa-trash-o"></i></a>
