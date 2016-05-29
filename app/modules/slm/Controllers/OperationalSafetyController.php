@@ -324,7 +324,7 @@ class OperationalSafetyController extends Controller
                             $message->from('devdhaka405@gmail.com', 'SLM');
                             //$message->to($user->email);
                             //$message->to('pothiceee@gmail.com');
-                            $message->to('pothiceee@gmail.com');
+                            $message->to('zacharias@bitdynamics.sr');
                             //$message->to('shajjadhossain81@gmail.com');
 //                        $message->replyTo('devdhaka405@gmail.com','New Air Safety Data Added');
                             $message->subject('New Operational Safety added');
