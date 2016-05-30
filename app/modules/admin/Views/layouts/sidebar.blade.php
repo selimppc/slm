@@ -47,7 +47,7 @@
             <a href="#"> <i class="fa fa-list"></i> <span class="nav-label">Activity Log</span> </a>
         </li>
 		<li class="active">
-            <a href="#"> <i class="fa fa-at"></i> <span class="nav-label">Contact US</span> </a>
+            <a href="{{ url('contact-us') }}"> <i class="fa fa-at"></i> <span class="nav-label">Contact US</span> </a>
         </li>
         @if(file_exists(app_path().'/modules/user/Views/layouts/user_sidebar.blade.php'))
             @include('user::layouts.user_sidebar')

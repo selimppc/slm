@@ -525,6 +525,11 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
     ]);
 
 
+    Route::get('contact-us', function () {
+        return view('slm::misc_pages.contactus');
+    });
+
+
 
 
 });
