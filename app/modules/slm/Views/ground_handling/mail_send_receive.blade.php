@@ -36,7 +36,7 @@
 
             Thank you for your cooperation.<br><br><br><br><br>
 
-            <i>On behalf of the<i><br>
+            <i>On behalf of the</i><br>
             <span style="font-style: normal !important;">Director of Safety<br>
             Capt. Steven Gonesh</span><br><br>
 

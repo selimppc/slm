@@ -16,12 +16,13 @@
 
 <table class="table table-bordered table-responsive tbl">
     <tr>
-        <th style="text-align: left;">
+        <td style="text-align: left;">
             <img src="http://app.sr/slm/public/assets/img/signature_logo2.jpg">
-        </th>
+        </td>
     </tr>
 
     <tr>
+        <td>
         <p style="padding-left: 50px">
             Paramaribo, {{$ground_handling['current_date']}}<br><br><br><br>
 
@@ -37,13 +38,13 @@
 
             Thank you for your cooperation.<br><br><br><br><br>
 
-            <i>On behalf of the<i><br>
+            <i>On behalf of the</i><br>
             <span style="font-style: normal !important;">Director of Safety<br>
             Capt. Steven Gonesh</span><br><br>
 
-                    <img src="{{ $message->embed(public_path() . '/'.$ground_handling['image_path'] ) }}" alt="SLM" />
+            <img src="{{ $message->embed(public_path() . '/'.$ground_handling['image_path'] ) }}" alt="SLM" />
 
-                    <br><br>
+            <br><br>
 
 
 
@@ -55,14 +56,12 @@
             Safety Department
             </span>
 
-
             <br><br><br><br>
-
-
 
             REPORTING OCCURRENCES NOT ONLY HELPS TO ENHANCE SAFETY,<br>
             BUT CAN SAVE LIVES AS WELL!! SO, KEEP REPORTING……………<br>YOU CAN MAKE A DIFFERENCE.
         </p>
+        </td>
     </tr>
 </table>
 

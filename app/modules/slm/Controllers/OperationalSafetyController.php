@@ -311,7 +311,7 @@ class OperationalSafetyController extends Controller
                 $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
                 $data_signature['regards'] =  $input['regards'];
                 $data_signature['operator'] =  $user->operator;
-                $data_signature['report'] = 'Operational Safety Report';
+                $data_signature['report'] = 'Dangerous Goods Occurrence Report';
 
 
                 //print_r($data_signature['operator']);exit;
