@@ -430,10 +430,12 @@ class GroundHandlingController extends Controller
         $signature = UserSignature::where('user_id',$user_id)->first();
         $data['signature'] = $signature->image;
 
-        $image_path = public_path().'/assets/img/report.jpg';
-        $image_path2 = public_path().'/assets/img/report_black.jpg';
-        $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
-        $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
+        /*$image_path = public_path().'/assets/img/report.jpg';
+        $image_path2 = public_path().'/assets/img/report_black.jpg';*/
+        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
+        $img = '<img src="'.$image_path.'"  alt="Surinam Airways" >';
+        $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($ground_handling->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
         if($ground_handling->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}

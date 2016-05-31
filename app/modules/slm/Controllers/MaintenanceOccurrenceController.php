@@ -330,10 +330,12 @@ class MaintenanceOccurrenceController extends Controller
 
         $maintenance_occurrence=MaintenanceOccurrence::findOrFail($id);
 
-        $image_path = public_path().'/assets/img/report.jpg';
-        $image_path2 = public_path().'/assets/img/report_black.jpg';
-        $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
-        $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
+        /*$image_path = public_path().'/assets/img/report.jpg';
+        $image_path2 = public_path().'/assets/img/report_black.jpg';*/
+        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
+        $img = '<img src="'.$image_path.'" alt="Surinam Airways" >';
+        $img2 = '<img src="'.$image_path2.'" alt="Surinam Airways" >';
 
         $html = '
 

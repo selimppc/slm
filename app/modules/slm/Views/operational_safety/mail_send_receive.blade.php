@@ -30,27 +30,30 @@
             Dear Mr(s). {{$ground_handling['operator']}},<br><br>
 
             I herewith inform you that the Safety Department has received your trip
-            {{$ground_handling['report']}}, dated {{$ground_handling['created_at']}} regarding Pax Fell From
-            Stairs.<br><br>
+            {{$ground_handling['report']}}, dated {{$ground_handling['created_at']}} regarding {{$ground_handling['regards']}}.<br><br>
 
             You will be informed regarding the action(s) taken with respect to your
             report.<br><br>
 
             Thank you for your cooperation.<br><br><br><br><br>
 
-            On behalf of the<br>
-            Director of Safety<br>
-            Capt. Steven Gonesh<br><br>
+            <i>On behalf of the<i><br>
+            <span style="font-style: normal !important;">Director of Safety<br>
+            Capt. Steven Gonesh</span><br><br>
 
-            <img style="width: 100px; height: 100px;" src="{{ $message->embed(public_path() . '/'.$ground_handling['image_thumb'] ) }}" alt="SLM" />
+                    <img src="{{ $message->embed(public_path() . '/'.$ground_handling['image_path'] ) }}" alt="SLM" />
 
-            <br><br>
-
-
+                    <br><br>
 
 
+
+
+            <span style="font-style: normal !important;">
             Regards,<br><br>
-            {{$ground_handling['regards']}}
+            Lucas Tjin-Asjoe<br>
+            Technical Administrator<br>
+            Safety Department
+            </span>
 
 
             <br><br><br><br>
