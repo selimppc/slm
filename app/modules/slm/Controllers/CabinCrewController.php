@@ -69,7 +69,7 @@ class CabinCrewController extends Controller
         $data=$request->except('_token');
 
         $data['date']=date("Y-m-d", strtotime($data['date']));
-
+        $data['created_at'] = date('Y-m-d H:i:s');
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
         //print_r($user);exit;

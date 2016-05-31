@@ -16,8 +16,8 @@
 
 <table class="table table-bordered table-responsive tbl">
     <tr>
-        <th style="border-right: 2px solid">
-            <IMG style="width: 600px; height: 10px;" src="http://app.sr/slm/public/assets/img/signature_logo2.jpg">
+        <th style="text-align: left;">
+            <img src="http://app.sr/slm/public/assets/img/signature_logo2.jpg">
         </th>
     </tr>
 
