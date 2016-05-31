@@ -43,6 +43,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('telephone', 'Telephone No:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('telephone', $cabin_crew_verification->telephone, ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
 </div>
@@ -61,6 +62,7 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('captain', 'Captain:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('captain', $cabin_crew_verification->captain, ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
     <div class="col-sm-2">
@@ -72,6 +74,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('co_pilot', $cabin_crew_verification->co_pilot, ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
     <div class="col-sm-2">
@@ -92,6 +95,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('date', $cabin_crew_verification->date, ['class' => 'form-control','readonly']) !!}
     </div>
     <div class="col-sm-4">
@@ -113,6 +117,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('registration', 'Registration:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('registration', $cabin_crew_verification->registration, ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
     <div class="col-sm-4">
@@ -124,10 +129,12 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('from', 'From:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('from', $cabin_crew_verification->from, ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::label('to', 'To:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('to', $cabin_crew_verification->to, ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
     <div class="col-sm-4">
@@ -212,6 +219,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('telephone', 'Telephone No:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
 </div>
@@ -230,6 +238,7 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('captain', 'Captain:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-2">
@@ -241,6 +250,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-2">
@@ -261,6 +271,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         <div class="input-group date">
             {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date','required']) !!}
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -285,6 +296,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('registration', 'Registration:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter full name','required']) !!}
     </div>
     <div class="col-sm-4">
@@ -296,10 +308,12 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('from', 'From:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight','required']) !!}
     </div>
     <div class="col-sm-4">
         {!! Form::label('to', 'To:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight','required']) !!}
     </div>
     <div class="col-sm-4">
@@ -363,6 +377,7 @@
 <div class="row">
     <div class="col-sm-12">
         {!! Form::label('description_of_occurrence', 'Description Of Occurrence:', ['class' => 'control-label']) !!}
+        <small class="required">(Required)</small>
         {!! Form::textarea('description_of_occurrence', @$data[0]['description_of_occurrence'], ['size' => '6x5', 'class' => 'form-control','title'=>'enter description of occurrence','required']) !!}
     </div>
 </div>
