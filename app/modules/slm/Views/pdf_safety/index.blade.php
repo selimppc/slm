@@ -69,6 +69,7 @@
 
                         </tbody>
                     </table>
+					<b><i style="color: red;">Note: printed/downloaded documents are not controlled.</i></b>
                 </div>
                 <span class="pull-left">{!! str_replace('/?', '?', $data->appends(Input::except('page'))->render()) !!} </span>
             </div>

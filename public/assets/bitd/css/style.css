@@ -418,7 +418,7 @@
     color: #ffffff;
 }
 body.blank {
-    background-color: #f1f3f6;
+    background: url("../../img/pattern.png");
 }
 .login-container {
     max-width: 420px;
@@ -1362,6 +1362,11 @@ fieldset[disabled] .btn-link.active {
     background-color: transparent;
     transition: all .5s;
 }
+
+.panel-heading .btn-xs {
+	padding: 7px 7px;
+}
+
 .btn-xs {
     border-radius: 3px;
     font-size: 11px;
@@ -1516,7 +1521,7 @@ body {
     border-bottom: 1px solid #e4e5e7;
 }
 #menu {
-    width: 180px;
+    width: 255px;
     bottom: 0;
     float: left;
     left: 0;
@@ -1525,7 +1530,7 @@ body {
     transition: all 0.4s ease 0s;
 }
 #wrapper {
-    margin: 0 0px 0 180px;
+    margin: 0 0px 0 245px;
     padding: 0;
     background: #f1f3f6;
     border-left: 1px solid #e4e5e7;
@@ -2216,7 +2221,7 @@ body {
     color: #6a6c6f;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 15px 20px;
+    padding: 15px 20px 15px 10px;
 }
 #side-menu li {
     border-bottom: 1px solid #e4e5e7;
@@ -2229,7 +2234,7 @@ body {
     color: #34495e;
 }
 #side-menu li .nav-second-level li a {
-    padding: 10px 10px 10px 30px;
+    padding: 10px 10px 10px 20px;
     color: #6a6c6f;
     text-transform: none;
     font-weight: 600;

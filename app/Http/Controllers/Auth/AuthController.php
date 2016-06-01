@@ -16,6 +16,7 @@ use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Helpers\Notification;
 
 class AuthController extends Controller
 {
@@ -169,6 +170,10 @@ class AuthController extends Controller
                                     'user_id' => Auth::user()->id,
                                 ];
                                 $user_act_model->create($user_activity);
+
+                                $notify_data = Notification::notify_data();
+                                Session::forget('notify_data');
+                                Session::put('notify_data', $notify_data);
 
                                 Session::put('email', $user_data->email);
                                 Session::flash('message', "Successfully  Logged In.");

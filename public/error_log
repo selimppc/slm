@@ -2,3 +2,4 @@
 [04-Mar-2016 07:45:19 America/Chicago] PHP Parse error:  syntax error, unexpected 'class' (T_CLASS), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/app/public_html/sop/public/index.php on line 50
 [10-Apr-2016 02:14:04 America/Chicago] PHP Warning:  require(/home/app/public_html/sop/vendor/symfony/polyfill-mbstring/bootstrap.php): failed to open stream: No such file or directory in /home/app/public_html/sop/vendor/composer/autoload_real.php on line 55
 [10-Apr-2016 02:14:04 America/Chicago] PHP Fatal error:  require(): Failed opening required '/home/app/public_html/sop/vendor/symfony/polyfill-mbstring/bootstrap.php' (include_path='.:/opt/php55/lib/php') in /home/app/public_html/sop/vendor/composer/autoload_real.php on line 55
+[19-May-2016 17:54:51 Asia/Dacca] PHP Fatal error:  Class 'App\Modules\Slm\Models\Safety' not found in /home/app/public_html/slm/app/modules/slm/Controllers/SafetyController.php on line 39

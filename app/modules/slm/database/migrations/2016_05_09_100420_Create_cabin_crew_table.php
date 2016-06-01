@@ -42,6 +42,7 @@ class CreateCabinCrewTable extends Migration
             $table->string('nr_of_landings_of_the_day',200)->nullable();
             $table->enum('flight_phase',array('parked','push_back','taxi_out','take_off','initial_climb','climb','cruise','holding','descent','approach','landing','taxi_in'))->nullable();
             $table->text('description_of_occurrence', 512)->nullable();
+            $table->integer('notified_no')->default(0);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

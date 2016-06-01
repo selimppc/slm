@@ -1,18 +1,19 @@
-vendor/
-node_modules/
-
-# Laravel 4 specific
-bootstrap/compiled.php
-#bootstrap/app.php
-#bootstrap/autoload.php
-
-# Laravel 5 & Lumen specific
+# Created by .ignore support plugin (selim)
+### Laravel template
+/bootstrap/compiled.php
 .env.*.php
 .env.php
 .env
-.env.example
-
-
-#later added ignores
-composer.lock
+.idea
+vendor
+vendor/
 .idea/
+.idea/workspace.xml
+config/database.php
+public/uploads
+public/uploads/sub_message/
+public/uploads/followup_sub_message/
+public/files
+public/docs/uploads/csv/
+composer.lock
+app/modules/user/logs/
