@@ -29,13 +29,9 @@
                     <th width="100%" style="border: 2px solid" colspan="7">1. FULL NAME AND CONTACT INFORMATION-( tel, extension, fax, email) : {{ isset($maintenance_occurrence->full_name)?ucfirst($maintenance_occurrence->full_name):''}},{{ isset($maintenance_occurrence->email)?ucfirst($maintenance_occurrence->email):''}},{{ isset($maintenance_occurrence->telephone)?ucfirst($maintenance_occurrence->telephone):''}},{{ isset($maintenance_occurrence->extension)?ucfirst($maintenance_occurrence->extension):''}},{{ isset($maintenance_occurrence->fax)?ucfirst($maintenance_occurrence->fax):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
-<<<<<<< HEAD
-                    <th width="28%" style="border: 2px solid" colspan="2">2. DATE OF OCCURRENCE : {{ isset($maintenance_occurrence->date_of_occurrence)?ucfirst($maintenance_occurrence->date_of_occurrence):'' }}</th>
-=======
                     <th width="28%" style="border: 2px solid" colspan="2">2. DATE OF OCCURRENCE :
                         {{ isset($maintenance_occurrence->date_of_occurrence)?date("M d, Y", strtotime($maintenance_occurrence->date_of_occurrence)):'' }}
                     </th>
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                     <th width="14%" style="border: 2px solid">3. TIME OF OCCURRENCE : {{ isset($ground_handling->time_of_occurrence)?ucfirst($ground_handling->time_of_occurrence):'' }}</th>
                     <th width="14%" style="border: 2px solid">4. SHIFT : {{ isset($maintenance_occurrence->shift)?ucfirst($maintenance_occurrence->shift):'' }}</th>
                     <th width="14%" style="border: 2px solid">5. LOCATION OF OCCURRENCE : {{ isset($maintenance_occurrence->location_of_occurrence)?ucfirst($maintenance_occurrence->location_of_occurrence):'' }}</th>

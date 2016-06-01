@@ -107,7 +107,6 @@
             //format: 'yyyy-mm-dd (D)',
         });
 
-
         $('.input-daterange').datepicker({
 
         });

@@ -20,8 +20,6 @@ use App\Modules\User\Models\UserSignature;
 
 use Dompdf\Dompdf;
 
-use Dompdf\Dompdf;
-
 
 class SafetyController extends Controller
 {
@@ -321,8 +319,6 @@ class SafetyController extends Controller
         return redirect()->route('air-safety');
     }
 
-<<<<<<< HEAD
-=======
     public function create_pdf($id){
 
         /*$html = "<table border='1'>
@@ -910,7 +906,6 @@ You may report anonymously</th>
         //$dompdf->stream();
     }
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
 
 
 }

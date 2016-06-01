@@ -26,8 +26,6 @@ use App\Modules\User\Models\UserSignature;
 
 use Dompdf\Dompdf;
 
-use Dompdf\Dompdf;
-
 
 
 class CabinCrewController extends Controller
@@ -273,13 +271,6 @@ class CabinCrewController extends Controller
 
         $cabin_crew=CabinCrew::findOrFail($id);
 
-<<<<<<< HEAD
-        $image_path = public_path().'/assets/img/report.jpg';
-        $img = '<img src=" '.$image_path.' "  alt="Surinam Airways" >';
-
-        $fullname = "Shajjad";
-        $email = "email@email.com";
-=======
         /*$image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
         $image_path = public_path().'/assets/img/slm-logo-main.png';
@@ -309,7 +300,6 @@ class CabinCrewController extends Controller
         if($cabin_crew->flight_phase== 'landing'){$fp11='checked';}else{$fp11='';}
         if($cabin_crew->flight_phase== 'taxi_in'){$fp12='checked';}else{$fp12='';}
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
         $html = '
 
 <style>
@@ -319,8 +309,6 @@ class CabinCrewController extends Controller
         border-bottom: 0px!important;
         width: 100%;
     }
-<<<<<<< HEAD
-=======
 
     .tbl3 {
         margin: 0px !important;
@@ -331,7 +319,6 @@ class CabinCrewController extends Controller
         width: 100%;
     }
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     .tbl2 {
        margin: 0px !important;
        border: 2px solid;
@@ -341,13 +328,10 @@ class CabinCrewController extends Controller
         border: 2px solid;
     }
 
-<<<<<<< HEAD
-=======
     .tbl2 th{
     text-align: left;
     }
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     .tbl2 tr td {
         padding:7px; text-align: left;
         text-align: left !important;
@@ -358,8 +342,6 @@ class CabinCrewController extends Controller
         text-align: center!important;
         padding: 15px 10px 18px 10px!important;
     }
-<<<<<<< HEAD
-=======
 
     .report_img2{
         height: 10px!important;
@@ -367,7 +349,6 @@ class CabinCrewController extends Controller
         padding: 5px 2px 8px 2px!important;
     }
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     .panel, .panel-body{
         width: 100%;
     }
@@ -377,8 +358,6 @@ class CabinCrewController extends Controller
 
     <div class="panel">
         <div class="panel-body">
-<<<<<<< HEAD
-=======
             <div class="panel-body">
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
                 <tr>
@@ -398,7 +377,6 @@ class CabinCrewController extends Controller
             <br>
             <br>
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
@@ -408,11 +386,7 @@ class CabinCrewController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-<<<<<<< HEAD
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
-=======
                     <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>
@@ -421,12 +395,6 @@ class CabinCrewController extends Controller
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-<<<<<<< HEAD
-                    <th colspan="2">5. PURSER : '.$cabin_crew->purser.'</th>
-                    <th>6. DATE : '.$cabin_crew->date.'</th>
-                    <th>
-                        7. TIME : '.$cabin_crew->time.'
-=======
                     <th style="text-align: center; background-color: yellow" colspan="5">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
@@ -453,7 +421,6 @@ class CabinCrewController extends Controller
                         7. TIME : '.$cabin_crew->time.'
                         <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
                         <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                     </th>
                     <th>8. AIRCRAFT TYPE : '.$cabin_crew->air_craft_type.'</th>
                 </tr>
@@ -477,9 +444,6 @@ class CabinCrewController extends Controller
                     <th colspan="5">19. NR OF LANDINGS OF THE DAY : '.$cabin_crew->nr_of_landings_of_the_day.'</th>
                 </tr>
                 <tr>
-<<<<<<< HEAD
-                    <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'</th>
-=======
                     <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'
                     <br>
                     <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" > PARKED &nbsp;&nbsp;&nbsp;&nbsp;
@@ -496,7 +460,6 @@ class CabinCrewController extends Controller
                     <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > LANDING&nbsp;&nbsp;
                     <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" > TAXI IN
                     </th>
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                 </tr>
                 <tr>
                     <th colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.' </th>
@@ -525,9 +488,6 @@ You may report anonymously</th>
         $dompdf->render();
 
 // Output the generated PDF to Browser
-<<<<<<< HEAD
-        $dompdf->stream();
-=======
         //$dompdf->stream();
 
         $downloadfolder = public_path().'/pdf_files/';
@@ -547,7 +507,6 @@ You may report anonymously</th>
         );
 
         return Response::download($file, 'CABIN_CREW_REPORT.pdf', $headers);
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     }
 
 

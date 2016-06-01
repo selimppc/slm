@@ -27,32 +27,8 @@ class CabinCrew extends Model
      * @var array
      */
     protected $fillable = [
-        'full_name',
-        'email',
-        'telephone',
-        'extension',
-        'fax',
-        'others',
-        'captain',
-        'pf_pnf',
-        'co_pilot',
-        'pf_pnf2',
-        'date',
-        'time',
-        'utc_local',
-        'air_craft_type',
-        'registration',
-        'flight_no',
-        'from',
-        'to',
-        'flt_diverted_to',
-        'assigned_door',
-        'position_during_event',
-        'nr_of_pax',
-        'nr_of_crew',
-        'previous_flights',
-        'nr_of_landings_of_the_day',
-        'flight_phase',
-        'description_of_occurrence'
+        'full_name','email','telephone','extension','fax','others','captain','pf_pnf','co_pilot','pf_pnf2','date',
+        'time','utc_local','air_craft_type','registration','flight_no','from','to','flt_diverted_to','assigned_door','position_during_event','nr_of_pax',
+        'nr_of_crew','previous_flights','nr_of_landings_of_the_day','flight_phase','description_of_occurrence',
     ];
 }

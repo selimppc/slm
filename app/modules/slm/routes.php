@@ -41,8 +41,6 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'SafetyController@csv'
     ]);
 
-<<<<<<< HEAD
-=======
     Route::any('safety-sent-receive/{id}', [
         //'middleware' => 'acl_access:user/edit-role/{slug}',
         'as' => 'safety-sent-receive',
@@ -55,7 +53,6 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'SafetyController@update_send_receive'
     ]);
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     Route::any('view-safety/{id}', [
         //'middleware' => 'acl_access:view-role/{slug}',
         'as' => 'view-safety',
@@ -203,8 +200,6 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'CabinCrewController@csv'
     ]);
 
-<<<<<<< HEAD
-=======
     Route::any('cabin-sent-receive/{id}', [
         //'middleware' => 'acl_access:user/edit-role/{slug}',
         'as' => 'cabin-sent-receive',
@@ -218,7 +213,6 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
     ]);
 
 
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     Route::get('view-cabin-crew/{id}',[
         'as'=>'view-cabin-crew',
         'uses'=>'CabinCrewController@show',
@@ -487,14 +481,6 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
 
 
     /*Maintenance Occurrence Section End*/
-
-    /*-----------Print Pdf--------------*/
-
-    Route::any('cabin-pdf/{id}', [
-        //'middleware' => 'acl_access:view-role/{slug}',
-        'as' => 'cabin-pdf',
-        'uses' => 'CabinCrewController@create_pdf'
-    ]);
 
 
 

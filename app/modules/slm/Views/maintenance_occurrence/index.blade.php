@@ -64,8 +64,6 @@
                                     <td>{{$values->telephone}}</td>
                                     <td>{{$values->fax}}</td>
                                     <td>
-<<<<<<< HEAD
-=======
                                         {{--@if(isset(Auth::user()->role_id))
 
                                             @if(Auth::user()->role_id == 1 && @$values->reference_no == null)
@@ -76,7 +74,6 @@
                                             @endif
 
                                         @endif--}}
->>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                                         <a href="{{ route('view-maintenance-occurrence', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" ><strong>View</strong></a>
                                         <a href="{{ route('edit-maintenance-occurrence', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" ><strong>Update</strong></a>
                                         <a href="{{ route('delete-maintenance-occurrence', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" ><i class="fa fa-trash-o"></i></a>
