@@ -60,10 +60,23 @@
                             @foreach($operational_safety as $values)
                                 <tr class="gradeX">
                                     <td>{{ucfirst($values->operator)}}</td>
-                                    <td>{{$values->date_of_occurrence}}</td>
-                                    <td>{{$values->flight_date}}</td>
+                                    <td>{{ date("M d, Y", strtotime($values->date_of_occurrence)) }}</td>
+                                    <td>{{ date("M d, Y", strtotime($values->flight_date)) }}</td>
                                     <td>{{$values->flight_no}}</td>
                                     <td>
+<<<<<<< HEAD
+=======
+                                        {{--@if(isset(Auth::user()->role_id))
+
+                                            @if(Auth::user()->role_id == 1 && @$values->reference_no == null)
+                                                <a href="{{ route('reference-operational-safety', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-pencil" data-placement="top" data-toggle="modal" title="Enter Reference NO." data-target="#etsbModal"></a>
+                                            @endif
+                                            @if(Auth::user()->role_id == 1 && @$values->reference_no != null && @$values->sent_receive == 0)
+                                                <a href="{{ route('operational-sent-receive', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-envelope" data-placement="top" data-toggle="modal" title="Send Email" data-target="#etsbModal"></a>
+                                            @endif
+
+                                        @endif--}}
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                                         <a href="{{ route('view-operational-safety', $values->id) }}" class="btn btn-info btn-xs" data-placement="top" ><strong>View</strong></a>
                                         <a href="{{ route('edit-operational-safety', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top" ><strong>Update</strong></a>
                                         <a href="{{ route('delete-operational-safety', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" ><i class="fa fa-trash-o"></i></a>
@@ -81,6 +94,16 @@
     </div>
 </div>
 <!-- page end-->
+
+<div class="modal fade" id="etsbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+        </div>
+    </div>
+</div>
+<!-- modal -->
 
 
 

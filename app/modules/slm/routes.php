@@ -41,6 +41,21 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'SafetyController@csv'
     ]);
 
+<<<<<<< HEAD
+=======
+    Route::any('safety-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'safety-sent-receive',
+        'uses' => 'SafetyController@sent_receive_form'
+    ]);
+
+    Route::any('update-safety-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-safety-sendreceive',
+        'uses' => 'SafetyController@update_send_receive'
+    ]);
+
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     Route::any('view-safety/{id}', [
         //'middleware' => 'acl_access:view-role/{slug}',
         'as' => 'view-safety',
@@ -188,6 +203,22 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses' => 'CabinCrewController@csv'
     ]);
 
+<<<<<<< HEAD
+=======
+    Route::any('cabin-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'cabin-sent-receive',
+        'uses' => 'CabinCrewController@sent_receive_form'
+    ]);
+
+    Route::any('update-cabin-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-cabin-sendreceive',
+        'uses' => 'CabinCrewController@update_send_receive'
+    ]);
+
+
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
     Route::get('view-cabin-crew/{id}',[
         'as'=>'view-cabin-crew',
         'uses'=>'CabinCrewController@show',
@@ -205,6 +236,7 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses'=>'CabinCrewController@destroy',
     ]);
     /*Cabin Crew Section End*/
+
     /*Confidential Safety Section Start*/
     Route::get('confidential-safety',[
         'as'=>'confidential-safety',
@@ -243,6 +275,10 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'uses'=>'ConfidentialSafetyController@destroy'
     ]);
     /*Confidential Safety Section End*/
+
+
+
+
     /*Operational Safety Section Start*/
     Route::get('operational-safety',[
         'as'=>'operational-safety',
@@ -280,7 +316,39 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'delete-operational-safety',
         'uses'=>'OperationalSafetyController@destroy'
     ]);
+
+
+    Route::any('reference-operational-safety/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'reference-operational-safety',
+        'uses' => 'OperationalSafetyController@reference_no'
+    ]);
+
+    Route::any('update-operational-ref/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-operational-ref',
+        'uses' => 'OperationalSafetyController@update_reference'
+    ]);
+
+    Route::any('operational-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'operational-sent-receive',
+        'uses' => 'OperationalSafetyController@sent_receive_form'
+    ]);
+
+    Route::any('update-operational-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-operational-sendreceive',
+        'uses' => 'OperationalSafetyController@update_send_receive'
+    ]);
+
+
+
+
+
     /*Operational Safety Section End*/
+
+
     /*Ground Handling Section Start*/
     Route::get('ground-handling',[
         'as'=>'ground-handling',
@@ -319,7 +387,36 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'delete-ground-handling',
         'uses'=>'GroundHandlingController@destroy'
     ]);
+
+    Route::any('reference-ground-handling/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'reference-ground-handling',
+        'uses' => 'GroundHandlingController@reference_no'
+    ]);
+
+    Route::any('update-ground-ref/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-ground-ref',
+        'uses' => 'GroundHandlingController@update_reference'
+    ]);
+
+    Route::any('ground-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'ground-sent-receive',
+        'uses' => 'GroundHandlingController@sent_receive_form'
+    ]);
+
+    Route::any('update-ground-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-ground-sendreceive',
+        'uses' => 'GroundHandlingController@update_send_receive'
+    ]);
+
+
     /*Ground Handling Section End*/
+
+
+
     /*Maintenance Occurrence Section Start*/
     Route::get('maintenance-occurrence',[
         'as'=>'maintenance-occurrence',
@@ -358,6 +455,37 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as'=>'delete-maintenance-occurrence',
         'uses'=>'MaintenanceOccurrenceController@destroy'
     ]);
+
+
+
+    Route::any('reference-maintenance-occurrence/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'reference-maintenance-occurrence',
+        'uses' => 'MaintenanceOccurrenceController@reference_no'
+    ]);
+
+    Route::any('update-maintenance-ref/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-maintenance-ref',
+        'uses' => 'MaintenanceOccurrenceController@update_reference'
+    ]);
+
+    Route::any('maintenance-sent-receive/{id}', [
+        //'middleware' => 'acl_access:user/edit-role/{slug}',
+        'as' => 'maintenance-sent-receive',
+        'uses' => 'MaintenanceOccurrenceController@sent_receive_form'
+    ]);
+
+    Route::any('update-maintenance-sendreceive/{id}', [
+        //'middleware' => 'acl_access:user/update-role/{slug}',
+        'as' => 'update-maintenance-sendreceive',
+        'uses' => 'MaintenanceOccurrenceController@update_send_receive'
+    ]);
+
+
+
+
+
     /*Maintenance Occurrence Section End*/
 
     /*-----------Print Pdf--------------*/
@@ -367,6 +495,54 @@ Route::group(array('modules'=>'Slm', 'namespace' => 'App\Modules\Slm\Controllers
         'as' => 'cabin-pdf',
         'uses' => 'CabinCrewController@create_pdf'
     ]);
+
+
+
+
+
+    /*-----------Print Pdf--------------*/
+
+    Route::any('cabin-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'cabin-pdf',
+        'uses' => 'CabinCrewController@create_pdf'
+    ]);
+
+    Route::any('confidential-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'confidential-pdf',
+        'uses' => 'ConfidentialSafetyController@create_pdf'
+    ]);
+
+    Route::any('maintenance-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'maintenance-pdf',
+        'uses' => 'MaintenanceOccurrenceController@create_pdf'
+    ]);
+
+    Route::any('ground-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'ground-pdf',
+        'uses' => 'GroundHandlingController@create_pdf'
+    ]);
+
+    Route::any('dangerous-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'dangerous-pdf',
+        'uses' => 'OperationalSafetyController@create_pdf'
+    ]);
+
+    Route::any('airsafety-pdf/{id}', [
+        //'middleware' => 'acl_access:view-role/{slug}',
+        'as' => 'airsafety-pdf',
+        'uses' => 'SafetyController@create_pdf'
+    ]);
+
+
+    Route::get('contact-us', function () {
+        return view('slm::misc_pages.contactus');
+    });
+
 
 
 

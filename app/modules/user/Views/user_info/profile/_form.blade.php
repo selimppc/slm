@@ -42,7 +42,7 @@
 
 <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             {!! Form::label('image', 'Image:', ['class' => 'control-label']) !!}
             <p class="narration">System will allow these types of image(png,gif,jpeg,jpg Format) </p>
             @if(isset($user_image))
@@ -50,6 +50,16 @@
             @endif
             {!! Form::file('image',Input::old('image'), [ 'class' => 'form-control','required','title'=>'Add Profile Image only png,gif,jpeg,jpg Format']) !!}
         </div>
+
+        <!-- For User Signature Image ------>
+        {{--<div class="col-sm-6">
+            {!! Form::label('signature_image', 'Signature Image:', ['class' => 'control-label']) !!}
+            <p class="narration">System will allow these types of image(png,gif,jpeg,jpg Format) </p>
+            @if(isset($user_signature))
+                <img src="{{ URL::to($user_signature->thumbnail) }}" width="100px" height="100px">
+            @endif
+            {!! Form::file('signature_image',Input::old('signature_image'), [ 'class' => 'form-control','required','title'=>'Add Signature Image only png,gif,jpeg,jpg Format']) !!}
+        </div>--}}
     </div>
 </div>
 

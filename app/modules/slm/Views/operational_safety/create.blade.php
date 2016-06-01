@@ -19,9 +19,6 @@
         <div class="panel-body">
 
             <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-                <div style="background-color: yellow; height: 20px;">
-                    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
-                </div>
                 @include('slm::operational_safety._form')
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12">

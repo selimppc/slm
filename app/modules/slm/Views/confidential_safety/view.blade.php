@@ -11,8 +11,14 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Confidential Safety report</b></h3>
         </div>
 
+        <div style="padding-right: 15px">
+            <a href="{{ route('confidential-pdf', $confidential_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
+        </div>
+
+        <div style="height: 25px"></div>
+
         <div class="panel-body">
-            <table class="table table-bordered table-responsive" wi>
+            <table class="table table-bordered table-responsive">
                 <tr>
                     <th width="20%">NAME</th>
                     <td width="80%">{{ isset($confidential_safety->name)?ucfirst($confidential_safety->name):''}}</td>

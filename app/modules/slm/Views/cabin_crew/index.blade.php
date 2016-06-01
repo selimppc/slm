@@ -63,7 +63,7 @@
                                     <td>{{ucfirst($values->full_name)}}</td>
                                     <td>{{ucfirst($values->email)}}</td>
                                     <td>{{$values->captain}}</td>
-                                    <td>{{$values->date}}</td>
+                                    <td>{{ date("M d, Y", strtotime($values->date)) }}</td>
                                     <td>{{$values->from}}</td>
                                     <td>{{$values->to}}</td>
                                     <td>

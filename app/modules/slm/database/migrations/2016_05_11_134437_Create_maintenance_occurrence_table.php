@@ -40,6 +40,11 @@ class CreateMaintenanceOccurrenceTable extends Migration
             $table->string('title_of_occurrence',64)->nullable();
             $table->mediumText('description_of_occurrence',64)->nullable();
             $table->integer('notified_no')->default(0);
+<<<<<<< HEAD
+=======
+            $table->string('reference_no',256)->nullable();
+            $table->integer('sent_receive')->default(0);
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

@@ -9,9 +9,9 @@
 </div><br>
 <div class="row">
     {!! Form::label('address', 'Address:', ['class' => 'control-label col-md-3']) !!}
-
+    <small class="required">(Required)</small>
     <div class="col-sm-6">
-        {!! Form::text('address', Input::old('address'), ['id'=>'address', 'class' => 'form-control','maxlength'=>'200','title'=>'Enter address']) !!}
+        {!! Form::text('address', Input::old('address'), ['id'=>'address', 'class' => 'form-control','maxlength'=>'200','title'=>'Enter address','required'=>'required']) !!}
     </div>
 </div><br>
 <div class="row">
@@ -23,8 +23,9 @@
 </div><br>
 <div class="row">
     {!! Form::label('telephone', 'Telephone:', ['class' => 'control-label col-md-3']) !!}
+    <small class="required">(Required)</small>
     <div class="col-sm-6">
-        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter telephone']) !!}
+        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter telephone','required'=>'required']) !!}
     </div>
 </div>
 <div class="row">
@@ -63,7 +64,8 @@
     </div>
     <div class="col-md-4">
         {!! Form::label('flight_phase', 'Flight Phase:', ['class' => 'control-label']) !!}
-        {!! Form::text('flight_phase', Input::old('flight_phase'), ['id'=>'flight_phase', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter flight_phase']) !!}
+        <small class="required">(Required)</small>
+        {!! Form::text('flight_phase', Input::old('flight_phase'), ['id'=>'flight_phase', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter flight_phase','required'=>'required']) !!}
     </div>
     <div class="col-md-12">
         {!! Form::label('account_of_event', 'Account of Event:', ['class' => 'control-label']) !!}

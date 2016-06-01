@@ -11,9 +11,18 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Dangerous Goods Occurrence report</b></h3>
         </div>
 
+        <div style="padding-right: 15px">
+            <a href="{{ route('dangerous-pdf', $operational_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
+        </div>
+
+        <div style="height: 25px"></div>
+
         <div class="panel-body">
 
             <table class="table table-bordered table-responsive" width="100%">
+                <tr>
+                    <th width="100%" colspan="7" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $operational_safety->reference_no }}</th>
+                </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="7">GENERAL INFORMATION</th>
                 </tr>

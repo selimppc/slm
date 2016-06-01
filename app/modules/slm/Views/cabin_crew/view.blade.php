@@ -28,8 +28,13 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Cabin Crew report</b></h3>
         </div>
 
+<<<<<<< HEAD
         <div>
             <a href="{{ route('cabin-pdf', $cabin_crew->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Print Pdf</strong></a>
+=======
+        <div style="padding-right: 15px">
+            <a href="{{ route('cabin-pdf', $cabin_crew->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
         </div>
 
         <div style="height: 25px"></div>
@@ -45,7 +50,11 @@
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
+<<<<<<< HEAD
                     <th width="34%" style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr:</th>
+=======
+                    <th width="34%" style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : {{ $cabin_crew->reference_no }}</th>
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                 </tr>
                 <tr>
                     <th width="34%" style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>
@@ -74,7 +83,11 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="40%" style="border: 2px solid" colspan="2">5. PURSER : {{ isset($cabin_crew->purser)?ucfirst($cabin_crew->purser):'' }}</th>
+<<<<<<< HEAD
                     <th width="20%" style="border: 2px solid">6. DATE : {{ isset($cabin_crew->date)?ucfirst($cabin_crew->date):''}}</th>
+=======
+                    <th width="20%" style="border: 2px solid">6. DATE : {{ isset($cabin_crew->date)?date("M d, Y", strtotime($cabin_crew->date)):''}} </th>
+>>>>>>> 8dffd2b0e5c849fbb645f0c2ca5472f1b3518c3a
                     <th width="20%" style="border: 2px solid">
                         7. TIME : {{ isset($cabin_crew->time)?ucfirst($cabin_crew->time):''}}
                         {!! Form::radio('utc_local', 'utc', (@$cabin_crew->utc_local == 'utc' ? 'checked': '')) !!} UTC
