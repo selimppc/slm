@@ -20,7 +20,15 @@
         <div class="panel-body">
             <table class="table table-bordered table-responsive" width="100%">
                 <tr>
-                    <th width="100%" colspan="7" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $maintenance_occurrence->reference_no }}</th>
+                    <th width="100%" colspan="3" rowspan="2" style="border: 2px solid; text-align:center;"><img src="{{ URL::to('/') }}/assets/img/logo.png" alt="slm logo" style="width: 50%; padding-top: 30px;"></th>
+                    <th width="100%" colspan="2" rowspan="2" style="border: 2px solid; text-align:right;">
+                        <p style="font-weight: bolder; font-size:40px;" align="center">(OSR)</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="center">Operational Safety Report</p>
+                    </th>
+                    <th width="100%" colspan="2" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $maintenance_occurrence->reference_no }}</th>
+                </tr>
+                <tr>
+                    <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">MAINTENANCE OCCURRENCE <br> REPORT</th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="7">GENERAL INFORMATION</th>

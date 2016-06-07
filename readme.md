@@ -1,1 +1,1 @@
-This is bitd SLM project.
+This is for all out source projects.
