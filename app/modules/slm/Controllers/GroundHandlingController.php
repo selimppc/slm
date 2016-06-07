@@ -124,8 +124,11 @@ class GroundHandlingController extends Controller
         $data['pageTitle']='Show Ground Handling Details';
         $data['ground_handling']=GroundHandling::findOrFail($id);
         $user_id = Auth::user()->role_id;
+        //print_r($user_id); exit();
         $signature = UserSignature::where('user_id',$user_id)->first();
-        $data['signature'] = $signature->image;
+        if(isset($signature)) {
+            $data['signature'] = $signature->image;
+        }
 
         return view('slm::ground_handling.view',$data);
     }
@@ -428,7 +431,9 @@ class GroundHandlingController extends Controller
 
         $user_id = Auth::user()->role_id;
         $signature = UserSignature::where('user_id',$user_id)->first();
-        $data['signature'] = $signature->image;
+        if(isset($signature)) {
+            $data['signature'] = $signature->image;
+        }
 
         /*$image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
@@ -457,10 +462,11 @@ class GroundHandlingController extends Controller
 
 <style>
     .tbl {
-        margin: 0px !important;
+        margin-bottom: 0px !important;
         border: 2px solid;
-        border-bottom: 0px!important;
+        border-bottom: 0px !important;
         width: 100%;
+        font-family: Arial !important;
     }
 
     .tbl3 {
@@ -482,7 +488,7 @@ class GroundHandlingController extends Controller
     }
 
     .tbl2 th{
-    text-align: left;
+    text-align: left; font-weight: normal; padding: 5px; font-size:13px;
     }
 
     .tbl2 tr td {
@@ -518,11 +524,10 @@ class GroundHandlingController extends Controller
                         '.$img2.'
                         <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
                     </th>
-                    <th style="border-left: 2px solid" width="50%">
-                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
-                        <p style="font-weight: bolder; font-size:20px;" align="left">B              Operational Safety Report (OSR)</p>
+                    <th style="border-left: 2px solid; padding:2%;" width="46%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5 &nbsp;&nbsp; APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B &nbsp;&nbsp; Operational Safety Report (OSR)</p>
                     </th>
-
                 </tr>
                 <span style="font-weight: bolder; font-size:20px;">B.III OSR – GROUND HANDLING REPORT</span>
             </table>
@@ -665,7 +670,7 @@ You may report anonymously</th>
         $dompdf->loadHtml($html);
 
         // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
 
         // Render the HTML as PDF
         $dompdf->render();

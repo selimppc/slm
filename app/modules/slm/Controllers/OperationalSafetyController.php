@@ -439,10 +439,11 @@ class OperationalSafetyController extends Controller
 
 <style>
     .tbl {
-        margin: 0px !important;
+        margin-bottom: 0px !important;
         border: 2px solid;
-        border-bottom: 0px!important;
+        border-bottom: 0px !important;
         width: 100%;
+        font-family: Arial !important;
     }
 
     .tbl3 {
@@ -464,7 +465,7 @@ class OperationalSafetyController extends Controller
     }
 
     .tbl2 th{
-    text-align: left;
+    text-align: left; font-weight: normal; padding: 5px; font-size:13px;
     }
 
     .tbl2 tr td {
@@ -494,25 +495,21 @@ class OperationalSafetyController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+            <table cellspacing="0" cellpadding="0" class=" tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
                         <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
                     </th>
-                    <th style="border-left: 2px solid" width="50%">
-                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
-                        <p style="font-weight: bolder; font-size:20px;" align="left">B Operational Safety Report</p>
+                    <th style="border-left: 2px solid; padding:2%;" width="46%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5 &nbsp;&nbsp; APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B &nbsp;&nbsp; Operational Safety Report</p>
                     </th>
-
                 </tr>
-                <span style="font-weight: bolder; font-size:20px;">B.V OSR- DANGEROUS GOODS OCCURRENCE REPORT (Figure 9.6.A)</span>
+                <div style="font-weight: bolder; font-size:20px; height:50px !important;">B.V OSR- DANGEROUS GOODS OCCURRENCE REPORT (Figure 9.6.A)</div>
             </table>
-            <br>
-            <br>
-            <br>
 
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+            <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
@@ -521,14 +518,13 @@ class OperationalSafetyController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr: '.$operational_safety->operator.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 18px; text-align: center;">Safety Department ref. nr: '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">Dangerous Goods Occurrence Report</th>
+                    <th style="text-align: center; color:red; font-size: 30px; font-weight: bold">Dangerous Goods Occurrence Report</th>
                 </tr>
             </table>
-
-            <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+            <table cellpadding="0" cellspacing="0" class="tbl2">
                 <tr>
                     <th style="text-align: center; background-color: yellow" colspan="4">GENERAL INFORMATION</th>
                 </tr>
@@ -616,7 +612,7 @@ class OperationalSafetyController extends Controller
                 }
                 .style_ol li {
                     padding: 2px;
-                    line-height: 20px;
+                    line-height: 16px; font-size:13px;
                 }
             </style>
             <ol class="style_ol">
@@ -661,7 +657,7 @@ class OperationalSafetyController extends Controller
         $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
         $dompdf->render();

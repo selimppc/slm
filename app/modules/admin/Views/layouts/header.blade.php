@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav no-borders">
                 @if(isset(Auth::user()->role_id))
 
-                    @if(Auth::user()->role_id == 1)
+                    @if(Auth::user()->role_id == '1')
                     <li class="dropdown">
 
                     <?php

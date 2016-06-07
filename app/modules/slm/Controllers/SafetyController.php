@@ -436,10 +436,11 @@ class SafetyController extends Controller
 
 <style>
     .tbl {
-        margin: 0px !important;
+        margin-bottom: 0px !important;
         border: 2px solid;
-        border-bottom: 0px!important;
+        border-bottom: 0px !important;
         width: 100%;
+        font-family: Arial !important;
     }
 
     .tbl3 {
@@ -461,11 +462,11 @@ class SafetyController extends Controller
     }
 
     .tbl2 th{
-    text-align: left;
+    text-align: left; font-weight: normal; padding: 0px 0px 0px 5px; font-size:13px;
     }
 
     .tbl2 tr td {
-        padding:7px; text-align: left;
+        padding:0px; text-align: left;
         text-align: left !important;
         }
 
@@ -491,15 +492,15 @@ class SafetyController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+            <table cellspacing="0" cellpadding="0" class="tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
                         <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
                     </th>
-                    <th style="border-left: 2px solid" width="50%">
-                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
-                        <p style="font-weight: bolder; font-size:20px;" align="left">B Operational Safety Report (OSR)</p>
+                    <th style="border-left: 2px solid; padding:2%;" width="46%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5 &nbsp;&nbsp; APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B &nbsp;&nbsp; Operational Safety Report (OSR)</p>
                     </th>
 
                 </tr>
@@ -509,7 +510,7 @@ class SafetyController extends Controller
             <br>
             <br>
 
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+            <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
@@ -525,7 +526,7 @@ class SafetyController extends Controller
                 </tr>
             </table>
 
-            <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+            <table cellpadding="0" cellspacing="0" class="no-spacing tbl2">
                 <tr>
                     <th style="text-align: center; background-color: yellow" colspan="6">GENERAL INFORMATION</th>
                 </tr>
@@ -879,7 +880,7 @@ You may report anonymously</th>
         $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
         $dompdf->render();

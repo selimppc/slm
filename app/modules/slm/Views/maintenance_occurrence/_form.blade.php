@@ -8,7 +8,7 @@
                 {{--@if(Auth::user()->role_id == 1 && @$values->reference_no == null)
                     <a href="{{ route('reference-ground-handling', $values->id) }}" class="btn btn-info btn-xs glyphicon glyphicon-pencil" data-placement="top" data-toggle="modal" title="Enter Reference NO." data-target="#etsbModal"></a>
                 @endif--}}
-                @if(Auth::user()->role_id == 1 && @$maintenance_occurrence_verification->reference_no != null && @$maintenance_occurrence_verification->sent_receive == 0)
+                @if(Auth::user()->role_id == '1' && @$maintenance_occurrence_verification->reference_no != null && @$maintenance_occurrence_verification->sent_receive == '0')
                     {{--<a href="{{ route('ground-sent-receive', $maintenance_occurrence_verification->id) }}" class="btn btn-info btn-xl" data-placement="top" data-toggle="modal" title="Send Received Report" data-target="#etsbModal">Send Received Report</a>--}}
                     <a href="{{ route('maintenance-sent-receive', $maintenance_occurrence_verification->id) }}" class="btn btn-info btn-xl" data-placement="top" data-toggle="modal" title="Send Email" data-target="#etsbModal">Send Received Report</a>
                 @endif
@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-6" style="padding: 0px;">
             {!! Form::label('reference_no', 'Reference Number:', []) !!}
-            @if(Auth::user()->role_id = 1 && $maintenance_occurrence_verification->reference_no == null)
+            @if(Auth::user()->role_id == '1' && $maintenance_occurrence_verification->reference_no == null)
                 {!! Form::text('reference_no', $maintenance_occurrence_verification->reference_no, ['id'=>'reference_no', 'class' => 'form-control','maxlength'=>'256']) !!}
             @else
                 {!! Form::text('reference_no', $maintenance_occurrence_verification->reference_no, ['id'=>'reference_no', 'class' => 'form-control','maxlength'=>'256','title'=>'enter reference number','readonly']) !!}

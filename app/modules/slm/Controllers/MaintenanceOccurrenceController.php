@@ -341,10 +341,11 @@ class MaintenanceOccurrenceController extends Controller
 
 <style>
     .tbl {
-        margin: 0px !important;
+        margin-bottom: 0px !important;
         border: 2px solid;
-        border-bottom: 0px!important;
+        border-bottom: 0px !important;
         width: 100%;
+        font-family: Arial !important;
     }
 
     .tbl3 {
@@ -363,15 +364,11 @@ class MaintenanceOccurrenceController extends Controller
     }
     .tbl2 tr th {
         border: 2px solid;
-        vertical-align: top !important;
     }
 
     .tbl2 th{
-    text-align: left;
-
+    text-align: left; font-weight: normal; padding: 5px; font-size:13px;
     }
-
-
 
     .tbl2 tr td {
         padding:7px; text-align: left;
@@ -406,9 +403,9 @@ class MaintenanceOccurrenceController extends Controller
                         '.$img2.'
                         <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
                     </th>
-                    <th style="border-left: 2px solid" width="50%">
-                        <p style="font-weight: bolder; font-size:20px;" align="left">5              APPENDICES</p>
-                        <p style="font-weight: bolder; font-size:20px;" align="left">B              Operational Safety Report (OSR)</p>
+                    <th style="border-left: 2px solid; padding:2%;" width="46%">
+                        <p style="font-weight: bolder; font-size:20px;" align="left">5 &nbsp;&nbsp; APPENDICES</p>
+                        <p style="font-weight: bolder; font-size:20px;" align="left">B &nbsp;&nbsp; Operational Safety Report (OSR)</p>
                     </th>
 
                 </tr>
@@ -430,7 +427,7 @@ class MaintenanceOccurrenceController extends Controller
                     <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">SAFETY DEPARTMENT REF.NR : '.$maintenance_occurrence->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">MAINTENANCE OCCURRENCE REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 30px; font-weight: bold">MAINTENANCE OCCURRENCE REPORT</th>
                 </tr>
             </table>
 
@@ -494,7 +491,7 @@ You may report anonymously</th>
         $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
         $dompdf->render();
