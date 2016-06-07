@@ -39,7 +39,7 @@ class PdfManagerController extends Controller
 
     public function index(){
 
-        $pageTitle = 'Safety Bulletine Informations';
+        $pageTitle = 'Safety Bulletins';
         $file_name = Input::get('file_name');
 
         $role_id = Auth::user()->role_id;
@@ -54,7 +54,7 @@ class PdfManagerController extends Controller
 
     public function index_alerts(){
 
-        $pageTitle = 'Safety Alerts Informations';
+        $pageTitle = 'Safety Alerts';
         $file_name = Input::get('file_name');
 
         $role_id = Auth::user()->role_id;
@@ -69,7 +69,7 @@ class PdfManagerController extends Controller
 
     public function index_safety(){
 
-        $pageTitle = 'Safety Manuals Informations';
+        $pageTitle = 'Safety Manual';
         $file_name = Input::get('file_name');
 
         $role_id = Auth::user()->role_id;
