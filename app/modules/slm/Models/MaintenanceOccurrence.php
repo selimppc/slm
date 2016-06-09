@@ -46,6 +46,7 @@ class MaintenanceOccurrence extends Model
         'ata_sub_code',
         'title_of_occurrence',
         'description_of_occurrence',
+        'attachment',
         'created_by',
         'updated_by'
     ];

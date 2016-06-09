@@ -51,6 +51,7 @@ class CreateOperationalSafetyTable extends Migration
             $table->integer('notified_no')->default(0);
             $table->string('reference_no',256)->nullable();
             $table->integer('sent_receive')->default(0);
+            $table->string('attachment',200)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

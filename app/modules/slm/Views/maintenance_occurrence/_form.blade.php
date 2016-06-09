@@ -143,6 +143,22 @@
         {!! Form::label('description_of_occurrence', 'Description of occurrence :', ['class' => 'control-label']) !!}
         {!! Form::textarea('description_of_occurrence', $maintenance_occurrence_verification->description_of_occurrence, ['id'=>'description_of_occurrence', 'class' => 'form-control','readonly']) !!}
     </div>
+
+    <div class="col-md-12">
+        <hr>
+        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+        @if($maintenance_occurrence_verification->attachment)
+            <?php $expld = explode('/',$maintenance_occurrence_verification->attachment); ?>
+            <div>
+                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                <a href="{{ URL::to($maintenance_occurrence_verification->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+            </div>
+        @else
+            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+        @endif
+        {!! Form::file('attachment',  ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment','disabled']) !!}
+    </div>
+
 </div>
 
 @else
@@ -258,6 +274,13 @@
     <div class="col-md-12">
         {!! Form::label('description_of_occurrence', 'Description of occurrence :', ['class' => 'control-label']) !!}
         {!! Form::textarea('description_of_occurrence', Input::old('description_of_occurrence'), ['id'=>'description_of_occurrence', 'class' => 'form-control','title'=>'Enter description of the occurrence']) !!}
+    </div>
+
+    <div class="col-md-12">
+        <hr>
+        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+        {{--<small class="required">(max size 400kb)</small>--}}
+        {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
     </div>
 </div>
 @endif

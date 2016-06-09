@@ -21,11 +21,10 @@
             <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
                 @include('slm::operational_safety._form')
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-12">
-                        <div class="footer-form-margin-btn">
+                    <div class="col-md-12" style="text-align: center;">
                             {!! Form::submit('Save', ['class' => 'btn btn-primary','id'=>'i_submit']) !!}&nbsp;
                             <a href="{{ URL::to('operational-safety') }}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
-                        </div>
+
                     </div>
                 </div>
 

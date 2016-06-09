@@ -16,20 +16,16 @@
             <h4 class="text-center text-green"><b style="color: #f5f5f5">Add new Maintenance Occurrence report</b></h4>
         </div>
 
-        {!! Form::open(['route' => 'store-maintenance-occurrence','class' => 'form-horizontal']) !!}
+        {!! Form::open(['route' => 'store-maintenance-occurrence','class' => 'form-horizontal','files'=>true]) !!}
         <div class="panel-body">
-
             <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
                 @include('slm::maintenance_occurrence._form')
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-12">
-                        <div class="footer-form-margin-btn">
+                    <div class="col-md-12" style="text-align: center">
                             {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}&nbsp;
                             <a href="{{ URL::to('maintenance-occurrence') }}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
-                        </div>
                     </div>
                 </div>
-
 
             </div>
         </div>

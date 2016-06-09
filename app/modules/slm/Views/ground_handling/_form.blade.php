@@ -224,6 +224,21 @@
         {!! Form::label('details_of_damage', 'Details of damage', ['class' => 'control-label']) !!}
         {!! Form::textarea('details_of_damage', $ground_handling_verification->details_of_damage, ['id'=>'details_of_damage', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
     </div>
+    <div class="col-md-12">
+        <hr>
+        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+        @if($ground_handling_verification->attachment)
+            <?php $expld = explode('/',$ground_handling_verification->attachment); ?>
+            <div>
+                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                <a href="{{ URL::to($ground_handling_verification->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+            </div>
+        @else
+            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+        @endif
+        {!! Form::file('attachment',  ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment','disabled']) !!}
+    </div>
+
 </div>
 
 @else
@@ -421,6 +436,12 @@
     <div class="col-sm-12">
         {!! Form::label('details_of_damage', 'Details of damage', ['class' => 'control-label']) !!}
         {!! Form::textarea('details_of_damage', Input::old('details_of_damage'), ['id'=>'details_of_damage', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter details of damage']) !!}
+    </div>
+    <div class="col-md-12">
+        <hr>
+        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+        {{--<small class="required">(max size 400kb)</small>--}}
+        {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
     </div>
 </div>
 @endif

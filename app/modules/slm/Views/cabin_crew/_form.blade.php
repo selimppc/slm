@@ -202,8 +202,32 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <hr>
+        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+        @if($cabin_crew_verification->attachment)
+            <?php $expld = explode('/',$cabin_crew_verification->attachment); ?>
+            <div>
+                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                <a href="{{ URL::to($cabin_crew_verification->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+            </div>
+        @else
+            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+        @endif
+        {!! Form::file('attachment',  ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment','disabled']) !!}
+    </div>
+</div>
+
+
+
+
 
 @else
+
+
+
+
 
 
 <div class="row">
@@ -379,6 +403,15 @@
         {!! Form::label('description_of_occurrence', 'Description Of Occurrence:', ['class' => 'control-label']) !!}
         <small class="required">(Required)</small>
         {!! Form::textarea('description_of_occurrence', @$data[0]['description_of_occurrence'], ['size' => '6x5', 'class' => 'form-control','title'=>'enter description of occurrence','required']) !!}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <hr>
+        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+        {{--<small class="required">(max size 400kb)</small>--}}
+        {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
     </div>
 </div>
 @endif

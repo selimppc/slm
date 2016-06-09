@@ -103,6 +103,7 @@ class CreateAirSafeftTable extends Migration
             $table->integer('sent_receive')->default(0);
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->string('attachment',200)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

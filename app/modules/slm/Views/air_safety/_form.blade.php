@@ -18,7 +18,7 @@
             <h4 class="text-center text-green"><b style="color: #f5f5f5">Add new Air Safety report</b></h4>
         </div>
 
-        {!! Form::open(['route' => 'store-safety','class' => 'form-horizontal','id' => 'form_2']) !!}
+        {!! Form::open(['route' => 'store-safety','class' => 'form-horizontal','id' => 'form_2','files'=>true]) !!}
 
         <div class="panel-body">
 
@@ -566,17 +566,26 @@
 
                 </div>
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+                        {{--<small class="required">(max size 400kb)</small>--}}
+                        {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
+                    </div>
+                </div>
+
                 <div class="form-group">
                     {!! Form::hidden('status','active' ) !!}
                 </div>
 
+            </div>
 
-                <div class="footer-form-margin-btn">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
                     {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
-                    <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
+                    <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="Back to the Air Safety Information List">Back</a>
                 </div>
-
-
             </div>
         </div>
 

@@ -60,6 +60,7 @@ class GroundHandling extends Model
         'area',
         'enviromental_condition',
         'details_of_damage',
+        'attachment',
         'created_by',
         'updated_by'
     ];

@@ -38,7 +38,8 @@ class OperationalSafetyController extends Controller
      */
     public function index()
     {
-        $data['pageTitle'] = 'Operational Safety';
+        //$data['pageTitle'] = 'Operational Safety';
+        $data['pageTitle'] = 'Dangerous Goods Occurrence';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
         $data['operational_safety'] = OperationalSafety::paginate(10);
@@ -67,6 +68,7 @@ class OperationalSafetyController extends Controller
      */
     public function store(Request $request)
     {
+        //exit('exit');
         $data=$request->except('_token');
 
         $data['date_of_occurrence']=date("Y-m-d", strtotime($data['date_of_occurrence']));
@@ -75,6 +77,7 @@ class OperationalSafetyController extends Controller
 
         $data['created_at'] = date('Y-m-d H:i:s');
 
+        // --------------- For Signature File ---------------------------------//
         $file=Input::file('signature');
         if(isset($file)){
             $rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
@@ -87,8 +90,6 @@ class OperationalSafetyController extends Controller
                     $oldmask = umask(0);  // helpful when used in linux server
                     mkdir($upload_folder, 0777);
                 }
-
-
                 $file_original_name = $file->getClientOriginalName();
 
                 $file_name = rand(11111, 99999) . $file_original_name;
@@ -103,9 +104,41 @@ class OperationalSafetyController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
-        }
+        }//-----End Signature
 
-//        dd($data);
+        //----------------- For Attachment file-------------------//
+        $file_attachment=Input::file('attachment');
+        //print_r($file_attachment); exit();
+        if(isset($file_attachment)){
+            //$rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
+            $rules = array('file' => 'mimes:pdf,doc');
+            $validator = Validator::make(array('file' => $file_attachment), $rules);
+            //print_r($validator->passes());exit;
+
+            if ($validator->passes()) {
+                //exit('Exit');
+                $upload_folder = 'attachment/';
+                if (!file_exists($upload_folder)) {
+                    $oldmask = umask(0);  // helpful when used in linux server
+                    mkdir($upload_folder, 0777);
+                }
+                $file_original_name = $file_attachment->getClientOriginalName();
+
+                $file_name = rand(11111, 99999).'-'. $file_original_name;
+                $file_attachment->move($upload_folder, $file_name);
+                $attachment=$upload_folder.$file_name;
+                $data['attachment']=$attachment;
+
+            }else{
+                // Redirect or return json to frontend with a helpful message to inform the user
+                // that the provided file was not an adequate type
+                return redirect('add-operational-safety')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }//---------End Attachment
+        //print_r($attachment); exit();
+
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
         //print_r($user);exit;

@@ -168,25 +168,49 @@ index. If applicable):', ['class' => 'control-label']) !!}
             {!! Form::label('reporter_ref', 'Reporter ref.:', ['class' => 'control-label']) !!}
             {!! Form::text('reporter_ref', $operational_safety_verification->reporter_ref, ['id'=>'reporter_ref', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             {!! Form::label('address', 'Address:', ['class' => 'control-label']) !!}
             {!! Form::text('address', $operational_safety_verification->address, ['id'=>'address', 'class' => 'form-control','maxlength'=>'200','readonly']) !!}
         </div>
+
     </div>
     <div class="row">
         <div class="col-md-6">
             {!! Form::label('signature', 'Signature:', ['class' => 'control-label']) !!}
+            <div>
+                @if($operational_safety_verification->signature=="")
+                    <div><span class="glyphicon glyphicon-picture"></span> No Signature Available</div>
+                @else
+                    <img src="{{ URL::to($operational_safety_verification->signature) }}" style="width:auto; max-width: 100%;">
+                @endif
+            </div>
             <small class="required">(max size 100kb)</small>
             {!! Form::file('signature',  ['id'=>'signature', 'class' => 'form-control','disabled']) !!}
-
         </div>
         <div class="col-sm-6">
             {!! Form::label('date_of_signature', 'Date of Signature:', ['class' => 'control-label']) !!}
             {!! Form::text('date_of_signature', $operational_safety_verification->date_of_signature, ['id'=>'date_id','class' => 'form-control','readonly']) !!}
 
         </div>
-
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+            @if($operational_safety_verification->attachment)
+                <?php $expld = explode('/',$operational_safety_verification->attachment); ?>
+                <div>
+                    <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                    <a href="{{ URL::to($operational_safety_verification->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                </div>
+            @else
+                <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+            @endif
+            {!! Form::file('attachment',  ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment','disabled']) !!}
+        </div>
+    </div>
+
 </div>
 
 
@@ -333,7 +357,7 @@ index. If applicable):', ['class' => 'control-label']) !!}
             {!! Form::label('reporter_ref', 'Reporter ref.:', ['class' => 'control-label']) !!}
             {!! Form::text('reporter_ref', Input::old('reporter_ref'), ['id'=>'reporter_ref', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter Reporter ref']) !!}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             {!! Form::label('address', 'Address:', ['class' => 'control-label']) !!}
             {!! Form::text('address', Input::old('address'), ['id'=>'address', 'class' => 'form-control','maxlength'=>'200','title'=>'Enter address']) !!}
         </div>
@@ -342,8 +366,7 @@ index. If applicable):', ['class' => 'control-label']) !!}
         <div class="col-md-6">
             {!! Form::label('signature', 'Signature:', ['class' => 'control-label']) !!}
             <small class="required">(max size 100kb)</small>
-            {!! Form::file('signature',  ['id'=>'signature', 'class' => 'form-control','title'=>'Upload your signature']) !!}
-
+            {!! Form::file('signature', Input::old('signature'), ['id'=>'signature', 'class' => 'form-control','title'=>'Upload your signature']) !!}
         </div>
         <div class="col-sm-6">
             {!! Form::label('date_of_signature', 'Date of Signature:', ['class' => 'control-label']) !!}
@@ -352,7 +375,14 @@ index. If applicable):', ['class' => 'control-label']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
-
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+            {{--<small class="required">(max size 400kb)</small>--}}
+            {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
+        </div>
     </div>
 </div>
 

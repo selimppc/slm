@@ -75,6 +75,40 @@ class GroundHandlingController extends Controller
         $data['created_at'] = date('Y-m-d H:i:s');
 
 
+        //----------------- For Attachment file-------------------//
+        $file_attachment=Input::file('attachment');
+        //print_r($file_attachment); exit();
+        if(isset($file_attachment)){
+            $rules = array('file' => 'mimes:pdf,doc');
+            $validator = Validator::make(array('file' => $file_attachment), $rules);
+            //print_r($validator->passes());exit;
+
+            if ($validator->passes()) {
+                //exit('Exit');
+                $upload_folder = 'attachment/';
+                if (!file_exists($upload_folder)) {
+                    $oldmask = umask(0);  // helpful when used in linux server
+                    mkdir($upload_folder, 0777);
+                }
+                $file_original_name = $file_attachment->getClientOriginalName();
+
+                $file_name = rand(11111, 99999).'-'. $file_original_name;
+                $file_attachment->move($upload_folder, $file_name);
+                $attachment=$upload_folder.$file_name;
+                $data['attachment']=$attachment;
+                //print_r($attachment); exit();
+
+            }else{
+                // Redirect or return json to frontend with a helpful message to inform the user
+                // that the provided file was not an adequate type
+                return redirect('add-operational-safety')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }//---------End Attachment
+        //print_r($attachment); exit();
+
+
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
 
         //$admin_emil = $user->email;

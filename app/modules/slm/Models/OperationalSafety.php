@@ -54,6 +54,7 @@ class OperationalSafety extends Model
         'address',
         'signature',
         'date_of_signature',
+        'attachment',
         'created_by',
         'updated_by',
     ];

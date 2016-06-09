@@ -592,14 +592,33 @@
                     </div>--}}
                 </div>
 
-
-                <div class="footer-form-margin-btn">
-                    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
-                    <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+                        @if($data->attachment)
+                            <?php $expld = explode('/',$data->attachment); ?>
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($data->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                        @else
+                            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                        @endif
+                        {!! Form::file('attachment',  ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment','disabled']) !!}
+                    </div>
                 </div>
 
 
             </div>
+
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save information']) !!}&nbsp;
+                    <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="Back to the Air Safety Information List">Back</a>
+                </div>
+            </div>
+
         </div>
 
 

@@ -72,6 +72,12 @@
                                         <a href="{{ route('view-safety', $values->id) }}" class="btn btn-info btn-xs" data-placement="top"><strong>View</strong></a>
                                         <a href="{{ route('upd-safety', $values->id) }}" class="btn btn-primary btn-xs" data-placement="top"><strong>Update</strong></a>
                                         <a href="{{ route('delete-safety', $values->id) }}" class="btn btn-danger btn-xs" data-placement="top" onclick="return confirm('Are you sure to Delete?')" ><i class="fa fa-trash-o"></i></a>
+                                        @if($values->attachment=="")
+                                            <button class="btn btn-default btn-xs" style="cursor: default;"><span class="glyphicon glyphicon-remove"></span></button>
+                                        @else
+                                            <button class="btn btn-primary btn-xs" style="cursor: default;"><span class="glyphicon glyphicon-ok"></span></button>
+                                            {{--<a href="{{ URL::to($values->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download"><span class="glyphicon glyphicon-ok"></span></a>--}}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
