@@ -40,6 +40,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('telephone', 'Telephone No:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'enter telephone no','required']) !!}
                     </div>
                 </div>
@@ -62,6 +63,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('captain', 'Captain:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::text('captain', Input::old('captain'), ['id'=>'captain', 'class' => 'form-control','maxlength'=>'64','title'=>'enter captain','required']) !!}
                     </div>
                     <div class="col-sm-2">
@@ -71,6 +73,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter co_pilot','required']) !!}
                     </div>
                     <div class="col-sm-2">
@@ -83,6 +86,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         <div class="input-group date">
                             {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date','required']) !!}
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -107,6 +111,7 @@
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('registration', 'Registration:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::text('registration', Input::old('registration'), ['id'=>'registration', 'class' => 'form-control','maxlength'=>'64','title'=>'enter registration','required']) !!}
                     </div>
                     <div class="col-sm-4">
@@ -118,10 +123,12 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('from', 'From:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::text('from', Input::old('from'), ['id'=>'from', 'class' => 'form-control','maxlength'=>'64','title'=>'enter From Flight','required']) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('to', 'To:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::text('to', Input::old('to'), ['id'=>'to', 'class' => 'form-control','maxlength'=>'64','title'=>'enter To Flight','required']) !!}
                     </div>
                     <div class="col-sm-4">
@@ -200,6 +207,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         {!! Form::label('description_of_occurence', 'Description Of Occurrence:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
                         {!! Form::textarea('description_of_occurence', @$data[0]['description_of_occurence'], ['size' => '6x2', 'class' => 'form-control','title'=>'enter description of occurrence','required']) !!}
                     </div>
                 </div>
@@ -570,7 +578,7 @@
                     <div class="col-md-12">
                         <hr>
                         {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                        {{--<small class="required">(max size 400kb)</small>--}}
+                        <small class="required">(max size 300kb)</small>
                         {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
                     </div>
                 </div>
@@ -583,7 +591,7 @@
 
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
-                    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
+                    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','id'=>'i_submit','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
                     <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="Back to the Air Safety Information List">Back</a>
                 </div>
             </div>
@@ -672,7 +680,7 @@
         });
         //}
     </script>
-
+    @include('slm::air_safety._script')
 
 
 @stop

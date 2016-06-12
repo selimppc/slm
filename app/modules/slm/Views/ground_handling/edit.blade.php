@@ -21,7 +21,7 @@
                 @include('slm::ground_handling._form')
                 <div class="row" style="margin-top: 10px">
                     <div class="col-md-12" style="text-align: center">
-                            {!! Form::submit('Update', ['class' => 'btn btn-primary','data-placement'=>'top']) !!}&nbsp;
+                            {!! Form::submit('Update', ['class' => 'btn btn-primary','data-placement'=>'top','id'=>'i_submit']) !!}&nbsp;
                             <a href="{{ URL::previous() }}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
                     </div>
                 </div>

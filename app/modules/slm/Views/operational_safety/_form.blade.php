@@ -380,7 +380,7 @@ index. If applicable):', ['class' => 'control-label']) !!}
         <div class="col-md-12">
             <hr>
             {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-            {{--<small class="required">(max size 400kb)</small>--}}
+            <small class="required">(max size 300kb)</small>
             {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
         </div>
     </div>
