@@ -12,7 +12,7 @@
         </div>
 
         <div style="padding-right: 15px" class="buttons-div">
-            <a href="{{ route('confidential-pdf', $confidential_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
+            <a href="{{ route('confidential-pdf', $confidential_safety->id) }}" class="btn btn-primary margin-bot-5"><strong>Export PDF</strong></a>
         </div>
 
         <div style="height: 25px"></div>
