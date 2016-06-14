@@ -69,7 +69,21 @@
                     <th width="100%" style="border: 2px solid" colspan="7">21. DESCRIPTION OF OCCURRENCE : <p>{{ isset($maintenance_occurrence->description_of_occurrence)?ucfirst($maintenance_occurrence->description_of_occurrence):'' }}</p></th>
                 </tr>
             </table>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                    {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+                    @if($maintenance_occurrence->attachment)
+                        <?php $expld = explode('/',$maintenance_occurrence->attachment); ?>
+                        <div>
+                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                            <a href="{{ URL::to($maintenance_occurrence->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                        </div>
+                    @else
+                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                    @endif
+                </div>
+            </div>
 
             <div class="col-sm-12 text-center">
                 <a href="{{ \URL::previous() }}" class="btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>

@@ -123,7 +123,21 @@
                     <th width="100%" style="border: 2px solid" colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):<p> {{ isset($cabin_crew->description_of_occurrence)?ucfirst($cabin_crew->description_of_occurrence):''}} </p></th>
                 </tr>
             </table>
-
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                    {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+                    @if($cabin_crew->attachment)
+                        <?php $expld = explode('/',$cabin_crew->attachment); ?>
+                        <div>
+                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                            <a href="{{ URL::to($cabin_crew->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                        </div>
+                    @else
+                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                    @endif
+                </div>
+            </div>
 
             <div class="col-sm-12 text-center">
                 <a href="{{ \URL::previous() }}" class="btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>

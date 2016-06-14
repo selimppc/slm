@@ -129,7 +129,21 @@
 
             </table>
 
-
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                    {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
+                    @if($ground_handling->attachment)
+                        <?php $expld = explode('/',$ground_handling->attachment); ?>
+                        <div>
+                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                            <a href="{{ URL::to($ground_handling->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                        </div>
+                    @else
+                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                    @endif
+                </div>
+            </div>
 
             <div class="col-sm-12 text-center">
                 <a href="{{ \URL::previous() }}" class="btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
