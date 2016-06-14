@@ -24,22 +24,21 @@
     <?php  ?>
 
     <div class="panel">
-        <div style="background-color: #0490a6">
+        <div style="background-color: #0490a6" class="title-div">
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Cabin Crew report</b></h3>
         </div>
 
-        <div style="padding-right: 15px">
-            <a href="{{ route('cabin-pdf', $cabin_crew->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
+        <div style="padding-right: 15px" class="buttons-div">
+            <a href="{{ route('cabin-pdf', $cabin_crew->id) }}" class="btn btn-primary margin-bot-5"><strong>Export PDF</strong></a>
         </div>
 
         <div style="height: 25px"></div>
 
         <div class="panel-body">
 
-            <table class="table table-bordered table-responsive tbl">
+            <table class="table table-bordered table-responsive tbl report">
                 <tr>
-                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
-                        <img style="width: 300px; height: 100px;" src="{{ URL::to('/') }}/assets/img/report.jpg" alt="bZm Graphics"></th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img"><img src="{{ URL::to('/') }}/assets/img/logo.png" alt="bZm Graphics" style="width: 50%; padding-top: 30px;"></th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
                         <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
@@ -51,7 +50,7 @@
                     <th width="34%" style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>
                 </tr>
             </table>
-            <table class="table table-bordered table-responsive no-spacing" width="100%">
+            <table class="table table-bordered table-responsive no-spacing report" width="100%">
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="5">GENERAL INFORMATION</th>
                 </tr>
@@ -126,9 +125,10 @@
             </table>
 
 
-            <div class="footer-form-margin-btn">
+            <div class="col-sm-12 text-center">
                 <a href="{{ \URL::previous() }}" class="btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
             </div>
+            <div class="height-5">&nbsp;</div>
 
         </div>
 

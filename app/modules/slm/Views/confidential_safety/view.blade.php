@@ -7,18 +7,18 @@
 
 
     <div class="panel">
-        <div style="background-color: #0490a6">
+        <div style="background-color: #0490a6" class="title-div">
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Confidential Safety report</b></h3>
         </div>
 
-        <div style="padding-right: 15px">
+        <div style="padding-right: 15px" class="buttons-div">
             <a href="{{ route('confidential-pdf', $confidential_safety->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
         </div>
 
         <div style="height: 25px"></div>
 
         <div class="panel-body">
-            <table class="table table-bordered table-responsive">
+            <table class="table table-bordered table-responsive report">
                 <tr>
                     <th width="20%">NAME</th>
                     <td width="80%">{{ isset($confidential_safety->name)?ucfirst($confidential_safety->name):''}}</td>
@@ -55,7 +55,7 @@
                 <li>You will receive an acknowledgement as soon as possible</li>
             </ol>
 
-            <table class="table table-bordered table-responsive" style="border: 2px solid">
+            <table class="table table-bordered table-responsive report" style="border: 2px solid" >
                 <tr style="border: 2px solid">
                     <th width="30%" style="border: 2px solid">Function : {{ isset($confidential_safety->function)?ucfirst($confidential_safety->function):'' }}</th>
                     <th width="35%" style="border: 2px solid">Department : {{ isset($confidential_safety->department)?ucfirst($confidential_safety->department):'' }}</th>
@@ -76,7 +76,7 @@
                 </tr>
             </table>
 
-            <div class="footer-form-margin-btn">
+            <div class="col-sm-12 text-center">
                 <a href="{{ \URL::previous() }}" class="btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
             </div>
 

@@ -97,7 +97,7 @@ body{
 .DT-per-page {
     /* border-right: 1px solid #eee; */
     /* margin-right: 10px; */
-    height: -30px;
+    /*height: 30px;*/
     /* padding-right: 10px; */
     white-space: nowrap;
 }
@@ -133,5 +133,178 @@ body{
 }
 .lich{
     color: darkgreen;font-size:xx-large;color:#9b59b6;padding: 15px;
+}
+/*=================================================================================Ram's Css*/
+.dflt-input { border: 1px solid #f0f0f0; border-radius: 4px; padding: 5px;}
+.padding-tb { padding: 10px 0;}
+.height-5 { height: 5px !important;}
+.margin-bot-5 { margin-bottom: 5px !important;}
+
+/*--------------------For general purpose---------------*/
+.buttons-div { text-align: right !important;}
+
+/*--------------------For 800px Screen width------------*/
+@media screen and (max-width: 932px){
+    .title-div { text-align: center; !important;}
+    .buttons-div { text-align: center !important;}
+    .filter-div { text-align: center !important;}
+
+    /*-------For table in mobile device-------------- */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    table.report, table.report thead, table.report tbody, table.report th, table.report td, table.report tr {
+        display: block !important; width: 100% !important; border: 1px solid #909090 !important;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr { border-bottom: 0px solid #000; }
+
+    td {
+        /* Behave  like a "row" */
+        border: none !important;
+        border-bottom: 0px solid #eee;
+        position: relative;
+        padding-left: 30% !important;
+        vertical-align: top;
+        text-align: left;
+        line-height: 30px;
+    }
+
+    td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 0px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    /*
+    Label the data
+    */
+    .ml-table td:nth-of-type(1):before { content: "Name ";    width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table td:nth-of-type(2):before { content: "Email ";   width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table td:nth-of-type(3):before { content: "Captain ";  width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table td:nth-of-type(4):before { content: "Date ";  width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table td:nth-of-type(5):before { content: "From ";  width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table td:nth-of-type(6):before { content: "To ";width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table td:nth-of-type(7):before { content: "Action ";width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+
+    /*
+    Label for Dangerous Goods Report
+    */
+    .ml-table-1 td:nth-of-type(1):before {content: "Operator ";width: 20%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-1 td:nth-of-type(2):before {content: "Occurrence Date "; width: 20%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-1 td:nth-of-type(3):before {content: "Flight Date "; width: 20%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-1 td:nth-of-type(4):before {content: "Flight No ";width: 20%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-1 td:nth-of-type(5):before {content: "Action ";width: 20%; text-align: left; vertical-align: top; line-height: 30px;}
+
+    /*
+    Label for ground handling Report and Maintenance occurrence
+    */
+    .ml-table-ghr td:nth-of-type(1):before {content: "Name "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-ghr td:nth-of-type(2):before {content: "Email "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-ghr td:nth-of-type(3):before {content: "Telephone "; width:15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-ghr td:nth-of-type(4):before {content: "Fax "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    /*
+    Label for Cabin Crew
+    */
+    .ml-table-cc td:nth-of-type(1):before {content: "Name "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(2):before {content: "Email "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(3):before {content: "Telephone "; width:15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(4):before {content: "Fax "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(5):before {content: "Action "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+
+    /*
+    Label for Confidential Safety
+    */
+    .ml-table-cc td:nth-of-type(1):before {content: "Name "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(2):before {content: "Email "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(3):before {content: "Telephone "; width:15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(4):before {content: "Address "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+    .ml-table-cc td:nth-of-type(5):before {content: "Action "; width: 15%; text-align: left; vertical-align: top; line-height: 30px;}
+
+
+    /*Custom later added*/
+    /*.ml-table th{
+        display: none;
+    }
+
+    .saturday, .sunday, .monday, .tuesday, .wednesday, .thursday, .friday{
+        background: none;
+        text-align: left;
+        vertical-align: top;
+        width: 20%;
+    }
+
+    .custom_table tr:nth-child(odd)  { background-color:#EEEEEE !important;} !*odd*!
+    .custom_table tr:nth-child(even) { background-color: #d5ebee !important;} !* even*!
+    .custom_table tr:hover { background-color:lightgoldenrodyellow !important;} !* hovering *!
+
+    .saturday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color: #4fc8f0;
+        width: 100%;
+        vertical-align: top;
+    }
+
+    .sunday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color: #5687AF;
+        width: 100%;
+        vertical-align: top;
+    }
+
+    .monday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color:#afd9ee;
+        width: 100%;
+        vertical-align: top;
+    }
+
+    .tuesday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color: #98edfa;
+        width: 100%;
+        vertical-align: top;
+    }
+
+    .wednesday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color: #79caeb;
+        width: 100%;
+        vertical-align: top;
+    }
+
+    .thursday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color:lightpink;
+        width: 100%;
+        vertical-align: top;
+    }
+
+    .friday{
+        color: #FFFFFF;
+        text-align: left;
+        background-color:paleturquoise;
+        width: 100%;
+        vertical-align: top;
+    }*/
 }
 

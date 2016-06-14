@@ -8,18 +8,18 @@
     <script src="assets/bitd/js/jquery.min.js"></script>
 
     <div class="panel">
-        <div style="background-color: #0490a6">
+        <div style="background-color: #0490a6" class="title-div">
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Air Safety report</b></h3>
         </div>
 
-        <div style="padding-right: 15px">
-            <a href="{{ route('airsafety-pdf', $data->id) }}" class="btn btn-primary pull-right col-xs-2"><strong>Export PDF</strong></a>
+        <div style="padding-right: 15px" class="buttons-div">
+            <a href="{{ route('airsafety-pdf', $data->id) }}" class="btn btn-primary margin-bot-5"><strong>Export PDF</strong></a>
         </div>
 
         <div style="height: 25px"></div>
 
         <div class="panel-body">
-            <table class="table table-bordered table-responsive" width="100%">
+            <table class="table table-bordered table-responsive report" width="100%">
                 <tr>
                     <th width="100%" colspan="2" rowspan="2" style="border: 2px solid; text-align:center;"><img src="{{ URL::to('/') }}/assets/img/logo.png" alt="slm logo" style="width: 50%; padding-top: 30px;"></th>
                     <th width="100%" colspan="2" rowspan="2" style="border: 2px solid; text-align:right;">
@@ -352,7 +352,7 @@
 
 
 
-            <div class="footer-form-margin-btn">
+            <div class="col-sm-12 text-center">
                 <a href="{{route('air-safety')}}" class="btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
             </div>
 
