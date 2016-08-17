@@ -253,7 +253,9 @@
                 <div class="row">
                     <div class="col-sm-4">
                         {!! Form::label('wind_speed', 'Wind Speed:', ['class' => 'control-label']) !!}
-                        {!! Form::text('wind_speed', Input::old('wind_speed'), ['id'=>'wind_speed', 'class' => 'form-control','maxlength'=>'64','title'=>'enter wind_speed']) !!}
+                        <br>
+                        {!! Form::radio('wind_speed', 'km_hr', true) !!} KM/HR &nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('wind_speed', 'knoth', false) !!} KNOTH&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('visibility', 'Visibility:', ['class' => 'control-label']) !!}

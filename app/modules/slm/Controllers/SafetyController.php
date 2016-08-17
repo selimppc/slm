@@ -412,6 +412,9 @@ class SafetyController extends Controller
         if($data->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
         if($data->utc_local== 'local'){$checked_local='checked';}else{$checked_local='';}
 
+        if($data->wind_speed== 'km_hr'){$ws1='checked';}else{$ws1='';}
+        if($data->wind_speed== 'knoth'){$ws2='checked';}else{$ws2='';}
+
         if($data->flight_phase== 'parked'){$fp1='checked';}else{$fp1='';}
         if($data->flight_phase== 'push_back'){$fp2='checked';}else{$fp2='';}
         if($data->flight_phase== 'taxi_out'){$fp3='checked';}else{$fp3='';}
@@ -529,6 +532,8 @@ class SafetyController extends Controller
         border: 2px solid;
     }
 
+
+
     .tbl2 th{
     text-align: left; font-weight: normal; padding: 0px 0px 0px 5px; font-size:13px;
     }
@@ -560,7 +565,7 @@ class SafetyController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class="tbl3">
+            <!--<table cellspacing="0" cellpadding="0" class="tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
@@ -576,7 +581,7 @@ class SafetyController extends Controller
             </table>
             <br>
             <br>
-            <br>
+            <br>-->
 
             <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
@@ -596,35 +601,37 @@ class SafetyController extends Controller
 
             <table cellpadding="0" cellspacing="0" class="no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center; background-color: yellow" colspan="6">GENERAL INFORMATION</th>
+
+                    <th style="text-align: center" colspan="6"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
+
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$data->full_name.','.$data->email.','.$data->telephone.','.$data->extension.','.$data->fax.'</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="32%" style="border: 2px solid" colspan="2">
-                        2. CAPTAIN : '.$data->captain.'&nbsp;&nbsp;
-                        <input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" > PF
-                        <input type="checkbox" name="pf_pnf" value="" '.$pnf.' style="display:inline;" >  PNF
+                        2. CAPTAIN : '.$data->captain.'<br>
+                        PF<input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" >
+                        PNF<input type="checkbox" name="pf_pnf" value="" '.$pnf.' style="display:inline;" >
                     </th>
                     <th width="32%" style="border: 2px solid" colspan="2">
-                        3. CO-PILOT : '.$data->co_pilot.' &nbsp;&nbsp;
-                        <input type="checkbox" name="pf_pnf2" value=""  '.$pf2.' style="display:inline;" > PF
-                        <input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >  PNF
+                        3. CO-PILOT : '.$data->co_pilot.' <br>
+                        PF<input type="checkbox" name="pf_pnf2" value=""  '.$pf2.' style="display:inline;" >
+                        PNF<input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >
 
                         </th>
                     <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : '.$data->others.'</th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="14%" style="border: 2px solid"> Year : '.$data->year.'</th>
-                    <th width="20%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
-                    <th width="25%" style="border: 2px solid" colspan="2">
-                        6. TIME : '.$data->time.' &nbsp;&nbsp;
-                        <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
-                        <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
+                    <th width="16%" style="border: 2px solid"> Year : '.$data->year.'</th>
+                    <th width="32%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
+                    <th width="16%" style="border: 2px solid">
+                        6. TIME : '.$data->time.' <br>
+                        UTC<input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" >
+                        Local<input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >
                     </th>
                     <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : '.$data->air_craft_time.'</th>
-                    <th width="25%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
+                    <th width="36%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">9. FLIGHT NUMBER : '.$data->flight_no.'</th>
@@ -649,19 +656,19 @@ class SafetyController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="6">
                         22. FLIGHT PHASE : '.$data->flight_phase.'
                         <br>
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" > PARKED &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp2.' style="display:inline;" > PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp3.' style="display:inline;" > TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp4.' style="display:inline;" > TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp5.' style="display:inline;" > INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp6.' style="display:inline;" > CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                   PARKED <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;
+                    PUSH BACK<input type="checkbox" name="flight_phase" value=""  '.$fp2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    TAXI OUT<input type="checkbox" name="flight_phase" value=""  '.$fp3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    TAKE OFF<input type="checkbox" name="flight_phase" value=""  '.$fp4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    INITIAL CLIMB<input type="checkbox" name="flight_phase" value=""  '.$fp5.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    CLIMB<input type="checkbox" name="flight_phase" value=""  '.$fp6.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
                     <br>
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp7.' style="display:inline;" > CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp8.' style="display:inline;" > HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp9.' style="display:inline;" > DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp10.' style="display:inline;" > APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > LANDING&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" > TAXI IN
+                    CRUISE<input type="checkbox" name="flight_phase" value=""  '.$fp7.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;
+                    HOLDING<input type="checkbox" name="flight_phase" value=""  '.$fp8.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    DESCENT<input type="checkbox" name="flight_phase" value=""  '.$fp9.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    APPROACH<input type="checkbox" name="flight_phase" value=""  '.$fp10.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                   LANDING <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > &nbsp;&nbsp;
+                    TAXI IN<input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" >
                     </th>
                 </tr>
                 <tr>
@@ -671,14 +678,17 @@ class SafetyController extends Controller
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">METEOROLOGICAL INFORMATION</th>
+                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">METEOROLOGICAL INFORMATION</span></span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">24. IMC/VMC : '.$data->imc_vmc.'</th>
                     <th width="32%" style="border: 2px solid" colspan="2">25. VCM (km) : '.$data->vmc_km.'</th>
                     <th width="16%" style="border: 2px solid">26. WIND DIRECTION (deg) : '.$data->wind_direction.'</th>
                     <th width="36%" style="border: 2px solid" colspan="2">
-                        27. WIND SPEED : '.$data->wind_speed.'
+                        27. WIND SPEED :
+                        <br>
+                    KM/HR<input type="checkbox" name="wind_speed" value=""  '.$ws1.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;
+                    KNOTH<input type="checkbox" name="wind_speed" value=""  '.$ws2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -693,27 +703,27 @@ class SafetyController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="6">
                         33. WEATHER CONDITION :
                         <br>
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather1.' style="display:inline;" > SOFT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather2.' style="display:inline;" > MODERATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather3.' style="display:inline;" > SEVERE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather4.' style="display:inline;" > TURBULENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather5.' style="display:inline;" > WIND-SHEAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        SOFT<input type="checkbox" name="weather_condition" value=""  '.$weather1.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        MODERATE<input type="checkbox" name="weather_condition" value=""  '.$weather2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       SEVERE <input type="checkbox" name="weather_condition" value=""  '.$weather3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       TURBULENCE <input type="checkbox" name="weather_condition" value=""  '.$weather4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        WIND-SHEAR<input type="checkbox" name="weather_condition" value=""  '.$weather5.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br>
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather6.' style="display:inline;" > RAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather7.' style="display:inline;" > HAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather8.' style="display:inline;" > MIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather9.' style="display:inline;" > FOG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="weather_condition" value=""  '.$weather10.' style="display:inline;" > SNOW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        RAIN<input type="checkbox" name="weather_condition" value=""  '.$weather6.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        HAIL<input type="checkbox" name="weather_condition" value=""  '.$weather7.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        MIST<input type="checkbox" name="weather_condition" value=""  '.$weather8.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        FOG<input type="checkbox" name="weather_condition" value=""  '.$weather9.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        SNOW<input type="checkbox" name="weather_condition" value=""  '.$weather10.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">34. RUNWAY : '.$data->runway.'</th>
                     <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION :
                     <br>
-                    <input type="checkbox" name="runway_condition" value=""  '.$runway1.' style="display:inline;" > Dry&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="runway_condition" value=""  '.$runway2.' style="display:inline;" > Wet&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="runway_condition" value=""  '.$runway3.' style="display:inline;" > Mist&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="runway_condition" value=""  '.$runway4.' style="display:inline;" > Snow&nbsp;&nbsp;&nbsp;
+                    Dry<input type="checkbox" name="runway_condition" value=""  '.$runway1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                    Wet<input type="checkbox" name="runway_condition" value=""  '.$runway2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                    Mist<input type="checkbox" name="runway_condition" value=""  '.$runway3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                    Snow<input type="checkbox" name="runway_condition" value=""  '.$runway4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="20%" style="border: 2px solid">36. RVR (M) : '.$data->rvr.'</th>
                 </tr>
@@ -722,8 +732,9 @@ class SafetyController extends Controller
                     <th width="32%" style="border: 2px solid">38. AUTO THRUST : '.$data->auto_thrust.'</th>
                     <th width="16%" style="border: 2px solid">
                         39. GEAR :
-                        <input type="checkbox" name="gear" value=""  '.$gear1.' style="display:inline;" > UP&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="gear" value=""  '.$gear2.' style="display:inline;" > DOWN&nbsp;&nbsp;&nbsp;
+                        <br>
+                        UP<input type="checkbox" name="gear" value=""  '.$gear1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        DOWN<input type="checkbox" name="gear" value=""  '.$gear2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
 
                     </th>
                     <th width="16%" style="border: 2px solid">40. FLAP : '.$data->flap.'</th>
@@ -731,53 +742,59 @@ class SafetyController extends Controller
                     <th width="36%" style="border: 2px solid">42. SPOILERS : '.$data->spoilers.'</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">TCAS INFORMATION (traffic)</th>
+                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">TCAS INFORMATION (traffic)</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
                         43. TYPE OF ALERT :
-                        <input type="checkbox" name="type_of_alert" value=""  '.$alert1.' style="display:inline;" > None&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > RA&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > TA&nbsp;&nbsp;&nbsp;
+                        <br>
+                        None<input type="checkbox" name="type_of_alert" value=""  '.$alert1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        RA<input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        TA<input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">44. TYPE OF RA : '.$data->type_of_ra.'</th>
                     <th width="20%" style="border: 2px solid" colspan="2">
                         45. RA FOLLOWED? :
-                        <input type="checkbox" name="ra_followed" value=""  '.$followed1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="ra_followed" value=""  '.$followed2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
+                        <br>
+                        YES<input type="checkbox" name="ra_followed" value=""  '.$followed1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        NO<input type="checkbox" name="ra_followed" value=""  '.$followed2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">ATC PROCEDURES</th>
+                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">ATC PROCEDURES</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
                         46. LEVEL OF RISK :
-                        <input type="checkbox" name="level_of_risk" value=""  '.$risk1.' style="display:inline;" > None&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="level_of_risk" value=""  '.$risk2.' style="display:inline;" > LOW&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="level_of_risk" value=""  '.$risk3.' style="display:inline;" > MEDIUM&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="level_of_risk" value=""  '.$risk4.' style="display:inline;" > HIGH&nbsp;&nbsp;&nbsp;
+                        <br>
+                        None<input type="checkbox" name="level_of_risk" value=""  '.$risk1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        LOW<input type="checkbox" name="level_of_risk" value=""  '.$risk2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        MEDIUM<input type="checkbox" name="level_of_risk" value=""  '.$risk3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        HIGH<input type="checkbox" name="level_of_risk" value=""  '.$risk4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">
                         47. EVASIVE ACTIONS :
-                        <input type="checkbox" name="evasive_actions" value=""  '.$evasive1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="evasive_actions" value=""  '.$evasive2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
+                        <br>
+                        YES<input type="checkbox" name="evasive_actions" value=""  '.$evasive1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        NO<input type="checkbox" name="evasive_actions" value=""  '.$evasive2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="20%" style="border: 2px solid" colspan="2">
                         48. REPORTED TO ATC? :
-                        <input type="checkbox" name="reported_to_atc" value=""  '.$reported1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="reported_to_atc" value=""  '.$reported2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
+                        <br>
+                        YES<input type="checkbox" name="reported_to_atc" value=""  '.$reported1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        NO<input type="checkbox" name="reported_to_atc" value=""  '.$reported2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
 
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
                         49. ATC INSTUCTIONS :
-                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction1.' style="display:inline;" > None&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction2.' style="display:inline;" > CLIMB&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction3.' style="display:inline;" > DESCENT&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction4.' style="display:inline;" > TURN LEFT&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="atc_instruction" value=""  '.$instruction5.' style="display:inline;" > TURN RIGHT&nbsp;&nbsp;&nbsp;
+                        <br>
+                       None <input type="checkbox" name="atc_instruction" value=""  '.$instruction1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        CLIMB<input type="checkbox" name="atc_instruction" value=""  '.$instruction2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                      DESCENT  <input type="checkbox" name="atc_instruction" value=""  '.$instruction3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        TURN LEFT<input type="checkbox" name="atc_instruction" value=""  '.$instruction4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                       TURN RIGHT <input type="checkbox" name="atc_instruction" value=""  '.$instruction5.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">
                         50. USED FREQUENCY :
@@ -795,7 +812,7 @@ class SafetyController extends Controller
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">AIRPROX</th>
+                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">AIRPROX</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="3">
@@ -808,7 +825,7 @@ class SafetyController extends Controller
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">BIRD STRIKE</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6"><span style="background-color: yellow; padding:5px;"">BIRD STRIKE</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
@@ -831,8 +848,9 @@ class SafetyController extends Controller
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         59. ADVISED EARLIER? :
-                        <input type="checkbox" name="advice_earlier" value=""  '.$advice1.' style="display:inline;" > YES&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="advice_earlier" value=""  '.$advice2.' style="display:inline;" > NO&nbsp;&nbsp;&nbsp;
+                        <br>
+                        YES<input type="checkbox" name="advice_earlier" value=""  '.$advice1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        NO<input type="checkbox" name="advice_earlier" value=""  '.$advice2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
                         60. LIGHTING CONDITIONS :
@@ -840,32 +858,36 @@ class SafetyController extends Controller
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
                         61. CODITION OF THE SKY :
-                        <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky1.' style="display:inline;" > CLEAR&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky2.' style="display:inline;" > CLOUDED&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky3.' style="display:inline;" > DARK&nbsp;&nbsp;&nbsp;
+                        <br>
+                        CLEAR<input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                       CLOUDED <input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        DARK<input type="checkbox" name="conditions_of_the_sky" value=""  '.$sky3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">BIRD STRIKE</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6"><span style="background-color: yellow; padding:5px;"">TURBULANCE</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         62. Course of the AC :
-                        <input type="checkbox" name="course_ac" value=""  '.$course1.' style="display:inline;" > NONE&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="course_ac" value=""  '.$course2.' style="display:inline;" > RIGHT&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="course_ac" value=""  '.$course3.' style="display:inline;" > LEFT&nbsp;&nbsp;&nbsp;
+                        <br>
+                        NONE<input type="checkbox" name="course_ac" value=""  '.$course1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                       RIGHT <input type="checkbox" name="course_ac" value=""  '.$course2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                       LEFT <input type="checkbox" name="course_ac" value=""  '.$course3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
                         63. GLIDSLOPE POSITION :
-                        <input type="checkbox" name="glidslope_position" value=""  '.$glidslope1.' style="display:inline;" > HI&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="glidslope_position" value=""  '.$glidslope2.' style="display:inline;" > LOW&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="glidslope_position" value=""  '.$glidslope3.' style="display:inline;" > ON&nbsp;&nbsp;&nbsp;
+                        <br>
+                        HI<input type="checkbox" name="glidslope_position" value=""  '.$glidslope1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        LOW<input type="checkbox" name="glidslope_position" value=""  '.$glidslope2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        ON<input type="checkbox" name="glidslope_position" value=""  '.$glidslope3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
                         64. POS. ON EXTENDED CENTR. LINE. :
-                        <input type="checkbox" name="pos_extended_center" value=""  '.$extended1.' style="display:inline;" > LEFT&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="pos_extended_center" value=""  '.$extended2.' style="display:inline;" > RIGHT&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="pos_extended_center" value=""  '.$extended3.' style="display:inline;" > ON&nbsp;&nbsp;&nbsp;
+                        <br>
+                       LEFT <input type="checkbox" name="pos_extended_center" value=""  '.$extended1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        RIGHT<input type="checkbox" name="pos_extended_center" value=""  '.$extended2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        ON<input type="checkbox" name="pos_extended_center" value=""  '.$extended3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -899,26 +921,28 @@ class SafetyController extends Controller
 
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">HUMAN FACTORS</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6"><span style="background-color: yellow; padding:5px;"">HUMAN FACTORS</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="3">
                         75. PERSON INVOLVED (name) [ optional field] :'.$data->persion_involved.'</th>
                     <th width="52%" style="border: 2px solid" colspan="3">
                         76. FUNCTION/POSITION :
-                        <input type="checkbox" name="function_position" value=""  '.$function1.' style="display:inline;" > Crew&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="function_position" value=""  '.$function2.' style="display:inline;" > Ground&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="function_position" value=""  '.$function3.' style="display:inline;" > Other&nbsp;&nbsp;&nbsp;
+                        <br>
+                        Crew<input type="checkbox" name="function_position" value=""  '.$function1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        Ground<input type="checkbox" name="function_position" value=""  '.$function2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        Other<input type="checkbox" name="function_position" value=""  '.$function3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                         </th>
 
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="6">
                         77. TYPE OF INFLUENCE :
-                        <input type="checkbox" name="type_of_influence" value=""  '.$influence1.' style="display:inline;" > Crew actions&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="type_of_influence" value=""  '.$influence2.' style="display:inline;" > External&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="type_of_influence" value=""  '.$influence3.' style="display:inline;" > Organizational&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="type_of_influence" value=""  '.$influence4.' style="display:inline;" > Personal&nbsp;&nbsp;&nbsp;
+                        <br>
+                        Crew actions<input type="checkbox" name="type_of_influence" value=""  '.$influence1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        External<input type="checkbox" name="type_of_influence" value=""  '.$influence2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        Organizational<input type="checkbox" name="type_of_influence" value=""  '.$influence3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        Personal<input type="checkbox" name="type_of_influence" value=""  '.$influence4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                         </th>
 
                 </tr>

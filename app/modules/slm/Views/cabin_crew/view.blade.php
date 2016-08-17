@@ -67,14 +67,14 @@
                 <tr style="border: 2px solid">
                     <th width="40%" style="border: 2px solid" colspan="2">
                         2. CAPTAIN :
-                        {{ isset($cabin_crew->captain)?ucfirst($cabin_crew->captain):''}}&nbsp;&nbsp;
-                        {!! Form::radio('pf_pnf', 'pf', (@$cabin_crew->pf_pnf == 'pf' ? 'checked': '')) !!} PF
-                        {!! Form::radio('pf_pnf', 'pnf', (@$cabin_crew->pf_pnf == 'pnf' ? 'checked': '')) !!} PNF
+                        {{ isset($cabin_crew->captain)?ucfirst($cabin_crew->captain):''}}<br>&nbsp;&nbsp;
+                        PF  {!! Form::radio('pf_pnf', 'pf', (@$cabin_crew->pf_pnf == 'pf' ? 'checked': '')) !!}
+                        PNF  {!! Form::radio('pf_pnf', 'pnf', (@$cabin_crew->pf_pnf == 'pnf' ? 'checked': '')) !!}
                     </th>
                     <th width="40%" style="border: 2px solid" colspan="2">
-                        3. CO-PILOT : {{ isset($cabin_crew->co_pilot)?ucfirst($cabin_crew->co_pilot):'' }}&nbsp;&nbsp;
-                        {!! Form::radio('pf_pnf2', 'pf', (@$cabin_crew->pf_pnf2 == 'pf' ? 'checked': '')) !!} PF
-                        {!! Form::radio('pf_pnf2', 'pnf', (@$cabin_crew->pf_pnf2 == 'pnf' ? 'checked': '')) !!} PNF
+                        3. CO-PILOT : {{ isset($cabin_crew->co_pilot)?ucfirst($cabin_crew->co_pilot):'' }}<br>&nbsp;&nbsp;
+                        PF   {!! Form::radio('pf_pnf2', 'pf', (@$cabin_crew->pf_pnf2 == 'pf' ? 'checked': '')) !!}
+                        PNF  {!! Form::radio('pf_pnf2', 'pnf', (@$cabin_crew->pf_pnf2 == 'pnf' ? 'checked': '')) !!}
                     </th>
                     <th width="20%" style="border: 2px solid">4. OTHER : {{ isset($cabin_crew->others)?ucfirst($cabin_crew->others):'' }}</th>
                 </tr>
@@ -82,9 +82,9 @@
                     <th width="40%" style="border: 2px solid" colspan="2">5. PURSER : {{ isset($cabin_crew->purser)?ucfirst($cabin_crew->purser):'' }}</th>
                     <th width="20%" style="border: 2px solid">6. DATE : {{ isset($cabin_crew->date)?date("M d, Y", strtotime($cabin_crew->date)):''}} </th>
                     <th width="20%" style="border: 2px solid">
-                        7. TIME : {{ isset($cabin_crew->time)?ucfirst($cabin_crew->time):''}}
-                        {!! Form::radio('utc_local', 'utc', (@$cabin_crew->utc_local == 'utc' ? 'checked': '')) !!} UTC
-                        {!! Form::radio('utc_local', 'local', (@$cabin_crew->utc_local == 'local' ? 'checked': '')) !!} Local
+                        7. TIME : {{ isset($cabin_crew->time)?ucfirst($cabin_crew->time):''}}<br>
+                        UTC  {!! Form::radio('utc_local', 'utc', (@$cabin_crew->utc_local == 'utc' ? 'checked': '')) !!}
+                        Local   {!! Form::radio('utc_local', 'local', (@$cabin_crew->utc_local == 'local' ? 'checked': '')) !!}
                     </th>
                     <th width="20%" style="border: 2px solid">8. AIRCRAFT TYPE : {{ isset($cabin_crew->air_craft_type)?ucfirst($cabin_crew->air_craft_type):'' }}</th>
                 </tr>
@@ -111,19 +111,19 @@
                     <th width="100%" style="border: 2px solid" colspan="5">
                         20. FLIGHT PHASE:
                         <br>
-                        {!! Form::radio('flight_phase', 'parked', (@$cabin_crew->flight_phase == 'parked' ? 'checked': '')) !!} PARKED &nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'push_back', (@$cabin_crew->flight_phase == 'push_back' ? 'checked': '')) !!} PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'taxi_out', (@$cabin_crew->flight_phase == 'taxi_out' ? 'checked': '')) !!} TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'take_off', (@$cabin_crew->flight_phase == 'take_off' ? 'checked': '')) !!} TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'initial_climb', (@$cabin_crew->flight_phase == 'initial_climb' ? 'checked': '')) !!} INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'climb', (@$cabin_crew->flight_phase == 'climb' ? 'checked': '')) !!} CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                        PARKED  {!! Form::radio('flight_phase', 'parked', (@$cabin_crew->flight_phase == 'parked' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;
+                        PUSH BACK  {!! Form::radio('flight_phase', 'push_back', (@$cabin_crew->flight_phase == 'push_back' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        TAXI OUT  {!! Form::radio('flight_phase', 'taxi_out', (@$cabin_crew->flight_phase == 'taxi_out' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        TAKE OFF  {!! Form::radio('flight_phase', 'take_off', (@$cabin_crew->flight_phase == 'take_off' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        INITIAL CLIMB  {!! Form::radio('flight_phase', 'initial_climb', (@$cabin_crew->flight_phase == 'initial_climb' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        CLIMB  {!! Form::radio('flight_phase', 'climb', (@$cabin_crew->flight_phase == 'climb' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
                         <br>
-                        {!! Form::radio('flight_phase', 'cruise', (@$cabin_crew->flight_phase == 'cruise' ? 'checked': '')) !!} CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'holding', (@$cabin_crew->flight_phase == 'holding' ? 'checked': '')) !!} HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'descent', (@$cabin_crew->flight_phase == 'descent' ? 'checked': '')) !!} DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'approach', (@$cabin_crew->flight_phase == 'approach' ? 'checked': '')) !!} APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'landing', (@$cabin_crew->flight_phase == 'landing' ? 'checked': '')) !!} LANDING&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'taxi_in', (@$cabin_crew->flight_phase == 'taxi_in' ? 'checked': '')) !!} TAXI IN
+                        CRUISE  {!! Form::radio('flight_phase', 'cruise', (@$cabin_crew->flight_phase == 'cruise' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;
+                        HOLDING  {!! Form::radio('flight_phase', 'holding', (@$cabin_crew->flight_phase == 'holding' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        DESCENT  {!! Form::radio('flight_phase', 'descent', (@$cabin_crew->flight_phase == 'descent' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        APPROACH  {!! Form::radio('flight_phase', 'approach', (@$cabin_crew->flight_phase == 'approach' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        LANDING   {!! Form::radio('flight_phase', 'landing', (@$cabin_crew->flight_phase == 'landing' ? 'checked': '')) !!} &nbsp;&nbsp;
+                        TAXI IN  {!! Form::radio('flight_phase', 'taxi_in', (@$cabin_crew->flight_phase == 'taxi_in' ? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr>
@@ -134,15 +134,18 @@
                 <div class="col-md-12">
                     <hr>
                     {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                    @if($cabin_crew->attachment)
-                        <?php $expld = explode('/',$cabin_crew->attachment); ?>
-                        <div>
-                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                            <a href="{{ URL::to($cabin_crew->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-                        </div>
-                    @else
-                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-                    @endif
+                    @foreach($data_image as $image)
+
+                        <?php $expld = explode('/',$image->image_path); ?>
+                        @if(isset($image->image_path))
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                        @else
+                            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 

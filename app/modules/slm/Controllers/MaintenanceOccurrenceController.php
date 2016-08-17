@@ -10,6 +10,7 @@ namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\ImageResize;
 use App\Helpers\LogFileHelper;
+use App\Modules\Slm\Models\MaintenanceOccurrenceImage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -67,45 +68,55 @@ class MaintenanceOccurrenceController extends Controller
     public function store(Request $request)
     {
         //exit('exit');
-        $data=$request->except('_token');
+        $data=$request->except('_token','attachment');
 
         $data['date_of_occurrence']=date("Y-m-d", strtotime($data['date_of_occurrence']));
 
         $data['created_at'] = date('Y-m-d H:i:s');
 
         //----------------- For Attachment file-------------------//
-        $file_attachment=Input::file('attachment');
+        $file_attachments=Input::file('attachment');
         //print_r($file_attachment); exit();
-        if(isset($file_attachment)){
+        if(isset($file_attachments)){
             //$rules = array('file' => 'mimes:pdf,doc');
             //$rules = array('file' => 'mimes:pdf,doc,jpeg,jpg,png,gif|max:300');
             //$rules = array('file' => 'max:300');
-            $rules = array();
-            $validator = Validator::make(array('file' => $file_attachment), $rules);
-            //print_r($validator->passes());exit;
 
-            if ($validator->passes()) {
-                //exit('Exit');
-                $upload_folder = 'attachment/';
-                if (!file_exists($upload_folder)) {
-                    $oldmask = umask(0);  // helpful when used in linux server
-                    mkdir($upload_folder, 0777);
+            foreach($file_attachments as $file_attachment) {
+
+                $rules = array();
+                $validator = Validator::make(array('file' => $file_attachment), $rules);
+                //print_r($validator->passes());exit;
+
+                if ($validator->passes()) {
+                    //exit('Exit');
+                    $upload_folder = 'attachment/';
+                    if (!file_exists($upload_folder)) {
+                        $oldmask = umask(0);  // helpful when used in linux server
+                        mkdir($upload_folder, 0777);
+                    }
+                    if(isset($file_attachment)) {
+                        $file_original_name = $file_attachment->getClientOriginalName();
+                        //print_r($file_original_name);exit;
+                        $file_name = rand(11111, 99999) . '-' . $file_original_name;
+                        $file_attachment->move($upload_folder, $file_name);
+                        $attachment = $upload_folder . $file_name;
+                        //$model->attachment = $attachment;
+
+                        $image_path[] = $attachment;
+                    }
+
+                    #print_r($image_path); exit();
+
+                } else {
+                    // Redirect or return json to frontend with a helpful message to inform the user
+                    // that the provided file was not an adequate type
+                    return redirect('add-operational-safety')
+                        ->withErrors($validator)
+                        ->withInput();
                 }
-                $file_original_name = $file_attachment->getClientOriginalName();
-
-                $file_name = rand(11111, 99999).'-'. $file_original_name;
-                $file_attachment->move($upload_folder, $file_name);
-                $attachment=$upload_folder.$file_name;
-                $data['attachment']=$attachment;
-                //print_r($attachment); exit();
-
-            }else{
-                // Redirect or return json to frontend with a helpful message to inform the user
-                // that the provided file was not an adequate type
-                return redirect('add-operational-safety')
-                    ->withErrors($validator)
-                    ->withInput();
             }
+
         }//---------End Attachment
         //print_r($attachment); exit();
 
@@ -114,7 +125,26 @@ class MaintenanceOccurrenceController extends Controller
         $token = $user->csrf_token;
 //        print_r($data);exit;
 //        MaintenanceOccurrence::find(1);exit;
-        if(MaintenanceOccurrence::insert($data)) {
+
+        $model = new MaintenanceOccurrence();
+
+        $id = $model->create($data);
+
+
+        if($id) {
+
+            if(isset($image_path)){
+                foreach($image_path as $ims){
+                    $safety_image[] = [
+                        'maintenance_occurrence_id' => $id->id,
+                        'image_path'=>$ims,
+                    ];
+                }
+                foreach($safety_image as $input_image){
+
+                    MaintenanceOccurrenceImage::create($input_image);
+                }
+            }
 
             try{
                 Mail::send('slm::maintenance_occurrence.mail_notification', array('maintenance_occurrence'=>$data),
@@ -151,6 +181,9 @@ class MaintenanceOccurrenceController extends Controller
     {
         $data['pageTitle']='Show Maintenance Occurrence Details';
         $data['maintenance_occurrence']=MaintenanceOccurrence::findOrFail($id);
+
+        $data['data_image'] = MaintenanceOccurrenceImage::where('maintenance_occurrence_id',$id)->get();
+
         return view('slm::maintenance_occurrence.view',$data);
     }
 
@@ -435,7 +468,7 @@ class MaintenanceOccurrenceController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+            <!--<table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
@@ -451,27 +484,27 @@ class MaintenanceOccurrenceController extends Controller
             </table>
             <br>
             <br>
-            <br>
+            <br>-->
 
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 20px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 15px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 15px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">SAFETY DEPARTMENT REF.NR : '.$maintenance_occurrence->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: center;">SAFETY DEPARTMENT REF.NR : '.$maintenance_occurrence->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 30px; font-weight: bold">MAINTENANCE OCCURRENCE REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">MAINTENANCE OCCURRENCE REPORT</th>
                 </tr>
             </table>
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center; background-color: yellow" colspan="7">GENERAL INFORMATION</th>
+                    <th style="text-align: center; " colspan="7"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
                 </tr>
                 <tr>
                     <th colspan="7">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$maintenance_occurrence->full_name.','.$maintenance_occurrence->email.','.$maintenance_occurrence->telephone.','.$maintenance_occurrence->extension.','.$maintenance_occurrence->fax.'</th>

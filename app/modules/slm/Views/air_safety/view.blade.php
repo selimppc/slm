@@ -48,14 +48,14 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="32%" style="border: 2px solid" colspan="2">
-                        2. CAPTAIN : {{ isset($data->captain)?ucfirst($data->captain):''}}&nbsp;&nbsp;
-                        {!! Form::radio('pf_pnf', 'pf', (@$data->pf_pnf == 'pf' ? 'checked': '')) !!} PF
-                        {!! Form::radio('pf_pnf', 'pnf', (@$data->pf_pnf == 'pnf' ? 'checked': '')) !!} PNF
+                        2. CAPTAIN : {{ isset($data->captain)?ucfirst($data->captain):''}}<br>&nbsp;&nbsp;
+                        PF  {!! Form::radio('pf_pnf', 'pf', (@$data->pf_pnf == 'pf' ? 'checked': '')) !!}
+                        PNF  {!! Form::radio('pf_pnf', 'pnf', (@$data->pf_pnf == 'pnf' ? 'checked': '')) !!}
                     </th>
                     <th width="32%" style="border: 2px solid" colspan="2">
                         3. CO-PILOT : {{ isset($data->co_pilot)?ucfirst($data->co_pilot):'' }}
-                        {!! Form::radio('pf_pnf2', 'pf', (@$data->pf_pnf2 == 'pf' ? 'checked': '')) !!} PF
-                        {!! Form::radio('pf_pnf2', 'pnf', (@$data->pf_pnf2 == 'pnf' ? 'checked': '')) !!} PNF
+                        <br>PF  {!! Form::radio('pf_pnf2', 'pf', (@$data->pf_pnf2 == 'pf' ? 'checked': '')) !!}
+                        PNF  {!! Form::radio('pf_pnf2', 'pnf', (@$data->pf_pnf2 == 'pnf' ? 'checked': '')) !!}
                     </th>
                     <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : {{ isset($data->others)?ucfirst($data->others):''}}</th>
                 </tr>
@@ -63,9 +63,9 @@
                     <th width="15%" style="border: 2px solid"> Year : {{ isset($data->year)?ucfirst($data->year):''}}</th>
                     <th width="19%" style="border: 2px solid">5. DATE : {{ isset($data->date)?ucfirst($data->date):''}}</th>
                     <th width="25%" style="border: 2px solid" colspan="2">
-                        6. TIME : {{ isset($data->time)?ucfirst($data->time):''}}&nbsp;&nbsp;
-                        {!! Form::radio('utc_local', 'utc', (@$data->utc_local == 'utc' ? 'checked': '')) !!} UTC
-                        {!! Form::radio('utc_local', 'local', (@$data->utc_local == 'local' ? 'checked': '')) !!} Local
+                        6. TIME : {{ isset($data->time)?ucfirst($data->time):''}}<br>&nbsp;&nbsp;
+                        UTC  {!! Form::radio('utc_local', 'utc', (@$data->utc_local == 'utc' ? 'checked': '')) !!}
+                        Local  {!! Form::radio('utc_local', 'local', (@$data->utc_local == 'local' ? 'checked': '')) !!}
                     </th>
                     <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : {{ isset($data->air_craft_time)?ucfirst($data->air_craft_time):'' }}</th>
                     <th width="25%" style="border: 2px solid" colspan="2">8. REGISTRATION : {{ isset($data->registration)?ucfirst($data->registration):''}}</th>
@@ -93,19 +93,19 @@
                     <th width="100%" style="border: 2px solid" colspan="6">
                         22. FLIGHT PHASE :
                         <br>
-                        {!! Form::radio('flight_phase', 'parked', (@$data->flight_phase == 'parked' ? 'checked': '')) !!} PARKED &nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'push_back', (@$data->flight_phase == 'push_back' ? 'checked': '')) !!} PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'taxi_out', (@$data->flight_phase == 'taxi_out' ? 'checked': '')) !!} TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'take_off', (@$data->flight_phase == 'take_off' ? 'checked': '')) !!} TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'initial_climb', (@$data->flight_phase == 'initial_climb' ? 'checked': '')) !!} INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'climb', (@$data->flight_phase == 'climb' ? 'checked': '')) !!} CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                        PARKED  {!! Form::radio('flight_phase', 'parked', (@$data->flight_phase == 'parked' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;
+                        PUSH BACK  {!! Form::radio('flight_phase', 'push_back', (@$data->flight_phase == 'push_back' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        TAXI OUT  {!! Form::radio('flight_phase', 'taxi_out', (@$data->flight_phase == 'taxi_out' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        TAKE OFF  {!! Form::radio('flight_phase', 'take_off', (@$data->flight_phase == 'take_off' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        INITIAL CLIMB  {!! Form::radio('flight_phase', 'initial_climb', (@$data->flight_phase == 'initial_climb' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        CLIMB  {!! Form::radio('flight_phase', 'climb', (@$data->flight_phase == 'climb' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
                         <br>
-                        {!! Form::radio('flight_phase', 'cruise', (@$data->flight_phase == 'cruise' ? 'checked': '')) !!} CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'holding', (@$data->flight_phase == 'holding' ? 'checked': '')) !!} HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'descent', (@$data->flight_phase == 'descent' ? 'checked': '')) !!} DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'approach', (@$data->flight_phase == 'approach' ? 'checked': '')) !!} APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'landing', (@$data->flight_phase == 'landing' ? 'checked': '')) !!} LANDING&nbsp;&nbsp;
-                        {!! Form::radio('flight_phase', 'taxi_in', (@$data->flight_phase == 'taxi_in' ? 'checked': '')) !!} TAXI IN
+                        CRUISE  {!! Form::radio('flight_phase', 'cruise', (@$data->flight_phase == 'cruise' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;
+                        HOLDING  {!! Form::radio('flight_phase', 'holding', (@$data->flight_phase == 'holding' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        DESCENT  {!! Form::radio('flight_phase', 'descent', (@$data->flight_phase == 'descent' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        APPROACH  {!! Form::radio('flight_phase', 'approach', (@$data->flight_phase == 'approach' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;
+                        LANDING  {!! Form::radio('flight_phase', 'landing', (@$data->flight_phase == 'landing' ? 'checked': '')) !!} &nbsp;&nbsp;
+                        TAXI IN  {!! Form::radio('flight_phase', 'taxi_in', (@$data->flight_phase == 'taxi_in' ? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr>
@@ -131,6 +131,9 @@
                     <th width="16%" style="border: 2px solid">26. WIND DIRECTION (deg) : {{ isset($data->wind_direction)?ucfirst($data->wind_direction):''}}</th>
                     <th width="36%" style="border: 2px solid" colspan="2">
                         27. WIND SPEED : {{ isset($data->wind_speed)?ucfirst($data->wind_speed):''}}
+                        <br>
+                        KM/HR  {!! Form::radio('wind_speed', 'km_hr', (@$data->wind_speed == 'km_hr' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        KNOTH  {!! Form::radio('wind_speed', 'knoth', (@$data->wind_speed == 'knoth' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -144,18 +147,18 @@
                     <th width="100%" style="border: 2px solid" colspan="6">
                         33. WEATHER CONDITION :
                         <br>
-                        {!! Form::radio('weather_condition', 'soft', (@$data->weather_condition == 'soft' ? 'checked': '')) !!} SOFT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'moderate', (@$data->weather_condition == 'moderate' ? 'checked': '')) !!} MODERATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'severe', (@$data->weather_condition == 'severe' ? 'checked': '')) !!} SEVERE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'turbulence', (@$data->weather_condition == 'turbulence' ? 'checked': '')) !!} TURBULENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'wind_shear', (@$data->weather_condition == 'wind_shear' ? 'checked': '')) !!} WIND-SHEAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        SOFT  {!! Form::radio('weather_condition', 'soft', (@$data->weather_condition == 'soft' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        MODERATE  {!! Form::radio('weather_condition', 'moderate', (@$data->weather_condition == 'moderate' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        SEVERE  {!! Form::radio('weather_condition', 'severe', (@$data->weather_condition == 'severe' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        TURBULENCE  {!! Form::radio('weather_condition', 'turbulence', (@$data->weather_condition == 'turbulence' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        WIND-SHEAR  {!! Form::radio('weather_condition', 'wind_shear', (@$data->weather_condition == 'wind_shear' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         <br>
-                        {!! Form::radio('weather_condition', 'rain', (@$data->weather_condition == 'rain' ? 'checked': '')) !!} RAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'hail', (@$data->weather_condition == 'hail' ? 'checked': '')) !!} HAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'mist', (@$data->weather_condition == 'mist' ? 'checked': '')) !!} MIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'fog', (@$data->weather_condition == 'fog' ? 'checked': '')) !!} FOG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'snow', (@$data->weather_condition == 'snow' ? 'checked': '')) !!} SNOW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        RAIN  {!! Form::radio('weather_condition', 'rain', (@$data->weather_condition == 'rain' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        HAIL  {!! Form::radio('weather_condition', 'hail', (@$data->weather_condition == 'hail' ? 'checked': '')) !!}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        MIST  {!! Form::radio('weather_condition', 'mist', (@$data->weather_condition == 'mist' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        FOG  {!! Form::radio('weather_condition', 'fog', (@$data->weather_condition == 'fog' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        SNOW  {!! Form::radio('weather_condition', 'snow', (@$data->weather_condition == 'snow' ? 'checked': '')) !!} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     </th>
                 </tr>
@@ -163,10 +166,10 @@
                     <th width="16%" style="border: 2px solid">34. RUNWAY : {{ isset($data->runway)?ucfirst($data->runway):'' }}</th>
                     <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION :
                         <br>
-                        {!! Form::radio('runway_condition', 'dry', (@$data->runway_condition == 'dry' ? 'checked': '')) !!} DRY
-                        {!! Form::radio('runway_condition', 'wet', (@$data->runway_condition == 'wet' ? 'checked': '')) !!} WET
-                        {!! Form::radio('runway_condition', 'mist', (@$data->runway_condition == 'mist' ? 'checked': '')) !!} MIST
-                        {!! Form::radio('runway_condition', 'snow', (@$data->runway_condition == 'snow' ? 'checked': '')) !!} SNOW
+                        DRY  {!! Form::radio('runway_condition', 'dry', (@$data->runway_condition == 'dry' ? 'checked': '')) !!}
+                        WET  {!! Form::radio('runway_condition', 'wet', (@$data->runway_condition == 'wet' ? 'checked': '')) !!}
+                        MIST  {!! Form::radio('runway_condition', 'mist', (@$data->runway_condition == 'mist' ? 'checked': '')) !!}
+                        SNOW  {!! Form::radio('runway_condition', 'snow', (@$data->runway_condition == 'snow' ? 'checked': '')) !!}
                     </th>
                     <th width="20%" style="border: 2px solid">36. RVR (M) : {{ isset($data->rvr)?ucfirst($data->rvr):''}}</th>
                 </tr>
@@ -174,9 +177,9 @@
                     <th width="16%" style="border: 2px solid">37. AUTO PILOT : {{ isset($data->auto_pilot)?ucfirst($data->auto_pilot):''}}</th>
                     <th width="32%" style="border: 2px solid">38. AUTO THRUST : {{ isset($data->auto_thrust)?ucfirst($data->auto_thrust):'' }}</th>
                     <th width="16%" style="border: 2px solid">
-                        39. GEAR :
-                        {!! Form::radio('gear', 'up', (@$data->gear == 'up' ? 'checked': '')) !!} UP
-                        {!! Form::radio('gear', 'down', (@$data->gear == 'down' ? 'checked': '')) !!} DOWN
+                        39. GEAR :<br>
+                        UP  {!! Form::radio('gear', 'up', (@$data->gear == 'up' ? 'checked': '')) !!}
+                        DOWN  {!! Form::radio('gear', 'down', (@$data->gear == 'down' ? 'checked': '')) !!}
                     </th>
                     <th width="16%" style="border: 2px solid">40. FLAP : {{ isset($data->flap)?ucfirst($data->flap):''}}</th>
                     <th width="36%" style="border: 2px solid">41. SLAT : {{ isset($data->slat)?ucfirst($data->slat):'' }}</th>
@@ -197,16 +200,16 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
-                        43. TYPE OF ALERT :
-                        {!! Form::radio('type_of_alert', 'none', (@$data->type_of_alert == 'none' ? 'checked': '')) !!} None
-                        {!! Form::radio('type_of_alert', 'ra', (@$data->type_of_alert == 'ra' ? 'checked': '')) !!} RA
-                        {!! Form::radio('type_of_alert', 'ta', (@$data->type_of_alert == 'ta' ? 'checked': '')) !!} TA
+                        43. TYPE OF ALERT :<br>
+                        None  {!! Form::radio('type_of_alert', 'none', (@$data->type_of_alert == 'none' ? 'checked': '')) !!}
+                        RA  {!! Form::radio('type_of_alert', 'ra', (@$data->type_of_alert == 'ra' ? 'checked': '')) !!}
+                        TA   {!! Form::radio('type_of_alert', 'ta', (@$data->type_of_alert == 'ta' ? 'checked': '')) !!}
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">44. TYPE OF RA : {{ isset($data->type_of_ra)?ucfirst($data->type_of_ra):''}}</th>
                     <th width="20%" style="border: 2px solid" colspan="2">
-                        45. RA FOLLOWED? :
-                        {!! Form::radio('ra_followed', 'yes', (@$data->ra_followed == 'yes' ? 'checked': '')) !!} YES
-                        {!! Form::radio('ra_followed', 'no', (@$data->ra_followed == 'no' ? 'checked': '')) !!} NO
+                        45. RA FOLLOWED? :<br>
+                        YES  {!! Form::radio('ra_followed', 'yes', (@$data->ra_followed == 'yes' ? 'checked': '')) !!}
+                        NO  {!! Form::radio('ra_followed', 'no', (@$data->ra_followed == 'no' ? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr>
@@ -223,31 +226,31 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
-                        46. LEVEL OF RISK :
-                        {!! Form::radio('level_of_risk', 'none', (@$data->level_of_risk == 'none' ? 'checked': '')) !!} None
-                        {!! Form::radio('level_of_risk', 'low', (@$data->level_of_risk == 'low' ? 'checked': '')) !!} LOW
-                        {!! Form::radio('level_of_risk', 'medium', (@$data->level_of_risk == 'medium' ? 'checked': '')) !!} MEDIUM
-                        {!! Form::radio('level_of_risk', 'high', (@$data->level_of_risk == 'high' ? 'checked': '')) !!} HIGH
+                        46. LEVEL OF RISK :<br>
+                        None  {!! Form::radio('level_of_risk', 'none', (@$data->level_of_risk == 'none' ? 'checked': '')) !!}
+                        LOW  {!! Form::radio('level_of_risk', 'low', (@$data->level_of_risk == 'low' ? 'checked': '')) !!}
+                        MEDIUM  {!! Form::radio('level_of_risk', 'medium', (@$data->level_of_risk == 'medium' ? 'checked': '')) !!}
+                        HIGH  {!! Form::radio('level_of_risk', 'high', (@$data->level_of_risk == 'high' ? 'checked': '')) !!}
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">
-                        47. EVASIVE ACTIONS :
-                        {!! Form::radio('evasive_actions', 'yes', (@$data->evasive_actions == 'yes' ? 'checked': '')) !!} YES
-                        {!! Form::radio('evasive_actions', 'no', (@$data->evasive_actions == 'no' ? 'checked': '')) !!} NO
+                        47. EVASIVE ACTIONS :<br>
+                        YES {!! Form::radio('evasive_actions', 'yes', (@$data->evasive_actions == 'yes' ? 'checked': '')) !!}
+                        NO{!! Form::radio('evasive_actions', 'no', (@$data->evasive_actions == 'no' ? 'checked': '')) !!}
                     </th>
                     <th width="20%" style="border: 2px solid" colspan="2">
-                        48. REPORTED TO ATC? :
-                        {!! Form::radio('reported_to_atc', 'yes', (@$data->reported_to_atc == 'yes' ? 'checked': '')) !!} YES
-                        {!! Form::radio('reported_to_atc', 'no', (@$data->reported_to_atc == 'no' ? 'checked': '')) !!} NO
+                        48. REPORTED TO ATC? :<br>
+                        YES  {!! Form::radio('reported_to_atc', 'yes', (@$data->reported_to_atc == 'yes' ? 'checked': '')) !!}
+                        NO  {!! Form::radio('reported_to_atc', 'no', (@$data->reported_to_atc == 'no' ? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
-                        49. ATC INSTUCTIONS :
-                        {!! Form::radio('atc_instruction', 'none', (@$data->atc_instruction == 'none' ? 'checked': '')) !!} None
-                        {!! Form::radio('atc_instruction', 'climb', (@$data->atc_instruction == 'climb' ? 'checked': '')) !!} CLIMB
-                        {!! Form::radio('atc_instruction', 'descent', (@$data->atc_instruction == 'descent' ? 'checked': '')) !!} DESCENT
-                        {!! Form::radio('atc_instruction', 'turn_left', (@$data->atc_instruction == 'turn_left' ? 'checked': '')) !!} TURN LEFT
-                        {!! Form::radio('atc_instruction', 'turn_right', (@$data->atc_instruction == 'turn_right' ? 'checked': '')) !!} TURN RIGHT
+                        49. ATC INSTUCTIONS :<br>
+                        None  {!! Form::radio('atc_instruction', 'none', (@$data->atc_instruction == 'none' ? 'checked': '')) !!}
+                        CLIMB  {!! Form::radio('atc_instruction', 'climb', (@$data->atc_instruction == 'climb' ? 'checked': '')) !!}
+                        DESCENT {!! Form::radio('atc_instruction', 'descent', (@$data->atc_instruction == 'descent' ? 'checked': '')) !!}
+                        TURN LEFT {!! Form::radio('atc_instruction', 'turn_left', (@$data->atc_instruction == 'turn_left' ? 'checked': '')) !!}
+                        TURN RIGHT {!! Form::radio('atc_instruction', 'turn_right', (@$data->atc_instruction == 'turn_right' ? 'checked': '')) !!}
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">
                         50. USED FREQUENCY :
@@ -302,9 +305,9 @@
                         {{ isset($data->type_of_bird)?ucfirst($data->type_of_bird):''}}
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        56. nr of BIRDS :
-                        {!! Form::radio('nr_of_birds', 'seen', (@$data->nr_of_birds == 'seen' ? 'checked': '')) !!} SEEN
-                        {!! Form::radio('nr_of_birds', 'impact', (@$data->nr_of_birds == 'impact' ? 'checked': '')) !!} IMPACT
+                        56. nr of BIRDS :<br>
+                        SEEN  {!! Form::radio('nr_of_birds', 'seen', (@$data->nr_of_birds == 'seen' ? 'checked': '')) !!}
+                        IMPACT  {!! Form::radio('nr_of_birds', 'impact', (@$data->nr_of_birds == 'impact' ? 'checked': '')) !!}
                     </th>
                     <th width="52%" style="border: 2px solid">
                         57. SIZE :
@@ -318,19 +321,19 @@
 
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
-                        59. ADVISED EARLIER? :
-                        {!! Form::radio('advice_earlier', 'yes', (@$data->advice_earlier == 'yes' ? 'checked': '')) !!} YES
-                        {!! Form::radio('advice_earlier', 'no', (@$data->advice_earlier == 'no' ? 'checked': '')) !!} NO
+                        59. ADVISED EARLIER? :<br>
+                        YES  {!! Form::radio('advice_earlier', 'yes', (@$data->advice_earlier == 'yes' ? 'checked': '')) !!}
+                        NO  {!! Form::radio('advice_earlier', 'no', (@$data->advice_earlier == 'no' ? 'checked': '')) !!}
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
                         60. LIGHTING CONDITIONS :
                         {{ isset($data->lighting_conditions)?ucfirst($data->lighting_conditions):''}}
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        61. CODITION OF THE SKY :
-                        {!! Form::radio('conditions_of_the_sky', 'clear', (@$data->conditions_of_the_sky == 'clear' ? 'checked': '')) !!} CLEAR
-                        {!! Form::radio('conditions_of_the_sky', 'clouded', (@$data->conditions_of_the_sky == 'clouded' ? 'checked': '')) !!} CLOUDED
-                        {!! Form::radio('conditions_of_the_sky', 'dark', (@$data->conditions_of_the_sky == 'dark' ? 'checked': '')) !!} DARK
+                        61. CODITION OF THE SKY :<br>
+                        CLEAR  {!! Form::radio('conditions_of_the_sky', 'clear', (@$data->conditions_of_the_sky == 'clear' ? 'checked': '')) !!}
+                        CLOUDED  {!! Form::radio('conditions_of_the_sky', 'clouded', (@$data->conditions_of_the_sky == 'clouded' ? 'checked': '')) !!}
+                        DARK  {!! Form::radio('conditions_of_the_sky', 'dark', (@$data->conditions_of_the_sky == 'dark' ? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr>
@@ -338,7 +341,7 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+                                <h5 class="text-center text-black"><b style="color: black">TURBULANCE</b></h5>
                             </div>
                             <div class="col-sm-4"></div>
                         </div>
@@ -346,22 +349,22 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
-                        62. Course of the AC :
-                        {!! Form::radio('course_ac', 'none', (@$data->course_ac == 'none' ? 'checked': '')) !!} NONE
-                        {!! Form::radio('course_ac', 'right', (@$data->course_ac == 'right' ? 'checked': '')) !!} RIGHT
-                        {!! Form::radio('course_ac', 'left', (@$data->course_ac == 'left' ? 'checked': '')) !!} LEFT
+                        62. Course of the AC :<br>
+                        NONE   {!! Form::radio('course_ac', 'none', (@$data->course_ac == 'none' ? 'checked': '')) !!}
+                        RIGHT  {!! Form::radio('course_ac', 'right', (@$data->course_ac == 'right' ? 'checked': '')) !!}
+                        LEFT  {!! Form::radio('course_ac', 'left', (@$data->course_ac == 'left' ? 'checked': '')) !!}
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        63. GLIDSLOPE POSITION :
-                        {!! Form::radio('glidslope_position', 'hi', (@$data->glidslope_position == 'hi' ? 'checked': '')) !!} HI
-                        {!! Form::radio('glidslope_position', 'low', (@$data->glidslope_position == 'low' ? 'checked': '')) !!} LOW
-                        {!! Form::radio('glidslope_position', 'on', (@$data->glidslope_position == 'on' ? 'checked': '')) !!} ON
+                        63. GLIDSLOPE POSITION :<br>
+                        HI  {!! Form::radio('glidslope_position', 'hi', (@$data->glidslope_position == 'hi' ? 'checked': '')) !!}
+                        LOW  {!! Form::radio('glidslope_position', 'low', (@$data->glidslope_position == 'low' ? 'checked': '')) !!}
+                        ON  {!! Form::radio('glidslope_position', 'on', (@$data->glidslope_position == 'on' ? 'checked': '')) !!}
                     </th>
                     <th width="52%" style="border: 2px solid" colspan="2">
-                        64. POS. ON EXTENDED CENTR. LINE. :
-                        {!! Form::radio('pos_extended_center', 'left', (@$data->pos_extended_center == 'left' ? 'checked': '')) !!} LEFT
-                        {!! Form::radio('pos_extended_center', 'right', (@$data->pos_extended_center == 'right' ? 'checked': '')) !!} RIGHT
-                        {!! Form::radio('pos_extended_center', 'on', (@$data->pos_extended_center == 'on' ? 'checked': '')) !!} ON
+                        64. POS. ON EXTENDED CENTR. LINE. :<br>
+                        LEFT  {!! Form::radio('pos_extended_center', 'left', (@$data->pos_extended_center == 'left' ? 'checked': '')) !!}
+                        RIGHT  {!! Form::radio('pos_extended_center', 'right', (@$data->pos_extended_center == 'right' ? 'checked': '')) !!}
+                        ON  {!! Form::radio('pos_extended_center', 'on', (@$data->pos_extended_center == 'on' ? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -412,9 +415,9 @@
                     <th width="52%" style="border: 2px solid" colspan="3">
                         76. FUNCTION/POSITION :
                         <br>
-                        {!! Form::radio('function_position', 'crew', (@$data->function_position == 'crew' ? 'checked': '')) !!} CREW
-                        {!! Form::radio('function_position', 'ground', (@$data->function_position == 'ground' ? 'checked': '')) !!} GROUND
-                        {!! Form::radio('function_position', 'other', (@$data->function_position == 'other' ? 'checked': '')) !!} OTHER
+                        CREW  {!! Form::radio('function_position', 'crew', (@$data->function_position == 'crew' ? 'checked': '')) !!}
+                        GROUND  {!! Form::radio('function_position', 'ground', (@$data->function_position == 'ground' ? 'checked': '')) !!}
+                        OTHER   {!! Form::radio('function_position', 'other', (@$data->function_position == 'other' ? 'checked': '')) !!}
 
                     </th>
 
@@ -423,16 +426,16 @@
                     <th width="48%" style="border: 2px solid" colspan="6">
                         77. TYPE OF INFLUENCE :
                         <br>
-                        {!! Form::radio('type_of_influence', 'crew_actions', (@$data->type_of_influence == 'crew_actions' ? 'checked': '')) !!} CREW ACTIONS
-                        {!! Form::radio('type_of_influence', 'external', (@$data->type_of_influence == 'external' ? 'checked': '')) !!} EXTERNAL
-                        {!! Form::radio('type_of_influence', 'organizations', (@$data->type_of_influence == 'organizations' ? 'checked': '')) !!} ORGANIZATIONA
-                        {!! Form::radio('type_of_influence', 'personal', (@$data->type_of_influence == 'personal' ? 'checked': '')) !!} PERSONAL
+                        CREW ACTIONS  {!! Form::radio('type_of_influence', 'crew_actions', (@$data->type_of_influence == 'crew_actions' ? 'checked': '')) !!}
+                        EXTERNAL  {!! Form::radio('type_of_influence', 'external', (@$data->type_of_influence == 'external' ? 'checked': '')) !!}
+                        ORGANIZATIONA  {!! Form::radio('type_of_influence', 'organizations', (@$data->type_of_influence == 'organizations' ? 'checked': '')) !!}
+                        PERSONAL  {!! Form::radio('type_of_influence', 'personal', (@$data->type_of_influence == 'personal' ? 'checked': '')) !!}
                     </th>
 
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="6">
-                        78. COMMENTS :{{ isset($data->comments)?ucfirst($data->comments):''}}</th>
+                        78. COMMENTS : {{ isset($data->comments)?ucfirst($data->comments):''}}</th>
 
                 </tr>
 

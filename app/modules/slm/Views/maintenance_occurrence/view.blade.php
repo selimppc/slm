@@ -28,7 +28,7 @@
                     <th width="100%" colspan="2" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $maintenance_occurrence->reference_no }}</th>
                 </tr>
                 <tr>
-                    <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">MAINTENANCE OCCURRENCE <br> REPORT</th>
+                    <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 25px; font-weight: bold">MAINTENANCE OCCURRENCE <br> REPORT</th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; " colspan="7">
@@ -80,15 +80,18 @@
                 <div class="col-md-12">
                     <hr>
                     {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                    @if($maintenance_occurrence->attachment)
-                        <?php $expld = explode('/',$maintenance_occurrence->attachment); ?>
-                        <div>
-                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                            <a href="{{ URL::to($maintenance_occurrence->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-                        </div>
-                    @else
-                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-                    @endif
+                    @foreach($data_image as $image)
+
+                        <?php $expld = explode('/',$image->image_path); ?>
+                        @if(isset($image->image_path))
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                        @else
+                            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 

@@ -29,7 +29,7 @@
                     <th width="100%" colspan="1" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $operational_safety->reference_no }}</th>
                 </tr>
                 <tr>
-                    <th width="100%" colspan="1" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">Dangerous Goods <br>Occurrence Report</th>
+                    <th width="100%" colspan="1" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods <br>Occurrence Report</th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; " colspan="7">
@@ -43,10 +43,11 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="100%" style="border: 2px solid" colspan="4">
+                        See the notes on the next page of this form. Those boxes where the heading is in italics need only be completed if applicable.<br>
                         Mark type of Occurrence :
-                        {!! Form::radio('type_of_occurrence','accident',(@$operational_safety->type_of_occurrence == 'accident'? 'checked': '')) !!} Accident
-                        {!! Form::radio('type_of_occurrence','incident',(@$operational_safety->type_of_occurrence == 'incident'? 'checked': '')) !!} Incident
-                        {!! Form::radio('type_of_occurrence','other_occurrence',(@$operational_safety->type_of_occurrence == 'other_occurrence'? 'checked': '')) !!} Other Occurrence
+                        Accident   {!! Form::radio('type_of_occurrence','accident',(@$operational_safety->type_of_occurrence == 'accident'? 'checked': '')) !!}
+                        Incident  {!! Form::radio('type_of_occurrence','incident',(@$operational_safety->type_of_occurrence == 'incident'? 'checked': '')) !!}
+                        Other Occurrence  {!! Form::radio('type_of_occurrence','other_occurrence',(@$operational_safety->type_of_occurrence == 'other_occurrence'? 'checked': '')) !!}
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -71,7 +72,7 @@
                     <th width="50%" style="border: 2px solid" colspan="2">11. Origin of the goods : {{ isset($operational_safety->origin_of_the_goods)?ucfirst($operational_safety->origin_of_the_goods):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="100%" style="border: 2px solid" colspan="4">12. Description of the occurrence including details of injury, damage, etc.(if necessary continue on the next page) : {{ isset($operational_safety->description_of_the_occurrence)?ucfirst($operational_safety->description_of_the_occurrence):''}}</th>
+                    <th width="100%" style="border: 2px solid" colspan="4">12. Description of the occurrence including details of injury, damage, etc.(if necessary continue on the next page) : <br>{{ isset($operational_safety->description_of_the_occurrence)?ucfirst($operational_safety->description_of_the_occurrence):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="50%" style="border: 2px solid" colspan="2">13. Proper shipping name (including the technical name) : {{ isset($operational_safety->proper_shipping_name)?ucfirst($operational_safety->proper_shipping_name):''}}</th>
@@ -166,15 +167,18 @@
                 <div class="col-md-12">
                     <hr>
                     {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                    @if($operational_safety->attachment)
-                        <?php $expld = explode('/',$operational_safety->attachment); ?>
-                        <div>
-                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                            <a href="{{ URL::to($operational_safety->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-                        </div>
-                    @else
-                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-                    @endif
+                    @foreach($data_image as $image)
+
+                        <?php $expld = explode('/',$image->image_path); ?>
+                        @if(isset($image->image_path))
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                        @else
+                            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 

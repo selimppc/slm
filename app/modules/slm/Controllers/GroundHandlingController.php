@@ -10,6 +10,7 @@ namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\ImageResize;
 use App\Helpers\LogFileHelper;
+use App\Modules\Slm\Models\GroundHandlingImage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -68,7 +69,7 @@ class GroundHandlingController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->except('_token');
+        $data=$request->except('_token','attachment');
 
         $data['date']=date("Y-m-d", strtotime($data['date']));
 
@@ -76,38 +77,49 @@ class GroundHandlingController extends Controller
 
 
         //----------------- For Attachment file-------------------//
-        $file_attachment=Input::file('attachment');
+        $file_attachments=Input::file('attachment');
         //print_r($file_attachment); exit();
-        if(isset($file_attachment)){
+        if(isset($file_attachments)){
             //$rules = array('file' => 'mimes:pdf,doc');
             //$rules = array('file' => 'mimes:pdf,doc,jpeg,jpg,png,gif|max:300');
             //$rules = array('file' => 'max:300');
-            $rules = array();
-            $validator = Validator::make(array('file' => $file_attachment), $rules);
-            //print_r($validator->passes());exit;
 
-            if ($validator->passes()) {
-                //exit('Exit');
-                $upload_folder = 'attachment/';
-                if (!file_exists($upload_folder)) {
-                    $oldmask = umask(0);  // helpful when used in linux server
-                    mkdir($upload_folder, 0777);
+            foreach($file_attachments as $file_attachment) {
+
+                $rules = array();
+                $validator = Validator::make(array('file' => $file_attachment), $rules);
+                //print_r($validator->passes());exit;
+
+                if ($validator->passes()) {
+                    //exit('Exit');
+                    $upload_folder = 'attachment/';
+                    if (!file_exists($upload_folder)) {
+                        $oldmask = umask(0);  // helpful when used in linux server
+                        mkdir($upload_folder, 0777);
+                    }
+                    if(isset($file_attachment)) {
+                        $file_original_name = $file_attachment->getClientOriginalName();
+                        //print_r($file_original_name);exit;
+                        $file_name = rand(11111, 99999) . '-' . $file_original_name;
+                        $file_attachment->move($upload_folder, $file_name);
+                        $attachment = $upload_folder . $file_name;
+                        //$model->attachment = $attachment;
+
+                        $image_path[] = $attachment;
+                    }
+
+                    #print_r($image_path); exit();
+
+                } else {
+                    // Redirect or return json to frontend with a helpful message to inform the user
+                    // that the provided file was not an adequate type
+                    return redirect('add-operational-safety')
+                        ->withErrors($validator)
+                        ->withInput();
                 }
-                $file_original_name = $file_attachment->getClientOriginalName();
-
-                $file_name = rand(11111, 99999).'-'. $file_original_name;
-                $file_attachment->move($upload_folder, $file_name);
-                $attachment=$upload_folder.$file_name;
-                $data['attachment']=$attachment;
-                //print_r($attachment); exit();
-
-            }else{
-                // Redirect or return json to frontend with a helpful message to inform the user
-                // that the provided file was not an adequate type
-                return redirect('add-operational-safety')
-                    ->withErrors($validator)
-                    ->withInput();
             }
+
+
         }//---------End Attachment
         //print_r($attachment); exit();
 
@@ -119,8 +131,23 @@ class GroundHandlingController extends Controller
         $token = $user->csrf_token;
         //print_r($user);exit;
 
+        $model = new GroundHandling();
+        $id = $model->create($data);
 
-        if(GroundHandling::insert($data)) {
+        if($id) {
+
+            if(isset($image_path)){
+                foreach($image_path as $ims){
+                    $safety_image[] = [
+                        'ground_handling_id' => $id->id,
+                        'image_path'=>$ims,
+                    ];
+                }
+                foreach($safety_image as $input_image){
+
+                    GroundHandlingImage::create($input_image);
+                }
+            }
 
             try{
                 Mail::send('slm::ground_handling.mail_notification', array('ground_handling'=>$data),
@@ -166,6 +193,8 @@ class GroundHandlingController extends Controller
         if(isset($signature)) {
             $data['signature'] = $signature->image;
         }
+
+        $data['data_image'] = GroundHandlingImage::where('ground_handling_id',$id)->get();
 
         return view('slm::ground_handling.view',$data);
     }
@@ -555,7 +584,7 @@ class GroundHandlingController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+            <!--<table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
@@ -570,27 +599,27 @@ class GroundHandlingController extends Controller
             </table>
             <br>
             <br>
-            <br>
+            <br>-->
 
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 20px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 15px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 15px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$ground_handling->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: center;">Safety Department ref. nr : '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">GROUND HANDLING REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 25px; font-weight: bold">GROUND HANDLING REPORT</th>
                 </tr>
             </table>
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center; background-color: yellow" colspan="4">GENERAL INFORMATION</th>
+                    <th style="text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
                 </tr>
                 <tr>
                     <th colspan="4">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$ground_handling->full_name.','.$ground_handling->email.','.$ground_handling->telephone.','.$ground_handling->extension.','.$ground_handling->fax.'</th>
@@ -602,9 +631,9 @@ class GroundHandlingController extends Controller
                 <tr style="border: 2px solid">
                     <th width="25%" style="border: 2px solid">4. DATE : '.date("M d, Y", strtotime($ground_handling->date)).'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        5. TIME: '.$ground_handling->time.'&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
-                        <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
+                        5. TIME: '.$ground_handling->time.'<br> &nbsp;&nbsp;&nbsp;
+                        UTC  <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" >
+                        Local  <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >
 
                     </th>
                     <th width="25%" style="border: 2px solid">6. OPERATIONAL PHASE : '.$ground_handling->operational_phase.'</th>
@@ -628,7 +657,7 @@ class GroundHandlingController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; ; background-color: yellow" colspan="4">DANGEROUS GOODS</th>
+                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">DANGEROUS GOODS</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="50%" style="border: 2px solid" colspan="2">17. ORIGIN OF THE GOODS : '.$ground_handling->origin_of_the_goods.'</th>
@@ -641,16 +670,16 @@ class GroundHandlingController extends Controller
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        21. PACKING GROUP :
-                        <input type="checkbox" name="packing_group" value=""  '.$I.' style="display:inline;" > I
-                        <input type="checkbox" name="packing_group" value="" '.$II.' style="display:inline;" >  II
-                        <input type="checkbox" name="packing_group" value="" '.$III.' style="display:inline;" >  III
+                        21. PACKING GROUP :<br>
+                        I  <input type="checkbox" name="packing_group" value=""  '.$I.' style="display:inline;" >
+                        II  <input type="checkbox" name="packing_group" value="" '.$II.' style="display:inline;" >
+                        III  <input type="checkbox" name="packing_group" value="" '.$III.' style="display:inline;" >
                     </th>
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        22.CLASS 7 CATEGORY :
-                        <input type="checkbox" name="class_7_category" value=""  '.$cat1.' style="display:inline;" > I
-                        <input type="checkbox" name="class_7_category" value="" '.$cat11.' style="display:inline;" >  II
-                        <input type="checkbox" name="class_7_category" value="" '.$cat111.' style="display:inline;" >  III
+                        22.CLASS 7 CATEGORY :<br>
+                        I  <input type="checkbox" name="class_7_category" value=""  '.$cat1.' style="display:inline;" >
+                        II  <input type="checkbox" name="class_7_category" value="" '.$cat11.' style="display:inline;" >
+                        III  <input type="checkbox" name="class_7_category" value="" '.$cat111.' style="display:inline;" >
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -671,7 +700,7 @@ class GroundHandlingController extends Controller
                     <th width="50%" style="border: 2px solid" colspan="2">30. SHIPPING NAME : '.$ground_handling->shipping_name.'</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; ; background-color: yellow" colspan="4">VEHICLE & RAMP EQUIPMENT DAMAGE</th>
+                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">VEHICLE & RAMP EQUIPMENT DAMAGE</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="25%" style="border: 2px solid">31. DAMAGE TO : '.$ground_handling->damage_to.'</th>

@@ -287,7 +287,26 @@
         <hr>
         {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
         <small class="required"></small>
-        {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
+        {{--{!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}--}}
+        <div class="col-md-12 image-center">
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                {{--<div class="fileupload-new thumbnail" style="width: 120px; height: 120px;   ">--}}
+                {{--@if($data['image'] != '')
+                    <a href="{{ route('gal_image.image.show', $data['id']) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#imageView"><img src="{{ URL::to($data['image']) }}" height="50px" width="50px" alt="{{$data['image']}}" />
+                    </a>
+                @else--}}
+                {{--<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />--}}
+                {{--{!! Form::file('images[]', array('multiple'=>true)) !!}--}}
+                {{--@endif--}}
+                {{--</div>--}}
+                {{--<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>--}}
+                <div class="image-center">
+                    <input type="file" name="attachment[]" id="attachment" class="default" multiple />
+                </div>
+            </div>
+            {{--<span class="label label-danger"><font size="1">NOTE!</font></span>
+            <span style="color: white"><font size="1">System will allow these types of image(png,jpeg,jpg Format)</font></span>--}}
+        </div>
     </div>
 </div>
 @endif

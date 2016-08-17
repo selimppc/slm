@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">Ground Handling report</b></h5>
+                                <h5 class="text-center text-black"><b style="color: black">General Information</b></h5>
                             </div>
                             <div class="col-sm-4"></div>
                         </div></th>
@@ -54,9 +54,9 @@
                 <tr style="border: 2px solid">
                     <th width="25%" style="border: 2px solid">4. DATE : {{ isset($ground_handling->date)?date("M d, Y", strtotime($ground_handling->date)):'' }}</th>
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        5. TIME: {{ isset($ground_handling->time)?ucfirst($ground_handling->time):'' }}&nbsp;&nbsp;
-                        {!! Form::radio('utc_local', 'utc', (@$ground_handling->utc_local == 'utc' ? 'checked': '')) !!} UTC
-                        {!! Form::radio('utc_local', 'local', (@$ground_handling->utc_local == 'local' ? 'checked': '')) !!} Local
+                        5. TIME: {{ isset($ground_handling->time)?ucfirst($ground_handling->time):'' }}<br>&nbsp;&nbsp;
+                        UTC  {!! Form::radio('utc_local', 'utc', (@$ground_handling->utc_local == 'utc' ? 'checked': '')) !!}
+                        Local  {!! Form::radio('utc_local', 'local', (@$ground_handling->utc_local == 'local' ? 'checked': '')) !!}
                     </th>
                     <th width="25%" style="border: 2px solid">6. OPERATIONAL PHASE : {{ isset($ground_handling->operational_phase)?ucfirst($ground_handling->operational_phase):'' }}</th>
                 </tr>
@@ -99,16 +99,16 @@
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        21. PACKING GROUP :
-                        {!! Form::radio('packing_group','I',(@$ground_handling->packing_group == 'I' ? 'I': '')) !!} I
-                        {!! Form::radio('packing_group','II',(@$ground_handling->packing_group == 'II'? 'II': '')) !!} II
-                        {!! Form::radio('packing_group','III',(@$ground_handling->packing_group == 'III'? 'III': '')) !!} III
+                        21. PACKING GROUP :<br>
+                        I  {!! Form::radio('packing_group','I',(@$ground_handling->packing_group == 'I' ? 'I': '')) !!}
+                        II {!! Form::radio('packing_group','II',(@$ground_handling->packing_group == 'II'? 'II': '')) !!}
+                        III  {!! Form::radio('packing_group','III',(@$ground_handling->packing_group == 'III'? 'III': '')) !!}
                     </th>
                     <th width="50%" style="border: 2px solid" colspan="2">
-                        22.CLASS 7 CATEGORY :
-                        {!! Form::radio('class_7_category','I',(@$ground_handling->class_7_category == 'I'? 'I': '')) !!} I
-                        {!! Form::radio('class_7_category','II',(@$ground_handling->class_7_category == 'II'? 'II': '')) !!} II
-                        {!! Form::radio('class_7_category','III',(@$ground_handling->class_7_category == 'III'? 'III': '')) !!} III
+                        22.CLASS 7 CATEGORY :<br>
+                        I  {!! Form::radio('class_7_category','I',(@$ground_handling->class_7_category == 'I'? 'I': '')) !!}
+                        II  {!! Form::radio('class_7_category','II',(@$ground_handling->class_7_category == 'II'? 'II': '')) !!}
+                        III  {!! Form::radio('class_7_category','III',(@$ground_handling->class_7_category == 'III'? 'III': '')) !!}
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -156,15 +156,18 @@
                 <div class="col-md-12">
                     <hr>
                     {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                    @if($ground_handling->attachment)
-                        <?php $expld = explode('/',$ground_handling->attachment); ?>
-                        <div>
-                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                            <a href="{{ URL::to($ground_handling->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-                        </div>
-                    @else
-                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-                    @endif
+                    @foreach($data_image as $image)
+
+                        <?php $expld = explode('/',$image->image_path); ?>
+                        @if(isset($image->image_path))
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                        @else
+                            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 

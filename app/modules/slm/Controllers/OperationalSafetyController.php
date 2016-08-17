@@ -11,6 +11,7 @@ namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\ImageResize;
 use App\Helpers\LogFileHelper;
+use App\Modules\Slm\Models\OperationalSafetyImage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -69,7 +70,7 @@ class OperationalSafetyController extends Controller
     public function store(Request $request)
     {
         //exit('exit');
-        $data=$request->except('_token');
+        $data=$request->except('_token','attachment');
 
         $data['date_of_occurrence']=date("Y-m-d", strtotime($data['date_of_occurrence']));
         $data['date_of_signature']=date("Y-m-d", strtotime($data['date_of_signature']));
@@ -107,36 +108,45 @@ class OperationalSafetyController extends Controller
         }//-----End Signature
 
         //----------------- For Attachment file-------------------//
-        $file_attachment=Input::file('attachment');
+        $file_attachments=Input::file('attachment');
         //print_r($file_attachment); exit();
-        if(isset($file_attachment)){
+        if(isset($file_attachments)){
             //$rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
             //$rules = array('file' => 'mimes:pdf,doc,jpeg,jpg,png,gif|max:300');
             //$rules = array('file' => 'max:300');
-            $rules = array();
-            $validator = Validator::make(array('file' => $file_attachment), $rules);
-            //print_r($validator->passes());exit;
+            foreach($file_attachments as $file_attachment) {
 
-            if ($validator->passes()) {
-                //exit('Exit');
-                $upload_folder = 'attachment/';
-                if (!file_exists($upload_folder)) {
-                    $oldmask = umask(0);  // helpful when used in linux server
-                    mkdir($upload_folder, 0777);
+                $rules = array();
+                $validator = Validator::make(array('file' => $file_attachment), $rules);
+                //print_r($validator->passes());exit;
+
+                if ($validator->passes()) {
+                    //exit('Exit');
+                    $upload_folder = 'attachment/';
+                    if (!file_exists($upload_folder)) {
+                        $oldmask = umask(0);  // helpful when used in linux server
+                        mkdir($upload_folder, 0777);
+                    }
+                    if(isset($file_attachment)) {
+                        $file_original_name = $file_attachment->getClientOriginalName();
+                        //print_r($file_original_name);exit;
+                        $file_name = rand(11111, 99999) . '-' . $file_original_name;
+                        $file_attachment->move($upload_folder, $file_name);
+                        $attachment = $upload_folder . $file_name;
+                        //$model->attachment = $attachment;
+
+                        $image_path[] = $attachment;
+                    }
+
+                    #print_r($image_path); exit();
+
+                } else {
+                    // Redirect or return json to frontend with a helpful message to inform the user
+                    // that the provided file was not an adequate type
+                    return redirect('add-operational-safety')
+                        ->withErrors($validator)
+                        ->withInput();
                 }
-                $file_original_name = $file_attachment->getClientOriginalName();
-
-                $file_name = rand(11111, 99999).'-'. $file_original_name;
-                $file_attachment->move($upload_folder, $file_name);
-                $attachment=$upload_folder.$file_name;
-                $data['attachment']=$attachment;
-
-            }else{
-                // Redirect or return json to frontend with a helpful message to inform the user
-                // that the provided file was not an adequate type
-                return redirect('add-operational-safety')
-                    ->withErrors($validator)
-                    ->withInput();
             }
         }//---------End Attachment
         //print_r($attachment); exit();
@@ -145,8 +155,24 @@ class OperationalSafetyController extends Controller
         $token = $user->csrf_token;
         //print_r($user);exit;
 
+        $model = new OperationalSafety();
+        $id = $model->create($data);
 
-        if(OperationalSafety::insert($data)) {
+
+        if($id) {
+
+            if(isset($image_path)){
+                foreach($image_path as $ims){
+                    $safety_image[] = [
+                        'operational_safety_id' => $id->id,
+                        'image_path'=>$ims,
+                    ];
+                }
+                foreach($safety_image as $input_image){
+
+                    OperationalSafetyImage::create($input_image);
+                }
+            }
 
             try{
                 Mail::send('slm::operational_safety.mail_notification', array('model'=>$data),
@@ -183,6 +209,10 @@ class OperationalSafetyController extends Controller
     {
         $data['pageTitle']='Show Operational Safety Details';
         $data['operational_safety']=OperationalSafety::findOrFail($id);
+
+
+        $data['data_image'] = OperationalSafetyImage::where('operational_safety_id',$id)->get();
+
         return view('slm::operational_safety.view',$data);
     }
 
@@ -475,24 +505,25 @@ class OperationalSafetyController extends Controller
 
 <style>
     .tbl {
-        margin-bottom: 0px !important;
+
         border: 2px solid;
-        border-bottom: 0px !important;
+
         width: 100%;
         font-family: Arial !important;
+        margin-bottom: -20px !important;
     }
 
-    .tbl3 {
+    /*.tbl3 {
         margin: 0px !important;
         border: 2px solid;
         border-top: 0px!important;
         border-left: 0px!important;
         border-right: 0px!important;
         width: 100%;
-    }
+    }*/
 
     .tbl2 {
-       margin: 0px !important;
+
        border: 2px solid;
        width: 100%;
     }
@@ -531,7 +562,7 @@ class OperationalSafetyController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class=" tbl3">
+            <!--<table cellspacing="0" cellpadding="0" class=" tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
@@ -543,7 +574,7 @@ class OperationalSafetyController extends Controller
                     </th>
                 </tr>
                 <div style="font-weight: bolder; font-size:20px; height:50px !important;">B.V OSR- DANGEROUS GOODS OCCURRENCE REPORT (Figure 9.6.A)</div>
-            </table>
+            </table>-->
 
             <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
@@ -557,19 +588,20 @@ class OperationalSafetyController extends Controller
                     <th style="border-bottom: 2px solid; font-size: 18px; text-align: center;">Safety Department ref. nr: '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 30px; font-weight: bold">Dangerous Goods Occurrence Report</th>
+                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods Occurrence Report</th>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="0" class="tbl2">
+            <table cellpadding="0" cellspacing="0" class="tbl2" style="margin-top:-20px !important;">
                 <tr>
-                    <th style="text-align: center; background-color: yellow" colspan="4">GENERAL INFORMATION</th>
+                    <th style="text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="100%" style="border: 2px solid" colspan="4">
+                    See the notes on the next page of this form. Those boxes where the heading is in italics need only be completed if applicable.<br>
                         Mark type of Occurrence :
-                        <input type="checkbox" name="type_of_occurrence" value=""  '.$occurrence1.' style="display:inline;" > Accident
-                        <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence11.' style="display:inline;" >  Incident
-                        <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence111.' style="display:inline;" >  Other Occurrence
+                        Accident  <input type="checkbox" name="type_of_occurrence" value=""  '.$occurrence1.' style="display:inline;" >
+                        Incident  <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence11.' style="display:inline;" >
+                        Other Occurrence  <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence111.' style="display:inline;" >
                     </th>
                 </tr>
                 <tr style="border: 2px solid">

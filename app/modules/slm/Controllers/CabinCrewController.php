@@ -9,6 +9,7 @@
 namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\LogFileHelper;
+use App\Modules\Slm\Models\CabinCrewImage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -68,43 +69,53 @@ class CabinCrewController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->except('_token');
+        $data=$request->except('_token','attachment');
 
         $data['date']=date("Y-m-d", strtotime($data['date']));
         $data['created_at'] = date('Y-m-d H:i:s');
 
 
         //----------------- For Attachment file-------------------//
-        $file_attachment=Input::file('attachment');
+        $file_attachments=Input::file('attachment');
         //print_r($file_attachment); exit();
-        if(isset($file_attachment)){
+        if(isset($file_attachments)){
             //$rules = array('file' => 'mimes:pdf,doc');
             //$rules = array('file' => 'max:300');
-            $rules = array();
-            $validator = Validator::make(array('file' => $file_attachment), $rules);
-            //print_r($validator->passes());exit;
 
-            if ($validator->passes()) {
-                //exit('Exit');
-                $upload_folder = 'attachment/';
-                if (!file_exists($upload_folder)) {
-                    $oldmask = umask(0);  // helpful when used in linux server
-                    mkdir($upload_folder, 0777);
+
+            foreach($file_attachments as $file_attachment) {
+
+                $rules = array();
+                $validator = Validator::make(array('file' => $file_attachment), $rules);
+                //print_r($validator->passes());exit;
+
+                if ($validator->passes()) {
+                    //exit('Exit');
+                    $upload_folder = 'attachment/';
+                    if (!file_exists($upload_folder)) {
+                        $oldmask = umask(0);  // helpful when used in linux server
+                        mkdir($upload_folder, 0777);
+                    }
+                    if(isset($file_attachment)) {
+                        $file_original_name = $file_attachment->getClientOriginalName();
+                        //print_r($file_original_name);exit;
+                        $file_name = rand(11111, 99999) . '-' . $file_original_name;
+                        $file_attachment->move($upload_folder, $file_name);
+                        $attachment = $upload_folder . $file_name;
+                        //$model->attachment = $attachment;
+
+                        $image_path[] = $attachment;
+                    }
+
+                    #print_r($image_path); exit();
+
+                } else {
+                    // Redirect or return json to frontend with a helpful message to inform the user
+                    // that the provided file was not an adequate type
+                    return redirect('add-operational-safety')
+                        ->withErrors($validator)
+                        ->withInput();
                 }
-                $file_original_name = $file_attachment->getClientOriginalName();
-
-                $file_name = rand(11111, 99999).'-'. $file_original_name;
-                $file_attachment->move($upload_folder, $file_name);
-                $attachment=$upload_folder.$file_name;
-                $data['attachment']=$attachment;
-                //print_r($attachment); exit();
-
-            }else{
-                // Redirect or return json to frontend with a helpful message to inform the user
-                // that the provided file was not an adequate type
-                return redirect('add-operational-safety')
-                    ->withErrors($validator)
-                    ->withInput();
             }
         }//---------End Attachment
         //print_r($attachment); exit();
@@ -112,10 +123,28 @@ class CabinCrewController extends Controller
 
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
-        //print_r($user);exit;
+        //print_r($data);exit;
 
+        $model = new CabinCrew();
 
-        if(CabinCrew::insert($data)) {
+        $id = $model->create($data);
+        //$model->save($data);
+        //print_r($id->id);exit;
+
+        if($id) {
+
+            if(isset($image_path)){
+                foreach($image_path as $ims){
+                    $safety_image[] = [
+                        'cabin_crew_id' => $id->id,
+                        'image_path'=>$ims,
+                    ];
+                }
+                foreach($safety_image as $input_image){
+
+                    CabinCrewImage::create($input_image);
+                }
+            }
 
             try{
                 Mail::send('slm::cabin_crew.mail_notification', array('model'=>$data),
@@ -153,6 +182,7 @@ class CabinCrewController extends Controller
 
         $data['pageTitle']='Show Cabin Crew Details';
         $data['cabin_crew']=CabinCrew::findOrFail($id);
+        $data['data_image'] = CabinCrewImage::where('cabin_crew_id',$id)->get();
 
         return view('slm::cabin_crew.view',$data);
     }
@@ -400,7 +430,7 @@ class CabinCrewController extends Controller
     <div class="panel">
         <div class="panel-body">
             <div class="panel-body">
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+           <!-- <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
                         '.$img2.'
@@ -416,7 +446,7 @@ class CabinCrewController extends Controller
             </table>
             <br>
             <br>
-            <br>
+            <br>-->
 
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
                 <tr>
@@ -436,21 +466,21 @@ class CabinCrewController extends Controller
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center; background-color: yellow" colspan="5">GENERAL INFORMATION</th>
+                    <th style="text-align: center; " colspan="5"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
                 </tr>
                 <tr>
                     <th colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$cabin_crew->full_name.','.$cabin_crew->email.','.$cabin_crew->telephone.','.$cabin_crew->extension.','.$cabin_crew->fax.'</th>
                 </tr>
                 <tr>
                     <th width="40%" style="border: 2px solid" colspan="2">
-                        2. CAPTAIN :'.$cabin_crew->captain.'
-                        <input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" > PF
-                        <input type="checkbox" name="pf_pnf" value="" '.$pnf.' style="display:inline;" >  PNF
+                        2. CAPTAIN :'.$cabin_crew->captain.'<br>
+                       PF   <input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" >
+                        PNF  <input type="checkbox" name="pf_pnf" value="" '.$pnf.' style="display:inline;" >
                     </th>
                     <th width="40%" style="border: 2px solid" colspan="2">
-                        3. CO-PILOT : '.$cabin_crew->co_pilot.'
-                        <input type="checkbox" name="pf_pnf2" value=""  '.$pf2.' style="display:inline;" > PF
-                        <input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >  PNF
+                        3. CO-PILOT : '.$cabin_crew->co_pilot.'<br>
+                        PF  <input type="checkbox" name="pf_pnf2" value=""  '.$pf2.' style="display:inline;" >
+                        PNF  <input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >
                     </th>
                     <th width="20%" style="border: 2px solid">4. OTHER : '.$cabin_crew->others.'</th>
                 </tr>
@@ -459,9 +489,9 @@ class CabinCrewController extends Controller
                     <th>6. DATE : '.date("M d, Y", strtotime($cabin_crew->date)).'</th>
 
                     <th>
-                        7. TIME : '.$cabin_crew->time.'
-                        <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
-                        <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
+                        7. TIME : '.$cabin_crew->time.'<br>
+                        UTC  <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" >
+                       Local   <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >
                     </th>
                     <th>8. AIRCRAFT TYPE : '.$cabin_crew->air_craft_type.'</th>
                 </tr>
@@ -487,19 +517,19 @@ class CabinCrewController extends Controller
                 <tr>
                     <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'
                     <br>
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" > PARKED &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp2.' style="display:inline;" > PUSH BACK&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp3.' style="display:inline;" > TAXI OUT&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp4.' style="display:inline;" > TAKE OFF&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp5.' style="display:inline;" > INITIAL CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp6.' style="display:inline;" > CLIMB&nbsp;&nbsp;&nbsp;&nbsp;
+                    PARKED  <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;
+                    PUSH BACK  <input type="checkbox" name="flight_phase" value=""  '.$fp2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    TAXI OUT  <input type="checkbox" name="flight_phase" value=""  '.$fp3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    TAKE OFF  <input type="checkbox" name="flight_phase" value=""  '.$fp4.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    INITIAL CLIMB  <input type="checkbox" name="flight_phase" value=""  '.$fp5.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    CLIMB  <input type="checkbox" name="flight_phase" value=""  '.$fp6.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
                     <br>
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp7.' style="display:inline;" > CRUISE &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp8.' style="display:inline;" > HOLDING&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp9.' style="display:inline;" > DESCENT&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp10.' style="display:inline;" > APPROACH&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > LANDING&nbsp;&nbsp;
-                    <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" > TAXI IN
+                    CRUISE  <input type="checkbox" name="flight_phase" value=""  '.$fp7.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;
+                    HOLDING  <input type="checkbox" name="flight_phase" value=""  '.$fp8.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    DESCENT  <input type="checkbox" name="flight_phase" value=""  '.$fp9.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                    APPROACH  <input type="checkbox" name="flight_phase" value=""  '.$fp10.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
+                   LANDING   <input type="checkbox" name="flight_phase" value=""  '.$fp11.' style="display:inline;" > &nbsp;&nbsp;
+                    TAXI IN  <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" >
                     </th>
                 </tr>
                 <tr>
