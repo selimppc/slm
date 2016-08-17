@@ -11,6 +11,8 @@
             <h3 class="text-center text-green"><b style="color: #f5f5f5">Ground Handling report</b></h3>
         </div>
 
+
+
         <div style="padding-right: 15px" class="buttons-div">
             {{--<div>{{ $signature }}</div>
             <div>{{ $ground_handling->reference_no }}</div>--}}
@@ -33,7 +35,14 @@
                     <th width="100%" colspan="1" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">GROUND HANDLING <br> REPORT</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="4">GENERAL INFORMATION</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="4">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">Ground Handling report</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div></th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="4">1. FULL NAME AND CONTACT INFORMATION : {{ isset($ground_handling->full_name)?ucfirst($ground_handling->full_name):''}},{{ isset($ground_handling->email)?ucfirst($ground_handling->email):''}},{{ isset($ground_handling->telephone)?ucfirst($ground_handling->telephone):''}},{{ isset($ground_handling->extension)?ucfirst($ground_handling->extension):''}},{{ isset($ground_handling->fax)?ucfirst($ground_handling->fax):''}}</th>
@@ -70,7 +79,14 @@
                     <th width="100%" style="border: 2px solid" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>{{ isset($ground_handling->description_of_occurrence)?ucfirst($ground_handling->description_of_occurrence):'' }}</p></th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; ; background-color: yellow" colspan="4">DANGEROUS GOODS</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; ; " colspan="4">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">DANGEROUS GOODS</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="50%" style="border: 2px solid" colspan="2">17. ORIGIN OF THE GOODS : {{ isset($ground_handling->origin_of_the_goods)?ucfirst($ground_handling->origin_of_the_goods):'' }}</th>
@@ -113,7 +129,14 @@
                     <th width="50%" style="border: 2px solid" colspan="2">30. SHIPPING NAME : {{ isset($ground_handling->shipping_name)?ucfirst($ground_handling->shipping_name):'' }}</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; ; background-color: yellow" colspan="4">VEHICLE & RAMP EQUIPMENT DAMAGE</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="4">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">VEHICLE & RAMP EQUIPMENT DAMAGE</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div></th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="25%" style="border: 2px solid">31. DAMAGE TO : {{ isset($ground_handling->damage_to)?ucfirst($ground_handling->damage_to):'' }}</th>

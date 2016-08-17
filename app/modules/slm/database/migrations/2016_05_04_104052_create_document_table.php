@@ -15,6 +15,7 @@ class CreateDocumentTable extends Migration
         Schema::create('document', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 256)->nullable();
+            $table->integer('year')->nullable();
             $table->string('file_name', 256)->nullable();
             $table->string('file_path', 256)->nullable();
             $table->string('file_type', 32)->nullable();

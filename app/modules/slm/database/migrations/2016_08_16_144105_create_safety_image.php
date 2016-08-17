@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocumentTable extends Migration
+class CreateSafetyImage extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,15 @@ class CreateDocumentTable extends Migration
      */
     public function up()
     {
-        Schema::create('document', function (Blueprint $table) {
+        Schema::create('air_safety_image', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 256)->nullable();
-            $table->string('file_name', 256)->nullable();
-            $table->string('file_path', 256)->nullable();
-            $table->string('file_type', 32)->nullable();
-            $table->integer('file_size',false,  8)->nullable();
-            $table->enum('pdf_type',array('bulletin','alerts','safety'))->nullable();
-
+            $table->integer('air_safety_id')->nullable();
+            $table->string('image_path',256)->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
+
         });
     }
 
@@ -35,6 +31,6 @@ class CreateDocumentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('air_safety');
+        Schema::drop('air_safety_image');
     }
 }

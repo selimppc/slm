@@ -112,7 +112,8 @@ class OperationalSafetyController extends Controller
         if(isset($file_attachment)){
             //$rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
             //$rules = array('file' => 'mimes:pdf,doc,jpeg,jpg,png,gif|max:300');
-            $rules = array('file' => 'max:300');
+            //$rules = array('file' => 'max:300');
+            $rules = array();
             $validator = Validator::make(array('file' => $file_attachment), $rules);
             //print_r($validator->passes());exit;
 
@@ -258,7 +259,8 @@ class OperationalSafetyController extends Controller
 
         $file=Input::file('signature');
         if(isset($file)){
-            $rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
+            //$rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
+            $rules = array();
             $validator = Validator::make(array('file' => $file), $rules);
             //print_r($validator->passes());exit;
 

@@ -51,8 +51,12 @@
                 </div>
                 <!-----------------End of Reference Number ------>
 
-                <div style="background-color: yellow; height: 25px;">
-                    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -109,19 +113,24 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
+                        {{--<small class="required">(Required)</small>--}}
+                        {!! Form::text('year', $data->year, ['class' => 'form-control','readonly']) !!}
+                    </div>
+                    <div class="col-sm-3">
                         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
                         {{--<div class="input-group date">--}}
                             {!! Form::text('date', $data->date, ['class' => 'form-control','readonly']) !!}
                             {{--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>--}}
                         {{--</div>--}}
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         {!! Form::label('time', 'Time:', ['class' => 'control-label']) !!}
                         {!! Form::text('time', $data->time, ['id'=>'time', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <br>
                         {!! Form::radio('utc_local', 'utc', (@$data['utc_local'] == 'utc' ? 'checked': ''),array('disabled')) !!} UTC
                         {!! Form::radio('utc_local', 'local', (@$data['utc_local'] == 'local' ? 'checked': ''),array('disabled')) !!} Local
@@ -232,8 +241,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">METEOROLOGICAL INFORMATION</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">METEOROLOGICAL INFORMATION</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -350,8 +363,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">TCAS INFORMATION (traffic)</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">TCAS INFORMATION (traffic)</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -374,8 +391,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">ATC PROCEDURES</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">ATC PROCEDURES</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -428,8 +449,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">AIRPROX</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">AIRPROX</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -443,8 +468,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -488,8 +517,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">TURBULANCE</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">TURBULANCE</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -553,8 +586,12 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">HUMAN FACTORS</b></h5>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">HUMAN FACTORS</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
 

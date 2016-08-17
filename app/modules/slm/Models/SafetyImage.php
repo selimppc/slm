@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: etsb
- * Date: 5/4/16
- * Time: 10:28 AM
+ * Date: 8/16/16
+ * Time: 1:28 PM
  */
 
-namespace App;
+namespace App\Modules\Slm\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 
-
-class PdfManager extends Model
+class SafetyImage extends Model
 {
-    protected $table = 'document';
+
+    protected $table = 'air_safety_image';
 
     /**
      * The attributes that are mass assignable.
@@ -22,9 +22,6 @@ class PdfManager extends Model
      * @var array
      */
     protected $fillable = [
-        'file_name',
-        'file_type',
-        'file_size',
-        'pdf_type',
+        'air_safety_id','image_path',
     ];
 }

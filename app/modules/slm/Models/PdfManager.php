@@ -23,6 +23,7 @@ class PdfManager extends Model
      */
     protected $fillable = [
         'file_name',
+        'year',
         'file_type',
         'file_size',
         'pdf_type',

@@ -30,9 +30,13 @@
 </div>
 <!-----------------End of Reference Number ------>
 
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
-</div>
+<div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
 @if(isset($ground_handling_verification) && $ground_handling_verification->full_name)
 <div class="row">
     <div class="col-sm-4">
@@ -134,9 +138,19 @@
         {!! Form::textarea('description_of_occurrence', $ground_handling_verification->description_of_occurrence, ['id'=>'description_of_occurrence', 'class' => 'form-control','readonly']) !!}
     </div>
 </div>
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">DANGEROUS GOODS</b></h5>
-</div>
+
+
+
+<div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">DANGEROUS GOODS</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+
+
+
 <div class="row">
     <div class="col-sm-6">
         {!! Form::label('origin_of_the_goods', 'Origin of the goods:', ['class' => 'control-label']) !!}
@@ -200,9 +214,19 @@
     </div>
 </div>
 
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">VEHICLE & RAMP EQUIPMENT DAMAGE</b></h5>
-</div>
+
+
+
+<div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">VEHICLE & RAMP EQUIPMENT DAMAGE</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+
+
+
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('damage_to', 'Damage to:', ['class' => 'control-label']) !!}
@@ -347,9 +371,18 @@
         {!! Form::textarea('description_of_occurrence', Input::old('description_of_occurrence'), ['id'=>'description_of_occurrence', 'class' => 'form-control','title'=>'Enter description of the occurrence']) !!}
     </div>
 </div>
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">DANGEROUS GOODS</b></h5>
-</div>
+
+
+<div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">DANGEROUS GOODS</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+
+
+
 <div class="row">
     <div class="col-sm-6">
         {!! Form::label('origin_of_the_goods', 'Origin of the goods:', ['class' => 'control-label']) !!}
@@ -413,9 +446,20 @@
     </div>
 </div>
 
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">VEHICLE & RAMP EQUIPMENT DAMAGE</b></h5>
-</div>
+
+
+
+<div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">VEHICLE & RAMP EQUIPMENT DAMAGE</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+
+
+
+
 <div class="row">
     <div class="col-sm-4">
         {!! Form::label('damage_to', 'Damage to:', ['class' => 'control-label']) !!}
@@ -440,7 +484,7 @@
     <div class="col-md-12">
         <hr>
         {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-        <small class="required">(max size 300kb)</small>
+        <small class="required"></small>
         {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
     </div>
 </div>

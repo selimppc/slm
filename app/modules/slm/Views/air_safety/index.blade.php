@@ -38,24 +38,26 @@
             </div>
 
             <div class="panel-body">
-                <div class="container-fluid">
-                    <div class="col-sm-12">
-                        <div class="row padding-tb">
-                            {{-------------- Filter :Starts -------------------------------------------}}
-                            {!! Form::open(['route' => 'safety-search']) !!}
+                {{-------------- Filter :Starts -------------------------------------------}}
+                {!! Form::open(['route' => 'safety-search']) !!}
 
-                                <div class="input-group">
-                                    {!! Form::text('full_name',@Input::get('full_name')? Input::get('full_name') : null,['class' => 'form-control','placeholder'=>'Type Full Name', 'title'=>'Type your required Name "full name", then click "search" button']) !!}
-                                    <span class="input-group-btn">
-                                          {!! Form::submit('Search', array('class'=>'btn btn-primary','id'=>'button', 'data-placement'=>'right','style="padding:6px; font-size:11px"')) !!}
-                                      </span>
-                                </div>
-
-                            {!! Form::close() !!}
-                            {{-------------- Filter :Ends -------------------------------------------}}
-                        </div>
+                <div id="index-search">
+                    <div class="col-sm-3">
+                        {!! Form::text('full_name',@Input::get('full_name')? Input::get('full_name') : null,['class' => 'form-control','placeholder'=>'Type Full Name', 'title'=>'Type your required Name "full name", then click "search" button']) !!}
+                    </div>
+                    <div class="col-sm-3">
+                        {!! Form::Select('year',array(''=>'--select year---','2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025'),null,['class'=>'form-control ']) !!}
+                    </div>
+                    <div class="col-sm-3 filter-btn">
+                        {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type code or title or both in specific field then click search button for required information')) !!}
                     </div>
                 </div>
+                <p> &nbsp;</p>
+                <p> &nbsp;</p>
+
+                {!! Form::close() !!}
+
+                {{-------------- Filter :Ends -------------------------------------------}}
                 <div class="col-sm-12">
                     <div class="table-primary">
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-responsive ml-table" id="jq-datatables-example">
@@ -64,6 +66,7 @@
                                 <th> Name </th>
                                 <th> Email</th>
                                 <th> Captain</th>
+                                <th> Year </th>
                                 <th> Date </th>
                                 <th> From </th>
                                 <th> To </th>
@@ -77,7 +80,9 @@
                                     <tr class="gradeX">
                                         <td>{{ucfirst($values->full_name)}}</td>
                                         <td>{{ucfirst($values->email)}}</td>
+
                                         <td>{{$values->captain}}</td>
+                                        <td>{{$values->year}}</td>
                                         <td>{{date("M d, Y", strtotime($values->date))}}</td>
                                         <td>{{$values->from}}</td>
                                         <td>{{$values->to}}</td>

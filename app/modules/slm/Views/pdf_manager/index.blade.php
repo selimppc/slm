@@ -24,7 +24,10 @@
 
                 <div id="index-search">
                     <div class="col-sm-3">
-                        {!! Form::text('file_name',@Input::get('file_name')? Input::get('file_name') : null,['class' => 'form-control','placeholder'=>'Type File Name', 'title'=>'Type your required Name "file name", then click "search" button']) !!}
+                        {!! Form::text('title',@Input::get('title')? Input::get('title') : null,['class' => 'form-control','placeholder'=>'Type Title', 'title'=>'Type Title, then click "search" button']) !!}
+                    </div>
+                    <div class="col-sm-3">
+                        {!! Form::Select('year',array(''=>'--select year---','2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025'),null,['class'=>'form-control ']) !!}
                     </div>
                     <div class="col-sm-3 filter-btn">
                         {!! Form::submit('Search', array('class'=>'btn btn-primary btn-xs pull-left pop btn-search-height','id'=>'button', 'data-placement'=>'right', 'data-content'=>'type file name in specific field then click search button for required information')) !!}
@@ -41,7 +44,7 @@
                         <thead>
                         <tr>
                             <th> Title </th>
-                            <th> File Name </th>
+                            <th> Year </th>
                             <th> Action &nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-placement="top" data-content="view : click for details informations<br>update : click for update informations<br>delete : click for delete informations"></span></th>
                         </tr>
                         </thead>
@@ -51,7 +54,7 @@
                             @foreach($data as $values)
                                 <tr class="gradeX">
                                     <td>{{ucfirst($values->title)}}</td>
-                                    <td>{{ucfirst($values->file_name)}}</td>
+                                    <td>{{$values->year}}</td>
                                     @if(@$role_id == 1)
                                     <td>
                                         <a href="{{ route('view-pdf', $values->id) }}" class="btn btn-info btn-xs" target="_blank" data-placement="top" data-content="view"><i class="fa fa-eye"></i></a>

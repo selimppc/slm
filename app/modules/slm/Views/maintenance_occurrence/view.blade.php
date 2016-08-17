@@ -31,7 +31,14 @@
                     <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">MAINTENANCE OCCURRENCE <br> REPORT</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="7">GENERAL INFORMATION</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="7">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div></th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="7">1. FULL NAME AND CONTACT INFORMATION-( tel, extension, fax, email) : {{ isset($maintenance_occurrence->full_name)?ucfirst($maintenance_occurrence->full_name):''}},{{ isset($maintenance_occurrence->email)?ucfirst($maintenance_occurrence->email):''}},{{ isset($maintenance_occurrence->telephone)?ucfirst($maintenance_occurrence->telephone):''}},{{ isset($maintenance_occurrence->extension)?ucfirst($maintenance_occurrence->extension):''}},{{ isset($maintenance_occurrence->fax)?ucfirst($maintenance_occurrence->fax):''}}</th>

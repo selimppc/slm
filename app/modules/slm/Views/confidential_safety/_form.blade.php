@@ -2,30 +2,27 @@
 
 <div class="row">
     {!! Form::label('name', 'Name:', ['class' => 'control-label col-md-3']) !!}
-    <small class="required">(Required)</small>
     <div class="col-sm-6">
-        {!! Form::text('name', Input::old('name'), ['id'=>'name', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter name','required'=>'required']) !!}
+        {!! Form::text('name', Input::old('name'), ['class' => 'form-control','maxlength'=>'64','title'=>'Enter name']) !!}
     </div>
 </div><br>
 <div class="row">
     {!! Form::label('address', 'Address:', ['class' => 'control-label col-md-3']) !!}
-    <small class="required">(Required)</small>
     <div class="col-sm-6">
-        {!! Form::text('address', Input::old('address'), ['id'=>'address', 'class' => 'form-control','maxlength'=>'200','title'=>'Enter address','required'=>'required']) !!}
+        {!! Form::text('address', Input::old('address'), ['id'=>'address', 'class' => 'form-control','maxlength'=>'200','title'=>'Enter address']) !!}
     </div>
 </div><br>
 <div class="row">
     {!! Form::label('email', 'Email:', ['class' => 'control-label col-md-3']) !!}
-    <small class="required">(Required)</small>
     <div class="col-sm-6">
-        {!! Form::email('email', Input::old('email'), ['id'=>'email', 'class' => 'form-control','maxlength'=>'256','title'=>'Enter email','required'=>'required']) !!}
+        {!! Form::email('email', Input::old('email'), ['id'=>'email', 'class' => 'form-control','maxlength'=>'256','title'=>'Enter email']) !!}
     </div>
 </div><br>
 <div class="row">
     {!! Form::label('telephone', 'Telephone:', ['class' => 'control-label col-md-3']) !!}
-    <small class="required">(Required)</small>
+
     <div class="col-sm-6">
-        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter telephone','required'=>'required']) !!}
+        {!! Form::text('telephone', Input::old('telephone'), ['id'=>'telephone', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter telephone']) !!}
     </div>
 </div>
 <div class="row">
@@ -64,11 +61,11 @@
     </div>
     <div class="col-md-4">
         {!! Form::label('flight_phase', 'Flight Phase:', ['class' => 'control-label']) !!}
-        <small class="required">(Required)</small>
-        {!! Form::text('flight_phase', Input::old('flight_phase'), ['id'=>'flight_phase', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter flight_phase','required'=>'required']) !!}
+        {!! Form::text('flight_phase', Input::old('flight_phase'), ['id'=>'flight_phase', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter flight_phase']) !!}
     </div>
     <div class="col-md-12">
         {!! Form::label('account_of_event', 'Account of Event:', ['class' => 'control-label']) !!}
-        {!! Form::textarea('account_of_event', Input::old('account_of_event'), ['id'=>'account_of_event', 'class' => 'form-control','title'=>'Enter account_of_event']) !!}
+        <small class="required">(Required)</small>
+        {!! Form::textarea('account_of_event', Input::old('account_of_event'), ['id'=>'account_of_event', 'class' => 'form-control','title'=>'Enter account_of_event','required'=>'required']) !!}
     </div>
 </div>

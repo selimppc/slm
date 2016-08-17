@@ -4,6 +4,7 @@ namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\LogFileHelper;
 use App\Modules\Slm\Models\Safety;
+use App\Modules\Slm\Models\SafetyImage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -38,8 +39,9 @@ class SafetyController extends Controller
 
         $pageTitle = 'Air Safety Informations';
         $full_name = Input::get('full_name');
+        $year = Input::get('year');
         //$data = new Safety();
-        $data = Safety::where('status','!=','cancel')->where('full_name', 'LIKE', '%'.$full_name.'%')->paginate(30);
+        $data = Safety::where('status','!=','cancel')->where('full_name', 'LIKE', '%'.$full_name.'%')->where('year', 'LIKE', '%'.$year.'%')->paginate(30);
         //$data = Safety::get();
        //print_r($data);exit;
 
@@ -62,7 +64,9 @@ class SafetyController extends Controller
 
         //print_r($input['date']);exit;
 
-        $model->full_name = @$input['full_name'];$model->email = @$input['email'];
+        $model->full_name = @$input['full_name'];
+        $model->year = @$input['year'];
+        $model->email = @$input['email'];
         $model->telephone = @$input['telephone'];$model->extension = @$input['extension'];$model->fax = @$input['fax'];
         $model->others = @$input['others'];$model->captain = @$input['captain'];$model->pf_pnf = @$input['pf_pnf'];
         $model->co_pilot = @$input['co_pilot'];$model->pf_pnf2 = @$input['pf_pnf2'];$model->date = @$input['date'];
@@ -103,47 +107,70 @@ class SafetyController extends Controller
 
 
         //----------------- For Attachment file-------------------//
-        $file_attachment=Input::file('attachment');
+        $file_attachments=Input::file('attachment');
         //print_r($file_attachment); exit();
-        if(isset($file_attachment)){
-            //$rules = array('file' => 'mimes:pdf,doc');
-            $rules = array('file' => 'max:300');
-            $validator = Validator::make(array('file' => $file_attachment), $rules);
-            //print_r($validator->passes());exit;
+        if(isset($file_attachments)){
+            /*$rules = array('file' => 'mimes:pdf,doc');*/
+            /*$rules = array('file' => 'max:300');*/
 
-            if ($validator->passes()) {
-                //exit('Exit');
-                $upload_folder = 'attachment/';
-                if (!file_exists($upload_folder)) {
-                    $oldmask = umask(0);  // helpful when used in linux server
-                    mkdir($upload_folder, 0777);
+            foreach($file_attachments as $file_attachment) {
+
+                $rules = array();
+                $validator = Validator::make(array('file' => $file_attachment), $rules);
+                //print_r($validator->passes());exit;
+
+                if ($validator->passes()) {
+                    //exit('Exit');
+                    $upload_folder = 'attachment/';
+                    if (!file_exists($upload_folder)) {
+                        $oldmask = umask(0);  // helpful when used in linux server
+                        mkdir($upload_folder, 0777);
+                    }
+                    if(isset($file_attachment)) {
+                        $file_original_name = $file_attachment->getClientOriginalName();
+
+                        $file_name = rand(11111, 99999) . '-' . $file_original_name;
+                        $file_attachment->move($upload_folder, $file_name);
+                        $attachment = $upload_folder . $file_name;
+                        //$model->attachment = $attachment;
+
+                        $image_path[] = $attachment;
+                    }
+
+                    //print_r($attachment); exit();
+
+                } else {
+                    // Redirect or return json to frontend with a helpful message to inform the user
+                    // that the provided file was not an adequate type
+                    return redirect('add-operational-safety')
+                        ->withErrors($validator)
+                        ->withInput();
                 }
-                $file_original_name = $file_attachment->getClientOriginalName();
-
-                $file_name = rand(11111, 99999).'-'. $file_original_name;
-                $file_attachment->move($upload_folder, $file_name);
-                $attachment=$upload_folder.$file_name;
-                $model->attachment=$attachment;
-                //print_r($attachment); exit();
-
-            }else{
-                // Redirect or return json to frontend with a helpful message to inform the user
-                // that the provided file was not an adequate type
-                return redirect('add-operational-safety')
-                    ->withErrors($validator)
-                    ->withInput();
             }
         }//---------End Attachment
-        //print_r($attachment); exit();
+        //print_r($image_path); exit();
 
 
 
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
-        //print_r($user);exit;
+        //print_r($model);exit;
 
 
         if($model->save()) {
+
+            if(isset($image_path)){
+                foreach($image_path as $ims){
+                    $safety_image[] = [
+                        'air_safety_id' => $model->id,
+                        'image_path'=>$ims,
+                    ];
+                }
+                foreach($safety_image as $input_image){
+
+                    SafetyImage::create($input_image);
+                }
+            }
 
             try{
                 Mail::send('slm::air_safety.mail_notification', array('model'=>$model),
@@ -189,8 +216,9 @@ class SafetyController extends Controller
     {
         $pageTitle = 'View Safety Informations';
         $data = Safety::where('id',$id)->first();
+        $data_image = SafetyImage::where('air_safety_id',$id)->get();
 
-        return view('slm::air_safety.view', ['data' => $data, 'pageTitle'=> $pageTitle]);
+        return view('slm::air_safety.view', ['data' => $data,'data_image' => $data_image, 'pageTitle'=> $pageTitle]);
     }
 
     public function csv(){
@@ -588,14 +616,15 @@ class SafetyController extends Controller
                     <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : '.$data->others.'</th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="16%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
-                    <th width="32%" style="border: 2px solid" colspan="2">
+                    <th width="14%" style="border: 2px solid"> Year : '.$data->year.'</th>
+                    <th width="20%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
+                    <th width="25%" style="border: 2px solid" colspan="2">
                         6. TIME : '.$data->time.' &nbsp;&nbsp;
                         <input type="checkbox" name="utc_local" value=""  '.$checked_utc.' style="display:inline;" > UTC
                         <input type="checkbox" name="utc_local" value="" '.$checked_local.' style="display:inline;" >  Local
                     </th>
                     <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : '.$data->air_craft_time.'</th>
-                    <th width="36%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
+                    <th width="25%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">9. FLIGHT NUMBER : '.$data->flight_no.'</th>

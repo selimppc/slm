@@ -19,6 +19,7 @@ class CreateAirSafeftTable extends Migration
             $table->string('full_name', 64)->nullable();
             $table->string('email',64)->nullable();
             $table->string('telephone',64)->nullable();
+            $table->integer('year')->nullable();
             $table->string('extension',64)->nullable();
             $table->string('fax',64)->nullable();
             $table->string('others',64)->nullable();

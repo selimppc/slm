@@ -26,8 +26,13 @@
 </div>
 
 <!-----------------End of Reference Number ------>
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+        <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+    </div>
+    <div class="col-sm-4"></div>
 </div>
 @if(isset($cabin_crew_verification) && $cabin_crew_verification->full_name)
 <div class="row">
@@ -69,6 +74,8 @@
         <br>
         {!! Form::radio('pf_pnf', 'pf', false,array('disabled')) !!} PF
         {!! Form::radio('pf_pnf', 'pnf', true,array('disabled')) !!} PNF
+
+
 
 
     </div>
@@ -267,8 +274,8 @@
     </div>
     <div class="col-sm-2">
         <br>
-        {!! Form::radio('pf_pnf', 'pf', false) !!} PF
-        {!! Form::radio('pf_pnf', 'pnf', true) !!} PNF
+        {!! Form::radio('pf_pnf', 'pf', true, ['onClick' => 'abc(this.value)']) !!} PF
+        {!! Form::radio('pf_pnf', 'pnf', false, ['onClick' => 'abc(this.value)']) !!} PNF
 
 
     </div>
@@ -279,8 +286,8 @@
     </div>
     <div class="col-sm-2">
         <br>
-        {!! Form::radio('pf_pnf2', 'pf', false) !!} PF
-        {!! Form::radio('pf_pnf2', 'pnf', true) !!} PNF
+        {!! Form::radio('pf_pnf2', 'pf', null, ['id'=>'pf2']) !!} PF
+        {!! Form::radio('pf_pnf2', 'pnf', null,  ['id'=>'pnf2']) !!} PNF
     </div>
 </div>
 
@@ -415,3 +422,19 @@
     </div>
 </div>
 @endif
+
+<script>
+
+    $(document).ready(function () {
+        $("#pnf2").prop('checked', true);
+    });
+
+    function abc(val){
+        if(val=='pf'){
+            $('#pnf2').prop('checked', true);
+        }else if(val=='pnf'){
+            $('#pf2').prop('checked', true);
+        }
+    }
+
+</script>

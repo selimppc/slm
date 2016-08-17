@@ -40,12 +40,13 @@ class PdfManagerController extends Controller
     public function index(){
 
         $pageTitle = 'Safety Bulletins';
-        $file_name = Input::get('file_name');
+        $title = Input::get('title');
+        $year = Input::get('year');
 
         $role_id = Auth::user()->role_id;
 
 
-        $data = PdfManager::where('pdf_type','bulletin')->where('file_name', 'LIKE', '%'.$file_name.'%')->paginate(30);
+        $data = PdfManager::where('pdf_type','bulletin')->where('title', 'LIKE', '%'.$title.'%')->where('year', 'LIKE', '%'.$year.'%')->paginate(30);
         //$data = Safety::get();
         //print_r($data);exit;
 
@@ -164,6 +165,8 @@ class PdfManagerController extends Controller
                         } else {
                             $data->title = $input['title'];
                         }
+
+                        $data->year = $input['year'];
 
 
                         //print_r($data);exit;

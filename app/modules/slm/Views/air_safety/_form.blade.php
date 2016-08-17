@@ -23,9 +23,16 @@
         <div class="panel-body">
 
             <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-                <div style="background-color: yellow; height: 20px;">
-                    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
+
 
                 <div class="row">
                     <div class="col-sm-4">
@@ -68,36 +75,42 @@
                     </div>
                     <div class="col-sm-2">
                         <br>
-                        {!! Form::radio('pf_pnf', 'pf', true) !!} PF
-                        {!! Form::radio('pf_pnf', 'pnf', false) !!} PNF
+                        {!! Form::radio('pf_pnf', 'pf', true, ['onClick' => 'abc(this.value)']) !!} PF
+                        {!! Form::radio('pf_pnf', 'pnf', false, ['onClick' => 'abc(this.value)']) !!} PNF
                     </div>
                     <div class="col-sm-4">
                         {!! Form::label('co_pilot', 'Co Pilot:', ['class' => 'control-label']) !!}
                         <small class="required">(Required)</small>
                         {!! Form::text('co_pilot', Input::old('co_pilot'), ['id'=>'co_pilot', 'class' => 'form-control','maxlength'=>'64','title'=>'enter co_pilot','required']) !!}
                     </div>
+
                     <div class="col-sm-2">
                         <br>
-                        {!! Form::radio('pf_pnf2', 'pf', true) !!} PF
-                        {!! Form::radio('pf_pnf2', 'pnf', false) !!} PNF
+                        {!! Form::radio('pf_pnf2', 'pf', null, ['id'=>'pf2']) !!} PF
+                        {!! Form::radio('pf_pnf2', 'pnf', null,  ['id'=>'pnf2']) !!} PNF
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
+                        {!! Form::Select('year',array('2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025'),2016,['class'=>'form-control ','required']) !!}
+                    </div>
+                    <div class="col-sm-3">
                         {!! Form::label('date', 'Date:', ['class' => 'control-label']) !!}
                         <small class="required">(Required)</small>
                         <div class="input-group date">
-                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control bs-datepicker-component','title'=>'select date','required']) !!}
+                            {!! Form::text('date', Input::old('date'), ['class' => 'form-control input-group.date','title'=>'select date','required']) !!}
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         {!! Form::label('time', 'Time:', ['class' => 'control-label']) !!}
                         {!! Form::text('time', Input::old('time'), ['id'=>'time', 'class' => 'form-control','maxlength'=>'64','title'=>'enter time']) !!}
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <br>
                         {!! Form::radio('utc_local', 'utc', (@$request_model == 'utc' ? 'checked': '')) !!} UTC
                         {!! Form::radio('utc_local', 'local', (@$request_model == 'local' ? 'checked': '')) !!} Local
@@ -212,8 +225,14 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">METEOROLOGICAL INFORMATION</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">METEOROLOGICAL INFORMATION</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -330,8 +349,14 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">TCAS INFORMATION (traffic)</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">TCAS INFORMATION (traffic)</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -354,8 +379,14 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">ATC PROCEDURES</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">ATC PROCEDURES</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -408,8 +439,14 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">AIRPROX</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">AIRPROX</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -423,8 +460,14 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -468,8 +511,14 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">TURBULANCE</b></h5>
+
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">TURBULANCE</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
                 <div class="row">
@@ -533,8 +582,13 @@
                     </div>
                 </div>
 
-                <div style="background-color: yellow">
-                    <h5 class="text-center text-black"><b style="color: black">HUMAN FACTORS</b></h5>
+
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                        <h5 class="text-center text-black"><b style="color: black">HUMAN FACTORS</b></h5>
+                    </div>
+                    <div class="col-sm-4"></div>
                 </div>
 
 
@@ -578,8 +632,27 @@
                     <div class="col-md-12">
                         <hr>
                         {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                        <small class="required">(max size 300kb)</small>
-                        {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
+                        <small class="required"></small>
+                        {{--{!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}--}}
+                        <div class="col-md-12 image-center">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                {{--<div class="fileupload-new thumbnail" style="width: 120px; height: 120px;   ">--}}
+                                    {{--@if($data['image'] != '')
+                                        <a href="{{ route('gal_image.image.show', $data['id']) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#imageView"><img src="{{ URL::to($data['image']) }}" height="50px" width="50px" alt="{{$data['image']}}" />
+                                        </a>
+                                    @else--}}
+                                    {{--<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />--}}
+                                    {{--{!! Form::file('images[]', array('multiple'=>true)) !!}--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
+                                {{--<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>--}}
+                                <div class="image-center">
+                                    <input type="file" name="attachment[]" id="attachment" class="default" multiple />
+                                </div>
+                            </div>
+                            {{--<span class="label label-danger"><font size="1">NOTE!</font></span>
+                            <span style="color: white"><font size="1">System will allow these types of image(png,jpeg,jpg Format)</font></span>--}}
+                        </div>
                     </div>
                 </div>
 
@@ -606,6 +679,18 @@
 
 
     <script>
+
+        $(document).ready(function () {
+            $("#pnf2").prop('checked', true);
+        });
+
+        function abc(val){
+            if(val=='pf'){
+                $('#pnf2').prop('checked', true);
+            }else if(val=='pnf'){
+                $('#pf2').prop('checked', true);
+            }
+        }
 
         //document.onload = function() {
         $(function () {

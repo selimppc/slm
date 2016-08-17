@@ -79,7 +79,8 @@ class CabinCrewController extends Controller
         //print_r($file_attachment); exit();
         if(isset($file_attachment)){
             //$rules = array('file' => 'mimes:pdf,doc');
-            $rules = array('file' => 'max:300');
+            //$rules = array('file' => 'max:300');
+            $rules = array();
             $validator = Validator::make(array('file' => $file_attachment), $rules);
             //print_r($validator->passes());exit;
 

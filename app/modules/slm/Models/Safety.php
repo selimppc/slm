@@ -24,7 +24,7 @@ class Safety extends Model
      * @var array
      */
     protected $fillable = [
-        'full_name','email','telephone','extension','fax','others','captain','pf_pnf','co_pilot','pf_pnf2','date',
+        'full_name','email','year','telephone','extension','fax','others','captain','pf_pnf','co_pilot','pf_pnf2','date',
         'time','utc_local','air_craft_time','registration','flight_no','from','to','position','altitude','speed','actual_weight',
         'remaining_fuel','atl_ref','delay','diversion','nr_crew','nr_pax','flight_phase','description_of_occurence','imc_vmc','vmc_km','wind_direction',
         'wind_speed','visibility','ceiling','clouds','temperature','qnh','weather_condition','runway','runway_condition','rvr','auto_pilot',

@@ -18,6 +18,20 @@
         <div style="height: 25px"></div>
 
         <div class="panel-body">
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
+                <tr>
+                    <th width="50%" style="border: 2px solid; text-align:center;"><img src="{{ URL::to('/') }}/assets/img/logo.png" alt="slm logo" style="width: 50%; padding-top: 30px;"></th>
+
+                    <th width="50%" style="border: 2px solid; text-align:left;"> <p style="font-weight: bolder; font-size:20px;" align="left">Confidential Safety Report</p></th>
+                </tr>
+                <tr>
+                    <th width="100%" style="text-align: center" colspan="2">
+                        <p>This voluntary report should be submitted to the Safety Department within 24 hours after the incident. FAX: +597-430230</p>
+                        <p>This form can also be submitted via the company website: www.flyslm.com</p>
+                    </th>
+                </tr>
+            </table>
+
             <table class="table table-bordered table-responsive report">
                 <tr>
                     <th width="20%">NAME</th>

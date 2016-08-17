@@ -28,8 +28,13 @@
 <!-----------------End of Reference Number ------>
 
 
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+        <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+    </div>
+    <div class="col-sm-4"></div>
 </div>
 
 @if(isset($operational_safety_verification) && $operational_safety_verification->operator)
@@ -365,7 +370,7 @@ index. If applicable):', ['class' => 'control-label']) !!}
     <div class="row">
         <div class="col-md-6">
             {!! Form::label('signature', 'Signature:', ['class' => 'control-label']) !!}
-            <small class="required">(max size 100kb)</small>
+            <small class="required"></small>
             {!! Form::file('signature', Input::old('signature'), ['id'=>'signature', 'class' => 'form-control','title'=>'Upload your signature']) !!}
         </div>
         <div class="col-sm-6">
@@ -380,7 +385,7 @@ index. If applicable):', ['class' => 'control-label']) !!}
         <div class="col-md-12">
             <hr>
             {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-            <small class="required">(max size 300kb)</small>
+            <small class="required"></small>
             {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
         </div>
     </div>

@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-6 buttons-div">
                     <a class="btn btn-primary btn-xs margin-bot-5" href="{{ route('add-confidential-safety') }}" data-placement="top" data-content="Click to add new Confidential Safety report">
-                        <strong>Add new Confidential Safety report</strong>
+                        <strong>Add New Confidential Safety Report</strong>
                     </a>
                     <a href="{{ route('confident-csv') }}" class="btn btn-info btn-xs margin-bot-5" data-placement="top"><strong>Download CSV</strong></a>
                     <div class="padding-tb"></div>

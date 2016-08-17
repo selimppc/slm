@@ -32,7 +32,16 @@
                     <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY <br> REPORT</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">GENERAL INFORMATION</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+
+                    </th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : {{ isset($data->full_name)?ucfirst($data->full_name):''}},{{ isset($data->email)?ucfirst($data->email):''}},{{ isset($data->telephone)?ucfirst($data->telephone):''}},{{ isset($data->extension)?ucfirst($data->extension):''}},{{ isset($data->fax)?ucfirst($data->fax):''}}</th>
@@ -51,14 +60,15 @@
                     <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : {{ isset($data->others)?ucfirst($data->others):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="16%" style="border: 2px solid">5. DATE : {{ isset($data->date)?ucfirst($data->date):''}}</th>
-                    <th width="32%" style="border: 2px solid" colspan="2">
+                    <th width="15%" style="border: 2px solid"> Year : {{ isset($data->year)?ucfirst($data->year):''}}</th>
+                    <th width="19%" style="border: 2px solid">5. DATE : {{ isset($data->date)?ucfirst($data->date):''}}</th>
+                    <th width="25%" style="border: 2px solid" colspan="2">
                         6. TIME : {{ isset($data->time)?ucfirst($data->time):''}}&nbsp;&nbsp;
                         {!! Form::radio('utc_local', 'utc', (@$data->utc_local == 'utc' ? 'checked': '')) !!} UTC
                         {!! Form::radio('utc_local', 'local', (@$data->utc_local == 'local' ? 'checked': '')) !!} Local
                     </th>
                     <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : {{ isset($data->air_craft_time)?ucfirst($data->air_craft_time):'' }}</th>
-                    <th width="36%" style="border: 2px solid" colspan="2">8. REGISTRATION : {{ isset($data->registration)?ucfirst($data->registration):''}}</th>
+                    <th width="25%" style="border: 2px solid" colspan="2">8. REGISTRATION : {{ isset($data->registration)?ucfirst($data->registration):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">9. FLIGHT NUMBER : {{ isset($data->flight_no)?ucfirst($data->flight_no):''}}</th>
@@ -105,7 +115,15 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">METEOROLOGICAL INFORMATION</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">METEOROLOGICAL INFORMATION</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">24. IMC/VMC : {{ isset($data->imc_vmc)?ucfirst($data->imc_vmc):''}}</th>
@@ -131,18 +149,25 @@
                         {!! Form::radio('weather_condition', 'severe', (@$data->weather_condition == 'severe' ? 'checked': '')) !!} SEVERE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         {!! Form::radio('weather_condition', 'turbulence', (@$data->weather_condition == 'turbulence' ? 'checked': '')) !!} TURBULENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         {!! Form::radio('weather_condition', 'wind_shear', (@$data->weather_condition == 'wind_shear' ? 'checked': '')) !!} WIND-SHEAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'rain', (@$data->weather_condition == 'rain' ? 'checked': '')) !!} RAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                         <br>
-                        {!! Form::radio('weather_condition', 'hail', (@$data->weather_condition == 'hail' ? 'checked': '')) !!} HAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'mist', (@$data->weather_condition == 'mist' ? 'checked': '')) !!} MIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        {!! Form::radio('weather_condition', 'fog', (@$data->weather_condition == 'fog' ? 'checked': '')) !!} FOG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('weather_condition', 'rain', (@$data->weather_condition == 'rain' ? 'checked': '')) !!} RAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('weather_condition', 'hail', (@$data->weather_condition == 'hail' ? 'checked': '')) !!} HAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('weather_condition', 'mist', (@$data->weather_condition == 'mist' ? 'checked': '')) !!} MIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {!! Form::radio('weather_condition', 'fog', (@$data->weather_condition == 'fog' ? 'checked': '')) !!} FOG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         {!! Form::radio('weather_condition', 'snow', (@$data->weather_condition == 'snow' ? 'checked': '')) !!} SNOW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">34. RUNWAY : {{ isset($data->runway)?ucfirst($data->runway):'' }}</th>
-                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION : {{ isset($data->runway_condition)?ucfirst($data->runway_condition):''}}</th>
+                    <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION :
+                        <br>
+                        {!! Form::radio('runway_condition', 'dry', (@$data->runway_condition == 'dry' ? 'checked': '')) !!} DRY
+                        {!! Form::radio('runway_condition', 'wet', (@$data->runway_condition == 'wet' ? 'checked': '')) !!} WET
+                        {!! Form::radio('runway_condition', 'mist', (@$data->runway_condition == 'mist' ? 'checked': '')) !!} MIST
+                        {!! Form::radio('runway_condition', 'snow', (@$data->runway_condition == 'snow' ? 'checked': '')) !!} SNOW
+                    </th>
                     <th width="20%" style="border: 2px solid">36. RVR (M) : {{ isset($data->rvr)?ucfirst($data->rvr):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
@@ -158,7 +183,17 @@
                     <th width="36%" style="border: 2px solid">42. SPOILERS : {{ isset($data->spoilers)?ucfirst($data->spoilers):''}}</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">TCAS INFORMATION (traffic)</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">TCAS INFORMATION (traffic)</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+
+
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
@@ -175,7 +210,16 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">ATC PROCEDURES</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">ATC PROCEDURES</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
@@ -221,7 +265,15 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">AIRPROX</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">AIRPROX</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="3">
@@ -234,7 +286,15 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">BIRD STRIKE</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
@@ -274,7 +334,15 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">BIRD STRIKE</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
@@ -320,25 +388,46 @@
 
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="48%" style="border: 2px solid" colspan="2">
-                        73. DETAILS OF AC WAKE TURBULANCE? :{{ isset($data->details_ac_wake_turbulance)?ucfirst($data->details_ac_wake_turbulance):''}}</th>
-                    <th width="52%" style="border: 2px solid" colspan="2">
-                        74. ADVISE TO OTHER AIRCRAFT :{{ isset($data->advice_other_aircraft)?ucfirst($data->advice_other_aircraft):'' }}</th>
-
+                    <th width="48%" style="border: 2px solid" colspan="3">
+                        73. DETAILS OF AC WAKE TURBULANCE? :{{ isset($data->details_ac_wake_turbulance)?ucfirst($data->details_ac_wake_turbulance):''}}
+                    </th>
+                    <th width="52%" style="border: 2px solid" colspan="3">
+                        74. ADVISE TO OTHER AIRCRAFT :{{ isset($data->advice_other_aircraft)?ucfirst($data->advice_other_aircraft):'' }}
+                    </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; background-color: yellow" colspan="6">HUMAN FACTORS</th>
+                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
+                            <div class="row">
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+                                    <h5 class="text-center text-black"><b style="color: black">HUMAN FACTORS</b></h5>
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+                        </th>
                 </tr>
                 <tr style="border: 2px solid">
-                    <th width="48%" style="border: 2px solid" colspan="2">
+                    <th width="48%" style="border: 2px solid" colspan="3">
                         75. PERSON INVOLVED (name) [ optional field] :{{ isset($data->persion_involved)?ucfirst($data->persion_involved):''}}</th>
-                    <th width="52%" style="border: 2px solid" colspan="2">
-                        76. FUNCTION/POSITION :{{ isset($data->function_position)?ucfirst($data->function_position):''}}</th>
+                    <th width="52%" style="border: 2px solid" colspan="3">
+                        76. FUNCTION/POSITION :
+                        <br>
+                        {!! Form::radio('function_position', 'crew', (@$data->function_position == 'crew' ? 'checked': '')) !!} CREW
+                        {!! Form::radio('function_position', 'ground', (@$data->function_position == 'ground' ? 'checked': '')) !!} GROUND
+                        {!! Form::radio('function_position', 'other', (@$data->function_position == 'other' ? 'checked': '')) !!} OTHER
+
+                    </th>
 
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="6">
-                        77. TYPE OF INFLUENCE :{{ isset($data->type_of_influence)?ucfirst($data->type_of_influence):'' }}</th>
+                        77. TYPE OF INFLUENCE :
+                        <br>
+                        {!! Form::radio('type_of_influence', 'crew_actions', (@$data->type_of_influence == 'crew_actions' ? 'checked': '')) !!} CREW ACTIONS
+                        {!! Form::radio('type_of_influence', 'external', (@$data->type_of_influence == 'external' ? 'checked': '')) !!} EXTERNAL
+                        {!! Form::radio('type_of_influence', 'organizations', (@$data->type_of_influence == 'organizations' ? 'checked': '')) !!} ORGANIZATIONA
+                        {!! Form::radio('type_of_influence', 'personal', (@$data->type_of_influence == 'personal' ? 'checked': '')) !!} PERSONAL
+                    </th>
 
                 </tr>
                 <tr style="border: 2px solid">
@@ -354,15 +443,20 @@
                 <div class="col-md-12">
                     <hr>
                     {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                    @if($data->attachment)
-                        <?php $expld = explode('/',$data->attachment); ?>
-                        <div>
-                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                            <a href="{{ URL::to($data->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-                        </div>
-                    @else
-                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-                    @endif
+
+                        @foreach($data_image as $image)
+
+                            <?php $expld = explode('/',$image->image_path); ?>
+                            @if(isset($image->image_path))
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                            @else
+                                <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                            @endif
+                        @endforeach
+
                 </div>
             </div>
 

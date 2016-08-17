@@ -30,9 +30,16 @@
 </div>
 <!-----------------End of Reference Number ------>
 
-<div style="background-color: yellow; height: 20px;">
-    <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="background-color: yellow; height: 20px;">
+        <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
+    </div>
+    <div class="col-sm-4"></div>
 </div>
+
 @if(isset($maintenance_occurrence_verification) && $maintenance_occurrence_verification->full_name)
 <div class="row">
     <div class="col-sm-4">
@@ -279,7 +286,7 @@
     <div class="col-md-12">
         <hr>
         {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-        <small class="required">(max size 300kb)</small>
+        <small class="required"></small>
         {!! Form::file('attachment', Input::old('attachment'), ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment']) !!}
     </div>
 </div>

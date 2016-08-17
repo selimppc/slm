@@ -12,7 +12,7 @@
 
     <div class="panel" id="panel_padding">
         <div style="background-color: #0490a6; height: 25px;">
-            <h4 class="text-center text-green"><b style="color: #f5f5f5">Add new Confidential Safety report</b></h4>
+            <h4 class="text-center text-green"><b style="color: #f5f5f5">Add New Confidential Safety Report</b></h4>
         </div>
 
         {!! Form::open(['route' => 'store-confidential-safety','class' => 'form-horizontal','id' => 'form_2']) !!}
@@ -47,9 +47,7 @@
         $(function () {
             $("#form_2").validate({
                 rules: {
-                    name: {
-                        required: true,
-                    },
+
                     password: {
                         required: true,
                     },
