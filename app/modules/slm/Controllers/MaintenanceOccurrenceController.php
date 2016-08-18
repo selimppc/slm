@@ -495,7 +495,7 @@ class MaintenanceOccurrenceController extends Controller
                         <p style="height: 15px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 15px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: center;">SAFETY DEPARTMENT REF.NR : '.$maintenance_occurrence->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 15px;vertical-align: top; text-align: left;">SAFETY DEPARTMENT <br> REF.NR : '.$maintenance_occurrence->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">MAINTENANCE OCCURRENCE REPORT</th>
@@ -509,8 +509,8 @@ class MaintenanceOccurrenceController extends Controller
                 <tr>
                     <th colspan="7">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$maintenance_occurrence->full_name.','.$maintenance_occurrence->email.','.$maintenance_occurrence->telephone.','.$maintenance_occurrence->extension.','.$maintenance_occurrence->fax.'</th>
                 </tr>
-                <tr style="border: 2px solid">
-                    <th width="28%" style="border: 2px solid" colspan="2">2. DATE OF OCCURRENCE :
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
+                    <th width="28%" style="border: 2px solid; vertical-align: top; text-align:left;" colspan="2">2. DATE OF OCCURRENCE :
                         '.date("M d, Y", strtotime($maintenance_occurrence->date_of_occurrence)).'
                     </th>
                     <th width="14%" style="border: 2px solid">3. TIME OF OCCURRENCE : '.$maintenance_occurrence->time_of_occurrence.'</th>
@@ -519,7 +519,7 @@ class MaintenanceOccurrenceController extends Controller
                     <th width="30%" style="border: 2px solid" colspan="2">6. SUB LOCATION : '.$maintenance_occurrence->sub_location_of_occurrence.'</th>
                 </tr>
 
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="14%" style="border: 2px solid">7. MANDATORY : '.$maintenance_occurrence->mandatory.'</th>
                     <th width="14%" style="border: 2px solid">8. AIRCRAFT TYPE : '.$maintenance_occurrence->aircraft_type.'</th>
                     <th width="14%" style="border: 2px solid">9. REGISTRATION : '.$maintenance_occurrence->registration.'</th>
@@ -528,7 +528,7 @@ class MaintenanceOccurrenceController extends Controller
                     <th width="14%" style="border: 2px solid">12. TECHNICAL LOG REF : '.$maintenance_occurrence->technical_log_ref.'</th>
                     <th width="16%" style="border: 2px solid">13. TAG/DEMAND NO : '.$maintenance_occurrence->tag_or_demand_no.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="28%" style="border: 2px solid" colspan="2">14. COMPONENT : '.$maintenance_occurrence->component.'</th>
                     <th width="14%" style="border: 2px solid">15. PART NUMBER : '.$maintenance_occurrence->part_number.'</th>
                     <th width="14%" style="border: 2px solid">16. SERIAL NUMBER : '.$maintenance_occurrence->serial_number.'</th>
@@ -537,10 +537,10 @@ class MaintenanceOccurrenceController extends Controller
                     <th width="16%" style="border: 2px solid">19. ATA SUB CODE : '.$maintenance_occurrence->ata_sub_code.'</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid" colspan="7">20. TITLE OF OCCURRENCE : '.$maintenance_occurrence->title_of_occurrence.'</th>
+                    <th width="100%" style="border: 2px solid; vertical-align: top; text-align:left;" colspan="7">20. TITLE OF OCCURRENCE : '.$maintenance_occurrence->title_of_occurrence.'</th>
                 </tr>
                 <tr>
-                    <th style="border: 2px solid;line-height:200px" colspan="7">21. DESCRIPTION OF OCCURRENCE :'.$maintenance_occurrence->description_of_occurrence.'</th>
+                    <th style="border: 2px solid;line-height:200px; vertical-align: top; text-align:left;" colspan="7">21. DESCRIPTION OF OCCURRENCE :'.$maintenance_occurrence->description_of_occurrence.'</th>
                 </tr>
 
                 <tr>

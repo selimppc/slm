@@ -610,7 +610,7 @@ class GroundHandlingController extends Controller
                         <p style="height: 15px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 15px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: center;">Safety Department ref. nr : '.$ground_handling->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 15px; vertical-align: top; text-align:left;">Safety Department <br> ref. nr : '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 25px; font-weight: bold">GROUND HANDLING REPORT</th>
@@ -624,11 +624,11 @@ class GroundHandlingController extends Controller
                 <tr>
                     <th colspan="4">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$ground_handling->full_name.','.$ground_handling->email.','.$ground_handling->telephone.','.$ground_handling->extension.','.$ground_handling->fax.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="75%" style="border: 2px solid" colspan="3">2. LOCATION OF OCCURRENCE : '.$ground_handling->location_of_occurrence.'</th>
                     <th width="25%" style="border: 2px solid">3. RAMP CONDITION : '.$ground_handling->ramp_condition.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="25%" style="border: 2px solid">4. DATE : '.date("M d, Y", strtotime($ground_handling->date)).'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">
                         5. TIME: '.$ground_handling->time.'<br> &nbsp;&nbsp;&nbsp;
@@ -638,37 +638,37 @@ class GroundHandlingController extends Controller
                     </th>
                     <th width="25%" style="border: 2px solid">6. OPERATIONAL PHASE : '.$ground_handling->operational_phase.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="25%" style="border: 2px solid">7. OPERATOR : '.$ground_handling->operator.'</th>
                     <th width="25%" style="border: 2px solid">8. FLIGHT NUMBER : '.$ground_handling->flight_number.'</th>
                     <th width="25%" style="border: 2px solid">9. AIRCRAFT TYPE : '.$ground_handling->aircraft_type.'</th>
                     <th width="25%" style="border: 2px solid">10. REGISTRATION : '.$ground_handling->registration.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="25%" style="border: 2px solid">11. FROM : '.$ground_handling->from.'</th>
                     <th width="25%" style="border: 2px solid">12. TO : '.$ground_handling->to.'</th>
                     <th width="25%" style="border: 2px solid">13. DELAY (min) : '.$ground_handling->delay.'</th>
                     <th width="25%" style="border: 2px solid">14. DIVERSION : '.$ground_handling->diversion.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">15. THIRD PARTY INVOLVED (Contractor) '.$ground_handling->third_party_involved.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">DANGEROUS GOODS</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">17. ORIGIN OF THE GOODS : '.$ground_handling->origin_of_the_goods.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">18. IATA UN/ID : '.$ground_handling->iata_un_or_id.'</th>
                 </tr>
 
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">19. CLASS / DIVISION : '.$ground_handling->class_or_division.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">20. SUBSIDIARY RISK : '.$ground_handling->subsidiary_risk.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">
                         21. PACKING GROUP :<br>
                         I  <input type="checkbox" name="packing_group" value=""  '.$I.' style="display:inline;" >
@@ -682,35 +682,35 @@ class GroundHandlingController extends Controller
                         III  <input type="checkbox" name="class_7_category" value="" '.$cat111.' style="display:inline;" >
                     </th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">23. TYPE OF PACKING : '.$ground_handling->type_of_packing.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">24. PACKING SPEC. MARKING : '.$ground_handling->packing_spec_marking.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">25. NUMBER OF PACKAGES : '.$ground_handling->number_of_packages.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">26. QUANTITY-OF TRANSPORT INDEX : '.$ground_handling->quantity_of_transport_index.'</th>
                 </tr>
 
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">27.AIRWAY-BILL REFERENCE : '.$ground_handling->airway_bill_reference.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">28. COURIER POUCH /BAG TAG/ TKT REF : '.$ground_handling->courier_pouch_reference.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">29. SHIPPING AGENT : '.$ground_handling->shipping_agent.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">30. SHIPPING NAME : '.$ground_handling->shipping_name.'</th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">VEHICLE & RAMP EQUIPMENT DAMAGE</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="25%" style="border: 2px solid">31. DAMAGE TO : '.$ground_handling->damage_to.'</th>
                     <th width="25%" style="border: 2px solid">32. DAMAGE BY : '.$ground_handling->damage_by.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">33. AREA (STAND) : '.$ground_handling->area.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">34.ENVIROMENTAL CONDITIONS (weather, surface, lighting) : '.$ground_handling->enviromental_condition.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">35. DETAILS OF DAMAGE (add forms if necessary) : '.$ground_handling->details_of_damage.'</th>
                 </tr>
 

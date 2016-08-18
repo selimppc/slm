@@ -563,8 +563,8 @@ class SafetyController extends Controller
 </style>
 
     <div class="panel">
-        <div class="panel-body">
-            <div class="panel-body">
+        <div class="panel-body" style="border:3px solid #000000">
+
             <!--<table cellspacing="0" cellpadding="0" class="tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
@@ -592,7 +592,7 @@ class SafetyController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$data->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; vertical-align: top;text-align: left;">Safety Department <br> ref. nr : '.$data->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY REPORT</th>
@@ -608,7 +608,7 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$data->full_name.','.$data->email.','.$data->telephone.','.$data->extension.','.$data->fax.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="32%" style="border: 2px solid" colspan="2">
                         2. CAPTAIN : '.$data->captain.'<br>
                         PF<input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" >
@@ -620,9 +620,9 @@ class SafetyController extends Controller
                         PNF<input type="checkbox" name="pf_pnf2" value="" '.$pnf2.' style="display:inline;" >
 
                         </th>
-                    <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : '.$data->others.'</th>
+                    <th width="36%" style="border: 2px solid;" colspan="2">4. OTHER : '.$data->others.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid"> Year : '.$data->year.'</th>
                     <th width="32%" style="border: 2px solid">5. DATE : '.date("M d, Y", strtotime($data->date)).'</th>
                     <th width="16%" style="border: 2px solid">
@@ -633,26 +633,26 @@ class SafetyController extends Controller
                     <th width="16%" style="border: 2px solid">7. AIRCRAFT TYPE : '.$data->air_craft_time.'</th>
                     <th width="36%" style="border: 2px solid" colspan="2">8. REGISTRATION : '.$data->registration.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">9. FLIGHT NUMBER : '.$data->flight_no.'</th>
                     <th width="32%" style="border: 2px solid" colspan="2">10. FROM : '.$data->from.'</th>
                     <th width="16%" style="border: 2px solid">11. TO : '.$data->to.'</th>
                     <th width="36%" style="border: 2px solid" colspan="2">12. POSITION (geogr. Co-ord) : '.$data->position.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">13. ALTITUDE : '.$data->altitude.'</th>
                     <th width="32%" style="border: 2px solid" colspan="2">14. SPEED/MACH : '.$data->speed.'</th>
                     <th width="16%" style="border: 2px solid">15. ACTUAL WEIGHT : '.$data->actual_weight.'</th>
                     <th width="36%" style="border: 2px solid" colspan="2">16. REMAINING FUEL : '.$data->remaining_fuel.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">17. ATL REF. : '.$data->atl_ref.'</th>
                     <th width="32%" style="border: 2px solid">18. DELAY (min) : '.$data->delay.'</th>
                     <th width="16%" style="border: 2px solid">19. DIVERSION : '.$data->diversion.'</th>
                     <th width="16%" style="border: 2px solid">20. NR CREW : '.$data->nr_crew.'</th>
                     <th width="36%" style="border: 2px solid" colspan="2">21. NR. PAX : '.$data->nr_pax.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th width="100%" style="border: 2px solid" colspan="6">
                         22. FLIGHT PHASE : '.$data->flight_phase.'
                         <br>
@@ -671,16 +671,67 @@ class SafetyController extends Controller
                     TAXI IN<input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" >
                     </th>
                 </tr>
-                <tr>
-                    <th width="100%" style="border: 2px solid" colspan="6">
+                <tr style="vertical-align: top;">
+                    <th width="100%" height="340px" style="border: 2px solid" colspan="6">
                         23. DESCRIPTION OF OCCURRENCE ( add forms if necessary) :
                         <p>'.$data->description_of_occurence.'</p>
                     </th>
                 </tr>
+                <tr style="vertical-align: top;">
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;via fax <b>+597430230</b> or via e-mail : <u><strong>safety@flyslm.com</strong></u>
+                    </th>
+                </tr>
+                <tr style="vertical-align: top;">
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page 1 of 2
+                        <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You may report anonymously
+                    </th>
+                </tr>
+            </table>
+            </div>
+
+            <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="3">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                        <b>SA - 99925</b>
+                    </th>
+                </tr>
+
+                </table>
+
+                <br>
+
+
+
+                <div style="border:3px solid #000000">
+
+
+                <table cellspacing="0" cellpadding="0" class="tbl" border="1">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; vertical-align: top;text-align: left;">Safety Department <br> ref. nr : '.$data->reference_no.'</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY REPORT</th>
+                </tr>
+            </table>
+
+                <table cellpadding="0" cellspacing="0" class="no-spacing tbl2">
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">METEOROLOGICAL INFORMATION</span></span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">24. IMC/VMC : '.$data->imc_vmc.'</th>
                     <th width="32%" style="border: 2px solid" colspan="2">25. VCM (km) : '.$data->vmc_km.'</th>
                     <th width="16%" style="border: 2px solid">26. WIND DIRECTION (deg) : '.$data->wind_direction.'</th>
@@ -691,7 +742,7 @@ class SafetyController extends Controller
                     KNOTH<input type="checkbox" name="wind_speed" value=""  '.$ws2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">28. VISIBILITY : '.$data->visibility.'</th>
                     <th width="32%" style="border: 2px solid">29. CEILING : '.$data->ceiling.'</th>
                     <th width="16%" style="border: 2px solid">30. CLOUDS : '.$data->clouds.'</th>
@@ -699,7 +750,7 @@ class SafetyController extends Controller
                     <th width="36%" style="border: 2px solid" colspan="2">32. QNH : '.$data->qnh.'</th>
                 </tr>
 
-                <tr>
+                <tr style="vertical-align: top;">
                     <th width="100%" style="border: 2px solid" colspan="6">
                         33. WEATHER CONDITION :
                         <br>
@@ -716,7 +767,7 @@ class SafetyController extends Controller
                         SNOW<input type="checkbox" name="weather_condition" value=""  '.$weather10.' style="display:inline;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">34. RUNWAY : '.$data->runway.'</th>
                     <th width="48%" style="border: 2px solid" colspan="4">35. RUNWAY CONDITION :
                     <br>
@@ -727,7 +778,7 @@ class SafetyController extends Controller
                     </th>
                     <th width="20%" style="border: 2px solid">36. RVR (M) : '.$data->rvr.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid">37. AUTO PILOT : '.$data->auto_pilot.'</th>
                     <th width="32%" style="border: 2px solid">38. AUTO THRUST : '.$data->auto_thrust.'</th>
                     <th width="16%" style="border: 2px solid">
@@ -744,7 +795,7 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">TCAS INFORMATION (traffic)</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid" colspan="2">
                         43. TYPE OF ALERT :
                         <br>
@@ -763,7 +814,7 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">ATC PROCEDURES</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid" colspan="2">
                         46. LEVEL OF RISK :
                         <br>
@@ -786,7 +837,7 @@ class SafetyController extends Controller
                     </th>
                 </tr>
 
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="16%" style="border: 2px solid" colspan="2">
                         49. ATC INSTUCTIONS :
                         <br>
@@ -805,16 +856,16 @@ class SafetyController extends Controller
                         '.$data->heading.'
                     </th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th width="100%" style="border: 2px solid" colspan="6">
                         52. HEADING OF THE OTHER AC :
                         '.$data->heading_other_ac.'
                     </th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th width="100%" style="border: 2px solid; text-align: center;" colspan="6"><span style="background-color: yellow; padding:5px;"">AIRPROX</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="3">
                         53. VER. SEPARATION :
                         '.$data->ver_seperation.'
@@ -827,7 +878,7 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; " colspan="6"><span style="background-color: yellow; padding:5px;"">BIRD STRIKE</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         55. TYPE OF BIRD :
                         '.$data->type_of_bird.'
@@ -845,7 +896,7 @@ class SafetyController extends Controller
                     </th>
                 </tr>
 
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         59. ADVISED EARLIER? :
                         <br>
@@ -867,7 +918,7 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; " colspan="6"><span style="background-color: yellow; padding:5px;"">TURBULANCE</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         62. Course of the AC :
                         <br>
@@ -890,7 +941,7 @@ class SafetyController extends Controller
                         ON<input type="checkbox" name="pos_extended_center" value=""  '.$extended3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         65. CHANGE IN PITCH (deg) :'.$data->change_in_pitch.'</th>
                     <th width="52%" style="border: 2px solid" colspan="2">
@@ -898,7 +949,7 @@ class SafetyController extends Controller
                     <th width="52%" style="border: 2px solid" colspan="2">
                         67. CHANGE IN YAW (deg) :'.$data->change_in_yaw.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="2">
                         68. CHANGE IN ALT. :'.$data->change_in_alt.'</th>
                     <th width="52%" style="border: 2px solid" colspan="2">
@@ -906,14 +957,39 @@ class SafetyController extends Controller
                     <th width="52%" style="border: 2px solid" colspan="2">
                         70. STICKSHAKER? :'.$data->stickshaker.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+
+                </table>
+                </div>
+
+<br>
+                <div style="border:3px solid #000000">
+
+
+                <table cellspacing="0" cellpadding="0" class="tbl" border="1">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 20px; vertical-align: top;text-align: left;">Safety Department <br> ref. nr : '.$data->reference_no.'</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY REPORT</th>
+                </tr>
+            </table>
+
+                <table cellpadding="0" cellspacing="0" class="no-spacing tbl2">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="3">
                         71. SUSPECTED WAKE TURBULANCE :'.$data->suspected_wake_turbulance.'</th>
                     <th width="52%" style="border: 2px solid" colspan="3">
                         72. SIGN. VERTICAL ACCELARATION :'.$data->sign_verticle_accelaration.'</th>
 
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="3">
                         73. DETAILS OF AC WAKE TURBULANCE? :'.$data->details_ac_wake_turbulance.'</th>
                     <th width="52%" style="border: 2px solid" colspan="3">
@@ -923,7 +999,7 @@ class SafetyController extends Controller
                 <tr>
                     <th width="100%" style="border: 2px solid; text-align: center; " colspan="6"><span style="background-color: yellow; padding:5px;"">HUMAN FACTORS</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="3">
                         75. PERSON INVOLVED (name) [ optional field] :'.$data->persion_involved.'</th>
                     <th width="52%" style="border: 2px solid" colspan="3">
@@ -935,7 +1011,7 @@ class SafetyController extends Controller
                         </th>
 
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="6">
                         77. TYPE OF INFLUENCE :
                         <br>
@@ -946,7 +1022,7 @@ class SafetyController extends Controller
                         </th>
 
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="48%" style="border: 2px solid" colspan="6">
                         78. COMMENTS :'.$data->comments.'</th>
 

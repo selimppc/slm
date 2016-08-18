@@ -26,7 +26,7 @@
                         <p style="font-weight: bolder; font-size:40px;" align="center">(OSR)</p>
                         <p style="font-weight: bolder; font-size:20px;" align="center">Operational Safety Report</p>
                     </th>
-                    <th width="100%" colspan="2" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $data->reference_no }}</th>
+                    <th width="100%" colspan="2" style="border: 2px solid; vertical-align: top; text-align: left"> Safety Department <br> ref. nr : {{ $data->reference_no }}</th>
                 </tr>
                 <tr>
                     <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY <br> REPORT</th>
@@ -46,8 +46,8 @@
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : {{ isset($data->full_name)?ucfirst($data->full_name):''}},{{ isset($data->email)?ucfirst($data->email):''}},{{ isset($data->telephone)?ucfirst($data->telephone):''}},{{ isset($data->extension)?ucfirst($data->extension):''}},{{ isset($data->fax)?ucfirst($data->fax):''}}</th>
                 </tr>
-                <tr style="border: 2px solid">
-                    <th width="32%" style="border: 2px solid" colspan="2">
+                <tr style="border: 2px solid; vertical-align: top; text-align: left">
+                    <th width="32%" style="border: 2px solid;" colspan="2">
                         2. CAPTAIN : {{ isset($data->captain)?ucfirst($data->captain):''}}<br>&nbsp;&nbsp;
                         PF  {!! Form::radio('pf_pnf', 'pf', (@$data->pf_pnf == 'pf' ? 'checked': '')) !!}
                         PNF  {!! Form::radio('pf_pnf', 'pnf', (@$data->pf_pnf == 'pnf' ? 'checked': '')) !!}
@@ -57,7 +57,7 @@
                         <br>PF  {!! Form::radio('pf_pnf2', 'pf', (@$data->pf_pnf2 == 'pf' ? 'checked': '')) !!}
                         PNF  {!! Form::radio('pf_pnf2', 'pnf', (@$data->pf_pnf2 == 'pnf' ? 'checked': '')) !!}
                     </th>
-                    <th width="36%" style="border: 2px solid" colspan="2">4. OTHER : {{ isset($data->others)?ucfirst($data->others):''}}</th>
+                    <th width="36%" style="border: 2px solid; vertical-align: top;" colspan="2">4. OTHER : {{ isset($data->others)?ucfirst($data->others):''}}</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="15%" style="border: 2px solid"> Year : {{ isset($data->year)?ucfirst($data->year):''}}</th>
@@ -109,7 +109,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid" colspan="6">
+                    <th width="100%" height="400px" style="border: 2px solid" colspan="6">
                         23. DESCRIPTION OF OCCURRENCE ( add forms if necessary) :
                         <p>{{ isset($data->description_of_occurence)?ucfirst($data->description_of_occurence):''}}</p>
                     </th>

@@ -585,7 +585,7 @@ class OperationalSafetyController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 18px; text-align: center;">Safety Department ref. nr: '.$operational_safety->operator.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 18px; text-align: left; vertical-align: top;">Safety Department <br> ref. nr: '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods Occurrence Report</th>
@@ -595,7 +595,7 @@ class OperationalSafetyController extends Controller
                 <tr>
                     <th style="text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">
                     See the notes on the next page of this form. Those boxes where the heading is in italics need only be completed if applicable.<br>
                         Mark type of Occurrence :
@@ -604,72 +604,72 @@ class OperationalSafetyController extends Controller
                         Other Occurrence  <input type="checkbox" name="type_of_occurrence" value="" '.$occurrence111.' style="display:inline;" >
                     </th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">1. Operator : '.$operational_safety->operator.'</th>
                     <th width="25%" style="border: 2px solid">2. Date of Occurrence : '.date("M d, Y", strtotime($operational_safety->date_of_occurrence)).'</th>
                     <th width="25%" style="border: 2px solid">3. Local time of Occurrence : '.$operational_safety->local_time_of_occurrence.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;">
                     <th width="50%" style="border: 2px solid" colspan="2">4. Flight date : '.date("M d, Y", strtotime($operational_safety->flight_date)).'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">5. Flight no: : '.$operational_safety->flight_no.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">6. Departure airport : '.$operational_safety->departure_airport.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">7. Destination airport : '.$operational_safety->destination_airport.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">8. Aircraft type : '.$operational_safety->aircraft_type.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">9. Aircraft registration : '.$operational_safety->aircraft_registration.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">10. Location of occurrence : '.$operational_safety->location_of_occurrence.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">11. Origin of the goods : '.$operational_safety->origin_of_the_goods.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">12. Description of the occurrence including details of injury, damage, etc.(if necessary continue on the next page) : '.$operational_safety->description_of_the_occurrence.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">13. Proper shipping name (including the technical name) : '.$operational_safety->proper_shipping_name.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">14. UN/ID no (when known) : '.$operational_safety->un_or_id_no.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="25%" style="border: 2px solid">15. Class/division (when known) : '.$operational_safety->class_or_division.'</th>
                     <th width="25%" style="border: 2px solid">16. Subsidiary risk(s) : '.$operational_safety->subsidiary_risks.'</th>
                     <th width="25%" style="border: 2px solid">17. Packing group : '.$operational_safety->packing_group.'</th>
                     <th width="25%" style="border: 2px solid">18. Category, (class 7 only) : '.$operational_safety->category.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;text-align:left;">
                     <th width="25%" style="border: 2px solid">19. Type of packaging : '.$operational_safety->type_of_packaging.'</th>
                     <th width="25%" style="border: 2px solid">20 Packaging specification marking : '.$operational_safety->packaging_specification_marking.'</th>
                     <th width="25%" style="border: 2px solid">21. No. of packages : '.$operational_safety->no_of_packages.'</th>
                     <th width="25%" style="border: 2px solid">22. Quantity (or transport index. If applicable : '.$operational_safety->quantity.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">23. Reference no. of Airway bill : '.$operational_safety->reference_no_of_airway_bill.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">24. Reference no. of courier pouch, baggage tag, or passenger ticket : '.$operational_safety->reference_no_of_courier.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">25. Name and address of shipper, agent, passenger, etc. : '.$operational_safety->name_and_address_of_shipper_agent_passenger.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">26. Other relevant information (including suspected cause, any action taken) : '.$operational_safety->other_relevant_information.'</th>
                 </tr>
 
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">27. Name and title of person making report : '.$operational_safety->name_and_title_of_person_making_report.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">28. Telephone no. : '.$operational_safety->telephone_no.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">29. Company dept. code, E-mail or Info Mail code : '.$operational_safety->company_contact.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">30. Reporter ref : '.$operational_safety->reporter_ref.'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">31. Address : '.$operational_safety->address.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">32. Date / Signature : '.date("M d, Y", strtotime($operational_safety->date_of_signature)).'</th>
                 </tr>
-                <tr style="border: 2px solid">
+                <tr style="border: 2px solid; vertical-align: top;text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">33. Description of the occurrence (continuation) : '.$operational_safety->description_of_the_occurrence.'</th>
                 </tr>
             </table>

@@ -25,7 +25,7 @@
                         <p style="font-weight: bolder; font-size:40px;" align="center">(OSR)</p>
                         <p style="font-weight: bolder; font-size:20px;" align="center">Operational Safety Report</p>
                     </th>
-                    <th width="100%" colspan="2" style="border: 2px solid; text-align:right;"> Safety Department ref. nr : {{ $maintenance_occurrence->reference_no }}</th>
+                    <th width="100%" colspan="2" style="border: 2px solid; vertical-align: top; text-align:left;"> Safety Department <br> ref. nr : {{ $maintenance_occurrence->reference_no }}</th>
                 </tr>
                 <tr>
                     <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 25px; font-weight: bold">MAINTENANCE OCCURRENCE <br> REPORT</th>

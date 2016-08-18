@@ -457,7 +457,7 @@ class CabinCrewController extends Controller
                         <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 20px; text-align: center;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; vertical-align: top; font-size: 20px; text-align: left;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>
@@ -471,7 +471,7 @@ class CabinCrewController extends Controller
                 <tr>
                     <th colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$cabin_crew->full_name.','.$cabin_crew->email.','.$cabin_crew->telephone.','.$cabin_crew->extension.','.$cabin_crew->fax.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th width="40%" style="border: 2px solid" colspan="2">
                         2. CAPTAIN :'.$cabin_crew->captain.'<br>
                        PF   <input type="checkbox" name="pf_pnf" value=""  '.$pf.' style="display:inline;" >
@@ -484,7 +484,7 @@ class CabinCrewController extends Controller
                     </th>
                     <th width="20%" style="border: 2px solid">4. OTHER : '.$cabin_crew->others.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th colspan="2">5. PURSER : '.$cabin_crew->purser.'</th>
                     <th>6. DATE : '.date("M d, Y", strtotime($cabin_crew->date)).'</th>
 
@@ -495,26 +495,26 @@ class CabinCrewController extends Controller
                     </th>
                     <th>8. AIRCRAFT TYPE : '.$cabin_crew->air_craft_type.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th>9. REGISTRATION : '.$cabin_crew->registration.'</th>
                     <th>10. FLIGHT NR. : '.$cabin_crew->flight_no.'</th>
                     <th">11. FROM : '.$cabin_crew->from.'</th>
                     <th>12. TO : '.$cabin_crew->to.'</th>
                     <th>13. FLT DIVERTED TO : '.$cabin_crew->flt_diverted_to.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th colspan="2">14. ASSIGNED DOOR : '.$cabin_crew->assigned_door.'</th>
                     <th>15. POS. DURING EVENT : '.$cabin_crew->position_during_event.'</th>
                     <th>16. NR OF PAX : '.$cabin_crew->nr_of_pax.'</th>
                     <th>17. NR OF CREW : '.$cabin_crew->nr_of_crew.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th colspan="5">18. PREVIOUS FLIGHTS : '.$cabin_crew->previous_flights.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th colspan="5">19. NR OF LANDINGS OF THE DAY : '.$cabin_crew->nr_of_landings_of_the_day.'</th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th colspan="5">20. FLIGHT PHASE: '.$cabin_crew->flight_phase.'
                     <br>
                     PARKED  <input type="checkbox" name="flight_phase" value=""  '.$fp1.' style="display:inline;" >  &nbsp;&nbsp;&nbsp;&nbsp;
@@ -532,7 +532,7 @@ class CabinCrewController extends Controller
                     TAXI IN  <input type="checkbox" name="flight_phase" value=""  '.$fp12.' style="display:inline;" >
                     </th>
                 </tr>
-                <tr>
+                <tr style="vertical-align: top;">
                     <th colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.' </th>
                 </tr>
                 <tr>
