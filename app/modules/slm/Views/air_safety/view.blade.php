@@ -32,16 +32,7 @@
                     <th width="100%" colspan="2" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 35px; font-weight: bold">AIR SAFETY <br> REPORT</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-
-                    </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : {{ isset($data->full_name)?ucfirst($data->full_name):''}},{{ isset($data->email)?ucfirst($data->email):''}},{{ isset($data->telephone)?ucfirst($data->telephone):''}},{{ isset($data->extension)?ucfirst($data->extension):''}},{{ isset($data->fax)?ucfirst($data->fax):''}}</th>
@@ -115,15 +106,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">METEOROLOGICAL INFORMATION</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">METEOROLOGICAL INFORMATION</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid">24. IMC/VMC : {{ isset($data->imc_vmc)?ucfirst($data->imc_vmc):''}}</th>
@@ -186,17 +169,7 @@
                     <th width="36%" style="border: 2px solid">42. SPOILERS : {{ isset($data->spoilers)?ucfirst($data->spoilers):''}}</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">TCAS INFORMATION (traffic)</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-
-
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">TCAS INFORMATION (traffic)</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
@@ -213,16 +186,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">ATC PROCEDURES</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">ATC PROCEDURES</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="16%" style="border: 2px solid" colspan="2">
@@ -268,15 +232,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">AIRPROX</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">AIRPROX</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="3">
@@ -289,15 +245,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">BIRD STRIKE</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">BIRD STRIKE</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
@@ -337,15 +285,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">TURBULANCE</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div>
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">TURBULANCE</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="2">
@@ -399,15 +339,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="6">
-                            <div class="row">
-                                <div class="col-sm-4"></div>
-                                <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                    <h5 class="text-center text-black"><b style="color: black">HUMAN FACTORS</b></h5>
-                                </div>
-                                <div class="col-sm-4"></div>
-                            </div>
-                        </th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="6">HUMAN FACTORS</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="48%" style="border: 2px solid" colspan="3">

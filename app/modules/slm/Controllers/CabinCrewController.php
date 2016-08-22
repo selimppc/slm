@@ -428,8 +428,7 @@ class CabinCrewController extends Controller
 </style>
 
     <div class="panel">
-        <div class="panel-body">
-            <div class="panel-body">
+            <div class="panel-body" style="border:3px solid #000000">
            <!-- <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
@@ -533,17 +532,38 @@ class CabinCrewController extends Controller
                     </th>
                 </tr>
                 <tr style="vertical-align: top;">
-                    <th colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.' </th>
+                    <th width="100%" height="220px" style="border: 2px solid" colspan="5">
+                        21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.'
+                    </th>
                 </tr>
-                <tr>
-                    <th colspan="5">Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence, via fax +597 430230 or via e-mail : safety@slm.firm.sr</th>
+                <tr style="vertical-align: top;">
+                    <th width="100%" style="border: 2px solid" colspan="5">
+                        Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; occurrence, via fax <b>+597430230</b> or via e-mail : <u><strong>safety@flyslm.com</strong></u>
+                    </th>
                 </tr>
-                <tr>
-                    <th colspan="5">This form can also be submitted via the company website: www.flyslm.com
-You may report anonymously</th>
+                <tr style="vertical-align: top;">
+                    <th width="100%" style="border: 2px solid" colspan="5">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page 1 of 1
+                        <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You may report anonymously
+                    </th>
                 </tr>
-            </table>
-        </div>
+
+                </table>
+                </div>
+
+                <table style="width:100%;">
+                    <tr style="vertical-align: top;border:0px ! important">
+                        <th width="50%" style="text-align:left; border:0"  colspan="3">
+                            <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                        </th>
+                        <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                            <b>SA - 99926</b>
+                        </th>
+                    </tr>
+                </table>
+
+
 
     </div>';
 

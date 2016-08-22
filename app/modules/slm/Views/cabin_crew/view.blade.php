@@ -127,7 +127,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid" colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):<p> {{ isset($cabin_crew->description_of_occurrence)?ucfirst($cabin_crew->description_of_occurrence):''}} </p></th>
+                    <th width="100%" height="300px" style="border: 2px solid" colspan="5">21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):<p> {{ isset($cabin_crew->description_of_occurrence)?ucfirst($cabin_crew->description_of_occurrence):''}} </p></th>
                 </tr>
             </table>
             <div class="row">
