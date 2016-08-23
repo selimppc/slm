@@ -503,9 +503,9 @@ class GroundHandlingController extends Controller
 
         /*$image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
-        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" height="100" width="250"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($ground_handling->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
@@ -563,9 +563,9 @@ class GroundHandlingController extends Controller
         }
 
     .report_img{
-        height: 100px!important;
+        height: 30px!important;
         text-align: center!important;
-        padding: 15px 10px 18px 10px!important;
+        padding: 3px 3px 3px 3px!important;
     }
 
     .report_img2{
@@ -583,43 +583,25 @@ class GroundHandlingController extends Controller
 
     <div class="panel">
         <div class="panel-body">
-            <div class="panel-body">
-            <!--<table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
-                <tr>
-                    <th width="50%" class="report_img2">
-                        '.$img2.'
-                        <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
-                    </th>
-                    <th style="border-left: 2px solid; padding:2%;" width="46%">
-                        <p style="font-weight: bolder; font-size:20px;" align="left">5 &nbsp;&nbsp; APPENDICES</p>
-                        <p style="font-weight: bolder; font-size:20px;" align="left">B &nbsp;&nbsp; Operational Safety Report (OSR)</p>
-                    </th>
-                </tr>
-                <span style="font-weight: bolder; font-size:20px;">B.III OSR – GROUND HANDLING REPORT</span>
-            </table>
-            <br>
-            <br>
-            <br>-->
-
             <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 20px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 15px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 15px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 10px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 10px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
                     <th style="border-bottom: 2px solid; font-size: 15px; vertical-align: top; text-align:left;">Safety Department <br> ref. nr : '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 25px; font-weight: bold">GROUND HANDLING REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">GROUND HANDLING REPORT</th>
                 </tr>
             </table>
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
+                    <th style="text-align: center;background-color: yellow;" colspan="4">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
                     <th colspan="4">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$ground_handling->full_name.','.$ground_handling->email.','.$ground_handling->telephone.','.$ground_handling->extension.','.$ground_handling->fax.'</th>
@@ -654,10 +636,60 @@ class GroundHandlingController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="4">15. THIRD PARTY INVOLVED (Contractor) '.$ground_handling->third_party_involved.'</th>
                 </tr>
                 <tr style="vertical-align: top; text-align:left;">
-                    <th width="100%" style="border: 2px solid" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
+                    <th width="100%" style="border: 2px solid; height:250px" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
+                </tr>
+
+            </table>
+
+            <br>
+            <table cellpadding="0" cellspacing="0">
+                <tr style="vertical-align: top;">
+                    <td width="100%" style="border: 2px solid; font-size:13px" colspan="4">
+                        Please sent this information to the Safety Department at your earliest convenience but &nbsp;<u> no later than 24 hours </u>  after the occurrence via <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fax&nbsp;+597430230</b> or via e-mail : <strong>safety@flyslm.com</strong>
+                    </td>
+                </tr>
+                <tr style="vertical-align: top;">
+                    <td width="100%" style="border: 2px solid; font-size:13px" colspan="4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>You may report anonymously</b>
+                    </td>
+                </tr>
+            </table>
+            <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="3">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                        <b>SA - 99927</b>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="panel-body" style="border:1px solid #000000; page-break-before:always">
+            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 10px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 10px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 15px; vertical-align: top; text-align:left;">Safety Department <br> ref. nr : '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">DANGEROUS GOODS</span></th>
+                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">GROUND HANDLING REPORT</th>
+                </tr>
+            </table>
+
+            <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
+                <tr>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center;" colspan="4">DANGEROUS GOODS</th>
                 </tr>
                 <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="50%" style="border: 2px solid" colspan="2">17. ORIGIN OF THE GOODS : '.$ground_handling->origin_of_the_goods.'</th>
@@ -700,7 +732,7 @@ class GroundHandlingController extends Controller
                     <th width="50%" style="border: 2px solid" colspan="2">30. SHIPPING NAME : '.$ground_handling->shipping_name.'</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">VEHICLE & RAMP EQUIPMENT DAMAGE</span></th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center;" colspan="4">VEHICLE & RAMP EQUIPMENT DAMAGE</th>
                 </tr>
                 <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="25%" style="border: 2px solid">31. DAMAGE TO : '.$ground_handling->damage_to.'</th>
@@ -711,22 +743,22 @@ class GroundHandlingController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="4">34.ENVIROMENTAL CONDITIONS (weather, surface, lighting) : '.$ground_handling->enviromental_condition.'</th>
                 </tr>
                 <tr style="vertical-align: top; text-align:left;">
-                    <th width="100%" style="border: 2px solid" colspan="4">35. DETAILS OF DAMAGE (add forms if necessary) : '.$ground_handling->details_of_damage.'</th>
-                </tr>
-
-
-
-
-
-                <tr>
-                    <th colspan="4">Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence, via fax +597 430230 or via e-mail : safety@slm.firm.sr</th>
-                </tr>
-                <tr>
-                    <th colspan="4">This form can also be submitted via the company website: www.flyslm.com
-You may report anonymously</th>
+                    <th width="100%" style="border: 2px solid; height:250px" colspan="4">35. DETAILS OF DAMAGE (add forms if necessary) : '.$ground_handling->details_of_damage.'</th>
                 </tr>
             </table>
+
         </div>
+
+        <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="2">
+
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="2">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                    </th>
+                </tr>
+            </table>
 
     </div>';
 

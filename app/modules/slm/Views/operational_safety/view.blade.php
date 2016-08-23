@@ -32,14 +32,7 @@
                     <th width="100%" colspan="1" style="border: 2px solid #6a6c6f; text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods <br>Occurrence Report</th>
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="7">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div></th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="7">GENERAL INFORMATION</th>
                 </tr>
                 <tr style="border: 2px solid">
                     <th width="100%" style="border: 2px solid" colspan="4">

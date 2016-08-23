@@ -492,9 +492,9 @@ class OperationalSafetyController extends Controller
 
         /*$image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
-        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" height="100" width="250"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($operational_safety->type_of_occurrence== 'accident'){$occurrence1='checked';}else{$occurrence1='';}
@@ -510,7 +510,7 @@ class OperationalSafetyController extends Controller
 
         width: 100%;
         font-family: Arial !important;
-        margin-bottom: -20px !important;
+        margin-bottom: -2px !important;
     }
 
     /*.tbl3 {
@@ -541,9 +541,9 @@ class OperationalSafetyController extends Controller
         }
 
     .report_img{
-        height: 100px!important;
+        height: 30px!important;
         text-align: center!important;
-        padding: 15px 10px 18px 10px!important;
+        padding: 3px 3px 3px 3px!important;
     }
 
     .report_img2{
@@ -561,39 +561,24 @@ class OperationalSafetyController extends Controller
 
     <div class="panel">
         <div class="panel-body">
-            <div class="panel-body">
-            <!--<table cellspacing="0" cellpadding="0" class=" tbl3">
-                <tr>
-                    <th width="50%" class="report_img2">
-                        '.$img2.'
-                        <br><span style="font-weight: bolder; font-size:20px;">SAFETY MANAGEMENT MANUAL</span>
-                    </th>
-                    <th style="border-left: 2px solid; padding:2%;" width="46%">
-                        <p style="font-weight: bolder; font-size:20px;" align="left">5 &nbsp;&nbsp; APPENDICES</p>
-                        <p style="font-weight: bolder; font-size:20px;" align="left">B &nbsp;&nbsp; Operational Safety Report</p>
-                    </th>
-                </tr>
-                <div style="font-weight: bolder; font-size:20px; height:50px !important;">B.V OSR- DANGEROUS GOODS OCCURRENCE REPORT (Figure 9.6.A)</div>
-            </table>-->
-
             <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 10px; font-weight: bolder; font-size:25px;padding-bottom:10px" align="center">OSR</p>
+                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 10px; padding-bottom:20px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 18px; text-align: left; vertical-align: top;">Safety Department <br> ref. nr: '.$operational_safety->operator.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: left; vertical-align: top;">Safety Department <br> ref. nr: '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods Occurrence Report</th>
+                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods Occurrence <br>Report</th>
                 </tr>
             </table>
-            <table cellpadding="0" cellspacing="0" class="tbl2" style="margin-top:-20px !important;">
+            <table cellpadding="0" cellspacing="0" class="tbl2">
                 <tr>
-                    <th style="text-align: center;" colspan="4"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
+                    <th style="text-align: center;background-color: yellow;" colspan="4">GENERAL INFORMATION</th>
                 </tr>
                 <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid" colspan="4">
@@ -669,10 +654,57 @@ class OperationalSafetyController extends Controller
                     <th width="50%" style="border: 2px solid" colspan="2">31. Address : '.$operational_safety->address.'</th>
                     <th width="50%" style="border: 2px solid" colspan="2">32. Date / Signature : '.date("M d, Y", strtotime($operational_safety->date_of_signature)).'</th>
                 </tr>
-                <tr style="border: 2px solid; vertical-align: top;text-align:left;">
-                    <th width="100%" style="border: 2px solid" colspan="4">33. Description of the occurrence (continuation) : '.$operational_safety->description_of_the_occurrence.'</th>
+            </table>
+
+            <br>
+            <table cellpadding="0" cellspacing="0">
+                <tr style="vertical-align: top;">
+                    <td width="100%" style="border: 2px solid; font-size:13px" colspan="4">
+                        Please sent this information to the Safety Department at your earliest convenience but &nbsp;<u> no later than 24 hours </u>  after the occurrence via <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fax&nbsp;+597430230</b> or via e-mail : <strong>safety@flyslm.com</strong><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You may report anonymously
+                    </td>
                 </tr>
             </table>
+            <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="3">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                        <b>SA - 99930</b>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel-body" style="border:1px solid #000000; page-break-before:always">
+            <table cellspacing="0" cellpadding="0" class="tbl">
+                <tr>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        '.$img.'</th>
+                    <th rowspan="2" style="border-right: 2px solid" width="33%">
+                        <p style="height: 10px; font-weight: bolder; font-size:25px;padding-bottom:10px" align="center">OSR</p>
+                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 10px; padding-bottom:20px" align="center"><font size="+2";><u>Report</u></font></p>
+                    </th>
+                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: left; vertical-align: top;">Safety Department <br> ref. nr: '.$operational_safety->operator.'</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center; color:red; font-size: 25px; font-weight: bold">Dangerous Goods Occurrence <br>Report</th>
+                </tr>
+            </table>
+
+            <table cellpadding="0" cellspacing="0" class="tbl2">
+                <tr><td colspan="4" style="text-align: center !important;font-size: 15px;"><b>Dangerous Goods Occurrence Report (Contd.)</b></td></tr>
+                <tr style="border: 2px solid;vertical-align: top;text-align:left;">
+                    <th width="100%" style="border: 2px solid; height:100px;" colspan="4">33. Description of the occurrence (continuation) : '.$operational_safety->description_of_the_occurrence.'</th>
+                </tr>
+            </table>
+        </div>
+
             <style>
                 /*.border-double { border: 5px double #293a4a}*/
                 .style_ol {
@@ -683,6 +715,7 @@ class OperationalSafetyController extends Controller
                     line-height: 16px; font-size:13px;
                 }
             </style>
+
             <ol class="style_ol">
                 <p style="text-align: left"><b>Note:</b></p>
                 <li>Any type of dangerous goods occurrence must be reported, irrespective of whether the dangerous good are
@@ -715,7 +748,19 @@ class OperationalSafetyController extends Controller
                     contacted in order to clarify the exact procedures to be followed in the event of a dangerous goods incident or
                     accident.</li>
             </ol>
-        </div>
+
+            <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="2">
+
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="2">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                    </th>
+                </tr>
+            </table>
+
+
 
     </div>';
 

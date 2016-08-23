@@ -343,9 +343,9 @@ class CabinCrewController extends Controller
 
         /*$image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
-        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'" alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" height="80" width="250"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" alt="Surinam Airways" >';
 
         if($cabin_crew->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
@@ -447,25 +447,26 @@ class CabinCrewController extends Controller
             <br>
             <br>-->
 
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl">
+
+            <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 40px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 25px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 25px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 8px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
+                        <p style="height: 8px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
+                        <p style="height: 8px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; vertical-align: top; font-size: 20px; text-align: left;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; vertical-align: top; font-size: 15px; text-align: left;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 35px; font-weight: bold">CABIN CREW REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">CABIN CREW REPORT</th>
                 </tr>
             </table>
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center; " colspan="5"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
+                    <th style="text-align: center;background-color: yellow;" colspan="5">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
                     <th colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$cabin_crew->full_name.','.$cabin_crew->email.','.$cabin_crew->telephone.','.$cabin_crew->extension.','.$cabin_crew->fax.'</th>
@@ -543,9 +544,12 @@ class CabinCrewController extends Controller
                     </th>
                 </tr>
                 <tr style="vertical-align: top;">
-                    <th width="100%" style="border: 2px solid" colspan="5">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page 1 of 1
+                    <th width="90%" style="border: 2px solid" colspan="4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You may report anonymously
+                    </th>
+                    <th width="10%" style="border: 2px solid" colspan="1">
+                        Page 1 of 1
                     </th>
                 </tr>
 

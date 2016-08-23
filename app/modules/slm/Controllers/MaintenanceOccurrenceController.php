@@ -403,10 +403,10 @@ class MaintenanceOccurrenceController extends Controller
 
         /*$image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
-        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'" alt="Surinam Airways" >';
-        $img2 = '<img src="'.$image_path2.'" alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" height="100" width="250"  alt="Surinam Airways" >';
+        $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         $html = '
 
@@ -447,9 +447,9 @@ class MaintenanceOccurrenceController extends Controller
         }
 
     .report_img{
-        height: 100px!important;
+        height: 30px!important;
         text-align: center!important;
-        padding: 15px 10px 18px 10px!important;
+        padding: 3px 3px 3px 3px!important;
     }
 
     .report_img2{
@@ -504,7 +504,7 @@ class MaintenanceOccurrenceController extends Controller
 
             <table cellpadding="0" cellspacing="0" class="table table-bordered table-responsive no-spacing tbl2">
                 <tr>
-                    <th style="text-align: center; " colspan="7"><span style="background-color: yellow; padding:5px;"">GENERAL INFORMATION</span></th>
+                    <th style="text-align: center;background-color: yellow; " colspan="7">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
                     <th colspan="7">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$maintenance_occurrence->full_name.','.$maintenance_occurrence->email.','.$maintenance_occurrence->telephone.','.$maintenance_occurrence->extension.','.$maintenance_occurrence->fax.'</th>
@@ -540,19 +540,36 @@ class MaintenanceOccurrenceController extends Controller
                     <th width="100%" style="border: 2px solid; vertical-align: top; text-align:left;" colspan="7">20. TITLE OF OCCURRENCE : '.$maintenance_occurrence->title_of_occurrence.'</th>
                 </tr>
                 <tr>
-                    <th style="border: 2px solid;line-height:200px; vertical-align: top; text-align:left;" colspan="7">21. DESCRIPTION OF OCCURRENCE :'.$maintenance_occurrence->description_of_occurrence.'</th>
+                    <th style="border: 2px solid;line-height:250px; vertical-align: top; text-align:left;" colspan="7">21. DESCRIPTION OF OCCURRENCE :'.$maintenance_occurrence->description_of_occurrence.'</th>
                 </tr>
 
-                <tr>
-                    <th colspan="7">Please sent this information to the Safety Department at your earliest convenience but no later than 24 hours after the occurrence, via fax +597 430230 or via e-mail : safety@slm.firm.sr</th>
+                <tr style="vertical-align: top;">
+                    <td width="100%" style="border: 2px solid; font-size:13px" colspan="7">
+                        Please sent this information to the Safety Department at your earliest convenience but &nbsp;<u> no later than 24 hours </u>  after the occurrence<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; via <b>Fax&nbsp;+597430230</b> or via e-mail : <strong>safety@flyslm.com</strong>
+                    </td>
                 </tr>
-                <tr>
-                    <th colspan="7">This form can also be submitted via the company website: www.flyslm.com
-You may report anonymously</th>
+                <tr style="vertical-align: top;">
+                    <td width="100%" style="border: 2px solid; font-size:13px" colspan="7">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This form can also be submitted via the company website:<b>www.flyslm.com</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>You may report anonymously</b>
+                    </td>
                 </tr>
 
             </table>
         </div>
+
+        <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="4">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                        <b>SA - 99929</b>
+                    </th>
+                </tr>
+            </table>
 
     </div>';
 

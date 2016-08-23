@@ -208,7 +208,7 @@ class ConfidentialSafetyController extends Controller
 
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';
-        $img = '<img src="'.$image_path.'" height="150" width="300"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" height="120" width="250"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
         $html = '
@@ -230,15 +230,16 @@ class ConfidentialSafetyController extends Controller
     }
 
     .tbl4 {
-        margin: 0px !important;
         border: 2px solid;
         width: 100%;
+        text-align: center;
     }
 
     .tbl6 {
-        margin: 0px !important;
+
         border: 2px solid;
-        width: 100%;
+        width: 100% !important;
+        margin-left:17px!important;
     }
 
     .tbl4 td{
@@ -248,33 +249,6 @@ class ConfidentialSafetyController extends Controller
     .tbl4 th{
         border: 2px solid;
     }
-
-    .tbl3 {
-        margin: 0px !important;
-        border: 2px solid;
-        border-top: 0px!important;
-        border-left: 0px!important;
-        border-right: 0px!important;
-        width: 100%;
-    }
-
-    .tbl2 {
-       margin: 0px !important;
-       border: 2px solid;
-       width: 100%;
-    }
-    .tbl2 tr th {
-        border: 2px solid;
-    }
-
-    .tbl2 th{
-    text-align: left;
-    }
-
-    .tbl2 tr td {
-        padding:7px;
-        text-align: left !important;
-        }
 
     .report_img{
         height: 20px!important;
@@ -288,9 +262,7 @@ class ConfidentialSafetyController extends Controller
         padding: 5px 2px 8px 2px!important;
     }
 
-    .panel, .panel-body{
-        width: 100%;
-    }
+
 
     .tbl6 td {
         text-align: left !important;
@@ -303,11 +275,28 @@ class ConfidentialSafetyController extends Controller
     }
 
 
+.div-3-col { width: 100% !important;}
+.div-3-col div.col-10-prcnt { width: 3%; float: left; height: 100%; background: #fc5a5a url("../public/assets/img/white-strip.png") repeat-y;}
+.div-3-col div.col-80-prcnt { margin:5px;  width: 94%;  float: left; text-align: center !important; }
+.clr { clear: both;}
+
 </style>
 
-    <div class="panel">
-        <div class="panel-body">
-            <div class="panel-body">
+
+<!--<div class="div-3-col">
+    <div class="col-10-prcnt"></div>
+    <div class="col-80-prcnt">222222 22222 222222 222222</div>
+    <div class="col-10-prcnt"></div>
+    <div class="clr"></div>
+</div>-->
+
+
+
+
+
+
+
+    <div class="div-3-col">
             <!--<table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl3">
                 <tr>
                     <th width="50%" class="report_img2">
@@ -325,95 +314,138 @@ class ConfidentialSafetyController extends Controller
             <br>
             <br>
             <br>-->
+            <div class="col-10-prcnt"></div>
 
-            <table class="table table-bordered table-responsive tbl">
-                <tr>
-                    <th style="border-right: 2px solid;" width="45%">
-                        '.$img.'</th>
-                    <th width="55%">
-                        <p style="height: 20px; font-weight: bolder; font-size:25px;" align="center">Confidential Safety Report</p>
-                    </th>
-                </tr>
-            </table>
+            <div class="col-80-prcnt">
+                <table class="tbl">
+                    <tr>
+                        <th style="border-right: 2px solid;" width="45%">
+                            '.$img.'
+                        </th>
+                        <th width="55%">
+                            <p style="height: 20px; font-weight: bolder; font-size:25px;" align="center">Confidential Safety Report</p>
+                        </th>
+                    </tr>
+                </table>
 
-            <table class="table table-bordered table-responsive tbl5">
-                <tr>
-                    <th width="100%">
-                This voluntary report should be submitted to the Safety Department within 24 hours after the incident. FAX: +597-430230
-This form can also be submitted via the company website: www.flyslm.com
-                    </th>
-                </tr>
-            </table>
+                <table class="tbl5" style="font-size:13px; text-align:center">
+                    <tr>
+                        <td>
+                            This voluntary report should be submitted to the Safety Department within 24 hours after the incident. FAX: <b>+597-430230</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            This form can also be submitted via the company website: www.flyslm.com
+                        </td>
+                    </tr>
+                </table>
 
-            <br>
+                <br>
 
-            <table cellspacing="0" cellpadding="0" class="table table-bordered table-responsive tbl4">
-                <tr>
-                    <th width="20%">NAME</th>
-                    <td width="80%">'.$confidential_safety->name.'</td>
-                </tr>
-                <tr>
-                    <th>ADDRESS</th>
-                    <td>'.$confidential_safety->address.'</td>
-                </tr>
-                <tr>
-                    <th>E-MAIL</th>
-                    <td>'.$confidential_safety->email.'</td>
-                </tr>
-                <tr>
-                    <th>TEL #</th>
-                    <td>'.$confidential_safety->telephone.'</td>
-                </tr>
-            </table>
+                <table cellspacing="0" cellpadding="0" border="1" style="width:100%; margin:0 0 0 20px" >
+                    <tr>
+                        <th width="20%">NAME</th>
+                        <td width="80%">'.$confidential_safety->name.'</td>
+                    </tr>
+                    <tr>
+                        <th>ADDRESS</th>
+                        <td>'.$confidential_safety->address.'</td>
+                    </tr>
+                    <tr>
+                        <th>E-MAIL</th>
+                        <td>'.$confidential_safety->email.'</td>
+                    </tr>
+                    <tr>
+                        <th>TEL #</th>
+                        <td>'.$confidential_safety->telephone.'</td>
+                    </tr>
+                </table>
 
+                <br>
+                <br>
 
-            <br>
+                <style>
 
-            <style>
-                /*.border-double { border: 5px double #293a4a}*/
-                .style_ol {
-                    border: 1px solid #000000 !important;
-                    padding:20px;
-                }
-                .style_ol li {
-                    padding: 2px;
-                    line-height: 20px;
-                }
-            </style>
-            <ol class="style_ol">
-                <li>Your personal details are required only to enable the Director of Safety to contact you for further
-                    details about any part of your report</li>
-                <li>This is a voluntary reporting method</li>
-                <li>Entering your personal details is optional</li>
-                <li>You will receive an acknowledgement as soon as possible</li>
-            </ol>
+                    .comment{
+                        border:2px solid #000000;
+                        width:94% !important;
+                        text-align:left !important;
+                        padding:10px;
+                        margin-left:7px;
+                    }
 
+                    .style_div2 {
 
+                        padding:5px;
+                        outline: 3px solid #000000;
+                        width:94%;
+                        margin-left:10px;
+                    }
 
+                </style>
 
-            <table cellspacing="0" cellpadding="0"  class="table table-bordered table-responsive tbl6">
-                <tr style="border: 2px solid">
-                    <th width="30%" style="border: 2px solid">Function : '.$confidential_safety->function.'</th>
-                    <th width="35%" style="border: 2px solid">Department : '.$confidential_safety->department.'</th>
-                    <th width="35%" style="border: 2px solid">Aircraft Involved : '.$confidential_safety->aircraft_involved.'</th>
-                </tr>
+                <div class="style_div2">
+                    <div class="comment">
+                        <table style="border:0">
+                            <tr>
+                                <td>&nbsp;&nbsp; 1. Your personal details are required only to enable the Director of Safety to contact you
+                                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for further details about any part of your report</td>
+                            </tr>
+                            <tr><td>&nbsp;&nbsp; 2. This is a voluntary reporting method</td></tr>
+                            <tr><td>&nbsp;&nbsp; 3. Entering your personal details is optional</td></tr>
+                            <tr><td>&nbsp;&nbsp; 4. You will receive an acknowledgement as soon as possible</td></tr>
+                        </table>
+                    </div>
+                </div>
 
-                <tr style="border: 2px solid">
-                    <th width="30%" style="border: 2px solid">Type of Operation : '.$confidential_safety->type_of_operation.'</th>
-                    <th width="35%" style="border: 2px solid">Weather : '.$confidential_safety->weather.'</th>
-                    <th width="35%" style="border: 2px solid">Flight Phase : '.$confidential_safety->flight_phase.'</th>
-                </tr>
+                <br>
+                <br>
 
-                <tr>
-                    <th colspan="3"><p>Account of event – (please continue on other side or attach additional sheets if necessary)</p></th>
-                </tr>
-                <tr>
-                    <td colspan="3" height="20px">'.$confidential_safety->account_of_event.'</td>
-                </tr>
-            </table>
+                <style>
+                    /*.tbl8 tr th{
+                        border-left:1px solid #000; border-top: 1px solid #000;
+                    }
+                    .tbl8 tr td { border-right: 1px solid #000; border-bottom: 1px solid #000;}*/
 
+                </style>
 
-        </div>
+                <div style="border:8px double #000000; width:100%; text-align:center; margin:5px">
+                    <table cellspacing="0" cellpadding="0" class="tbl8" border="1" style="width:103%;margin-left:14px; text-align:left !important" >
+                        <tr>
+                            <th width="30%">Function : '.$confidential_safety->function.'</th>
+                            <th width="35%">Department : '.$confidential_safety->department.'</th>
+                            <th width="35%">Aircraft Involved : '.$confidential_safety->aircraft_involved.'</th>
+                        </tr>
+
+                        <tr>
+                            <th width="30%">Type of Operation : '.$confidential_safety->type_of_operation.'</th>
+                            <th width="35%">Weather : '.$confidential_safety->weather.'</th>
+                            <th width="35%">Flight Phase : '.$confidential_safety->flight_phase.'</th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3"><b>Account of event – </b>(please continue on other side or attach additional sheets if necessary)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="300px">'.$confidential_safety->account_of_event.'</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <table style="width:100%;">
+                    <tr style="vertical-align: top;border:0px ! important">
+                        <th width="50%" style="text-align:left; border:0"  colspan="3">
+                            <b>15 Feb 2015</b> <br><b>Revision : 9</b>
+                        </th>
+                        <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                            <b>SA - 99928</b>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-10-prcnt"></div>
 
     </div>';
 
@@ -423,7 +455,7 @@ This form can also be submitted via the company website: www.flyslm.com
         $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
         $dompdf->render();

@@ -398,9 +398,9 @@ class SafetyController extends Controller
 
         $data=Safety::findOrFail($id);
 
-        $image_path = public_path().'/assets/img/slm-logo-main.png';
+        $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" height="60" width="250"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($data->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
@@ -691,7 +691,7 @@ class SafetyController extends Controller
                     </th>
                 </tr>
             </table>
-            </div>
+        </div>
 
             <table style="width:100%;">
                 <tr style="vertical-align: top;border:0px ! important">
@@ -702,8 +702,7 @@ class SafetyController extends Controller
                         <b>SA - 99925</b>
                     </th>
                 </tr>
-
-                </table>
+            </table>
 
 
 
@@ -1008,6 +1007,17 @@ class SafetyController extends Controller
 
                 </table>
                 </div>
+
+                <table style="width:100%;">
+                <tr style="vertical-align: top;border:0px ! important">
+                    <th width="50%" style="text-align:left; border:0"  colspan="3">
+
+                    </th>
+                    <th width="50%" style="text-align:right; border:0px !important" colspan="3">
+                        <b>SA - 99925</b>
+                    </th>
+                </tr>
+            </table>
 
     </div>';
 

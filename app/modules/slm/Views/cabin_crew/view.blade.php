@@ -52,14 +52,7 @@
             </table>
             <table class="table table-bordered table-responsive no-spacing report" width="100%">
                 <tr>
-                    <th width="100%" style="border: 2px solid; text-align: center; " colspan="5">
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="background-color: yellow; height: 20px;">
-                                <h5 class="text-center text-black"><b style="color: black">GENERAL INFORMATION</b></h5>
-                            </div>
-                            <div class="col-sm-4"></div>
-                        </div></th>
+                    <th width="100%" style="border: 2px solid;background-color: yellow; text-align: center; " colspan="5">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
                     <th width="100%" style="border: 2px solid" colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : {{ isset($cabin_crew->full_name)?ucfirst($cabin_crew->full_name):''}},{{ isset($cabin_crew->email)?ucfirst($cabin_crew->email):''}},{{ isset($cabin_crew->telephone)?ucfirst($cabin_crew->telephone):''}},{{ isset($cabin_crew->extension)?ucfirst($cabin_crew->extension):''}},{{ isset($cabin_crew->fax)?ucfirst($cabin_crew->fax):''}}</th>
