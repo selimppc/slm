@@ -505,7 +505,7 @@ class GroundHandlingController extends Controller
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'" height="100" width="250"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" width="235"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($ground_handling->utc_local== 'utc'){$checked_utc='checked';}else{$checked_utc='';}
@@ -638,15 +638,10 @@ class GroundHandlingController extends Controller
                 <tr style="vertical-align: top; text-align:left;">
                     <th width="100%" style="border: 2px solid; height:250px" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
                 </tr>
-
-            </table>
-
-            <br>
-            <table cellpadding="0" cellspacing="0">
                 <tr style="vertical-align: top;">
                     <td width="100%" style="border: 2px solid; font-size:13px" colspan="4">
-                        Please sent this information to the Safety Department at your earliest convenience but &nbsp;<u> no later than 24 hours </u>  after the occurrence via <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Fax&nbsp;+597430230</b> or via e-mail : <strong>safety@flyslm.com</strong>
+                        Please sent this information to the Safety Department at your earliest convenience but &nbsp;<u> no later than 24 hours </u>  after the occurrence<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; via <b>Fax&nbsp;+597430230</b> or via e-mail : <strong>safety@flyslm.com</strong>
                     </td>
                 </tr>
                 <tr style="vertical-align: top;">
@@ -656,7 +651,10 @@ class GroundHandlingController extends Controller
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>You may report anonymously</b>
                     </td>
                 </tr>
+
             </table>
+
+
             <table style="width:100%;">
                 <tr style="vertical-align: top;border:0px ! important">
                     <th width="50%" style="text-align:left; border:0"  colspan="3">

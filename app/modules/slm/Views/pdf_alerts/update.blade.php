@@ -32,7 +32,13 @@
                         {!! Form::label('title', 'Title:', ['class' => 'control-label']) !!}
                         {!! Form::text('title', Input::old('title'), ['id'=>'title', 'class' => 'form-control','maxlength'=>'64','title'=>'enter title']) !!}
                     </div>
+                    <div class="col-sm-6">
+                        {!! Form::label('year', 'Year:', ['class' => 'control-label']) !!}
+                        <small class="required">(Required)</small>
+                        {!! Form::Select('year',array('2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018','2019'=>'2019','2020'=>'2020','2021'=>'2021','2022'=>'2022','2023'=>'2023','2024'=>'2024','2025'=>'2025'),Input::old('year'),['class'=>'form-control ','required']) !!}
+                    </div>
                 </div>
+
 
                 <div class="form-group">
                     {!! Form::hidden('pdf_type','alerts' ) !!}

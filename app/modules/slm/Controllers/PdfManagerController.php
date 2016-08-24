@@ -56,12 +56,13 @@ class PdfManagerController extends Controller
     public function index_alerts(){
 
         $pageTitle = 'Safety Alerts';
-        $file_name = Input::get('file_name');
+        $title = Input::get('title');
+        $year = Input::get('year');
 
         $role_id = Auth::user()->role_id;
 
 
-        $data = PdfManager::where('pdf_type','alerts')->where('file_name', 'LIKE', '%'.$file_name.'%')->paginate(30);
+        $data = PdfManager::where('pdf_type','alerts')->where('title', 'LIKE', '%'.$title.'%')->where('year', 'LIKE', '%'.$year.'%')->paginate(30);
         //$data = Safety::get();
         //print_r($data);exit;
 

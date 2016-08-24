@@ -208,7 +208,7 @@ class ConfidentialSafetyController extends Controller
 
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/report_black.jpg';
-        $img = '<img src="'.$image_path.'" height="120" width="250"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" width="235"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" height="150" width="300"  alt="Surinam Airways" >';
 
         $html = '

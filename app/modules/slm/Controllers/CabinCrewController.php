@@ -345,7 +345,7 @@ class CabinCrewController extends Controller
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'" height="80" width="250"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" width="235"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'" alt="Surinam Airways" >';
 
         if($cabin_crew->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}

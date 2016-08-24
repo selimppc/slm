@@ -400,7 +400,7 @@ class SafetyController extends Controller
 
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'" height="60" width="250"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" width="235"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($data->pf_pnf == 'pf'){$pf='checked';}else{$pf='';}
@@ -585,7 +585,7 @@ class SafetyController extends Controller
 
             <table cellspacing="0" cellpadding="0" class="tbl">
                 <tr>
-                    <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                    <th rowspan="2" style="border-right: 2px solid; text-align:center" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
                         <p style="height: 8px; font-weight: bolder; font-size:20px;" align="center">OSR</p>

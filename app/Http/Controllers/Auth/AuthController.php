@@ -129,72 +129,78 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $data = Input::all();
-        date_default_timezone_set("Asia/Dacca");
 
-        if(Auth::check()){
-            Session::put('email', isset(Auth::user()->get()->id));
-            Session::flash('message', "You Have Already Logged In.");
-            return redirect()->route('dashboard');
-        }else{
-            $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-            $user_data_exists = User::where($field, $data['email'])->exists();
+        if ($request->isMethod('post')) {
+            date_default_timezone_set("Asia/Dacca");
 
-            if($user_data_exists){
+            if(Auth::check()){
+                Session::put('email', isset(Auth::user()->get()->id));
+                Session::flash('message', "You Have Already Logged In.");
+                return redirect()->route('dashboard');
+            }else{
+                $field = filter_var($data['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+                $user_data_exists = User::where($field, $data['email'])->exists();
 
-                $user_data = User::where($field, $data['email'])->first();
-                $check_password = Hash::check($data['password'], $user_data->password);
-                if($check_password){
-                    #exit('ok');
-                    if($user_data->last_visit!=NULL){
-                        if($user_data->expire_date < date('Y-m-d h:i:s', time())){
-                            DB::table('user')->where('id', '=', $user_data->id)->update(array('status' =>'inactive'));
-                            Session::flash('message', "Login Activation Time Is Expired.You Can Contact With Admin To Reactivate Account.");
-                        }elseif($user_data->status=='inactive'){
-                            Session::flash('error', "Sorry!!Your Account Is Inactive.You Can Contact With System-Admin To Reactivate Account.");
-                        }
-                        else{
-                            $attempt = Auth::attempt([
-                                $field => $request->get('email'),
-                                'password' => $request->get('password'),
-                            ]);
-                            if($attempt){
-                                DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
-                                $user_act_model = new UserActivity();
+                if($user_data_exists){
 
-                                $user_activity = [
-                                    'action_name' => 'user-login',
-                                    'action_url' => 'get-user-login',
-                                    'action_details' => Auth::user()->username.' '. 'logged in',
-                                    'action_table' => 'user',
-                                    'date' => date('Y-m-d h:i:s', time()),
-                                    'user_id' => Auth::user()->id,
-                                ];
-                                $user_act_model->create($user_activity);
-
-                                $notify_data = Notification::notify_data();
-                                Session::forget('notify_data');
-                                Session::put('notify_data', $notify_data);
-
-                                Session::put('email', $user_data->email);
-                                Session::flash('message', "Successfully  Logged In.");
-                                return redirect()->intended('dashboard');
-                            }else{
-                                Session::flash('danger', "Password Incorrect.Please Try Again");
+                    $user_data = User::where($field, $data['email'])->first();
+                    $check_password = Hash::check($data['password'], $user_data->password);
+                    if($check_password){
+                        #exit('ok');
+                        if($user_data->last_visit!=NULL){
+                            if($user_data->expire_date < date('Y-m-d h:i:s', time())){
+                                DB::table('user')->where('id', '=', $user_data->id)->update(array('status' =>'inactive'));
+                                Session::flash('message', "Login Activation Time Is Expired.You Can Contact With Admin To Reactivate Account.");
+                            }elseif($user_data->status=='inactive'){
+                                Session::flash('error', "Sorry!!Your Account Is Inactive.You Can Contact With System-Admin To Reactivate Account.");
                             }
+                            else{
+                                $attempt = Auth::attempt([
+                                    $field => $request->get('email'),
+                                    'password' => $request->get('password'),
+                                ]);
+                                if($attempt){
+                                    DB::table('user')->where('id', '=', $user_data->id)->update(array('last_visit' =>date('Y-m-d h:i:s', time())));
+                                    $user_act_model = new UserActivity();
+
+                                    $user_activity = [
+                                        'action_name' => 'user-login',
+                                        'action_url' => 'get-user-login',
+                                        'action_details' => Auth::user()->username.' '. 'logged in',
+                                        'action_table' => 'user',
+                                        'date' => date('Y-m-d h:i:s', time()),
+                                        'user_id' => Auth::user()->id,
+                                    ];
+                                    $user_act_model->create($user_activity);
+
+                                    $notify_data = Notification::notify_data();
+                                    Session::forget('notify_data');
+                                    Session::put('notify_data', $notify_data);
+
+                                    Session::put('email', $user_data->email);
+                                    Session::flash('message', "Successfully  Logged In.");
+                                    return redirect()->intended('dashboard');
+                                }else{
+                                    Session::flash('danger', "Password Incorrect.Please Try Again");
+                                }
+                            }
+                        }else{
+                            Session::flash('info', "You are a new user.Please reset your password for first time login.");
+                            #return redirect()->to('welcome');
+                            return redirect()->route('reset-password',['user_id'=>$user_data['id']]);
                         }
                     }else{
-                        Session::flash('info', "You are a new user.Please reset your password for first time login.");
-                        #return redirect()->to('welcome');
-                        return redirect()->route('reset-password',['user_id'=>$user_data['id']]);
+                        #exit('no');
+                        Session::flash('danger', "Password Incorrect.Please Try Again!!!");
                     }
                 }else{
-                    #exit('no');
-                    Session::flash('danger', "Password Incorrect.Please Try Again!!!");
+                    Session::flash('danger', "UserName/Email does not exists.Please Try Again");
                 }
-            }else{
-                Session::flash('danger', "UserName/Email does not exists.Please Try Again");
+                return redirect()->back();
             }
-            return redirect()->back();
+        }else{
+            return redirect('/');
         }
+
     }
 }

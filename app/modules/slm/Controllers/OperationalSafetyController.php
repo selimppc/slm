@@ -494,7 +494,7 @@ class OperationalSafetyController extends Controller
         $image_path2 = public_path().'/assets/img/report_black.jpg';*/
         $image_path = public_path().'/assets/img/report.jpg';
         $image_path2 = public_path().'/assets/img/slm-logo-for-pdf.png';
-        $img = '<img src="'.$image_path.'" height="100" width="250"  alt="Surinam Airways" >';
+        $img = '<img src="'.$image_path.'" width="235"  alt="Surinam Airways" >';
         $img2 = '<img src="'.$image_path2.'"  alt="Surinam Airways" >';
 
         if($operational_safety->type_of_occurrence== 'accident'){$occurrence1='checked';}else{$occurrence1='';}
