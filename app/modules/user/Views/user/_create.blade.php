@@ -1,3 +1,6 @@
+
+{!! Form::open(['route' => 'create-user', 'id' => 'form_2', 'files'=>'true']) !!}
+
 <div class="form-group">
     {!!  Form::label('Upload Excel') !!}
     {!! Form::file('excel_file',['class'=>'form-control','required'=>'required']) !!}
@@ -10,4 +13,4 @@
 
 
 
-
+{!! Form::close() !!}

@@ -120,9 +120,9 @@
                 <h4 class="modal-title" id="myModalLabel">Create User<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2"></font> </span></h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => 'create-user','id' => 'form_2']) !!}
+
                 @include('user::user._create')
-                {!! Form::close() !!}
+
             </div> <!-- / .modal-body -->
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->

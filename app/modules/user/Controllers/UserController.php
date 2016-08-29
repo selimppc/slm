@@ -339,10 +339,12 @@ class UserController extends Controller
         $input = $request->all();
         #print_r($input['excel_file']);exit;
 
-        $data = new Spreadsheet_Excel_Reader($input['excel_file']);
+        $data = new Spreadsheet_Excel_Reader($_FILES['excel_file']['name']);
 
-        print_r($data->sheets[0]['cells']);
+        print_r($data->sheets   );
+        #print_r($data->sheets[0]['cells']);
         #echo $data->dump(true,true);
+        exit();
 
     }
 
