@@ -136,7 +136,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Illuminate\Html\HtmlServiceProvider::class,
+        //Illuminate\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
 
         /*
@@ -199,8 +200,13 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Form'      => Illuminate\Html\FormFacade::class,
-        'Html'      => Illuminate\Html\HtmlFacade::class,
+
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+
+
+        //'Form'      => Illuminate\Html\FormFacade::class,
+        //'Html'      => Illuminate\Html\HtmlFacade::class,
 //        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Xmlapi'    => App\Helpers\Xmlapi::class,
         'EmailSend'    => App\Helpers\EmailSend::class,
