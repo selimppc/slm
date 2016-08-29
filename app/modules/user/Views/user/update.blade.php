@@ -69,11 +69,11 @@
         <div class="row">
             <div class="col-sm-6">
                 {!! Form::label('role_id', 'User Role:', ['class' => 'control-label']) !!}
-                {!! Form::Select('role_id',$role, Input::old('role_id'),['style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select role name']) !!}
+                {!! Form::Select('role_id',isset($role)?$role:null, Input::old('role_id'),['style'=>'text-transform:capitalize','class' => 'form-control','required','title'=>'select role name']) !!}
             </div>
             <div class="col-sm-6">
                 {!! Form::label('department_id', 'Department:', ['class' => 'control-label']) !!}
-                    {!! Form::Select('department_id', $department_data, Input::old('department_id'),['class' => 'form-control','required','title'=>'select department name']) !!}
+                    {!! Form::Select('department_id', isset($department_data)?$department_data:null, Input::old('department_id'),['class' => 'form-control','required','title'=>'select department name']) !!}
             </div>
         </div>
     </div>
@@ -85,7 +85,7 @@
                     @if(isset($data->expire_date))
                         {!! Form::text('expire_date', Input::old('expire_date'), ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
                     @else
-                        {!! Form::text('expire_date', $days, ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
+                        {!! Form::text('expire_date', isset($days)?$days:null, ['class' => 'form-control bs-datepicker-component','required','title'=>'select expire date']) !!}
                     @endif
 
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
