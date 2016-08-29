@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "illuminate/html": "5.*"
+        "illuminate/html": "5.*",
+        "phpoffice/phpexcel": "^1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -24,7 +25,10 @@
             "App\\": "app/",
             "Modules\\": "modules/",
             "Bootstrap\\": "bootstrap/"
-        }
+        },
+        "files": [
+            "app/modules/user/Helper/ImportExcel.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [

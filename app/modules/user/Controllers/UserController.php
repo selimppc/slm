@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Helpers\Spreadsheet_Excel_Reader;
 
+
 class UserController extends Controller
 {
 
@@ -337,11 +338,29 @@ class UserController extends Controller
     public function create_user(Request $request){
 
         $input = $request->all();
-        #print_r($input['excel_file']);exit;
 
-        $data = new Spreadsheet_Excel_Reader($_FILES['excel_file']['name']);
+        #$objPHPExcel =   \PHPExcel_IOFactory::load($_FILES['excel_file']['name']);
 
-        print_r($data->sheets   );
+        print_r(pathinfo($_FILES['excel_file']['name']));exit();
+        $objPHPExcel = \PHPExcel_IOFactory::load($_FILES['excel_file']['name']);
+
+
+            exit("OK");
+        $objWorksheet = $objPHPExcel->getActiveSheet();
+        $highestRow = $objWorksheet->getHighestRow();
+        for ($row = 1; $row <= $highestRow; ++$row) {
+            var_dump($objWorksheet->getCellByColumnAndRow(1, $row));
+        }
+        exit();
+
+        #$file = public_path()."/excel_files/book.xls";
+        #print_r($file);exit();
+
+        #$data = ($_FILES['excel_file']['name']);
+        $obj = new Spreadsheet_Excel_Reader();
+        $data = $obj->Spreadsheet_Excel_Reader($_FILES['excel_file']);
+
+        print_r($data );
         #print_r($data->sheets[0]['cells']);
         #echo $data->dump(true,true);
         exit();
