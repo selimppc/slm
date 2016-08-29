@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-md-6 buttons-div">
-        <a href="{{ route('download-user-excel') }}" class="btn btn-info btn-xs pull-right" data-placement="top"><strong>Download User Excel</strong></a>
+        <a href="{{ route('download-user-excel') }}" class="btn btn-info btn-xs pull-right" data-placement="top"><strong>Download User Excel Format</strong></a>
     </div>
 </div>
 
