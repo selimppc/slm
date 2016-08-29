@@ -367,15 +367,21 @@ class UserController extends Controller
                         $val[] = $cell->getValue();
                     }
 
-                    $input_data = [
-                        'username'=>$val[0],
-                        'password'=>isset($val[1])?Hash::make($val[1]):Hash::make("123456"),
-                        'email'=>$val[2],
-                        'status'=> 'active',
-                    ];
+                    $email_exists = User::where('email', $val[2])->exists();
+                    $username_exists = User::where('username', $val[0])->exists();
+                    if($email_exists == null && $username_exists == null)
+                    {
+                        $input_data = [
+                            'username'=>$val[0],
+                            'password'=>isset($val[1])?Hash::make($val[1]):Hash::make("123456"),
+                            'email'=>$val[2],
+                            'status'=> 'active',
+                        ];
 
-                    User::create($input_data);
-                    DB::commit();
+                        User::create($input_data);
+                        DB::commit();
+                    }
+                    
                 }
 
             }
