@@ -348,6 +348,39 @@ class UserController extends Controller
 
     }
 
+    public function download_user_excel(){
+
+        //$table = Safety::where('id',$id)->first();
+        #$table = Safety::all();
+
+        //print_r($table['full_name']);exit;
+
+        $downloadfolder = 'csv_files/';
+
+        if ( !file_exists($downloadfolder) ) {
+            $oldmask = umask(0);  // helpful when used in linux server
+            mkdir ($downloadfolder, 0777);
+        }
+
+        $filename = $downloadfolder."UserExcel.xls";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('UserName','Email','Password'));
+
+        //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
+
+        fputcsv($handle,array());
+
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/xls',
+        );
+
+        //return Response::download($handle, 'tweets.csv', $headers);
+        return Response::download($filename, 'UserExcel.xls', $headers);
+    }
+
 
 
 

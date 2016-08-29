@@ -26,7 +26,7 @@
                     </a>
 
                     <a class="btn btn-info btn-xs margin-bot-5" data-toggle="modal" href="#createData" data-placement="left" data-content="click 'add user' button to add new user">
-                        <strong>Create User</strong>
+                        <strong>Create User From Excel Sheet</strong>
                     </a>
                     <div class="padding-tb"></div>
                 </div>

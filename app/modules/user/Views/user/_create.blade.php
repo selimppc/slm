@@ -1,6 +1,18 @@
 
 {!! Form::open(['route' => 'create-user', 'id' => 'form_2', 'files'=>'true']) !!}
 
+
+<div class="panel-heading">
+    <div class="col-md-6 title-div">
+        <div class="padding-tb"></div>
+    </div>
+
+    <div class="col-md-6 buttons-div">
+        <a href="{{ route('download-user-excel') }}" class="btn btn-info btn-xs pull-right" data-placement="top"><strong>Download User Excel</strong></a>
+    </div>
+</div>
+
+
 <div class="form-group">
     {!!  Form::label('Upload Excel') !!}
     {!! Form::file('excel_file',['class'=>'form-control','required'=>'required']) !!}

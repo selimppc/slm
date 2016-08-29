@@ -40,6 +40,12 @@ Route::any('create-user', [
     'uses' => 'UserController@create_user'
 ]);
 
+Route::any('download-user-excel', [
+    //'middleware' => 'acl_access:view-role/{slug}',
+    'as' => 'download-user-excel',
+    'uses' => 'UserController@download_user_excel'
+]);
+
 Route::any('search-user', [
     'middleware' => 'acl_access:search-user',
     'as' => 'search-user',
