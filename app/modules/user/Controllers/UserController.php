@@ -377,6 +377,8 @@ class UserController extends Controller
             'Content-Type' => 'text/xls',
         );
 
+        chmod($filename,0755);
+
         //return Response::download($handle, 'tweets.csv', $headers);
         return Response::download($filename, 'UserExcel.xls', $headers);
     }
