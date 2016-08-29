@@ -30,6 +30,9 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use App\Helpers\Spreadsheet_Excel_Reader;
+use PHPExcel_IOFactory;
+use PHPExcel;
+use ZipArchive;
 
 
 class UserController extends Controller
@@ -335,69 +338,76 @@ class UserController extends Controller
     }
 
 
-    public function create_user(Request $request){
+    public function create_user(Request $request)
+    {
+        #$fil_in= $_FILES['excel_file']['name'];
+        $file2 = Input::file('excel_file');
+        $destinationPath = public_path()."/excel_files/";
+        $file2_original_name = $file2->getClientOriginalName();
+        $file2->move($destinationPath, $file2_original_name);
+        $file = public_path()."/excel_files/".$file2_original_name;
 
-        $input = $request->all();
+        $objPHPExcel = PHPExcel_IOFactory::load($file);
+        //DB
+        DB::beginTransaction();
+        try
+        {
+            foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow         = $worksheet->getHighestRow(); // e.g. 10
+                $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
+                $highestColumnIndex = \PHPExcel_Cell::columnIndexFromString($highestColumn);
+                $row = 2;
+                for ($row; $row <= $highestRow; $row++)
+                {
+                    $val=array();
+                    for ($col = 0; $col < $highestColumnIndex; ++ $col)
+                    {
+                        $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                        $val[] = $cell->getValue();
+                    }
 
-        #$objPHPExcel =   \PHPExcel_IOFactory::load($_FILES['excel_file']['name']);
+                    $input_data = [
+                        'username'=>$val[0],
+                        'password'=>isset($val[1])?Hash::make($val[1]):Hash::make("123456"),
+                        'email'=>$val[2],
+                        'status'=> 'active',
+                    ];
 
-        print_r(pathinfo($_FILES['excel_file']['name']));exit();
-        $objPHPExcel = \PHPExcel_IOFactory::load($_FILES['excel_file']['name']);
+                    User::create($input_data);
+                    DB::commit();
+                }
 
-
-            exit("OK");
-        $objWorksheet = $objPHPExcel->getActiveSheet();
-        $highestRow = $objWorksheet->getHighestRow();
-        for ($row = 1; $row <= $highestRow; ++$row) {
-            var_dump($objWorksheet->getCellByColumnAndRow(1, $row));
+            }
+        } catch (\Exception $e) {
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
         }
-        exit();
-
-        #$file = public_path()."/excel_files/book.xls";
-        #print_r($file);exit();
-
-        #$data = ($_FILES['excel_file']['name']);
-        $obj = new Spreadsheet_Excel_Reader();
-        $data = $obj->Spreadsheet_Excel_Reader($_FILES['excel_file']);
-
-        print_r($data );
-        #print_r($data->sheets[0]['cells']);
-        #echo $data->dump(true,true);
-        exit();
+        return redirect()->back();
 
     }
 
-    public function download_user_excel(){
-
-        //$table = Safety::where('id',$id)->first();
-        #$table = Safety::all();
-
-        //print_r($table['full_name']);exit;
-
-        $downloadfolder = 'csv_files/';
+    public function download_user_excel()
+    {
+        $downloadfolder = 'user_input_format/';
 
         if ( !file_exists($downloadfolder) ) {
             $oldmask = umask(0);  // helpful when used in linux server
             mkdir ($downloadfolder, 0777);
         }
 
-        $filename = $downloadfolder."UserExcel.xls";
+        $filename = $downloadfolder."user_input_data.csv";
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('UserName','Email','Password'));
 
         //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
 
         fputcsv($handle,array());
-
-
         fclose($handle);
-
         $headers = array(
             'Content-Type' => 'text/xls',
         );
-
         chmod($filename,0755);
-
         //return Response::download($handle, 'tweets.csv', $headers);
         return Response::download($filename, 'UserExcel.xls', $headers);
     }
