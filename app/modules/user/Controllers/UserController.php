@@ -404,18 +404,18 @@ class UserController extends Controller
 
         $filename = $downloadfolder."user_input_data.csv";
         $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('UserName','Email','Password'));
+        fputcsv($handle, array('UserName','Password','Email'));
 
         //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
 
         fputcsv($handle,array());
         fclose($handle);
         $headers = array(
-            'Content-Type' => 'text/xls',
+                'Content-Type' => 'text/csv',
         );
-        chmod($filename,0755);
+        //chmod($filename,0755);
         //return Response::download($handle, 'tweets.csv', $headers);
-        return Response::download($filename, 'UserExcel.xls', $headers);
+        return Response::download($filename, 'user_input_data.csv', $headers);
     }
 
 
