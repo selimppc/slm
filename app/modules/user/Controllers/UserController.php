@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Auth;
+use App\Helpers\Spreadsheet_Excel_Reader;
 
 class UserController extends Controller
 {
@@ -331,6 +332,26 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function create_user(Request $request){
+
+        $input = $request->all();
+        #print_r($input['excel_file']);exit;
+
+        $data = new Spreadsheet_Excel_Reader($input['excel_file']);
+
+        print_r($data->sheets[0]['cells']);
+        #echo $data->dump(true,true);
+
+    }
+
+
+
+
+
+
+
     /**
      * Display the specified resource.
      *

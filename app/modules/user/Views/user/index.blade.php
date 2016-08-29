@@ -4,16 +4,32 @@
 @stop
 
 @section('content')
-
+    <style>
+        .csv-margin{
+            margin-left: 10px !important;
+        }
+    </style>
         <!-- page start-->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel">
             <div class="panel-heading">
-                <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all user in this page<br> and add new user, update, delete from this page</em>"></span>
-                <a class="btn btn-primary btn-xs pull-right pop" data-toggle="modal" href="#addData" data-placement="left" data-content="click 'add user' button to add new user">
-                    <strong>Add User</strong>
-                </a>
+                <div class="col-md-6 title-div">
+                    <span class="panel-title">{{ $pageTitle }}</span>&nbsp;&nbsp;&nbsp;<span style="color: #A54A7B" class="user-guideline" data-content="<em>we can show all user in this page<br> and add new user, update, delete from this page</em>"></span>
+                </div>
+
+
+
+                <div class="col-md-6 buttons-div">
+                    <a class="btn btn-primary btn-xs pull-right pop csv-margin" data-toggle="modal" href="#addData" data-placement="left" data-content="click 'add user' button to add new user">
+                        <strong>Add User</strong>
+                    </a>
+
+                    <a class="btn btn-info btn-xs margin-bot-5" data-toggle="modal" href="#createData" data-placement="left" data-content="click 'add user' button to add new user">
+                        <strong>Create User</strong>
+                    </a>
+                    <div class="padding-tb"></div>
+                </div>
             </div>
 
             <div class="panel-body">
@@ -95,6 +111,24 @@
         </div> <!-- / .modal-content -->
     </div> <!-- / .modal-dialog -->
 </div>
+
+<div id="createData" class="modal fade" tabindex="" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-lg" style="z-index:1050">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="click x button for close this entry form">×</button>
+                <h4 class="modal-title" id="myModalLabel">Create User<span style="color: #A54A7B" class="user-guideline" data-content="<em>Must Fill <b>Required</b> Field.    <b>*</b> Put cursor on input field for more informations</em>"><font size="2"></font> </span></h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'create-user','id' => 'form_2']) !!}
+                @include('user::user._create')
+                {!! Form::close() !!}
+            </div> <!-- / .modal-body -->
+        </div> <!-- / .modal-content -->
+    </div> <!-- / .modal-dialog -->
+</div>
+
+
 <!-- modal -->
 
 

@@ -34,6 +34,12 @@ Route::any('add-user', [
     'uses' => 'UserController@add_user'
 ]);
 
+Route::any('create-user', [
+    /*'middleware' => 'acl_access:create-user',*/
+    'as' => 'create-user',
+    'uses' => 'UserController@create_user'
+]);
+
 Route::any('search-user', [
     'middleware' => 'acl_access:search-user',
     'as' => 'search-user',

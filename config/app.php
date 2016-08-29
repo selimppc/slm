@@ -205,6 +205,7 @@ return [
         'Xmlapi'    => App\Helpers\Xmlapi::class,
         'EmailSend'    => App\Helpers\EmailSend::class,
         'Notification'    => App\Helpers\Notification::class,
+        'Spreadsheet_Excel_Reader'    => App\Helpers\Spreadsheet_Excel_Reader::class,
 
     ],
 
