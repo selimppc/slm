@@ -47,7 +47,7 @@
                     <th width="28%" style="border: 2px solid" colspan="2">2. DATE OF OCCURRENCE :
                         {{ isset($maintenance_occurrence->date_of_occurrence)?date("M d, Y", strtotime($maintenance_occurrence->date_of_occurrence)):'' }}
                     </th>
-                    <th width="14%" style="border: 2px solid">3. TIME OF OCCURRENCE : {{ isset($ground_handling->time_of_occurrence)?ucfirst($ground_handling->time_of_occurrence):'' }}</th>
+                    <th width="14%" style="border: 2px solid">3. TIME OF OCCURRENCE : {{ isset($maintenance_occurrence->time_of_occurrence)?ucfirst($maintenance_occurrence->time_of_occurrence):'' }}</th>
                     <th width="14%" style="border: 2px solid">4. SHIFT : {{ isset($maintenance_occurrence->shift)?ucfirst($maintenance_occurrence->shift):'' }}</th>
                     <th width="14%" style="border: 2px solid">5. LOCATION OF OCCURRENCE : {{ isset($maintenance_occurrence->location_of_occurrence)?ucfirst($maintenance_occurrence->location_of_occurrence):'' }}</th>
                     <th width="30%" style="border: 2px solid" colspan="2">6. SUB LOCATION : {{ isset($maintenance_occurrence->sub_location_of_occurrence)?ucfirst($maintenance_occurrence->sub_location_of_occurrence):'' }}</th>

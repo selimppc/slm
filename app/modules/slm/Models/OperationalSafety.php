@@ -34,6 +34,7 @@ class OperationalSafety extends Model
         'location_of_occurrence',
         'origin_of_the_goods',
         'description_of_the_occurrence',
+        'subsidiary_risks',
         'proper_shipping_name',
         'un_or_id_no',
         'class_or_division',
