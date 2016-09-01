@@ -222,10 +222,17 @@ class PdfManagerController extends Controller
         $path = public_path($filename);
 
 
-        return Response::make(file_get_contents($path), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="'.$filename.'"'
-        ]);
+        if (file_exists($path)>0) {
+            return Response::make(file_get_contents($path), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="'.$filename.'"'
+            ]);
+
+        }else{
+            Session::flash('error', 'PDF file not found');
+            return redirect()->back();
+        }
+
     }
 
     public function edit($id)
