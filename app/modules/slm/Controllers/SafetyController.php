@@ -94,7 +94,8 @@ class SafetyController extends Controller
         $model->advice_earlier = @$input['advice_earlier'];$model->lighting_conditions = @$input['lighting_conditions'];
         $model->conditions_of_the_sky = @$input['conditions_of_the_sky'];$model->course_ac = @$input['course_ac'];
         $model->glidslope_position = @$input['glidslope_position'];$model->pos_extended_center = @$input['pos_extended_center'];
-        $model->change_in_pitch = @$input['change_in_pitch'];$model->speed_buffet = @$input['speed_buffet'];
+        $model->change_in_pitch = @$input['change_in_pitch'];$model->change_in_roll = @$input['change_in_roll'];$model->change_in_yaw = @$input['change_in_yaw'];
+        $model->change_in_alt = @$input['change_in_alt'];$model->speed_buffet = @$input['speed_buffet'];
         $model->stickshaker = @$input['stickshaker'];$model->suspected_wake_turbulance = @$input['suspected_wake_turbulance'];
         $model->sign_verticle_accelaration = @$input['sign_verticle_accelaration'];
         $model->details_ac_wake_turbulance = @$input['details_ac_wake_turbulance'];

@@ -555,6 +555,21 @@
                         {!! Form::text('change_in_pitch', $data->change_in_pitch, ['id'=>'change_in_pitch', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
                     </div>
                     <div class="col-sm-4">
+                        {!! Form::label('change_in_roll', 'Change IN ROLL:', ['class' => 'control-label']) !!}
+                        {!! Form::text('change_in_roll', $data->change_in_roll, ['id'=>'change_in_roll', 'class' => 'form-control','maxlength'=>'64','title'=>'enter change_in_roll','readonly']) !!}
+                    </div>
+                    <div class="col-sm-4">
+                        {!! Form::label('change_in_yaw', 'Change IN YAW:', ['class' => 'control-label']) !!}
+                        {!! Form::text('change_in_yaw', $data->change_in_yaw, ['id'=>'change_in_yaw', 'class' => 'form-control','maxlength'=>'64','title'=>'enter change_in_yaw','readonly']) !!}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        {!! Form::label('change_in_alt', 'CHANGE IN ALT:', ['class' => 'control-label']) !!}
+                        {!! Form::text('change_in_alt', $data->change_in_alt, ['id'=>'change_in_alt', 'class' => 'form-control','maxlength'=>'64','title'=>'enter change_in_alt','readonly']) !!}
+                    </div>
+                    <div class="col-sm-4">
                         {!! Form::label('speed_buffet', 'SPEED BUFFET?:', ['class' => 'control-label']) !!}
                         {!! Form::text('speed_buffet', $data->speed_buffet, ['id'=>'speed_buffet', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
                     </div>

@@ -89,6 +89,13 @@ class CreateAirSafeftTable extends Migration
             $table->enum('glidslope_position',array('hi','low','on'))->nullable();
             $table->enum('pos_extended_center',array('left','right','on'))->nullable();
             $table->string('change_in_pitch',64)->nullable();
+
+            $table->string('change_in_roll',64)->nullable();
+            $table->string('change_in_yaw',64)->nullable();
+            $table->string('change_in_alt',64)->nullable();
+
+
+
             $table->string('speed_buffet',64)->nullable();
             $table->string('stickshaker',64)->nullable();
             $table->string('suspected_wake_turbulance',64)->nullable();
