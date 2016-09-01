@@ -24,6 +24,7 @@ use Validator;
 use Dompdf\Dompdf;
 
 
+
 class SafetyController extends Controller
 {
     protected function isGetRequest()
