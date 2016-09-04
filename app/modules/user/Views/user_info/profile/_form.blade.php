@@ -23,9 +23,10 @@
         </div>
         <div class="col-sm-6">
             {!! Form::label('date_of_birth', 'Date Of Birth:', ['class' => 'control-label']) !!}
-            <div class="">
-                {!! Form::text('date_of_birth', Input::old('date_of_birth'), ['class' => 'form-control datapicker2','required','title'=>'select birth date']) !!}
-                {{--<span class="input-group-addon"></span>--}}
+            
+            <div class="input-group date">
+                {!! Form::text('date_of_birth', Input::old('date_of_birth'), ['class' => 'form-control input-group.date','title'=>'select date']) !!}
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
     </div>
