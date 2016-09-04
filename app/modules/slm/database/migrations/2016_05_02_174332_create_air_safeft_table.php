@@ -68,7 +68,7 @@ class CreateAirSafeftTable extends Migration
             $table->string('spoilers',64)->nullable();
             $table->enum('type_of_alert',array('none','ra','ta'))->nullable();
             $table->string('type_of_ra',64)->nullable();
-            $table->enum('ra_followed',array('Yes','No'))->nullable();
+            $table->enum('ra_followed',array('yes','no'))->nullable();
             $table->enum('level_of_risk',array('none','low','medium','high'))->nullable();
             $table->enum('evasive_actions',array('yes','no'))->nullable();
             $table->enum('reported_to_atc',array('yes','no'))->nullable();

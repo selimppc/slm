@@ -428,7 +428,7 @@ class ConfidentialSafetyController extends Controller
                             <td colspan="3"><b>Account of event – </b>(please continue on other side or attach additional sheets if necessary)</td>
                         </tr>
                         <tr>
-                            <td colspan="3" height="300px">'.$confidential_safety->account_of_event.'</td>
+                            <td colspan="3" height="300px" style="vertical-align: top;text-align: left;">'.$confidential_safety->account_of_event.'</td>
                         </tr>
                     </table>
                 </div>

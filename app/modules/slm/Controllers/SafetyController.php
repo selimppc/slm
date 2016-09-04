@@ -502,7 +502,7 @@ class SafetyController extends Controller
 
         if($data->type_of_influence== 'crew_actions'){$influence1='checked';}else{$influence1='';}
         if($data->type_of_influence== 'external'){$influence2='checked';}else{$influence2='';}
-        if($data->type_of_influence== 'organizational'){$influence3='checked';}else{$influence3='';}
+        if($data->type_of_influence== 'organizations'){$influence3='checked';}else{$influence3='';}
         if($data->type_of_influence== 'personal'){$influence4='checked';}else{$influence4='';}
 
         $html = '
@@ -803,7 +803,7 @@ class SafetyController extends Controller
                         <br>
                         None<input type="checkbox" name="type_of_alert" value=""  '.$alert1.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                         RA<input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
-                        TA<input type="checkbox" name="type_of_alert" value=""  '.$alert2.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
+                        TA<input type="checkbox" name="type_of_alert" value=""  '.$alert3.' style="display:inline;" > &nbsp;&nbsp;&nbsp;
                     </th>
                     <th width="48%" style="border: 2px solid" colspan="2">44. TYPE OF RA : '.$data->type_of_ra.'</th>
                     <th width="20%" style="border: 2px solid" colspan="2">
