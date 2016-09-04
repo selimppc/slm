@@ -11,3 +11,5 @@ User Module
 SLM Module
 
     php artisan migrate --path="app/modules/slm/database/migrations/"
+    
+    For every new user need permission to 'user-logout' routes
