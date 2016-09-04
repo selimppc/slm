@@ -636,7 +636,7 @@ class GroundHandlingController extends Controller
                     <th width="100%" style="border: 2px solid" colspan="4">15. THIRD PARTY INVOLVED (Contractor) '.$ground_handling->third_party_involved.'</th>
                 </tr>
                 <tr style="vertical-align: top; text-align:left;">
-                    <th width="100%" style="border: 2px solid; height:250px" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) <p>'.$ground_handling->description_of_occurrence.'</p></th>
+                    <td width="100%" style="border: 2px solid; height:250px;vertical-align: top; text-align:left;" colspan="4">16. DESCRIPTION OF OCCURRENCE ( add forms if necessary) :'.$ground_handling->description_of_occurrence.'</td>
                 </tr>
                 <tr style="vertical-align: top;">
                     <td width="100%" style="border: 2px solid; font-size:13px" colspan="4">
