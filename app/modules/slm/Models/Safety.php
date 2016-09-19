@@ -36,4 +36,10 @@ class Safety extends Model
     ];
 
 
+
+    public function relSaftyImage(){
+        return $this->hasMany('App\Modules\Slm\Models\SafetyImage', 'air_safety_id');
+    }
+
+
 }

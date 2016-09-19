@@ -15,7 +15,7 @@
             <h4 class="text-center text-green"><b style="color: #f5f5f5">Add New Confidential Safety Report</b></h4>
         </div>
 
-        {!! Form::open(['route' => 'store-confidential-safety','class' => 'form-horizontal','id' => 'form_2']) !!}
+        {!! Form::open(['route' => 'store-confidential-safety','class' => 'form-horizontal','id' => 'form_2','files'=>true]) !!}
         <div class="panel-body">
 
             <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">

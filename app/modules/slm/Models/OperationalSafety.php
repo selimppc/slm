@@ -60,4 +60,8 @@ class OperationalSafety extends Model
         'updated_by',
     ];
 
+    public function relOperationalSafety(){
+        return $this->hasMany('App\Modules\Slm\Models\OperationalSafetyImage', 'operational_safety_id');
+    }
+
 }

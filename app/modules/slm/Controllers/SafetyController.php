@@ -42,9 +42,11 @@ class SafetyController extends Controller
         $full_name = Input::get('full_name');
         $year = Input::get('year');
         //$data = new Safety();
-        $data = Safety::where('status','!=','cancel')->where('full_name', 'LIKE', '%'.$full_name.'%')->where('year', 'LIKE', '%'.$year.'%')->paginate(30);
-        //$data = Safety::get();
-       //print_r($data);exit;
+
+        $data = Safety::with('relSaftyImage')->where('status','!=','cancel')->where('full_name', 'LIKE', '%'.$full_name.'%')->where('year', 'LIKE', '%'.$year.'%')->paginate(30);
+
+       //$data = Safety::get();
+       #print_r($data);exit;
 
         return view('slm::air_safety.index',['data' => $data,'pageTitle'=>$pageTitle]);
     }
@@ -268,12 +270,14 @@ class SafetyController extends Controller
         $data['date']=date("M d, Y", strtotime($data['date']));
         //$data['safety_verification'] = Safety::where('id',$id)->first();
 
+        $data_image = SafetyImage::where('air_safety_id',$id)->get();
+
         //print_r($data->reference_no); exit;
 
         //print_r($data['safety_verification']); exit();
 
         //print_r($data['date']);exit;
-        return view('slm::air_safety.update',['pageTitle'=>$pageTitle,'data' => $data]);
+        return view('slm::air_safety.update',['pageTitle'=>$pageTitle,'data_image' => $data_image,'data' => $data]);
     }
 
     public function update(Request $request, $id)

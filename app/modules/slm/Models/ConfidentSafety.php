@@ -39,4 +39,8 @@ class ConfidentSafety extends Model
         'flight_phase',
         'account_of_event'
     ];
+
+    public function relConfidentSafety(){
+        return $this->hasMany('App\Modules\Slm\Models\ConfidentSafetyImage', 'confident_safety_id');
+    }
 }

@@ -24,7 +24,7 @@
                 <div class="row" style="margin-top: 10px">
                     <div class="col-md-12" style="text-align: center">
                         {!! Form::submit('Save', ['class' => 'btn btn-primary','id'=>'i_submit','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
-                        <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
+                        <a href="{{route('cabin-crew')}}" class=" btn btn-info" data-placement="top" data-content="click close button for close this entry form">Back</a>
                     </div>
                 </div>
             </div>

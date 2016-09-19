@@ -51,4 +51,8 @@ class MaintenanceOccurrence extends Model
         'updated_by'
     ];
 
+    public function relMaintenanceOccurrence(){
+        return $this->hasMany('App\Modules\Slm\Models\MaintenanceOccurrenceImage', 'maintenance_occurrence_id');
+    }
+
 }

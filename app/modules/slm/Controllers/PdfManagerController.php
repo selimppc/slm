@@ -71,7 +71,7 @@ class PdfManagerController extends Controller
 
     public function index_safety(){
 
-        $pageTitle = 'Safety Manual';
+        $pageTitle = 'Safety Management Manual';
         $file_name = Input::get('file_name');
 
         $role_id = Auth::user()->role_id;

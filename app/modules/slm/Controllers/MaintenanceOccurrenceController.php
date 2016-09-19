@@ -41,7 +41,7 @@ class MaintenanceOccurrenceController extends Controller
         $data['pageTitle'] = 'Maintenance Occurrence';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['maintenance_occurrence'] = MaintenanceOccurrence::paginate(10);
+        $data['maintenance_occurrence'] = MaintenanceOccurrence::with('relMaintenanceOccurrence')->paginate(10);
         //$data = Safety::get();
         //print_r($data);exit;
 

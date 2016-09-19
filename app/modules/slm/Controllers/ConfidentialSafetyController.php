@@ -9,6 +9,7 @@
 namespace App\Modules\Slm\Controllers;
 
 use App\Helpers\LogFileHelper;
+use App\Modules\Slm\Models\ConfidentSafetyImage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -25,6 +26,8 @@ use App\Modules\Slm\Models\ConfidentSafety;
 
 use Dompdf\Dompdf;
 
+use Validator;
+
 
 
 class ConfidentialSafetyController extends Controller
@@ -39,9 +42,9 @@ class ConfidentialSafetyController extends Controller
         $data['pageTitle'] = 'Confidential Safety';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['confidential_safety'] = ConfidentSafety::paginate(10);
+        $data['confidential_safety'] = ConfidentSafety::with('relConfidentSafety')->paginate(30);
         //$data = Safety::get();
-        //print_r($data);exit;
+        #print_r($data);exit;
 
         return view('slm::confidential_safety.index',$data);
     }
@@ -65,14 +68,74 @@ class ConfidentialSafetyController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->except('_token');
+        $data=$request->except('_token','attachment');
 
         $user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $token = $user->csrf_token;
         //print_r($user);exit;
 
+        //----------------- For Attachment file-------------------//
+        $file_attachments=Input::file('attachment');
+        #print_r($file_attachments); exit();
+        if(isset($file_attachments)){
+            /*$rules = array('file' => 'mimes:pdf,doc');*/
+            /*$rules = array('file' => 'max:300');*/
 
-        if(ConfidentSafety::insert($data)) {
+            foreach($file_attachments as $file_attachment) {
+
+                $rules = array();
+                $validator = Validator::make(array('file' => $file_attachment), $rules);
+                //print_r($validator->passes());exit;
+
+                if ($validator->passes()) {
+                    //exit('Exit');
+                    $upload_folder = 'attachment/';
+                    if (!file_exists($upload_folder)) {
+                        $oldmask = umask(0);  // helpful when used in linux server
+                        mkdir($upload_folder, 0777);
+                    }
+                    if(isset($file_attachment)) {
+                        $file_original_name = $file_attachment->getClientOriginalName();
+
+                        $file_name = rand(11111, 99999) . '-' . $file_original_name;
+                        $file_attachment->move($upload_folder, $file_name);
+                        $attachment = $upload_folder . $file_name;
+                        //$model->attachment = $attachment;
+
+                        $image_path[] = $attachment;
+                    }
+
+                    //print_r($attachment); exit();
+
+                } else {
+                    // Redirect or return json to frontend with a helpful message to inform the user
+                    // that the provided file was not an adequate type
+                    return redirect('add-confidential-safety')
+                        ->withErrors($validator)
+                        ->withInput();
+                }
+            }
+        }//---------End Attachment
+       # print_r($image_path); exit();
+
+        $model = new ConfidentSafety();
+
+        $id = $model->create($data);
+
+
+        if($id) {
+            if(isset($image_path)){
+                foreach($image_path as $ims){
+                    $safety_image[] = [
+                        'confident_safety_id' => $id->id,
+                        'image_path'=>$ims,
+                    ];
+                }
+                foreach($safety_image as $input_image){
+
+                    ConfidentSafetyImage::create($input_image);
+                }
+            }
 
             try{
                 Mail::send('slm::confidential_safety.mail_notification', array('model'=>$data),
@@ -110,6 +173,7 @@ class ConfidentialSafetyController extends Controller
     {
         $data['pageTitle']='Show Confidential Safety Details';
         $data['confidential_safety']=ConfidentSafety::findOrFail($id);
+        $data['data_image'] = ConfidentSafetyImage::where('confident_safety_id',$id)->get();
         return view('slm::confidential_safety.view',$data);
     }
 
@@ -160,6 +224,8 @@ class ConfidentialSafetyController extends Controller
     {
         $data['pageTitle']='Edit Confidential Safety Details';
         $data['confidential_safety']=ConfidentSafety::findOrFail($id);
+        $data['data_image'] = ConfidentSafetyImage::where('confident_safety_id',$id)->get();
+        $data['cabin_crew_verification'] = ConfidentSafety::where('id',$id)->first();
         return view('slm::confidential_safety.edit',$data);
     }
 

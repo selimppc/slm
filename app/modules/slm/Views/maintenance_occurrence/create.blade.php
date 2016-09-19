@@ -114,5 +114,5 @@
         //}
     </script>
 
-    @include('slm::maintenance_occurrence._script')
+   {{-- @include('slm::maintenance_occurrence._script')--}}
 @stop

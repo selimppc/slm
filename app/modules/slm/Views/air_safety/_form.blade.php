@@ -681,7 +681,7 @@
 
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
-                    {!! Form::submit('Save changes', ['class' => 'btn btn-primary','id'=>'i_submit','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
+                    {!! Form::submit('Save', ['class' => 'btn btn-primary','id'=>'i_submit','data-placement'=>'top','data-content'=>'click save changes button for save role information']) !!}&nbsp;
                     <a href="{{route('air-safety')}}" class=" btn btn-info" data-placement="top" data-content="Back to the Air Safety Information List">Back</a>
                 </div>
             </div>

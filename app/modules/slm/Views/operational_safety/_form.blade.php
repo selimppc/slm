@@ -189,7 +189,7 @@ index. If applicable):', ['class' => 'control-label']) !!}
                     <img src="{{ URL::to($operational_safety_verification->signature) }}" style="width:auto; max-width: 100%;">
                 @endif
             </div>
-            <small class="required">(max size 100kb)</small>
+            <small class="required"></small>
             {!! Form::file('signature',  ['id'=>'signature', 'class' => 'form-control','disabled']) !!}
         </div>
         <div class="col-sm-6">

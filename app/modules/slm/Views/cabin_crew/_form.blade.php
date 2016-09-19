@@ -213,16 +213,20 @@
     <div class="col-md-12">
         <hr>
         {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-        @if($cabin_crew_verification->attachment)
-            <?php $expld = explode('/',$cabin_crew_verification->attachment); ?>
-            <div>
-                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                <a href="{{ URL::to($cabin_crew_verification->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-            </div>
-        @else
-            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-        @endif
-        {!! Form::file('attachment',  ['id'=>'attachment', 'class' => 'form-control','title'=>'Add an attachment','disabled']) !!}
+
+        @foreach($data_image as $image)
+
+            <?php $expld = explode('/',$image->image_path); ?>
+            @if(isset($image->image_path))
+                <div>
+                    <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                    <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                </div>
+            @else
+                <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+            @endif
+        @endforeach
+
     </div>
 </div>
 

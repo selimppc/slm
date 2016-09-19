@@ -43,7 +43,7 @@ class GroundHandlingController extends Controller
         $data['pageTitle'] = 'Ground Handling';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['ground_handling'] = GroundHandling::paginate(10);
+        $data['ground_handling'] = GroundHandling::with('relGroundHandling')->paginate(10);
         //$data = Safety::get();
         //print_r($data);exit;
 

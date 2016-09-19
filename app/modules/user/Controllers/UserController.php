@@ -367,21 +367,28 @@ class UserController extends Controller
                         $val[] = $cell->getValue();
                     }
 
-                    $email_exists = User::where('email', $val[2])->exists();
-                    $username_exists = User::where('username', $val[0])->exists();
-                    if($email_exists == null && $username_exists == null)
-                    {
-                        $input_data = [
-                            'username'=>$val[0],
-                            'password'=>isset($val[1])?Hash::make($val[1]):Hash::make("123456"),
-                            'email'=>$val[2],
-                            'status'=> 'active',
-                        ];
+                    if($val[3] != null){
 
-                        User::create($input_data);
-                        DB::commit();
+                        $email_exists = User::where('email', $val[2])->exists();
+                        $username_exists = User::where('username', $val[0])->exists();
+                        if($email_exists == null && $username_exists == null)
+                        {
+                            $input_data = [
+                                'username'=>$val[0],
+                                'password'=>isset($val[1])?Hash::make($val[1]):Hash::make("123456"),
+                                'email'=>$val[2],
+                                'department_id'=>$val[3],
+                                'status'=> 'active',
+                            ];
+
+                            User::create($input_data);
+                            DB::commit();
+                        }
+
+                    }else{
+
+                        Session::flash('danger', 'Must Filled Department Id');
                     }
-                    
                 }
 
             }
@@ -404,7 +411,7 @@ class UserController extends Controller
 
         $filename = $downloadfolder."user_input_data.csv";
         $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('UserName','Password','Email'));
+        fputcsv($handle, array('UserName','Password','Email','Department ID'));
 
         //fputcsv($handle, array($table['full_name'], $table['email'], $table['telephone'], $table['extension']));
 

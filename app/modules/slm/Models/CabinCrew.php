@@ -31,4 +31,8 @@ class CabinCrew extends Model
         'time','utc_local','air_craft_type','registration','flight_no','from','to','flt_diverted_to','assigned_door','position_during_event','nr_of_pax',
         'nr_of_crew','previous_flights','nr_of_landings_of_the_day','flight_phase','description_of_occurrence','attachment',
     ];
+
+    public function relCabinCrew(){
+        return $this->hasMany('App\Modules\Slm\Models\CabinCrewImage', 'cabin_crew_id');
+    }
 }

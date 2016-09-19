@@ -64,4 +64,8 @@ class GroundHandling extends Model
         'created_by',
         'updated_by'
     ];
+
+    public function relGroundHandling(){
+        return $this->hasMany('App\Modules\Slm\Models\GroundHandlingImage', 'ground_handling_id');
+    }
 }

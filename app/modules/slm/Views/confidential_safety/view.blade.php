@@ -93,15 +93,18 @@
                 <div class="col-md-12">
                     <hr>
                     {!! Form::label('attachment', 'Attachment:', ['class' => 'control-label']) !!}
-                    @if($confidential_safety->attachment)
-                        <?php $expld = explode('/',$confidential_safety->attachment); ?>
-                        <div>
-                            <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
-                            <a href="{{ URL::to($confidential_safety->attachment) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
-                        </div>
-                    @else
-                        <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
-                    @endif
+                    @foreach($data_image as $image)
+
+                        <?php $expld = explode('/',$image->image_path); ?>
+                        @if(isset($image->image_path))
+                            <div>
+                                <span class="glyphicon glyphicon-file"></span>&nbsp; {{ $expld[1] }}
+                                <a href="{{ URL::to($image->image_path) }}" class="btn btn-primary btn-xs" data-placement="top" download="download">Download</a><br><br>
+                            </div>
+                        @else
+                            <div><span class="glyphicon glyphicon-remove-circle"></span> No Attachment Available</div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="col-sm-12 text-center">

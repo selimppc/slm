@@ -43,7 +43,7 @@ class OperationalSafetyController extends Controller
         $data['pageTitle'] = 'Dangerous Goods Occurrence';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['operational_safety'] = OperationalSafety::paginate(10);
+        $data['operational_safety'] = OperationalSafety::with('relOperationalSafety')->paginate(10);
         //$data = Safety::get();
         //print_r($data);exit;
 
@@ -81,7 +81,8 @@ class OperationalSafetyController extends Controller
         // --------------- For Signature File ---------------------------------//
         $file=Input::file('signature');
         if(isset($file)){
-            $rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
+            $rules = array();
+            //$rules = array('file' => 'mimes:jpeg,jpg,png,gif|max:100');
             $validator = Validator::make(array('file' => $file), $rules);
             //print_r($validator->passes());exit;
 

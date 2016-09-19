@@ -43,7 +43,7 @@ class CabinCrewController extends Controller
         $data['pageTitle'] = 'Cabin Crew\'s';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['cabin_crews'] = CabinCrew::paginate(10);
+        $data['cabin_crews'] = CabinCrew::with('relCabinCrew')->paginate(10);
         //$data = Safety::get();
         //print_r($data);exit;
 
@@ -232,9 +232,13 @@ class CabinCrewController extends Controller
     {
         $data['pageTitle']='Edit Cabin Crew Details';
         $data['cabin_crew']=CabinCrew::findOrFail($id);
+        $data['data_image'] = CabinCrewImage::where('cabin_crew_id',$id)->get();
         $data['cabin_crew_verification'] = CabinCrew::where('id',$id)->first();
 
-        //print_r($data['cabin_crew']['date']);exit;
+
+
+
+        #print_r($data['cabin_crew_verification']);exit;
 
         $data['cabin_crew']['date']=date("M d, Y", strtotime($data['cabin_crew']['date']));
 

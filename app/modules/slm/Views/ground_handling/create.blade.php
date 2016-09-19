@@ -110,5 +110,5 @@
         //}
     </script>
 
-    @include('slm::ground_handling._script')
+    {{--@include('slm::ground_handling._script')--}}
 @stop

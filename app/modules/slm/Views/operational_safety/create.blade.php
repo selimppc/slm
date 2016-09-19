@@ -34,5 +34,5 @@
 
     </div>
 
-    @include('slm::operational_safety._script')
+    {{--@include('slm::operational_safety._script')--}}
 @stop

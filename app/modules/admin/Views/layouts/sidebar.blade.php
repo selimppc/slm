@@ -37,7 +37,7 @@
 			<ul class="nav nav-second-level collapse" aria-expanded="false">
 				<li><a href="{{route('safety-bulletin')}}">Safety Bulletins</a></li>
 				<li><a href="{{route('alerts')}}">Safety Alerts</a></li>
-				<li><a href="{{route('safety-manuals')}}">Safety Manual</a></li>
+				<li><a href="{{route('safety-manuals')}}">Safety Management Manual</a></li>
 			</ul>
         </li>
 		<li class="active">
