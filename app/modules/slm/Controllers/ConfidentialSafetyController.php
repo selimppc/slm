@@ -317,13 +317,13 @@ class ConfidentialSafetyController extends Controller
     }
 
     .report_img{
-        height: 20px!important;
+        height: 18px!important;
         text-align: center!important;
         padding: 5px!important;
     }
 
     .report_img2{
-        height: 10px!important;
+        height: 8px!important;
         text-align: left!important;
         padding: 5px 2px 8px 2px!important;
     }
@@ -389,12 +389,12 @@ class ConfidentialSafetyController extends Controller
                             '.$img.'
                         </th>
                         <th width="55%">
-                            <p style="height: 20px; font-weight: bolder; font-size:25px;" align="center">Confidential Safety Report</p>
+                            <p style="height: 20px; font-weight: bolder; font-size:18px;" align="center">Confidential Safety Report</p>
                         </th>
                     </tr>
                 </table>
 
-                <table class="tbl5" style="font-size:13px; text-align:center">
+                <table class="tbl5" style="font-size:12px; text-align:center">
                     <tr>
                         <td>
                             This voluntary report should be submitted to the Safety Department within 24 hours after the incident. FAX: <b>+597-430230</b>
@@ -407,9 +407,9 @@ class ConfidentialSafetyController extends Controller
                     </tr>
                 </table>
 
-                <br>
 
-                <table cellspacing="0" cellpadding="0" border="1" style="width:100%; margin:0 0 0 20px" >
+
+                <table cellspacing="0" cellpadding="0" border="1" style="width:100%; margin:0 0 0 20px; padding:3px" >
                     <tr>
                         <th width="20%">NAME</th>
                         <td width="80%">'.$confidential_safety->name.'</td>
@@ -428,76 +428,74 @@ class ConfidentialSafetyController extends Controller
                     </tr>
                 </table>
 
-                <br>
-                <br>
+
+
 
                 <style>
 
                     .comment{
                         border:2px solid #000000;
-                        width:94% !important;
+                        width:100% !important;
                         text-align:left !important;
-                        padding:10px;
-                        margin-left:7px;
+
+
                     }
 
                     .style_div2 {
 
-                        padding:5px;
+
                         outline: 3px solid #000000;
-                        width:94%;
-                        margin-left:10px;
+                        width:100%;
+                        padding: 2px;
+
                     }
 
                 </style>
 
-                <div class="style_div2">
-                    <div class="comment">
-                        <table style="border:0">
-                            <tr>
-                                <td>&nbsp;&nbsp; 1. Your personal details are required only to enable the Director of Safety to contact you
-                                 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for further details about any part of your report</td>
-                            </tr>
-                            <tr><td>&nbsp;&nbsp; 2. This is a voluntary reporting method</td></tr>
-                            <tr><td>&nbsp;&nbsp; 3. Entering your personal details is optional</td></tr>
-                            <tr><td>&nbsp;&nbsp; 4. You will receive an acknowledgement as soon as possible</td></tr>
-                        </table>
+                <div style="padding:10px">
+                    <div class="style_div2">
+                        <div class="comment">
+                            <table style="border:0">
+                                <tr>
+                                    <td>&nbsp;&nbsp; 1. Your personal details are required only to enable the Director of Safety to contact<br>
+                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you for further details about any part of your report</td>
+                                </tr>
+                                <tr><td>&nbsp;&nbsp; 2. This is a voluntary reporting method</td></tr>
+                                <tr><td>&nbsp;&nbsp; 3. Entering your personal details is optional</td></tr>
+                                <tr><td>&nbsp;&nbsp; 4. You will receive an acknowledgement as soon as possible</td></tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <br>
-                <br>
 
-                <style>
-                    /*.tbl8 tr th{
-                        border-left:1px solid #000; border-top: 1px solid #000;
-                    }
-                    .tbl8 tr td { border-right: 1px solid #000; border-bottom: 1px solid #000;}*/
 
-                </style>
+                <div style="padding:10px">
+                    <div class="style_div2">
+                        <div class="comment">
+                            <table cellspacing="0" cellpadding="0" border="1" style="margin-left:15px; width:103%; text-align:left !important" >
+                                <tr>
+                                    <th width="30%">Function : '.$confidential_safety->function.'</th>
+                                    <th width="35%">Department : '.$confidential_safety->department.'</th>
+                                    <th width="35%">Aircraft Involved : '.$confidential_safety->aircraft_involved.'</th>
+                                </tr>
 
-                <div style="border:8px double #000000; width:100%; text-align:center; margin:5px">
-                    <table cellspacing="0" cellpadding="0" class="tbl8" border="1" style="width:103%;margin-left:14px; text-align:left !important" >
-                        <tr>
-                            <th width="30%">Function : '.$confidential_safety->function.'</th>
-                            <th width="35%">Department : '.$confidential_safety->department.'</th>
-                            <th width="35%">Aircraft Involved : '.$confidential_safety->aircraft_involved.'</th>
-                        </tr>
-
-                        <tr>
-                            <th width="30%">Type of Operation : '.$confidential_safety->type_of_operation.'</th>
-                            <th width="35%">Weather : '.$confidential_safety->weather.'</th>
-                            <th width="35%">Flight Phase : '.$confidential_safety->flight_phase.'</th>
-                        </tr>
-
-                        <tr>
-                            <td colspan="3"><b>Account of event – </b>(please continue on other side or attach additional sheets if necessary)</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" height="300px" style="vertical-align: top;text-align: left;">'.$confidential_safety->account_of_event.'</td>
-                        </tr>
-                    </table>
+                                <tr>
+                                    <th width="30%">Type of Operation : '.$confidential_safety->type_of_operation.'</th>
+                                    <th width="35%">Weather : '.$confidential_safety->weather.'</th>
+                                    <th width="35%">Flight Phase : '.$confidential_safety->flight_phase.'</th>
+                                </tr>
+                            </table>
+                            <table style="border:0; font-size:14px">
+                                <tr>
+                                    <td><b>Account of event – </b>(please continue on other side or attach additional sheets if necessary): <br> '.$confidential_safety->account_of_event.'</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
+
 
                 <table style="width:100%;">
                     <tr style="vertical-align: top;border:0px ! important">

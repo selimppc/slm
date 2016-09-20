@@ -43,7 +43,7 @@ class CabinCrewController extends Controller
         $data['pageTitle'] = 'Cabin Crew\'s';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['cabin_crews'] = CabinCrew::with('relCabinCrew')->paginate(10);
+        $data['cabin_crews'] = CabinCrew::with('relCabinCrew')->paginate(30);
         //$data = Safety::get();
         //print_r($data);exit;
 
@@ -461,7 +461,7 @@ class CabinCrewController extends Controller
                         <p style="height: 8px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
                         <p style="height: 8px" align="center"><font size="+2";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; vertical-align: top; font-size: 15px; text-align: left;">Safety Department ref. nr : '.$cabin_crew->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; vertical-align: top; font-size: 15px; text-align: left;">Safety Department ref. nr : <br> '.$cabin_crew->reference_no.'</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">CABIN CREW REPORT</th>
@@ -473,7 +473,7 @@ class CabinCrewController extends Controller
                     <th style="text-align: center;background-color: yellow;" colspan="5">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
-                    <th colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$cabin_crew->full_name.','.$cabin_crew->email.','.$cabin_crew->telephone.','.$cabin_crew->extension.','.$cabin_crew->fax.'</th>
+                    <th colspan="5">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : <br> '.$cabin_crew->full_name.','.$cabin_crew->email.','.$cabin_crew->telephone.','.$cabin_crew->extension.','.$cabin_crew->fax.'</th>
                 </tr>
                 <tr style="vertical-align: top;">
                     <th width="40%" style="border: 2px solid" colspan="2">
@@ -538,7 +538,7 @@ class CabinCrewController extends Controller
                 </tr>
                 <tr style="vertical-align: top;">
                     <th width="100%" height="220px" style="border: 2px solid" colspan="5">
-                        21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):'.$cabin_crew->description_of_occurrence.'
+                        21. DESCRIPTION OF OCCURRENCE ( add forms if necessary):<br>'.$cabin_crew->description_of_occurrence.'
                     </th>
                 </tr>
                 <tr style="vertical-align: top;">

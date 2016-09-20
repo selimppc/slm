@@ -782,7 +782,7 @@
         });
         //}
     </script>
-    @include('slm::air_safety._script')
+    {{--@include('slm::air_safety._script')--}}
 
 
 @stop

@@ -43,7 +43,7 @@ class OperationalSafetyController extends Controller
         $data['pageTitle'] = 'Dangerous Goods Occurrence';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['operational_safety'] = OperationalSafety::with('relOperationalSafety')->paginate(10);
+        $data['operational_safety'] = OperationalSafety::with('relOperationalSafety')->paginate(30);
         //$data = Safety::get();
         //print_r($data);exit;
 
@@ -533,7 +533,7 @@ class OperationalSafetyController extends Controller
     }
 
     .tbl2 th{
-    text-align: left; font-weight: normal; padding: 5px; font-size:13px;
+    text-align: left; font-weight: normal; padding: 5px; font-size:14px;
     }
 
     .tbl2 tr td {
@@ -542,13 +542,13 @@ class OperationalSafetyController extends Controller
         }
 
     .report_img{
-        height: 30px!important;
+        height: 15px!important;
         text-align: center!important;
         padding: 3px 3px 3px 3px!important;
     }
 
     .report_img2{
-        height: 10px!important;
+        height: 6px!important;
         text-align: left!important;
         padding: 5px 2px 8px 2px!important;
     }
@@ -567,14 +567,14 @@ class OperationalSafetyController extends Controller
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 10px; font-weight: bolder; font-size:25px;padding-bottom:10px" align="center">OSR</p>
-                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 10px; padding-bottom:20px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 7px; font-weight: bolder; font-size:18px;padding-bottom:10px" align="center">OSR</p>
+                        <p style="height: 7px"; align="center"><font size="+1";><u>Operational Safety</u></font></p>
+                        <p style="height: 7px; padding-bottom:20px" align="center"><font size="+1";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: left; vertical-align: top;">Safety Department <br> ref. nr: '.$operational_safety->operator.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 13px; text-align: left; vertical-align: top;">Safety Department ref. nr:<br>  '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">Dangerous Goods Occurrence <br>Report</th>
+                    <th style="text-align: center; color:red; font-size: 16px; font-weight: bold">Dangerous Goods <br> Occurrence <br> Report</th>
                 </tr>
             </table>
             <table cellpadding="0" cellspacing="0" class="tbl2">
@@ -687,14 +687,14 @@ class OperationalSafetyController extends Controller
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 10px; font-weight: bolder; font-size:25px;padding-bottom:10px" align="center">OSR</p>
-                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 10px; padding-bottom:20px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 7px; font-weight: bolder; font-size:18px;padding-bottom:10px" align="center">OSR</p>
+                        <p style="height: 7px"; align="center"><font size="+1";><u>Operational Safety</u></font></p>
+                        <p style="height: 7px; padding-bottom:20px" align="center"><font size="+1";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; text-align: left; vertical-align: top;">Safety Department <br> ref. nr: '.$operational_safety->operator.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 14px; text-align: left; vertical-align: top;">Safety Department ref. nr: <br> '.$operational_safety->operator.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 25px; font-weight: bold">Dangerous Goods Occurrence <br>Report</th>
+                    <th style="text-align: center; color:red; font-size: 18px; font-weight: bold">Dangerous Goods Occurrence <br>Report</th>
                 </tr>
             </table>
 

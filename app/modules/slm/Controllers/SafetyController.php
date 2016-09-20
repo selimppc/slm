@@ -146,7 +146,7 @@ class SafetyController extends Controller
                 } else {
                     // Redirect or return json to frontend with a helpful message to inform the user
                     // that the provided file was not an adequate type
-                    return redirect('add-operational-safety')
+                    return redirect('safety-form')
                         ->withErrors($validator)
                         ->withInput();
                 }
@@ -541,7 +541,7 @@ class SafetyController extends Controller
 
 
     .tbl2 th{
-    text-align: left; font-weight: normal; padding: 0px 0px 0px 5px; font-size:13px;
+    text-align: left; font-weight: normal; padding: 0px 0px 0px 5px; font-size:11px;
     }
 
     .tbl2 tr td {
@@ -550,13 +550,19 @@ class SafetyController extends Controller
         }
 
     .report_img{
-        height: 20px!important;
+        height: 17px!important;
         text-align: center!important;
         padding: 3px 3px 3px 3px!important;
     }
 
+    .report_img5{
+        height: 13px!important;
+        text-align: center!important;
+
+    }
+
     .report_img2{
-        height: 10px!important;
+        height: 8px!important;
         text-align: left!important;
         padding: 5px 2px 8px 2px!important;
     }
@@ -594,14 +600,14 @@ class SafetyController extends Controller
                     <th rowspan="2" style="border-right: 2px solid; text-align:center" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 8px; font-weight: bolder; font-size:20px;" align="center">OSR</p>
+                        <p style="height: 8px; font-weight: bolder; font-size:18px;" align="center">OSR</p>
                         <p style="height: 8px"; align="center"><u>Operational Safety</u></p>
                         <p style="height: 8px" align="center"><u>Report</u></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; vertical-align: top;text-align: left;">Safety Department <br> ref. nr : '.$data->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 13px; vertical-align: top;text-align: left;">Safety Department ref. nr : <br> '.$data->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">AIR SAFETY REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 18px; font-weight: bold">AIR SAFETY REPORT</th>
                 </tr>
             </table>
 
@@ -613,7 +619,7 @@ class SafetyController extends Controller
 
                 </tr>
                 <tr>
-                    <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$data->full_name.','.$data->email.','.$data->telephone.','.$data->extension.','.$data->fax.'</th>
+                    <th width="100%" style="border: 2px solid" colspan="6">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) :<br> '.$data->full_name.','.$data->email.','.$data->telephone.','.$data->extension.','.$data->fax.'</th>
                 </tr>
                 <tr style="border: 2px solid; vertical-align: top;">
                     <th width="32%" style="border: 2px solid" colspan="2">
@@ -719,17 +725,17 @@ class SafetyController extends Controller
 
                 <table cellspacing="0" cellpadding="0" class="tbl">
                     <tr>
-                        <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
+                        <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img5">
                             '.$img.'</th>
                         <th rowspan="2" style="border-right: 2px solid" width="33%">
-                            <p style="height: 3px; font-weight: bolder; font-size:15px;" align="center">OSR</p>
-                            <p style="height: 3px"; align="center"><u>Operational Safety</u></p>
-                            <p style="height: 3px" align="center"><u>Report</u></p>
+                            <p style="height: 1px; font-weight: bolder; font-size:14px;" align="center">OSR</p>
+                            <p style="height: 1px"; align="center"><u>Operational Safety</u></p>
+                            <p style="height: 1px" align="center"><u>Report</u></p>
                         </th>
-                        <th style="border-bottom: 2px solid; font-size: 12px; vertical-align: top;text-align: left;">Safety Department <br> ref. nr : '.$data->reference_no.'</th>
+                        <th style="border-bottom: 2px solid; font-size: 12px; vertical-align: top;text-align: left;">Safety Department ref. nr :<br> '.$data->reference_no.'</th>
                     </tr>
                     <tr>
-                        <th style="text-align: center; color:red; font-size: 16px; font-weight: bold">AIR SAFETY REPORT</th>
+                        <th style="text-align: center; color:red; font-size: 13px; font-weight: bold">AIR SAFETY REPORT</th>
                     </tr>
                 </table>
 
@@ -1004,11 +1010,13 @@ class SafetyController extends Controller
 
                 </tr>
                 <tr style="border: 2px solid; vertical-align: top;">
-                    <td width="100%" height="20px" style="border: 2px solid" colspan="6">
-                        <div style="float:left; width:85%;">78. COMMENTS :'.$data->comments.'</div>
-                        <div style="float:right; width:15%; text-align:right">Page 2 of 2</div>
-                        <div style="clear:both;"></div>
-                    </td>
+                    <th width="100%" style="border: 2px solid" colspan="6">
+                        78. COMMENTS : <br> '.$data->comments.'
+                    </th>
+                </tr>
+
+                <tr style="border: 2px solid; vertical-align: top;">
+                    <th width="100%" style="border: 2px solid; text-align:right;" colspan="6">Page 2 of 2</th>
                 </tr>
 
                 </table>
@@ -1019,8 +1027,8 @@ class SafetyController extends Controller
                     <th width="50%" style="text-align:left; border:0"  colspan="3">
 
                     </th>
-                    <th width="50%" style="text-align:right; border:0px !important" colspan="3">
-                        <b>SA - 99925</b>
+                    <th width="50%" style="text-align:right; font-size: 12px; border:0px !important" colspan="3">
+                        <b>15 Feb 2015</b> <br><b>Revision : 9</b>
                     </th>
                 </tr>
             </table>

@@ -242,11 +242,11 @@
     </div>
     <div class="col-sm-12">
         {!! Form::label('enviromental_condition', 'Enviromental Condition (weather, surface, lighting)', ['class' => 'control-label']) !!}
-        {!! Form::textarea('enviromental_condition', $ground_handling_verification->enviromental_condition, ['id'=>'enviromental_condition', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
+        {!! Form::textarea('enviromental_condition', $ground_handling_verification->enviromental_condition, ['id'=>'enviromental_condition', 'class' => 'form-control','readonly']) !!}
     </div>
     <div class="col-sm-12">
         {!! Form::label('details_of_damage', 'Details of damage', ['class' => 'control-label']) !!}
-        {!! Form::textarea('details_of_damage', $ground_handling_verification->details_of_damage, ['id'=>'details_of_damage', 'class' => 'form-control','maxlength'=>'64','readonly']) !!}
+        {!! Form::textarea('details_of_damage', $ground_handling_verification->details_of_damage, ['id'=>'details_of_damage', 'class' => 'form-control','readonly']) !!}
     </div>
     <div class="col-md-12">
         <hr>
@@ -475,11 +475,11 @@
     </div>
     <div class="col-sm-12">
         {!! Form::label('enviromental_condition', 'Enviromental Condition (weather, surface, lighting)', ['class' => 'control-label']) !!}
-        {!! Form::textarea('enviromental_condition', Input::old('enviromental_condition'), ['id'=>'enviromental_condition', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter enviromental condition']) !!}
+        {!! Form::textarea('enviromental_condition', Input::old('enviromental_condition'), ['id'=>'enviromental_condition', 'class' => 'form-control','title'=>'Enter enviromental condition']) !!}
     </div>
     <div class="col-sm-12">
         {!! Form::label('details_of_damage', 'Details of damage', ['class' => 'control-label']) !!}
-        {!! Form::textarea('details_of_damage', Input::old('details_of_damage'), ['id'=>'details_of_damage', 'class' => 'form-control','maxlength'=>'64','title'=>'Enter details of damage']) !!}
+        {!! Form::textarea('details_of_damage', Input::old('details_of_damage'), ['id'=>'details_of_damage', 'class' => 'form-control','title'=>'Enter details of damage']) !!}
     </div>
     <div class="col-md-12">
         <hr>

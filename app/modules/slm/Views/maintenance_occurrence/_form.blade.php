@@ -276,7 +276,7 @@
 
     <div class="col-sm-12">
         {!! Form::label('title_of_occurrence', 'Title of Occurrence:', ['class' => 'control-label']) !!}
-        {!! Form::text('title_of_occurrence', Input::old('title_of_occurrence'), ['id'=>'title_of_occurrence', 'class' => 'form-control','maxlength'=>'64','title'=>'enter title of occurrence']) !!}
+        {!! Form::text('title_of_occurrence', Input::old('title_of_occurrence'), ['id'=>'title_of_occurrence', 'class' => 'form-control','title'=>'enter title of occurrence']) !!}
     </div>
     <div class="col-md-12">
         {!! Form::label('description_of_occurrence', 'Description of occurrence :', ['class' => 'control-label']) !!}

@@ -43,7 +43,7 @@ class GroundHandlingController extends Controller
         $data['pageTitle'] = 'Ground Handling';
 //        $full_name = Input::get('full_name');
         //$data = new Safety();
-        $data['ground_handling'] = GroundHandling::with('relGroundHandling')->paginate(10);
+        $data['ground_handling'] = GroundHandling::with('relGroundHandling')->paginate(30);
         //$data = Safety::get();
         //print_r($data);exit;
 
@@ -563,7 +563,7 @@ class GroundHandlingController extends Controller
         }
 
     .report_img{
-        height: 30px!important;
+        height: 25px!important;
         text-align: center!important;
         padding: 3px 3px 3px 3px!important;
     }
@@ -588,14 +588,14 @@ class GroundHandlingController extends Controller
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 10px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 10px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 8px; font-weight: bolder; font-size:25px;" align="center">OSR</p>
+                        <p style="height: 8px"; align="center"><font size="+1";><u>Operational Safety</u></font></p>
+                        <p style="height: 8px" align="center"><font size="+1";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; vertical-align: top; text-align:left;">Safety Department <br> ref. nr : '.$ground_handling->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 14px; vertical-align: top; text-align:left;">Safety Department ref. nr : <br> '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">GROUND HANDLING REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 16px; font-weight: bold">GROUND HANDLING REPORT</th>
                 </tr>
             </table>
 
@@ -604,7 +604,7 @@ class GroundHandlingController extends Controller
                     <th style="text-align: center;background-color: yellow;" colspan="4">GENERAL INFORMATION</th>
                 </tr>
                 <tr>
-                    <th colspan="4">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : '.$ground_handling->full_name.','.$ground_handling->email.','.$ground_handling->telephone.','.$ground_handling->extension.','.$ground_handling->fax.'</th>
+                    <th colspan="4">1. FULL NAME AND CONTACT INFORMATION - (tel, extension, fax, e-mail) : <br>'.$ground_handling->full_name.','.$ground_handling->email.','.$ground_handling->telephone.','.$ground_handling->extension.','.$ground_handling->fax.'</th>
                 </tr>
                 <tr style="border: 2px solid; vertical-align: top; text-align:left;">
                     <th width="75%" style="border: 2px solid" colspan="3">2. LOCATION OF OCCURRENCE : '.$ground_handling->location_of_occurrence.'</th>
@@ -674,14 +674,14 @@ class GroundHandlingController extends Controller
                     <th rowspan="2" style="border-right: 2px solid" width="33%" class="report_img">
                         '.$img.'</th>
                     <th rowspan="2" style="border-right: 2px solid" width="33%">
-                        <p style="height: 10px; font-weight: bolder; font-size:35px;" align="center">OSR</p>
-                        <p style="height: 10px"; align="center"><font size="+2";><u>Operational Safety</u></font></p>
-                        <p style="height: 10px" align="center"><font size="+2";><u>Report</u></font></p>
+                        <p style="height: 8px; font-weight: bolder; font-size:25px;" align="center">OSR</p>
+                        <p style="height: 8px"; align="center"><font size="+1";><u>Operational Safety</u></font></p>
+                        <p style="height: 8px" align="center"><font size="+1";><u>Report</u></font></p>
                     </th>
-                    <th style="border-bottom: 2px solid; font-size: 15px; vertical-align: top; text-align:left;">Safety Department <br> ref. nr : '.$ground_handling->reference_no.'</th>
+                    <th style="border-bottom: 2px solid; font-size: 14px; vertical-align: top; text-align:left;">Safety Department ref. nr : <br>  '.$ground_handling->reference_no.'</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center; color:red; font-size: 20px; font-weight: bold">GROUND HANDLING REPORT</th>
+                    <th style="text-align: center; color:red; font-size: 16px; font-weight: bold">GROUND HANDLING REPORT</th>
                 </tr>
             </table>
 
