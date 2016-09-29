@@ -286,8 +286,8 @@ class CabinCrewController extends Controller
         //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $user = DB::table('cabin_crew')->where('id', $id)->first();
 
-        $data_signature['image_path'] = $signature->image;
-        $data_signature['image_thumb'] = $signature->thumbnail;
+        $data_signature['image_path'] = isset($signature->image)?$signature->image:null;
+        $data_signature['image_thumb'] = isset($signature->thumbnail)?$signature->thumbnail:null;
         $data_signature['current_date'] = date('M d, Y');
         $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
         $data_signature['regards'] = $input['regards'];

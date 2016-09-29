@@ -290,18 +290,24 @@ class MaintenanceOccurrenceController extends Controller
         $model = MaintenanceOccurrence::where('id',$id)->get();
 
         $user_id = Auth::user()->role_id;
+        #print_r($user_id);exit;
         $signature = UserSignature::where('user_id', $user_id)->first();
 
         //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $user = DB::table('maintenance_occurrence')->where('id', $id)->first();
 
-        $data_signature['image_path'] = $signature->image;
-        $data_signature['image_thumb'] = $signature->thumbnail;
+
+        #print_r($signature->image);exit;
+
+        $data_signature['image_path'] = isset($signature->image)?$signature->image:null;
+        $data_signature['image_thumb'] = isset($signature->thumbnail)?$signature->thumbnail:null;
         $data_signature['current_date'] = date('M d, Y');
         $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
         $data_signature['regards'] = $input['regards'];
         $data_signature['full_name'] = $user->full_name;
         $data_signature['report'] = 'Maintenance Occurrence Report';
+
+
 
         try {
             Mail::send('slm::maintenance_occurrence.mail_send_receive', array('ground_handling'=>$data_signature),

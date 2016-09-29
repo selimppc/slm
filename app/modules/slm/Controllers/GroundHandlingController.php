@@ -251,6 +251,8 @@ class GroundHandlingController extends Controller
 
         $data['ground_handling']['date']=date("M d, Y", strtotime($data['ground_handling']['date']));
 
+        #print_r($data);exit;
+
         return view('slm::ground_handling.edit',$data);
     }
 
@@ -382,8 +384,8 @@ class GroundHandlingController extends Controller
         //$user = DB::table('user')->where('username', '=', 'super-admin')->first();
         $user = DB::table('ground_handling')->where('id', $id)->first();
 
-        $data_signature['image_path'] = $signature->image;
-        $data_signature['image_thumb'] = $signature->thumbnail;
+        $data_signature['image_path'] = isset($signature->image)?$signature->image:null;
+        $data_signature['image_thumb'] = isset($signature->thumbnail)?$signature->thumbnail:null;
         $data_signature['current_date'] = date('M d, Y');
         $data_signature['created_at'] = (date("M d, Y", strtotime($model[0]['created_at'])));
         $data_signature['regards'] = $input['regards'];
@@ -393,7 +395,7 @@ class GroundHandlingController extends Controller
         //print_r($user->full_name); exit();
 
         //$email_to = $user->email;
-       // print_r($email_to); exit();
+       #print_r($user->email); exit();
 
             try {
                 Mail::send('slm::ground_handling.mail_send_receive', array('ground_handling' => $data_signature),
