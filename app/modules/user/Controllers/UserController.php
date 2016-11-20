@@ -311,7 +311,7 @@ class UserController extends Controller
                 'ip_address'=> getHostByName(getHostName()),
                 'department_id'=> $input['department_id'],
                 'role_id'=> $input['role_id'],
-                'expire_date'=> $input['expire_date'],
+                /*'expire_date'=> $input['expire_date'],*/
                 'status'=> $input['status'],
             ];
             #print_r($input_data);exit;
@@ -488,7 +488,7 @@ class UserController extends Controller
                 'ip_address'=> getHostByName(getHostName()),
                 'department_id'=> $input['department_id'],
                 'role_id'=> $input['role_id'],
-                'expire_date'=> $input['expire_date'],
+                /*'expire_date'=> $input['expire_date'],*/
                 'status'=> $input['status'],
             ];
                 DB::beginTransaction();

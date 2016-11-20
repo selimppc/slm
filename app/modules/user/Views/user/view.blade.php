@@ -26,10 +26,10 @@
                <th class="col-lg-4">Last Visit Time</th>
                <td>{{ isset($data->last_visit)?$data->last_visit:'' }}</td>
             </tr>
-            <tr>
+            {{--<tr>
                 <th class="col-lg-4">Expire Date</th>
                 <td>{{ isset($data->expire_date)?date('Y-m-d', strtotime($data->expire_date)):'' }}</td>
-            </tr>
+            </tr>--}}
             <tr>
                 <th class="col-lg-4">Status</th>
                 <td>{{ isset($data->status)?ucfirst($data->status):'' }}</td>

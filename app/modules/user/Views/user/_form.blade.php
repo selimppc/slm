@@ -48,7 +48,7 @@
 </div>
 <div class="form-group form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
     <div class="row">
-        <div class="col-sm-6">
+        {{--<div class="col-sm-6">
             {!! Form::label('expire_date', 'Expire Date:', ['class' => 'control-label']) !!}
             <div class="input-group date">
                 @if(isset($data->expire_date))
@@ -59,7 +59,7 @@
 
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
-        </div>
+        </div>--}}
         <div class="col-sm-6">
             {!! Form::label('status', 'Status:', ['class' => 'control-label']) !!}
             <small class="narration">(Inactive status Selected)</small>

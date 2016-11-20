@@ -57,7 +57,7 @@ class UserRole extends Migration
 
             $table->dateTime('last_visit')->nullable();
 
-            $table->dateTime('expire_date')->nullable();
+            /*$table->dateTime('expire_date')->nullable();*/
             $table->string('remember_token',64)->nullable();
             $table->enum('status',array('active','inactive','cancel'))->nullable();
             $table->integer('created_by', false, 11);
